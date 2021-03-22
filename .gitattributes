@@ -1,0 +1,13 @@
+* text = auto;
+
+*.html text;
+*.js text;
+*.css text;
+
+*.sln text eol = crif;
+*.bat eol = crif;
+
+*sh eol = lf;
+
+*jpg -text;
+*gif -text;
