@@ -1,3 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@300;400;700&display=swap');
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .App {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  min-height: 100vh;
+  background: gray;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  padding: 17.5px 40px;
+  background-color: black;
+}
+
+.header__title {
+  font-size: 2.15rem;
+  font-family: 'Teko', sans-serif;
+  text-transform: uppercase;
+  color: coral;
+}
+
+.header__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 15%;
+  min-width: 250px;
+}
+
+.header__link {
+  position: relative;
+  font-size: 1.45rem;
+  font-family: 'Teko', sans-serif;
+  text-decoration: none;
+  color: white;
+}
+
+.header__link:not(:last-child)::after {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  right: -2.35rem;
+  top: calc(50% - 2.5px);
+  position: absolute;
+  background: white;
+}
+
+.page-title {
+  margin-top: 250px;
   text-align: center;
+  font-size: 5rem;
+  font-family: 'Teko', sans-serif;
+  text-transform: uppercase;
+  color: cyan;
 }
