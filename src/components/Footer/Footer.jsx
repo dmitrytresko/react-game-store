@@ -1,9 +1,10 @@
 import React from "react";
-import blizzardImg from "../assets/img/blizzard.png";
-import eaImg from "../assets/img/easports.png";
-import ubisoftImg from "../assets/img/ubisoft.png";
-import rockstarImg from "../assets/img/rockstar.png";
-import valveImg from "../assets/img/valve.png";
+import blizzardImg from "../../assets/img/blizzard.png";
+import eaImg from "../../assets/img/easports.png";
+import ubisoftImg from "../../assets/img/ubisoft.png";
+import rockstarImg from "../../assets/img/rockstar.png";
+import valveImg from "../../assets/img/valve.png";
+import "./styles.scss";
 
 export default function Footer() {
   return (

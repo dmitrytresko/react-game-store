@@ -1,0 +1,57 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 15px 40px;
+  background-color: black;
+
+  &__title {
+    color: coral;
+    font-size: 2.15rem;
+    font-family: "Teko", sans-serif;
+    text-transform: uppercase;
+  }
+
+  &__navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 15%;
+    min-width: 250px;
+  }
+
+  &__link {
+    position: relative;
+    color: white;
+    font-size: 1.45rem;
+    font-family: "Teko", sans-serif;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.5s;
+
+    &:not(:last-child)::after {
+      position: absolute;
+      top: calc(50% - 2.5px);
+      right: -2.35rem;
+      width: 5px;
+      height: 5px;
+      background: white;
+      border-radius: 50%;
+      content: "";
+    }
+
+    &:hover {
+      color: coral;
+      text-decoration: underline;
+    }
+
+    &--active {
+      color: coral;
+      text-transform: uppercase;
+    }
+  }
+}

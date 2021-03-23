@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router";
-import notFoundImg from "../assets/img/not-found.png";
+import notFoundImg from "../../assets/img/not-found.png";
+import "./styles.scss";
 
 export default function NotFoundPg() {
   let location = useLocation();

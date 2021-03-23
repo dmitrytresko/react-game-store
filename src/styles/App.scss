@@ -1,20 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Teko:wght@300;400;700&display=swap");
+
 *,
 *::before,
 *::after {
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 .App {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
   flex-direction: column;
   width: 100vw;
   min-height: 100vh;
@@ -28,10 +23,10 @@
   font-family: "Teko", sans-serif;
   text-align: center;
   text-transform: uppercase;
-}
 
-.page-title--not-found {
-  color: white;
-  font-size: 5rem;
-  font-family: "Teko", sans-serif;
+  &--not-found {
+    color: white;
+    font-size: 5rem;
+    font-family: "Teko", sans-serif;
+  }
 }

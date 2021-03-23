@@ -1,19 +1,18 @@
-/* eslint-disable no-unused-vars */
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import HomePg from "./components/HomePg";
-import ProductsPg from "./components/ProductsPg";
-import AboutPg from "./components/AboutPg";
-import NotFoundPg from "./components/NotFoundPg";
-import './styles/App.css';
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import HomePg from "./pages/HomePg/HomePg";
+import ProductsPg from "./pages/ProductsPg/ProductsPg";
+import AboutPg from "./pages/AboutPg/AboutPg";
+import NotFoundPg from "./pages/NotFoundPg/NotFoundPg";
+import './styles/App.scss';
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <Header></Header>
+        <Header />
 
         <Switch>
           <Route path="/" exact component={HomePg} />
@@ -22,7 +21,7 @@ function App() {
           <Route component={NotFoundPg}></Route>
         </Switch>
 
-        <Footer></Footer>
+        <Footer />
       </div>
     </Router>
   );
