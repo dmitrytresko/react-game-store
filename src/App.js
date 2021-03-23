@@ -3,10 +3,11 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import HomePg from "./components/HomePg";
 import ProductsPg from "./components/ProductsPg";
 import AboutPg from "./components/AboutPg";
-import HomePg from "./components/HomePg";
-import './App.css';
+import NotFoundPg from "./components/NotFoundPg";
+import './styles/App.css';
 
 function App() {
   return (
@@ -15,9 +16,10 @@ function App() {
         <Header></Header>
 
         <Switch>
+          <Route path="/" exact component={HomePg} />
           <Route path="/products" component={ProductsPg} />
           <Route path="/about" component={AboutPg} />
-          <Route path="/" exact component={HomePg} />
+          <Route component={NotFoundPg}></Route>
         </Switch>
 
         <Footer></Footer>
