@@ -8,23 +8,29 @@ import AboutPg from "./pages/AboutPg/AboutPg";
 import NotFoundPg from "./pages/NotFoundPg/NotFoundPg";
 import './styles/App.scss';
 
-function App() {
-  return (
-    <Router>
-      <div className="App">
-        <Header />
+class App extends React.Component {
+  componentDidCatch() {
 
-        <Switch>
-          <Route path="/" exact component={HomePg} />
-          <Route path="/products" component={ProductsPg} />
-          <Route path="/about" component={AboutPg} />
-          <Route component={NotFoundPg}></Route>
-        </Switch>
+  }
 
-        <Footer />
-      </div>
-    </Router>
-  );
+  render() {
+    return (
+      <Router>
+        <div className="App">
+          <Header />
+
+          <Switch>
+            <Route path="/" exact component={HomePg} />
+            <Route path="/products" component={ProductsPg} />
+            <Route path="/about" component={AboutPg} />
+            <Route component={NotFoundPg}></Route>
+          </Switch>
+
+          <Footer />
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;
