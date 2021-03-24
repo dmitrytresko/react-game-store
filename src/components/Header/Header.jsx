@@ -1,8 +1,7 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 import "./styles.scss";
 
-export default function Header() {
+const Header = () => {
   return (
     <header className="header">
       <h1 className="header__title">Best Games Market</h1>
@@ -14,3 +13,5 @@ export default function Header() {
     </header>
   )
 }
+
+export default Header;

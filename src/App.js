@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import HomePg from "./pages/HomePg/HomePg";
@@ -9,26 +9,37 @@ import NotFoundPg from "./pages/NotFoundPg/NotFoundPg";
 import './styles/App.scss';
 
 class App extends React.Component {
-  componentDidCatch() {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
 
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error) {
+    console.error(error);
   }
 
   render() {
+    if (this.state.hasError) {
+      return <Redirect to="/" />;
+    }
+
     return (
       <Router>
-        <div className="App">
-          <Header />
+        <Header />
 
-          <Switch>
+        <Switch>
             <Route path="/" exact component={HomePg} />
             <Route path="/products" component={ProductsPg} />
             <Route path="/about" component={AboutPg} />
             <Route component={NotFoundPg}></Route>
-          </Switch>
+        </Switch>
 
-          <Footer />
-        </div>
-      </Router>
+        <Footer />
+    </Router>
     );
   }
 }

@@ -1,9 +1,7 @@
-import React from "react";
-
-export default function AboutPg() {
+const AboutPg = () => {
   return (
-    <React.Fragment>
-      <h2 className="page-title">About page</h2>;
-    </React.Fragment>
+      <h2 className="page-title">About page</h2>
   )
 }
+
+export default AboutPg;

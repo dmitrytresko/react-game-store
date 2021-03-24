@@ -1,9 +1,7 @@
-import React from "react";
-
-export default function HomePg() {
+const HomePg = () => {
   return (
-    <React.Fragment>
-      <h2 className="page-title">Home page</h2>;
-    </React.Fragment>
+      <h2 className="page-title">Home page</h2>
   )
 }
+
+export default HomePg;

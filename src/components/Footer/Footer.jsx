@@ -1,4 +1,3 @@
-import React from "react";
 import blizzardImg from "../../assets/img/blizzard.png";
 import eaImg from "../../assets/img/easports.png";
 import ubisoftImg from "../../assets/img/ubisoft.png";
@@ -6,9 +5,9 @@ import rockstarImg from "../../assets/img/rockstar.png";
 import valveImg from "../../assets/img/valve.png";
 import "./styles.scss";
 
-export default function Footer() {
+const Footer = () => {
   return (
-    <foooter className="footer">
+    <footer className="footer">
       <p className="footer__tagline">Incredible convenient</p>
         <div className="footer__icons-container">
           <a href="https://www.blizzard.com/en-us/" className="footer__link" rel="noreferrer" target="_blank">
@@ -27,6 +26,8 @@ export default function Footer() {
             <img className="footer__img--large" src={valveImg} alt="Valve logo"></img>
           </a>
          </div>
-    </foooter>
+    </footer>
   )
 }
+
+export default Footer;
