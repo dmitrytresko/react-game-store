@@ -24,9 +24,6 @@ module.exports = {
     },
     "globals": {
         "window": true,
-        "module": true,
-    },
-    "prettier/prettier": ["error", {
-     "endOfLine":"auto"
-   }],
+        "module": true
+    }
 };
