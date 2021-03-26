@@ -11,14 +11,15 @@
 #root {
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  align-items: center;
+  min-width: 100vw;
   min-height: 100vh;
-  background: gray;
+  background: gainsboro;
 }
 
 .page-title {
   margin-top: 250px;
-  color: cyan;
+  color: black;
   font-size: 5rem;
   font-family: "Teko", sans-serif;
   text-align: center;

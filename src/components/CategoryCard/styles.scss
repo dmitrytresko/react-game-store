@@ -1,0 +1,35 @@
+.category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  min-width: 90px;
+  padding: 20px 0;
+  background: coral;
+  border: 2px solid black;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.5s;
+
+  &__logo {
+    width: 5vw;
+    height: 5vw;
+    margin-bottom: 20px;
+  }
+
+  &__name {
+    color: black;
+    font-size: calc(12px + 1vw);
+    font-family: "Teko", sans-serif;
+    cursor: pointer;
+    transition: all 0.4s;
+  }
+
+  &:hover &__name {
+    color: black;
+  }
+
+  &:hover {
+    background: #f8f8f8;
+  }
+}
