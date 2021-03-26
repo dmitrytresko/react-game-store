@@ -32,10 +32,10 @@ class App extends React.Component {
         <Header />
 
         <Switch>
-            <Route path="/" exact component={HomePg} />
-            <Route path="/products" component={ProductsPg} />
-            <Route path="/about" component={AboutPg} />
-            <Route component={NotFoundPg}></Route>
+          <Route path="/" exact component={HomePg} />
+          <Route path="/products" component={ProductsPg} />
+          <Route path="/about" component={AboutPg} />
+          <Route component={NotFoundPg}></Route>
         </Switch>
 
         <Footer />
