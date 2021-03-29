@@ -16,7 +16,7 @@
     text-transform: uppercase;
   }
 
-  &__navigation {
+  &__navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -33,7 +33,7 @@
     cursor: pointer;
     transition: all 0.4s;
 
-    &:not(:last-child)::after {
+    /* &:not(:last-child)::after {
       position: absolute;
       top: calc(50% - 2.5px);
       right: -2.35rem;
@@ -42,7 +42,7 @@
       background: white;
       border-radius: 50%;
       content: "";
-    }
+    } */
 
     &:hover {
       color: coral;

@@ -13,7 +13,9 @@
 
   &__logo {
     width: 5vw;
+    min-width: 32px;
     height: 5vw;
+    min-height: 32px;
     margin-bottom: 20px;
   }
 
@@ -25,11 +27,8 @@
     transition: all 0.4s;
   }
 
-  &:hover &__name {
-    color: black;
-  }
-
   &:hover {
     background: #f8f8f8;
+    border-color: coral;
   }
 }
