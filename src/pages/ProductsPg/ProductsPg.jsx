@@ -1,19 +1,14 @@
-import { BrowserRouter as Switch, Route, /* useParams */} from "react-router-dom";
+import { Route, Switch, useRouteMatch} from "react-router-dom";
+import CategoryPg from "../CategoryPg/CategoryPg";
 
 const ProductsPg = () => {
+  let match = useRouteMatch();
+
   return (
     <>
-      <h2 className="page-title">Products page</h2>
-
       <Switch>
-        <Route path="/products/ps">
-          <h2>Games for PlayStation</h2>
-        </Route>
-        <Route path="/products/xbox">
-          <h2>Games for Xbox</h2>
-        </Route>
-        <Route path="/products/pc">
-          <h2>Games for PC</h2>
+        <Route path={`${match.path}/:categoryId`}>
+          <CategoryPg />
         </Route>
       </Switch>
     </>

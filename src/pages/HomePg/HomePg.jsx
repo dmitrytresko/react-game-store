@@ -9,7 +9,9 @@ const HomePg = () => {
       <Searchbar message="Enter the game name here..."/>
 
       <div className="home__categories-container">
-        {categoriesArr.map((item, id) => <CategoryCard key={id} path={item.path} altName={item.altName} name={item.name} />)}
+        {categoriesArr.map((item, id) => {
+          return <CategoryCard key={id} path={item.path} altName={item.altName} name={item.name} route={item.routePath}/>
+        })}
       </div>
     </div>
   )

@@ -19,19 +19,24 @@ const Header = () => {
     if (dropdownState === "PC") {
       history.push("/products/pc");
     }
+
+    return setDropdownState("Products");
   }, [dropdownState])
 
   return (
     <header className="header">
-      <h1 className="header__title">Best Games Market</h1>
+      <h1 className="header__title" onClick={() => history.push("/")}>Best Games Store</h1>
       <nav className="header__navbar">
         <NavLink to="/" exact className="header__link" activeClassName="header__link--active">Home</NavLink>
         <Dropdown className="header__link"
                   options={productsItems}
                   value={dropdownState}
-                  onChange={(event => {setDropdownState(event.value)})} />
+                  onChange={event => {
+                    setDropdownState(event.value);
+                  }} />
         <NavLink to="/about" className="header__link" activeClassName="header__link--active">About</NavLink>
       </nav>
+      <div className="header__burger"></div>
     </header>
   )
 }

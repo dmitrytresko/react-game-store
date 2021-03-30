@@ -17,6 +17,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  margin-bottom: 40px;
   padding: 0 40px;
   background-color: black;
 
@@ -26,6 +27,7 @@
     font-size: 2.15rem;
     font-family: "Teko", sans-serif;
     text-transform: uppercase;
+    cursor: pointer;
   }
 
   &__navbar {
@@ -35,6 +37,32 @@
     width: 15%;
     min-width: 250px;
     height: 100%;
+  }
+
+  &__burger {
+    position: relative;
+    display: none;
+    width: 25px;
+    height: 3px;
+    background: coral;
+
+    &:before {
+      position: absolute;
+      top: -5px;
+      width: 25px;
+      height: 3px;
+      background: coral;
+      content: "";
+    }
+
+    &:after {
+      position: absolute;
+      bottom: -5px;
+      width: 25px;
+      height: 3px;
+      background: coral;
+      content: "";
+    }
   }
 
   &__link {
@@ -49,11 +77,6 @@
       color: coral;
       text-transform: uppercase;
     }
-  }
-
-  .dropdown-link {
-    @include link-styling();
-    color: coral;
   }
 
   .Dropdown-control {
@@ -93,6 +116,7 @@
 
   .Dropdown-menu {
     position: absolute;
+    left: -5px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -102,11 +126,43 @@
   }
 
   .Dropdown-option {
-    width: 90%;
-    padding-left: 2px;
+    width: 100%;
+    padding-left: 5px;
+    color: coral;
+    background: none;
+    transition: all 0.4s;
+  }
+
+  .Dropdown-option:hover {
+    color: white;
+    background: coral;
   }
 
   .Dropdown-option:not(:last-child) {
     border-bottom: 1px solid coral;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header {
+    padding: 0 40px;
+
+    &__title {
+      font-size: 1.75rem;
+    }
+
+    &__navbar {
+      display: none;
+    }
+
+    &__burger {
+      display: block;
+    }
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .header {
+    padding: 0 10px;
   }
 }

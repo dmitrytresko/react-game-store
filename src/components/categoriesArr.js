@@ -7,19 +7,22 @@ const categoriesArr = [
     id: 1,
     path: playStationLogo,
     altName: "PS logo",
-    name: "PlayStation"
+    name: "PlayStation",
+    routePath: "/products/ps"
   },
   {
     id: 2,
     path: xboxLogo,
     altName: "Xbox logo",
-    name: "Xbox "
+    name: "Xbox ",
+    routePath: "/products/xbox"
   },
   {
     id: 3,
     path: windowsLogo,
     altName: "Windows logo",
-    name: "PC"
+    name: "PC",
+    routePath: "/products/pc"
   },
 ];
 
