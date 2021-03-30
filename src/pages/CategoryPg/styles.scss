@@ -1,0 +1,31 @@
+.categories {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 65%;
+  min-width: 300px;
+
+  &__logo {
+    width: 96px;
+    height: 96px;
+    margin-bottom: 30px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .categories__logo {
+    width: 64px;
+    height: 64px;
+  }
+
+  .categories__logo {
+    margin-bottom: 15px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .categories__logo {
+    width: 48px;
+    height: 48px;
+  }
+}

@@ -1,3 +1,5 @@
+$default-margin: 40px;
+
 @mixin link-styling {
   height: 100%;
   color: white;
@@ -17,8 +19,8 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 40px;
-  padding: 0 40px;
+  margin-bottom: $default-margin;
+  padding: 0 $default-margin;
   background-color: black;
 
   &__title {
@@ -80,7 +82,7 @@
   }
 
   .Dropdown-control {
-    padding: 0px 20px 0 0;
+    padding: 0px $default-margin/2 0 0;
     background: none;
     border: none;
     border-radius: 5px;
@@ -145,7 +147,8 @@
 
 @media screen and (max-width: 767px) {
   .header {
-    padding: 0 40px;
+    margin-bottom: $default-margin/2;
+    padding: 0 $default-margin;
 
     &__title {
       font-size: 1.75rem;
