@@ -1,0 +1,70 @@
+@import "../../styles/App.scss";
+
+.game-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 22.5%;
+  padding-bottom: 10px;
+  overflow: hidden;
+  background: black;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+
+  &__cover {
+    width: 100%;
+    height: 350px;
+    margin-bottom: 15px;
+  }
+
+  &__details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 90%;
+    height: 100%;
+  }
+
+  &__title {
+    max-width: 75%;
+    color: coral;
+    font-size: 1.45rem;
+    font-family: "Teko", sans-serif;
+  }
+
+  &__company {
+    color: #f8f8f8;
+    font-size: 1.35rem;
+    font-family: "Teko", sans-serif;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__info:last-child {
+    align-items: flex-end;
+    margin-top: 20px;
+  }
+
+  &__rating {
+    width: 32px;
+    height: 32px;
+  }
+
+  &__price {
+    color: white;
+    font-weight: bold;
+    font-size: 1.45rem;
+    font-family: "Teko", sans-serif;
+  }
+
+  &:hover {
+    box-shadow: 3px 3px 15px 5px black;
+  }
+}
