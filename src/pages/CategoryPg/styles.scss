@@ -5,17 +5,52 @@
   width: 65%;
   min-width: 300px;
 
+  &__title-block {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    min-width: 275px;
+  }
+
   &__logo {
-    width: 96px;
-    height: 96px;
-    margin-bottom: 30px;
+    width: 64px;
+    height: 64px;
   }
 
   &__games-container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 30px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .categories__title-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .page-title {
+      margin-bottom: 0;
+
+      &:nth-child(2n) {
+        display: none;
+      }
+    }
+
+    .categories__logo {
+      margin-bottom: 15px;
+
+      &:first-child {
+        display: none;
+      }
+    }
+  }
+
+  .categories__games-container {
+    flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -23,10 +58,6 @@
   .categories__logo {
     width: 64px;
     height: 64px;
-  }
-
-  .categories__logo {
-    margin-bottom: 10px;
   }
 }
 

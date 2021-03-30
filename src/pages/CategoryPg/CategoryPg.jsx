@@ -13,8 +13,13 @@ const CategoryPg = () => {
 
   return (
     <div className="categories">
-      <img className="categories__logo" src={categoryId === "ps" ? playStationLogo : categoryId === "xbox" ? xboxLogo : windowsLogo}/>
-      <h2 className="page-title">- Best games for {categoryId} -</h2>
+      <div className="categories__title-block">
+        <img className="categories__logo" src={categoryId === "ps" ? playStationLogo : categoryId === "xbox" ? xboxLogo : windowsLogo}/>
+        <p className="page-title">-</p>
+        <h2 className="page-title">Best games for {categoryId}</h2>
+        <p className="page-title">-</p>
+        <img className="categories__logo" src={categoryId === "ps" ? playStationLogo : categoryId === "xbox" ? xboxLogo : windowsLogo}/>
+      </div>
       <div className="categories__games-container">
         {gamesArr.map(game => <GameCard key={game.id} gameDetails={game}/>)}
       </div>

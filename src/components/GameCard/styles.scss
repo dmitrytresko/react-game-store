@@ -4,7 +4,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 22.5%;
+  width: 23.5%;
+  min-width: 225px;
+  margin-bottom: 20px;
   padding-bottom: 10px;
   overflow: hidden;
   background: black;
@@ -14,28 +16,27 @@
 
   &__cover {
     width: 100%;
-    height: 350px;
+    height: 300px;
     margin-bottom: 15px;
   }
 
   &__details-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     justify-content: space-between;
     width: 90%;
-    height: 100%;
+    min-height: 105px;
   }
 
   &__title {
     max-width: 75%;
     color: coral;
-    font-size: 1.45rem;
+    font-size: 1.35rem;
     font-family: "Teko", sans-serif;
   }
 
   &__company {
-    color: #f8f8f8;
+    color: white;
     font-size: 1.35rem;
     font-family: "Teko", sans-serif;
   }
@@ -44,12 +45,6 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    height: 100%;
-  }
-
-  &__info:last-child {
-    align-items: flex-end;
-    margin-top: 20px;
   }
 
   &__rating {
