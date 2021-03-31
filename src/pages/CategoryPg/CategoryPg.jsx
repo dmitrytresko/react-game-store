@@ -1,15 +1,29 @@
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import GameCard from "../../components/GameCard/GameCard";
 import playStationLogo from "../../assets/img/playstation.png";
 import xboxLogo from "../../assets/img/xbox.png";
 import windowsLogo from "../../assets/img/windows.png";
-import gamesArr from "../../components/gamesArr";
+import psGamesArr from "../../components/psGamesArr";
+import xboxGamesArr from "../../components/xboxGamesArr";
+import pcGamesArr from "../../components/pcGamesArr";
 import "./styles.scss";
 
 const CategoryPg = () => {
   let { categoryId } = useParams();
 
-  console.log(categoryId);
+  useEffect(() => {
+    console.log(categoryId);
+  }, [categoryId])
+
+  const selectGamesArr = (category) => {
+    switch (category) {
+      case "ps": return psGamesArr;
+      case "xbox": return xboxGamesArr;
+      case "pc": return pcGamesArr;
+      default: return;
+    }
+  }
 
   return (
     <div className="categories">
@@ -21,7 +35,7 @@ const CategoryPg = () => {
         <img className="categories__logo" src={categoryId === "ps" ? playStationLogo : categoryId === "xbox" ? xboxLogo : windowsLogo}/>
       </div>
       <div className="categories__games-container">
-        {gamesArr.map(game => <GameCard key={game.id} gameDetails={game}/>)}
+        {selectGamesArr(categoryId).map(game => <GameCard key={game.id} gameDetails={game}/>)}
       </div>
     </div>
   )

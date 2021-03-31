@@ -9,14 +9,14 @@ import ufc4Img from "../assets/img/games/ps/ufc4.png";
 import fiveStars from "../assets/img/card-items/five-stars.png";
 import fourStars from "../assets/img/card-items/four-stars.png";
 
-const gamesArr = [
+const psGamesArr = [
   {
     id: 100,
-    name: "FIFA 21",
+    name: "FIFA 21: Standard Edition",
     company: "EA Sports",
     path: fifa21Img,
     rating: fourStars,
-    price: "$79.99"
+    price: "$59.99"
   },
   {
     id: 101,
@@ -24,12 +24,12 @@ const gamesArr = [
     company: "Rockstar Games",
     path: rdr2Img,
     rating: fiveStars,
-    price: "$54.99"
+    price: "$51.99"
   },
   {
     id: 102,
     name: "The Witcher 3: Wild Hunt",
-    company: "CD Projekt RED",
+    company: "CD Projekt",
     path: theWitcher3Img,
     rating: fiveStars,
     price: "$24.99"
@@ -76,4 +76,4 @@ const gamesArr = [
   }
 ]
 
-export default gamesArr;
+export default psGamesArr;
