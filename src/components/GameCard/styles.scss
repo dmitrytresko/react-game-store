@@ -25,11 +25,11 @@
     flex-direction: column;
     justify-content: space-between;
     width: 90%;
-    min-height: 135px;
+    min-height: 130px;
   }
 
   &__title {
-    max-width: 78.5%;
+    max-width: 82.5%;
     color: coral;
     font-size: 1.45rem;
     font-family: "Teko", sans-serif;
@@ -45,6 +45,10 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+  }
+
+  &__info:last-child {
+    align-items: flex-end;
   }
 
   &__rating {
@@ -67,5 +71,25 @@
 @media screen and (max-width: 1024px) {
   .game-card__cover {
     height: 300px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .game-card {
+    &__details-container {
+      min-height: 110px;
+    }
+
+    &__title {
+      font-size: 1.3rem;
+    }
+
+    &__company {
+      font-size: 1.25rem;
+    }
+
+    &__price {
+      font-size: 1.4rem;
+    }
   }
 }

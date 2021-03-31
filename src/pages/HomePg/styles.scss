@@ -6,6 +6,7 @@ $default-margin: 40px;
   align-items: center;
   width: 65%;
   min-width: 300px;
+  min-height: 100vh;
 
   &__categories-container {
     display: flex;

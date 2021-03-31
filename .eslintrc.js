@@ -17,9 +17,10 @@ module.exports = {
     },
     "plugins": ["react"],
     "rules": {
+      "no-unused-vars": ["error", { "caughtErrors": "none" }],
       "react/react-in-jsx-scope": "off",
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
-      "react/prop-types": "off"
+      "react/prop-types": "off",
     },
     "globals": {
       "window": true,

@@ -23,12 +23,10 @@ class App extends React.Component {
   }
 
   render() {
-    if (this.state.hasError) {
-      return <Redirect to="/" />;
-    }
-
     return (
       <Router>
+        {this.state.hasError && <Redirect to="/" />}
+
         <Header />
 
         <Switch>
