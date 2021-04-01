@@ -25,15 +25,13 @@
   text-align: center;
   text-transform: uppercase;
 
+  @media (max-width: 767px) {
+    font-size: 1.75rem;
+  }
+
   &--not-found {
-    color: white;
+    color: black;
     font-size: 5rem;
     font-family: "Teko", sans-serif;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .page-title {
-    font-size: 1.75rem;
   }
 }

@@ -1,20 +1,41 @@
+/* eslint-disable */
+import { useState, useEffect } from "react";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import CategoryCard from "../../components/CategoryCard/CategoryCard";
+import GameCard from "../../components/GameCard/GameCard";
 import categoriesArr from "../../components/categoriesArr";
-// import axios from "axios";
+import psGamesArr from "../../components/psGamesArr";
+import xboxGamesArr from "../../components/xboxGamesArr";
+import pcGamesArr from "../../components/pcGamesArr";
+import axios from "axios";
 import "./styles.scss";
-// import { useState } from "react";
 
 const HomePg = () => {
-  // const [cards, setCards] = useState([]);
+  const [theBest, setTheBest] = useState([]);
+
+  useEffect(async() => {
+    const response = await axios.get(`https://my-json-server.typicode.com/Dmitry-Tresko/fake-api-repo/getTopProducts`);
+
+    const theBestRatings = response.data.map(item => item.metaRating).sort().reverse().slice(0, 3);
+
+    const gamesWithBestRatings = theBestRatings.map(number => response.data.find(item => item.metaRating === number));
+
+    const matchedBestRatedGames = gamesWithBestRatings.map(game => psGamesArr.find(psGame => psGame.name === game.name));
+
+    console.log(matchedBestRatedGames);
+
+    setTheBest(matchedBestRatedGames);
+  },[])
 
   const callSearchValue = async (value) => {
-    console.log(value);
+    try {
+      const response = await axios.get(`https://my-json-server.typicode.com/Dmitry-Tresko/fake-api-repo/gamesArr`);
 
-    // setCards([]);
-    // console.log(cards);
-    // const result = await axios.get(`dsrjnydry/api/search/${value}`);
-    // setCards(result);
+      return response.data.filter(item => item.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()));
+    }
+    catch(err) {
+      console.error(err);
+    }
   }
 
   return (
@@ -27,7 +48,10 @@ const HomePg = () => {
         })}
       </div>
 
-
+      <h2 className="page-title">- The best games -</h2>
+      {theBest ? <div className="home__games-container">
+        {theBest.map(game => <GameCard key={game.id} gameDetails={game}/>)}
+      </div> : ""}
     </div>
   )
 }

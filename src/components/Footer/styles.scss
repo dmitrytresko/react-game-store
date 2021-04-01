@@ -6,7 +6,8 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-top: 40px;
+  height: 125px;
+  margin-top: 20px;
 
   padding: 15px 0;
   background-color: black;
@@ -17,6 +18,10 @@
     font-size: 1.45rem;
     font-family: "Teko", sans-serif;
     text-decoration: none;
+
+    @media (max-width: 767px) {
+      font-size: 1.25rem;
+    }
   }
 
   &__icons-container {
@@ -35,37 +40,29 @@
     width: 40px;
     height: 40px;
 
+    @media (max-width: 768px) {
+      width: 25px;
+      height: 25px;
+    }
+
     &--medium {
       width: 55px;
       height: 40px;
+
+      @media (max-width: 768px) {
+        width: 40px;
+        height: 25px;
+      }
     }
 
     &--large {
       width: 80px;
       height: 40px;
+
+      @media (max-width: 768px) {
+        width: 50px;
+        height: 25px;
+      }
     }
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .footer__img {
-    width: 25px;
-    height: 25px;
-
-    &--medium {
-      width: 40px;
-      height: 25px;
-    }
-
-    &--large {
-      width: 50px;
-      height: 25px;
-    }
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .footer__tagline {
-    font-size: 1.25rem;
   }
 }

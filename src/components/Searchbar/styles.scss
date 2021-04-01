@@ -1,41 +1,113 @@
-.searchbar {
-  position: relative;
+.search-container {
+  display: flex;
+  flex-direction: column;
   width: 37.5%;
   min-width: 300px;
 
-  input {
+  .searchbar {
+    position: relative;
     width: 100%;
-    padding: 6px 45px 6px 15px;
-    color: black;
-    font-size: 1.2rem;
-    font-family: "Teko", sans-serif;
-    background: #f8f8f8;
-    border: 2px solid dimgray;
-    border-radius: 15px;
-    outline: none;
-    transition: all 0.4s;
 
-    &::-webkit-input-placeholder {
-      color: dimgray;
+    input {
+      width: 100%;
+      padding: 6px 45px 6px 15px;
+      color: black;
       font-size: 1.2rem;
+      font-family: "Teko", sans-serif;
+      background: #f8f8f8;
+      border: 2px solid dimgray;
+      border-radius: 15px;
+      outline: none;
+      transition: all 0.4s;
+
+      &::-webkit-input-placeholder {
+        color: dimgray;
+        font-size: 1.2rem;
+      }
+
+      &:focus {
+        border-color: coral;
+        box-shadow: 0 0 10px 5px coral;
+      }
     }
 
-    &:focus {
-      border-color: coral;
-      box-shadow: 0 0 10px 5px coral;
+    &-submit {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 10%;
+      min-width: 50px;
+      height: 100%;
+      overflow: hidden;
+      background: url(../../assets/img/loupe.png) no-repeat center center;
+      border: none;
+      outline: none;
+      cursor: pointer;
+
+      &--active {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 10%;
+        min-width: 50px;
+        height: 100%;
+        overflow: hidden;
+        overflow: hidden;
+        border: none;
+        outline: none;
+        cursor: pointer;
+
+        .loader {
+          width: 24px;
+          height: 24px;
+          border: 3px solid coral;
+          border-top: 3px solid #f8f8f8;
+          border-radius: 50%;
+          transition: all 0.5s;
+          animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+      }
     }
   }
 
-  &-btn {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 10%;
-    min-width: 50px;
-    height: 100%;
-    background: url(../../assets/img/loupe.png) no-repeat center center;
+  .found-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 300px;
+    margin-top: 5px;
+    font-family: "Teko", sans-serif;
     border: none;
-    outline: none;
-    cursor: pointer;
+    border-radius: 15px;
+    transition: all 0.5s ease;
+
+    &--paragraph {
+      width: 100%;
+      padding: 5px 10px 5px 15px;
+      font-size: 1.25rem;
+      background: #f8f8f8;
+      border: 2px solid transparent;
+      border-radius: 15px;
+      outline: none;
+      cursor: pointer;
+      transition: all 0.4s ease;
+
+      &:hover {
+        color: coral;
+        border-color: coral;
+      }
+    }
   }
 }
