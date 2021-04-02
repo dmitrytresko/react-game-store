@@ -1,15 +1,44 @@
-import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { NavLink, useHistory } from "react-router-dom";
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 import "./styles.scss";
 
 const Header = () => {
+  const history = useHistory();
+  const productsItems = ["PlayStation", "Xbox", "PC"];
+  const [dropdownState, setDropdownState] = useState("Products");
+
+  useEffect(() => {
+    if (dropdownState === "PlayStation") {
+      return history.push("/products/ps");
+    }
+    if (dropdownState === "Xbox") {
+      return history.push("/products/xbox");
+    }
+    if (dropdownState === "PC") {
+      return history.push("/products/pc");
+    }
+  }, [dropdownState])
+
+  const onClickHandler = () => {
+    setDropdownState("Products");
+  }
+
   return (
     <header className="header">
-      <h1 className="header__title">Best Games Market</h1>
-        <nav className="header__navigation">
-          <NavLink to="/" exact className="header__link" activeClassName="header__link--active">Home</NavLink>
-          <NavLink to="/products" className="header__link" activeClassName="header__link--active">Products</NavLink>
-          <NavLink to="/about" className="header__link" activeClassName="header__link--active">About</NavLink>
-        </nav>
+      <h1 className="header__title" onClick={() => history.push("/")}>Best Games Store</h1>
+      <nav className="header__navbar">
+        <NavLink to="/" exact className="header__link" activeClassName="header__link--active" onClick={onClickHandler}>Home</NavLink>
+        <Dropdown className="header__link"
+                  options={productsItems}
+                  value={dropdownState}
+                  onChange={event => {
+                    setDropdownState(event.value);
+                  }} />
+        <NavLink to="/about" className="header__link" activeClassName="header__link--active" onClick={onClickHandler}>About</NavLink>
+      </nav>
+      <div className="header__burger"></div>
     </header>
   )
 }

@@ -1,3 +1,18 @@
+$smallMediaWidth: 320px;
+$correctedTabletMediaWidth: 767px;
+$default-margin: 40px;
+
+@mixin link-styling {
+  height: 100%;
+  color: white;
+  font-size: 1.45rem;
+  font-family: "Teko", sans-serif;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.4s ease-out;
+}
+
 .header {
   position: sticky;
   top: 0;
@@ -6,52 +21,149 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 15px 40px;
+  margin-bottom: $default-margin;
+  padding: 0 $default-margin;
   background-color: black;
 
+  @media (max-width: $correctedTabletMediaWidth) {
+    margin-bottom: $default-margin/2;
+    padding: 0 $default-margin;
+  }
+
+  @media (max-width: $smallMediaWidth) {
+    padding: 0 10px;
+  }
+
   &__title {
+    padding: 10px 0;
     color: coral;
     font-size: 2.15rem;
     font-family: "Teko", sans-serif;
     text-transform: uppercase;
+    cursor: pointer;
+
+    @media (max-width: $correctedTabletMediaWidth) {
+      font-size: 1.75rem;
+    }
   }
 
-  &__navigation {
+  &__navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 15%;
     min-width: 250px;
+    height: 100%;
+
+    @media (max-width: $correctedTabletMediaWidth) {
+      display: none;
+    }
   }
 
-  &__link {
+  &__burger {
     position: relative;
-    color: white;
-    font-size: 1.45rem;
-    font-family: "Teko", sans-serif;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.5s;
+    display: none;
+    width: 25px;
+    height: 3px;
+    background: coral;
 
-    &:not(:last-child)::after {
+    @media (max-width: $correctedTabletMediaWidth) {
+      display: block;
+    }
+
+    &:before {
       position: absolute;
-      top: calc(50% - 2.5px);
-      right: -2.35rem;
-      width: 5px;
-      height: 5px;
-      background: white;
-      border-radius: 50%;
+      top: -5px;
+      width: 25px;
+      height: 3px;
+      background: coral;
       content: "";
     }
 
+    &:after {
+      position: absolute;
+      bottom: -5px;
+      width: 25px;
+      height: 3px;
+      background: coral;
+      content: "";
+    }
+  }
+
+  &__link {
+    @include link-styling();
+
     &:hover {
       color: coral;
-      text-decoration: underline;
+      border-bottom: 2px solid coral;
     }
 
     &--active {
       color: coral;
       text-transform: uppercase;
     }
+  }
+
+  .Dropdown-control {
+    padding: 0px $default-margin/2 0 0;
+    background: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.4s;
+  }
+
+  .Dropdown-root:hover .Dropdown-placeholder {
+    color: coral;
+  }
+
+  .Dropdown-arrow {
+    position: absolute;
+    top: calc(50% - 0.25rem);
+    right: 3px;
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: white transparent transparent;
+    border-style: solid;
+    border-width: 5px 5px 0;
+    content: " ";
+  }
+
+  .is-open .Dropdown-arrow {
+    border-color: transparent transparent white;
+    border-width: 0 5px 5px;
+  }
+
+  .Dropdown-placeholder {
+    color: white;
+  }
+
+  .Dropdown-menu {
+    position: absolute;
+    left: -5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 110px;
+    border: 2px solid coral;
+    border-radius: 5px;
+  }
+
+  .Dropdown-option {
+    width: 100%;
+    padding-left: 5px;
+    color: coral;
+    background: none;
+    transition: all 0.4s;
+  }
+
+  .Dropdown-option:hover {
+    color: white;
+    background: coral;
+  }
+
+  .Dropdown-option:not(:last-child) {
+    border-bottom: 1px solid coral;
   }
 }

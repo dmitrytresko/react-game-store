@@ -23,23 +23,21 @@ class App extends React.Component {
   }
 
   render() {
-    if (this.state.hasError) {
-      return <Redirect to="/" />;
-    }
-
     return (
       <Router>
+        {this.state.hasError && <Redirect to="/" />}
+
         <Header />
 
         <Switch>
-            <Route path="/" exact component={HomePg} />
-            <Route path="/products" component={ProductsPg} />
-            <Route path="/about" component={AboutPg} />
-            <Route component={NotFoundPg}></Route>
+          <Route path="/" exact component={HomePg} />
+          <Route path="/products" component={ProductsPg} />
+          <Route path="/about" component={AboutPg} />
+          <Route component={NotFoundPg}></Route>
         </Switch>
 
         <Footer />
-    </Router>
+      </Router>
     );
   }
 }

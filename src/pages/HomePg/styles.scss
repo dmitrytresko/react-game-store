@@ -1,0 +1,30 @@
+$maxMediaWidth: 1024px;
+
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 65%;
+  min-width: 300px;
+  min-height: 100vh;
+
+  &__categories-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  &__games-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+
+    @media (max-width: $maxMediaWidth) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}

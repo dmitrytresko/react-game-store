@@ -1,5 +1,5 @@
 import blizzardImg from "../../assets/img/blizzard.png";
-import eaImg from "../../assets/img/easports.png";
+import eaImg from "../../assets/img/electronic_arts.png";
 import ubisoftImg from "../../assets/img/ubisoft.png";
 import rockstarImg from "../../assets/img/rockstar.png";
 import valveImg from "../../assets/img/valve.png";

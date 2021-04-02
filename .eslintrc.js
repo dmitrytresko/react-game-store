@@ -15,15 +15,15 @@ module.exports = {
         "ecmaVersion": 12,
         "sourceType": "module"
     },
-    "plugins": [
-        "react"
-    ],
+    "plugins": ["react"],
     "rules": {
-     "react/react-in-jsx-scope": "off",
-     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+      "no-unused-vars": ["error", { "caughtErrors": "none" }],
+      "react/react-in-jsx-scope": "off",
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+      "react/prop-types": "off",
     },
     "globals": {
-        "window": true,
-        "module": true
+      "window": true,
+      "module": true
     }
 };
