@@ -39,7 +39,7 @@ const psGamesArr = [
     name: "The Last of Us Part II",
     company: "Sony Interactive",
     path: theLastOfUs2Img,
-    rating: fourStars,
+    rating: fiveStars,
     price: "$54.99"
   },
   {

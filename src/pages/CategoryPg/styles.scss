@@ -1,3 +1,7 @@
+$maxMediaWidth: 1024px;
+$correctedTabletMediaWidth: 767px;
+$minMediaWidth: 320px;
+
 .categories {
   display: flex;
   flex-direction: column;
@@ -25,7 +29,7 @@
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: $maxMediaWidth) {
   .categories__title-block {
     display: flex;
     flex-direction: column;
@@ -46,12 +50,12 @@
         display: none;
       }
 
-      @media (max-width: 767px) {
+      @media (max-width: $correctedTabletMediaWidth) {
         width: 64px;
         height: 64px;
       }
 
-      @media (max-width: 320px) {
+      @media (max-width: $minMediaWidth) {
         width: 48px;
         height: 48px;
       }

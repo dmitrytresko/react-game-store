@@ -1,3 +1,5 @@
+$smallMediaWidth: 320px;
+$correctedTabletMediaWidth: 767px;
 $default-margin: 40px;
 
 @mixin link-styling {
@@ -23,12 +25,12 @@ $default-margin: 40px;
   padding: 0 $default-margin;
   background-color: black;
 
-  @media (max-width: 767px) {
+  @media (max-width: $correctedTabletMediaWidth) {
     margin-bottom: $default-margin/2;
     padding: 0 $default-margin;
   }
 
-  @media (max-width: 320px) {
+  @media (max-width: $smallMediaWidth) {
     padding: 0 10px;
   }
 
@@ -40,7 +42,7 @@ $default-margin: 40px;
     text-transform: uppercase;
     cursor: pointer;
 
-    @media (max-width: 767px) {
+    @media (max-width: $correctedTabletMediaWidth) {
       font-size: 1.75rem;
     }
   }
@@ -53,7 +55,7 @@ $default-margin: 40px;
     min-width: 250px;
     height: 100%;
 
-    @media (max-width: 767px) {
+    @media (max-width: $correctedTabletMediaWidth) {
       display: none;
     }
   }
@@ -65,7 +67,7 @@ $default-margin: 40px;
     height: 3px;
     background: coral;
 
-    @media (max-width: 767px) {
+    @media (max-width: $correctedTabletMediaWidth) {
       display: block;
     }
 

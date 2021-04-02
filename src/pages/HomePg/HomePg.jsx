@@ -11,23 +11,30 @@ import axios from "axios";
 import "./styles.scss";
 
 const HomePg = () => {
-  const [theBest, setTheBest] = useState([]);
+  const [selectedGames, setSelectedGames] = useState([]);
 
-  useEffect(async() => {
-    const response = await axios.get(`https://my-json-server.typicode.com/Dmitry-Tresko/fake-api-repo/getTopProducts`);
+  const getTopProductsInfo = async() => {
+    try {
+      const response = await axios.get(`https://my-json-server.typicode.com/Dmitry-Tresko/fake-api-repo/getTopProducts`);
 
-    const theBestRatings = response.data.map(item => item.metaRating).sort().reverse().slice(0, 3);
+      const theBestRatings = response.data.map(item => item.metaRating).sort().reverse().slice(0, 3);
 
-    const gamesWithBestRatings = theBestRatings.map(number => response.data.find(item => item.metaRating === number));
+      const gamesWithBestRatings = theBestRatings.map(number => response.data.find(item => item.metaRating === number));
 
-    const matchedBestRatedGames = gamesWithBestRatings.map(game => psGamesArr.find(psGame => psGame.name === game.name));
+      const matchedBestRatedGames = gamesWithBestRatings.map(game => psGamesArr.find(psGame => psGame.name === game.name));
 
-    console.log(matchedBestRatedGames);
+      setSelectedGames(matchedBestRatedGames);
+    }
+    catch (err) {
+      console.error(err);
+    }
+  }
 
-    setTheBest(matchedBestRatedGames);
+  useEffect(() => {
+    getTopProductsInfo();
   },[])
 
-  const callSearchValue = async (value) => {
+  const callSearchValue = async(value) => {
     try {
       const response = await axios.get(`https://my-json-server.typicode.com/Dmitry-Tresko/fake-api-repo/gamesArr`);
 
@@ -49,8 +56,8 @@ const HomePg = () => {
       </div>
 
       <h2 className="page-title">- The best games -</h2>
-      {theBest ? <div className="home__games-container">
-        {theBest.map(game => <GameCard key={game.id} gameDetails={game}/>)}
+      {selectedGames ? <div className="home__games-container">
+        {selectedGames.map(game => <GameCard key={game.id} gameDetails={game}/>)}
       </div> : ""}
     </div>
   )
