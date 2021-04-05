@@ -1,0 +1,45 @@
+$maxMediaWidth: 1024px;
+
+.input-text {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 55%;
+  min-width: 280px;
+  margin-bottom: 15px;
+  color: #f8f8f8;
+  font-size: 1.5rem;
+  font-family: "Teko", sans-serif;
+
+  &__input {
+    width: 315px;
+    margin-left: 15px;
+    padding: 6px 15px 6px 15px;
+    color: black;
+    font-size: 1.2rem;
+    font-family: "Teko", sans-serif;
+    background: #f8f8f8;
+    border: 2px solid dimgray;
+    border-radius: 10px;
+    outline: none;
+    transition: all 0.4s;
+
+    @media (max-width: $maxMediaWidth) {
+      width: 180px;
+    }
+
+    &::-webkit-input-placeholder {
+      color: dimgray;
+      font-size: 1.2rem;
+
+      @media (max-width: $maxMediaWidth) {
+        font-size: 1.1rem;
+      }
+    }
+
+    &:focus {
+      border-color: coral;
+      box-shadow: 0 0 10px 5px coral;
+    }
+  }
+}

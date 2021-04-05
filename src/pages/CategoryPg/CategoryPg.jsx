@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import GameCard from "../../components/GameCard/GameCard";
 import playStationLogo from "../../assets/img/playstation.png";
@@ -11,10 +10,6 @@ import "./styles.scss";
 
 const CategoryPg = () => {
   let { categoryId } = useParams();
-
-  useEffect(() => {
-    console.log(categoryId);
-  }, [categoryId])
 
   const selectGamesArr = (category) => {
     switch (category) {

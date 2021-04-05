@@ -16,7 +16,7 @@
       font-family: "Teko", sans-serif;
       background: #f8f8f8;
       border: 2px solid dimgray;
-      border-radius: 15px;
+      border-radius: 10px;
       outline: none;
       transition: all 0.4s;
 
@@ -100,6 +100,9 @@
     }
 
     &__text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       padding: 5px 10px 5px 15px;
       font-size: 1.25rem;
       font-family: "Teko", sans-serif;
@@ -114,6 +117,13 @@
         color: coral;
         border-color: coral;
       }
+    }
+
+    &__mini-img {
+      width: 17.5px;
+      height: 17.5px;
+      margin-bottom: 4px;
+      margin-left: 10px;
     }
   }
 }

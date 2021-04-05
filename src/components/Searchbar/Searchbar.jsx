@@ -1,6 +1,9 @@
 /* eslint-disable */
 import { useState, useEffect } from 'react';
 import _ from "lodash";
+import playStationLogo from "../../assets/img/playstation.png";
+import xboxLogo from "../../assets/img/xbox.png";
+import windowsLogo from "../../assets/img/windows.png";
 import "./styles.scss";
 
 const SearchBar = ({ message, callSearchValue }) => {
@@ -54,6 +57,9 @@ const SearchBar = ({ message, callSearchValue }) => {
                 return (
                   <button className="found-info__text" key={index} type="button" onClick={(event) => onButtonClickHandler(event.target.textContent)}>
                     {item.name}
+                    {(item.id >= 100 && item.id < 200) ? <img className="found-info__mini-img" src={playStationLogo} /> :
+                    (item.id >= 200 && item.id < 300) ? <img className="found-info__mini-img" src={xboxLogo} /> :
+                    <img className="found-info__mini-img" src={windowsLogo} />}
                   </button>
                 );
               })

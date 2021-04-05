@@ -5,7 +5,7 @@ $default-margin: 40px;
 @mixin link-styling {
   height: 100%;
   color: white;
-  font-size: 1.45rem;
+  font-size: 1.475rem;
   font-family: "Teko", sans-serif;
   text-decoration: none;
   border-bottom: 2px solid transparent;
@@ -22,22 +22,23 @@ $default-margin: 40px;
   justify-content: space-between;
   width: 100%;
   margin-bottom: $default-margin;
-  padding: 0 $default-margin;
+  padding: 7.5px $default-margin;
   background-color: black;
 
   @media (max-width: $correctedTabletMediaWidth) {
     margin-bottom: $default-margin/2;
-    padding: 0 $default-margin;
+    padding: 0 $default-margin/2;
   }
 
   @media (max-width: $smallMediaWidth) {
-    padding: 0 10px;
+    padding: 0 15px;
   }
 
   &__title {
-    padding: 10px 0;
+    margin-right: 10px;
+    padding: 7.5px 0;
     color: coral;
-    font-size: 2.15rem;
+    font-size: 2.4rem;
     font-family: "Teko", sans-serif;
     text-transform: uppercase;
     cursor: pointer;
@@ -54,10 +55,43 @@ $default-margin: 40px;
     width: 15%;
     min-width: 250px;
     height: 100%;
+    margin-right: 165px;
 
     @media (max-width: $correctedTabletMediaWidth) {
       display: none;
     }
+  }
+
+  &__link {
+    @include link-styling();
+
+    &:hover {
+      color: coral;
+      border-bottom: 2px solid coral;
+    }
+
+    &--active {
+      color: coral;
+      text-transform: uppercase;
+    }
+  }
+
+  &__login-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    @media (max-width: $correctedTabletMediaWidth) {
+      display: none;
+    }
+  }
+
+  &__login-btn {
+    z-index: 10;
+    text-align: right;
+    background: none;
+    border: 2px solid transparent;
+    outline: none;
   }
 
   &__burger {
@@ -87,20 +121,6 @@ $default-margin: 40px;
       height: 3px;
       background: coral;
       content: "";
-    }
-  }
-
-  &__link {
-    @include link-styling();
-
-    &:hover {
-      color: coral;
-      border-bottom: 2px solid coral;
-    }
-
-    &--active {
-      color: coral;
-      text-transform: uppercase;
     }
   }
 
