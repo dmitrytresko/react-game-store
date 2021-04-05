@@ -21,7 +21,6 @@ $tabletMediaWidth: 768px;
   justify-content: center;
   width: 40vw;
   min-width: 300px;
-  padding-bottom: 25px;
   overflow: hidden;
   color: #f8f8f8;
   font-size: 1.5rem;
@@ -85,6 +84,39 @@ $tabletMediaWidth: 768px;
 
     @media (max-width: $tabletMediaWidth) {
       padding: 10.5px 10.5px;
+    }
+  }
+
+  &__bottom-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 25px;
+    padding: 20px 0;
+    background: black;
+    border-top: 2px solid #f8f8f8;
+
+    .modal__submit-btn {
+      padding: 2.5px 35px;
+      color: coral;
+      font-size: 1.65rem;
+      font-family: "Teko", sans-serif;
+      text-decoration: none;
+      background: #f8f8f8;
+      border: 2px solid coral;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+
+      &:hover {
+        color: #f8f8f8;
+        background: coral;
+      }
+
+      @media (max-width: $tabletMediaWidth) {
+        font-size: 1.3rem;
+      }
     }
   }
 }

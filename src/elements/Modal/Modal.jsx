@@ -13,12 +13,16 @@ const Modal = ({ opened, type, children, onCloseClick }) => {
       <div className="modal">
         <div className="modal__head-block">
           <h2 className="modal__title">{type}</h2>
-          <button className="modal__close-btn" onClick={onCloseClick}>
+          <button className="modal__close-btn" type="button" onClick={onCloseClick}>
             <img src={closeImg}></img>
           </button>
         </div>
 
         {children}
+
+        <div className="modal__bottom-block">
+          <button className="modal__submit-btn" type="submit" onClick={onCloseClick} >Submit</button>
+        </div>
       </div>
     </>,
     document.getElementById('portal')

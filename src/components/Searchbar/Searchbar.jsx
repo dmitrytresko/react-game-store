@@ -15,8 +15,6 @@ const SearchBar = ({ message, callSearchValue }) => {
   const getRequiredGames = async(query) => {
     const receivedArr = await callSearchValue(query);
 
-    console.log(receivedArr);
-
     setResults(receivedArr);
     setIsLoading(false);
   }

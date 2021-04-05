@@ -64,7 +64,7 @@ const Header = () => {
              onCloseClick={() => setModalState({ isOpened: false, signInClicked: false, regClicked: false })}>
         {modalState.signInClicked ? (
           <>
-            <InputText fieldName="Email:" message="Enter your email here..."></InputText>
+            <InputText fieldName="Login:" message="Enter your login here..."></InputText>
             <InputText fieldName="Password:" message="Enter your password here..."></InputText>
           </>
         ):
