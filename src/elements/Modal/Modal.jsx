@@ -1,20 +1,38 @@
 // import { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import closeImg from "../../assets/img/close.png";
-import registrationSchema from "../../validations/userRegValidation";
+import { Formik, Form } from "formik";
+import registrationSchema from "../../validations/registrationValidation";
+import signInSchema from "../../validations/signInValidation";
 import "./styles.scss";
 
 const Modal = ({ opened, type, children, onCloseClick }) => {
-  const registerUser = async (event) => {
-    event.preventDefault();
+  const onSubmitHandler = async (values) => {
+    let formData;
+    let requiredSchema;
 
-    let formData = {
-      login: event.target[1].value,
-      password: event.target[2].value,
-      doubledPassword: event.target[3].value
+    if (type === "Registration") {
+      requiredSchema = registrationSchema;
+
+      formData = {
+        login: values.login,
+        password: values.password,
+        confirmPassword: values.confirmPassword
+      }
     }
 
-    const isDataValid = await registrationSchema.isValid(formData);
+    if (type === "Sign In") {
+      requiredSchema = signInSchema;
+
+      formData = {
+        login: values.login,
+        password: values.password
+      }
+    }
+
+    console.log(formData)
+
+    const isDataValid = await requiredSchema.isValid(formData);
     console.log(isDataValid);
   }
 
@@ -24,20 +42,28 @@ const Modal = ({ opened, type, children, onCloseClick }) => {
     <>
       <div className="content-overlay" />
 
-      <form className="modal" onSubmit={registerUser}>
-        <div className="modal__head-block">
-          <h2 className="modal__title">{type}</h2>
-          <button className="modal__close-btn" type="button" onClick={onCloseClick}>
-            <img src={closeImg} className="modal__close-btn--img"></img>
-          </button>
-        </div>
+      <Formik initialValues={{
+        login: '',
+        password: '',
+        confirmPassword: ''
+      }}
+      validationSchema={type === "Registration" ? registrationSchema : signInSchema}
+      onSubmit={(values) => onSubmitHandler(values)}>
+        <Form className="modal">
+          <div className="modal__head-block">
+            <h2 className="modal__title">{type}</h2>
+            <button className="modal__close-btn" type="button" onClick={onCloseClick}>
+              <img src={closeImg} className="modal__close-btn--img"></img>
+            </button>
+          </div>
 
-        {children}
+          {children}
 
-        <div className="modal__bottom-block">
-          <button className="modal__submit-btn" type="submit">Submit</button>
-        </div>
-      </form>
+          <div className="modal__bottom-block">
+            <button className="modal__submit-btn" type="submit">Submit</button>
+          </div>
+        </Form>
+      </Formik>
     </>,
     document.getElementById('portal')
   )

@@ -31,7 +31,7 @@ $tabletMediaWidth: 768px;
   transform: translate(-50%, -50%);
 
   @media (max-width: $tabletMediaWidth) {
-    box-shadow: 0 0 15px 7.5px coral;
+    box-shadow: 0 0 10px 5px coral;
   }
 
   &__head-block {

@@ -64,15 +64,15 @@ const Header = () => {
              onCloseClick={() => setModalState({ isOpened: false, signInClicked: false, regClicked: false })}>
         {modalState.signInClicked ? (
           <>
-            <InputText fieldName="Login:" message="Enter your login here..."></InputText>
-            <InputText fieldName="Password:" message="Enter your password here..."></InputText>
+            <InputText fieldLabel="Login:" fieldName="login" message="Enter your login here..."></InputText>
+            <InputText fieldLabel="Password:" fieldName="password" message="Enter your password here..."></InputText>
           </>
         ):
         modalState.regClicked ? (
           <>
-            <InputText fieldName="Login:" message="Enter your login here..."></InputText>
-            <InputText fieldName="Password:" message="Enter your password here..."></InputText>
-            <InputText fieldName="Password:" message="Repeat your password here..."></InputText>
+            <InputText fieldLabel="Login:" fieldName="login" message="Enter your login here..."></InputText>
+            <InputText fieldLabel="Password:" fieldName="password" message="Enter your password here..."></InputText>
+            <InputText fieldLabel="Password:" fieldName="confirmPassword" message="Repeat your password here..."></InputText>
           </>
         ) : ""}
       </Modal>
