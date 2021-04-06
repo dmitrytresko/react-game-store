@@ -83,7 +83,17 @@ $tabletMediaWidth: 768px;
     }
 
     @media (max-width: $tabletMediaWidth) {
-      padding: 10.5px 10.5px;
+      padding: 14px 14px;
+    }
+
+    &--img {
+      width: 24px;
+      height: 24px;
+
+      @media (max-width: $tabletMediaWidth) {
+        width: 20px;
+        height: 20px;
+      }
     }
   }
 
@@ -98,7 +108,7 @@ $tabletMediaWidth: 768px;
     border-top: 2px solid #f8f8f8;
 
     .modal__submit-btn {
-      padding: 2.5px 35px;
+      padding: 2.5px 50px;
       color: coral;
       font-size: 1.65rem;
       font-family: "Teko", sans-serif;
@@ -106,6 +116,7 @@ $tabletMediaWidth: 768px;
       background: #f8f8f8;
       border: 2px solid coral;
       border-radius: 10px;
+      outline: none;
       cursor: pointer;
       transition: all 0.4s ease;
 

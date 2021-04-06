@@ -5,11 +5,15 @@ $maxMediaWidth: 1024px;
   align-items: center;
   justify-content: flex-end;
   width: 55%;
-  min-width: 280px;
+  min-width: 270px;
   margin-bottom: 15px;
   color: #f8f8f8;
   font-size: 1.5rem;
   font-family: "Teko", sans-serif;
+
+  @media (max-width: $maxMediaWidth) {
+    font-size: 1.25rem;
+  }
 
   &__input {
     width: 315px;
