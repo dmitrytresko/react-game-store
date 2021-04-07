@@ -39,9 +39,10 @@ const Header = () => {
     }
   }
 
-  const confirmLogin = login => {
+  const confirmAuthentication = login => {
     setIsLogged(true);
     setUserLogin(login);
+    setModalState({ isOpened: false, signInClicked: false, regClicked: false });
     history.push('/profile');
   }
 
@@ -50,6 +51,7 @@ const Header = () => {
     if (isConfirmed) {
       setIsLogged(false);
       setUserLogin("");
+      localStorage.removeItem("loggedUser");
       history.push('/');
     }
   }
@@ -78,7 +80,7 @@ const Header = () => {
           ) :
             <>
               <div className="header__login-handler">
-                <img className="header__user-icon" src={userIcon} />
+                <img className="header__user-icon" src={userIcon} onClick={() => history.push('/profile')} />
                 <p className="header__link" onClick={() => history.push('/profile')}>{userLogin}</p>
               </div>
               <button className="header__link header__login-btn" type="button" onClick={onLogOutClickHandler}>Log Out</button>
@@ -90,21 +92,13 @@ const Header = () => {
 
       <Modal opened={modalState.isOpened}
              type={`${modalState.signInClicked ? "Sign In" : "Registration"}`}
-             confirmLogin={confirmLogin}
+             confirmAuthentication={confirmAuthentication}
              onCloseClick={() => setModalState({ isOpened: false, signInClicked: false, regClicked: false })}>
-        {modalState.signInClicked ? (
-          <>
-            <InputText fieldLabel="Login:" fieldName="login" message="Enter your login here..."></InputText>
-            <InputText fieldLabel="Password:" fieldName="password" message="Enter your password here..."></InputText>
-          </>
-        ):
-        modalState.regClicked ? (
-          <>
-            <InputText fieldLabel="Login:" fieldName="login" message="Enter your login here..."></InputText>
-            <InputText fieldLabel="Password:" fieldName="password" message="Enter your password here..."></InputText>
-            <InputText fieldLabel="Password:" fieldName="confirmPassword" message="Repeat your password here..."></InputText>
-          </>
-        ) : ""}
+              <InputText fieldLabel="Login:" fieldName="login" message="Enter your login here..."></InputText>
+              <InputText fieldLabel="Password:" fieldName="password" message="Enter your password here..."></InputText>
+              {modalState.regClicked ? (
+                <InputText fieldLabel="Password:" fieldName="confirmPassword" message="Repeat your password here..."></InputText>
+              ) : ""}
       </Modal>
     </>
   )

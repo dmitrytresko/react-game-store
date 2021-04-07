@@ -2,11 +2,12 @@
 import ReactDOM from 'react-dom';
 import closeImg from "../../assets/img/close.png";
 import { Formik, Form } from "formik";
+import axios from "axios";
 import registrationSchema from "../../validations/registrationValidation";
 import signInSchema from "../../validations/signInValidation";
 import "./styles.scss";
 
-const Modal = ({ opened, type, children, onCloseClick, confirmLogin }) => {
+const Modal = ({ opened, type, children, onCloseClick, confirmAuthentication }) => {
   const onSubmitHandler = async (values) => {
     let formData;
     let requiredSchema;
@@ -30,12 +31,22 @@ const Modal = ({ opened, type, children, onCloseClick, confirmLogin }) => {
       }
     }
 
-    console.log(formData)
-
     const isDataValid = await requiredSchema.isValid(formData);
     if(isDataValid) {
-      confirmLogin(values.login);
+      confirmAuthentication(values.login);
+      localStorage.setItem("loggedUser", JSON.stringify(formData));
+
+      performRegistrationRequest(formData);
     }
+  }
+
+  const performRegistrationRequest = async(formData) => {
+    const response = await axios.post('http://localhost:4000/auth/signUp', {
+      login: formData.login,
+      password: formData.password
+    })
+
+    console.log(response);
   }
 
   if (!opened) return null;
