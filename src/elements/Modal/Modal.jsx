@@ -6,7 +6,7 @@ import registrationSchema from "../../validations/registrationValidation";
 import signInSchema from "../../validations/signInValidation";
 import "./styles.scss";
 
-const Modal = ({ opened, type, children, onCloseClick }) => {
+const Modal = ({ opened, type, children, onCloseClick, confirmLogin }) => {
   const onSubmitHandler = async (values) => {
     let formData;
     let requiredSchema;
@@ -33,7 +33,9 @@ const Modal = ({ opened, type, children, onCloseClick }) => {
     console.log(formData)
 
     const isDataValid = await requiredSchema.isValid(formData);
-    console.log(isDataValid);
+    if(isDataValid) {
+      confirmLogin(values.login);
+    }
   }
 
   if (!opened) return null;

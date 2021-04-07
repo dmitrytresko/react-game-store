@@ -3,6 +3,7 @@ import { NavLink, useHistory } from "react-router-dom";
 import Dropdown from 'react-dropdown';
 import Modal from "../../elements/Modal/Modal";
 import InputText from "../../elements/InputText/InputText";
+import userIcon from "../../assets/img/user.png"
 import 'react-dropdown/style.css';
 import "./styles.scss";
 
@@ -11,8 +12,8 @@ const Header = () => {
   const productsItems = ["PlayStation", "Xbox", "PC"];
   const [dropdownState, setDropdownState] = useState("Products");
 
-  // const [isLogged, setIsLogged] = useState(false);
-
+  const [isLogged, setIsLogged] = useState(false);
+  const [userLogin, setUserLogin] = useState("");
   const [modalState, setModalState] = useState({ isOpened: false, signInClicked: false, regClicked: false });
 
   useEffect(() => {
@@ -28,13 +29,28 @@ const Header = () => {
     setDropdownState("Products");
   }
 
-  const onLogInClickHandler = (event) => {
+  const onLogInClickHandler = event => {
     if (event.target.textContent === "Sign In") {
       setModalState({ isOpened: true, signInClicked: true, regClicked: false });
     }
 
     if (event.target.textContent === "Registration") {
       setModalState({ isOpened: true, signInClicked: false, regClicked: true });
+    }
+  }
+
+  const confirmLogin = login => {
+    setIsLogged(true);
+    setUserLogin(login);
+    history.push('/profile');
+  }
+
+  const onLogOutClickHandler = () => {
+    const isConfirmed = confirm("Are sure that you want to log out?");
+    if (isConfirmed) {
+      setIsLogged(false);
+      setUserLogin("");
+      history.push('/');
     }
   }
 
@@ -52,15 +68,29 @@ const Header = () => {
                   }} />
           <NavLink to="/about" className="header__link" activeClassName="header__link--active" onClick={onLinkClickHandler}>About</NavLink>
         </nav>
+
         <div className="header__login-container">
-          <button className="header__link header__login-btn" type="button" onClick={onLogInClickHandler}>Sign In</button>
-          <button className="header__link header__login-btn" type="button" onClick={onLogInClickHandler}>Registration</button>
+          {!isLogged ? (
+            <>
+              <button className="header__link header__login-btn" type="button" onClick={onLogInClickHandler}>Sign In</button>
+              <button className="header__link header__login-btn" type="button" onClick={onLogInClickHandler}>Registration</button>
+            </>
+          ) :
+            <>
+              <div className="header__login-handler">
+                <img className="header__user-icon" src={userIcon} />
+                <p className="header__link" onClick={() => history.push('/profile')}>{userLogin}</p>
+              </div>
+              <button className="header__link header__login-btn" type="button" onClick={onLogOutClickHandler}>Log Out</button>
+            </>}
         </div>
+
         <div className="header__burger"></div>
       </header>
 
       <Modal opened={modalState.isOpened}
              type={`${modalState.signInClicked ? "Sign In" : "Registration"}`}
+             confirmLogin={confirmLogin}
              onCloseClick={() => setModalState({ isOpened: false, signInClicked: false, regClicked: false })}>
         {modalState.signInClicked ? (
           <>

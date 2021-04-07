@@ -84,6 +84,16 @@ $default-margin: 40px;
     @media (max-width: $correctedTabletMediaWidth) {
       display: none;
     }
+
+    .header__login-handler {
+      display: flex;
+      align-items: center;
+
+      .header__user-icon {
+        margin-right: 15px;
+        cursor: pointer;
+      }
+    }
   }
 
   &__login-btn {

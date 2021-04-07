@@ -5,6 +5,7 @@ import Footer from "./components/Footer/Footer";
 import HomePg from "./pages/HomePg/HomePg";
 import ProductsPg from "./pages/ProductsPg/ProductsPg";
 import AboutPg from "./pages/AboutPg/AboutPg";
+import ProfilePg from "./pages/ProfilePg/ProfilePg";
 import NotFoundPg from "./pages/NotFoundPg/NotFoundPg";
 import './styles/App.scss';
 
@@ -33,6 +34,7 @@ class App extends React.Component {
           <Route path="/" exact component={HomePg} />
           <Route path="/products" component={ProductsPg} />
           <Route path="/about" component={AboutPg} />
+          <Route path="/profile" component={ProfilePg} />
           <Route component={NotFoundPg}></Route>
         </Switch>
 

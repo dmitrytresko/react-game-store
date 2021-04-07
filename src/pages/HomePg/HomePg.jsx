@@ -32,6 +32,8 @@ const HomePg = () => {
 
   useEffect(() => {
     getTopProductsInfo();
+
+    return null;
   },[])
 
   const callSearchValue = async(value) => {
