@@ -1,7 +1,7 @@
 {
-	"gamesArr": [
-		{
-	  	"id": 100,
+  "gamesArr": [
+    {
+      "id": 100,
       "name": "FIFA 21: Standard Edition",
       "company": "EA Sports",
       "price": "$59.99"
@@ -144,121 +144,111 @@
       "company": "Rockstar Games",
       "price": "$34.99"
     }
-	],
+  ],
   "getTopProducts": [
-		{
+    {
       "id": 100,
       "name": "FIFA 21: Standard Edition",
       "metaRating": 74
     },
-		{
-       "id": 101,
-       "name": "Red Dead Redemption 2",
-       "metaRating": 97
+    {
+      "id": 101,
+      "name": "Red Dead Redemption 2",
+      "metaRating": 97
     },
     {
-       "id": 102,
-       "name": "The Witcher 3: Wild Hunt",
-       "metaRating": 92
+      "id": 102,
+      "name": "The Witcher 3: Wild Hunt",
+      "metaRating": 92
     },
     {
-       "id": 103,
-       "name": "The Last of Us Part II",
-       "metaRating": 93
+      "id": 103,
+      "name": "The Last of Us Part II",
+      "metaRating": 93
     },
     {
-       "id": 104,
-       "name": "Fallout 4",
-       "metaRating": 87
+      "id": 104,
+      "name": "Fallout 4",
+      "metaRating": 87
     },
     {
-       "id": 105,
-       "name": "Grand Theft Auto V",
-       "metaRating": 96
+      "id": 105,
+      "name": "Grand Theft Auto V",
+      "metaRating": 96
     },
     {
-       "id": 106,
-       "name": "Horizon Zero Dawn",
-       "metaRating": 89
+      "id": 106,
+      "name": "Horizon Zero Dawn",
+      "metaRating": 89
     },
     {
-       "id": 107,
-       "name": "UFC 4",
-       "metaRating": 78
-    },
-		{
-       "id": 200,
-       "name": "Forza Horizon 4: Standard Edition",
-       "metaRating": 92
+      "id": 107,
+      "name": "UFC 4",
+      "metaRating": 78
     },
     {
-       "id": 202,
-       "name": "Mortal Kombat 11: Standard Edition",
-       "metaRating": 88
+      "id": 200,
+      "name": "Forza Horizon 4: Standard Edition",
+      "metaRating": 92
     },
     {
-       "id": 204,
-       "name": "Resident Evil 7: Biohazard",
-       "metaRating": 86
+      "id": 202,
+      "name": "Mortal Kombat 11: Standard Edition",
+      "metaRating": 88
     },
     {
-       "id": 205,
-       "name": "Assassin's Creed Odyssey: Standard Edition",
-       "metaRating": 87
+      "id": 204,
+      "name": "Resident Evil 7: Biohazard",
+      "metaRating": 86
     },
     {
-       "id": 206,
-       "name": "Rise of the Tomb Raider",
-       "metaRating": 86
+      "id": 205,
+      "name": "Assassin's Creed Odyssey: Standard Edition",
+      "metaRating": 87
     },
     {
-       "id": 207,
-       "name": "Rocket League",
-       "metaRating": 74
+      "id": 206,
+      "name": "Rise of the Tomb Raider",
+      "metaRating": 86
     },
     {
-       "id": 300,
-       "name": "Hitman 3",
-       "metaRating": 87
+      "id": 207,
+      "name": "Rocket League",
+      "metaRating": 74
     },
     {
-       "id": 301,
-       "name": "Assassin's Creed Valhalla",
-       "metaRating": 82
+      "id": 300,
+      "name": "Hitman 3",
+      "metaRating": 87
     },
     {
-       "id": 303,
-       "name": "Call of Duty: Warzone",
-       "metaRating": 80
+      "id": 301,
+      "name": "Assassin's Creed Valhalla",
+      "metaRating": 82
     },
     {
-       "id": 304,
-       "name": "Tom Clancy's Rainbow Six Siege",
-       "metaRating": 79
+      "id": 303,
+      "name": "Call of Duty: Warzone",
+      "metaRating": 80
     },
     {
-       "id": 305,
-       "name": "F1 2020",
-       "metaRating": 88
+      "id": 304,
+      "name": "Tom Clancy's Rainbow Six Siege",
+      "metaRating": 79
     },
     {
-       "id": 306,
-       "name": "The Elder Scrolls V: Skyrim",
-       "metaRating": 84
-		}
-	],
-	"auth": {
-    "signIn": [
-      {
-        "login": "vasya",
-        "password": "1234"
-      }
-    ],
-    "signUp": [
-      {
-        "login": "vasya",
-         "password": "1234"
-      }
-    ]
+      "id": 305,
+      "name": "F1 2020",
+      "metaRating": 88
+    },
+    {
+      "id": 306,
+      "name": "The Elder Scrolls V: Skyrim",
+      "metaRating": 84
+    }
+  ],
+  "auth": {
+    "login": "vasya",
+    "password": "55555"
   }
 }

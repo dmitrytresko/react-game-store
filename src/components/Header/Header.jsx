@@ -7,13 +7,14 @@ import userIcon from "../../assets/img/user.png"
 import 'react-dropdown/style.css';
 import "./styles.scss";
 
-const Header = () => {
+const Header = ({ authenticateUser, userLogin }) => {
   const history = useHistory();
   const productsItems = ["PlayStation", "Xbox", "PC"];
   const [dropdownState, setDropdownState] = useState("Products");
 
-  const [isLogged, setIsLogged] = useState(false);
-  const [userLogin, setUserLogin] = useState("");
+  // const [isLogged, setIsLogged] = useState(false);
+  // const [userLogin, setUserLogin] = useState("");
+
   const [modalState, setModalState] = useState({ isOpened: false, signInClicked: false, regClicked: false });
 
   useEffect(() => {
@@ -39,19 +40,18 @@ const Header = () => {
     }
   }
 
-  const confirmAuthentication = login => {
-    setIsLogged(true);
-    setUserLogin(login);
+  const confirmUserAuthentication = (userData) => {
+    authenticateUser(userData);
     setModalState({ isOpened: false, signInClicked: false, regClicked: false });
+
     history.push('/profile');
   }
 
   const onLogOutClickHandler = () => {
     const isConfirmed = confirm("Are sure that you want to log out?");
+
     if (isConfirmed) {
-      setIsLogged(false);
-      setUserLogin("");
-      localStorage.removeItem("loggedUser");
+      authenticateUser(null);
       history.push('/');
     }
   }
@@ -73,19 +73,20 @@ const Header = () => {
         <h1 className="header__title" onClick={() => history.push("/")}>Best Games Store</h1>
 
         <div className="header__login-container">
-          {!isLogged ? (
+          {!userLogin ? (
             <>
               <button className="header__link" type="button" onClick={onLogInClickHandler}>Sign In</button>
               <button className="header__link header__reg-btn" type="button" onClick={onLogInClickHandler}>Registration</button>
             </>
-          ) :
+          ) : (
             <>
               <div className="header__login-handler">
+              <p className="header__link" onClick={() => history.push('/profile')}>{userLogin}</p>
                 <img className="header__user-icon" src={userIcon} onClick={() => history.push('/profile')} />
-                <p className="header__link" onClick={() => history.push('/profile')}>{userLogin}</p>
               </div>
               <button className="header__link header__reg-btn" type="button" onClick={onLogOutClickHandler}>Log Out</button>
-            </>}
+            </>
+          )}
         </div>
 
         <div className="header__burger"></div>
@@ -93,7 +94,7 @@ const Header = () => {
 
       <Modal opened={modalState.isOpened}
              type={`${modalState.signInClicked ? "Sign In" : "Registration"}`}
-             confirmAuthentication={confirmAuthentication}
+             confirmUserAuthentication={confirmUserAuthentication}
              onCloseClick={() => setModalState({ isOpened: false, signInClicked: false, regClicked: false })}>
               <InputText fieldLabel="Login:" fieldName="login" message="Enter your login here..."></InputText>
               <InputText fieldLabel="Password:" fieldName="password" message="Enter your password here..."></InputText>

@@ -38,10 +38,10 @@ $default-margin: 40px;
   }
 
   &__title {
-    margin-right: 6.75vw;
+    margin-right: 3.5vw;
     padding: 6px 0;
     color: coral;
-    font-size: calc(17.5px + 1.25vw);
+    font-size: calc(25px + 1vw);
     font-family: "Teko", sans-serif;
     text-transform: uppercase;
     cursor: pointer;
@@ -96,7 +96,7 @@ $default-margin: 40px;
 
     &::before {
       position: absolute;
-      left: -22.5%;
+      left: -21.5px;
       width: 2px;
       height: 100%;
       background: #f8f8f8;
@@ -114,7 +114,7 @@ $default-margin: 40px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 195px;
+    min-width: 195px;
     height: 100%;
 
     @media (max-width: $correctedTabletMediaWidth) {
@@ -128,11 +128,12 @@ $default-margin: 40px;
     .header__login-handler {
       display: flex;
       align-items: center;
+      margin-right: 32.5px;
 
       .header__user-icon {
-        width: 27.5px;
-        height: 27.5px;
-        margin-right: 15px;
+        width: 36.5px;
+        height: 36.5px;
+        margin-left: 7.5px;
         cursor: pointer;
       }
     }

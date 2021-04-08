@@ -7,7 +7,7 @@ import registrationSchema from "../../validations/registrationValidation";
 import signInSchema from "../../validations/signInValidation";
 import "./styles.scss";
 
-const Modal = ({ opened, type, children, onCloseClick, confirmAuthentication }) => {
+const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication }) => {
   const onSubmitHandler = async (values) => {
     let formData;
     let requiredSchema;
@@ -32,21 +32,25 @@ const Modal = ({ opened, type, children, onCloseClick, confirmAuthentication }) 
     }
 
     const isDataValid = await requiredSchema.isValid(formData);
-    if(isDataValid) {
-      confirmAuthentication(values.login);
-      localStorage.setItem("loggedUser", JSON.stringify(formData));
 
+    if(isDataValid) {
+      confirmUserAuthentication(formData);
       performRegistrationRequest(formData);
     }
   }
 
-  const performRegistrationRequest = async(formData) => {
-    const response = await axios.post('http://localhost:4000/auth/signUp', {
-      login: formData.login,
-      password: formData.password
+  const performRegistrationRequest = async (formData) => {
+    try {
+      const response = await axios.post('http://localhost:4000/auth', {
+        login: formData.login,
+        password: formData.password
     })
 
     console.log(response);
+    }
+    catch (error) {
+      console.error(error);
+    }
   }
 
   if (!opened) return null;
