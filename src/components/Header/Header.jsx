@@ -59,7 +59,6 @@ const Header = () => {
   return (
     <>
       <header className="header">
-        <h1 className="header__title" onClick={() => history.push("/")}>Best Games Store</h1>
         <nav className="header__navbar">
           <NavLink to="/" exact className="header__link" activeClassName="header__link--active" onClick={onLinkClickHandler}>Home</NavLink>
           <Dropdown className="header__link"
@@ -71,11 +70,13 @@ const Header = () => {
           <NavLink to="/about" className="header__link" activeClassName="header__link--active" onClick={onLinkClickHandler}>About</NavLink>
         </nav>
 
+        <h1 className="header__title" onClick={() => history.push("/")}>Best Games Store</h1>
+
         <div className="header__login-container">
           {!isLogged ? (
             <>
-              <button className="header__link header__login-btn" type="button" onClick={onLogInClickHandler}>Sign In</button>
-              <button className="header__link header__login-btn" type="button" onClick={onLogInClickHandler}>Registration</button>
+              <button className="header__link" type="button" onClick={onLogInClickHandler}>Sign In</button>
+              <button className="header__link header__reg-btn" type="button" onClick={onLogInClickHandler}>Registration</button>
             </>
           ) :
             <>
@@ -83,7 +84,7 @@ const Header = () => {
                 <img className="header__user-icon" src={userIcon} onClick={() => history.push('/profile')} />
                 <p className="header__link" onClick={() => history.push('/profile')}>{userLogin}</p>
               </div>
-              <button className="header__link header__login-btn" type="button" onClick={onLogOutClickHandler}>Log Out</button>
+              <button className="header__link header__reg-btn" type="button" onClick={onLogOutClickHandler}>Log Out</button>
             </>}
         </div>
 

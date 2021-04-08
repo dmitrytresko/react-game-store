@@ -1,14 +1,17 @@
 $smallMediaWidth: 320px;
 $correctedTabletMediaWidth: 767px;
+$tabletMediaWidth: 768px;
+$maxMediaWidth: 1024px;
 $default-margin: 40px;
 
 @mixin link-styling {
-  height: 100%;
-  color: white;
+  color: #f8f8f8;
   font-size: 1.475rem;
   font-family: "Teko", sans-serif;
   text-decoration: none;
-  border-bottom: 2px solid transparent;
+  background: none;
+  border: 2px solid transparent;
+  outline: none;
   cursor: pointer;
   transition: all 0.4s ease-out;
 }
@@ -22,7 +25,7 @@ $default-margin: 40px;
   justify-content: space-between;
   width: 100%;
   margin-bottom: $default-margin;
-  padding: 7.5px $default-margin;
+  padding: 5px $default-margin;
   background-color: black;
 
   @media (max-width: $correctedTabletMediaWidth) {
@@ -35,13 +38,21 @@ $default-margin: 40px;
   }
 
   &__title {
-    margin-right: 10px;
-    padding: 7.5px 0;
+    margin-right: 6.75vw;
+    padding: 6px 0;
     color: coral;
-    font-size: 2.4rem;
+    font-size: calc(17.5px + 1.25vw);
     font-family: "Teko", sans-serif;
     text-transform: uppercase;
     cursor: pointer;
+
+    @media (max-width: $maxMediaWidth) {
+      margin-right: 160px;
+    }
+
+    @media (max-width: $correctedTabletMediaWidth) {
+      margin-right: 0;
+    }
 
     @media (max-width: $correctedTabletMediaWidth) {
       font-size: 1.75rem;
@@ -55,9 +66,8 @@ $default-margin: 40px;
     width: 15%;
     min-width: 250px;
     height: 100%;
-    margin-right: 165px;
 
-    @media (max-width: $correctedTabletMediaWidth) {
+    @media (max-width: $maxMediaWidth) {
       display: none;
     }
   }
@@ -76,13 +86,43 @@ $default-margin: 40px;
     }
   }
 
+  &__reg-btn {
+    position: relative;
+    padding: 0 10px;
+    color: coral;
+    background: #f8f8f8;
+    border-color: coral;
+    border-radius: 5px;
+
+    &::before {
+      position: absolute;
+      left: -22.5%;
+      width: 2px;
+      height: 100%;
+      background: #f8f8f8;
+      content: "";
+      pointer-events: none;
+    }
+
+    &:hover {
+      color: #f8f8f8;
+      background: coral;
+    }
+  }
+
   &__login-container {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 195px;
     height: 100%;
 
     @media (max-width: $correctedTabletMediaWidth) {
       display: none;
+    }
+
+    @media (max-width: $maxMediaWidth) {
+      order: -1;
     }
 
     .header__login-handler {
@@ -98,14 +138,6 @@ $default-margin: 40px;
     }
   }
 
-  &__login-btn {
-    z-index: 10;
-    text-align: right;
-    background: none;
-    border: 2px solid transparent;
-    outline: none;
-  }
-
   &__burger {
     position: relative;
     display: none;
@@ -113,7 +145,7 @@ $default-margin: 40px;
     height: 3px;
     background: coral;
 
-    @media (max-width: $correctedTabletMediaWidth) {
+    @media (max-width: $maxMediaWidth) {
       display: block;
     }
 
