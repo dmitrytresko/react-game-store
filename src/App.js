@@ -32,9 +32,9 @@ class App extends React.Component {
 
   componentDidMount() {
     const userData = JSON.parse(localStorage.getItem("loggedUser"));
-    this.setState({ user: userData, hasError: false });
 
     if (userData) {
+      this.setState({ user: userData, hasError: false });
       console.log(`User ${userData.login} is authoruized`);
     }
   }
