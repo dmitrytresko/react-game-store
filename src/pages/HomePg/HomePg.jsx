@@ -15,7 +15,7 @@ const HomePg = () => {
 
   const getTopProductsInfo = async() => {
     try {
-      const response = await axios.get(`https://my-json-server.typicode.com/Dmitry-Tresko/fake-api-repo/getTopProducts`);
+      const response = await axios.get('http://localhost:4000/getTopProducts');
 
       const theBestRatings = response.data.map(item => item.metaRating).sort().reverse().slice(0, 3);
 
@@ -32,11 +32,13 @@ const HomePg = () => {
 
   useEffect(() => {
     getTopProductsInfo();
+
+    return null;
   },[])
 
   const callSearchValue = async(value) => {
     try {
-      const response = await axios.get(`https://my-json-server.typicode.com/Dmitry-Tresko/fake-api-repo/gamesArr`);
+      const response = await axios.get('http://localhost:4000/gamesArr');
 
       return response.data.filter(item => item.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()));
     }

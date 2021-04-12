@@ -1,14 +1,17 @@
 $smallMediaWidth: 320px;
 $correctedTabletMediaWidth: 767px;
+$tabletMediaWidth: 768px;
+$maxMediaWidth: 1024px;
 $default-margin: 40px;
 
 @mixin link-styling {
-  height: 100%;
-  color: white;
-  font-size: 1.45rem;
+  color: #f8f8f8;
+  font-size: 1.5rem;
   font-family: "Teko", sans-serif;
   text-decoration: none;
-  border-bottom: 2px solid transparent;
+  background: none;
+  border: 2px solid transparent;
+  outline: none;
   cursor: pointer;
   transition: all 0.4s ease-out;
 }
@@ -22,25 +25,34 @@ $default-margin: 40px;
   justify-content: space-between;
   width: 100%;
   margin-bottom: $default-margin;
-  padding: 0 $default-margin;
+  padding: 5px $default-margin;
   background-color: black;
 
   @media (max-width: $correctedTabletMediaWidth) {
     margin-bottom: $default-margin/2;
-    padding: 0 $default-margin;
+    padding: 0 $default-margin/2;
   }
 
   @media (max-width: $smallMediaWidth) {
-    padding: 0 10px;
+    padding: 0 15px;
   }
 
   &__title {
-    padding: 10px 0;
+    margin-right: 4.5vw;
+    padding: 6px 0;
     color: coral;
-    font-size: 2.15rem;
+    font-size: calc(25px + 1vw);
     font-family: "Teko", sans-serif;
     text-transform: uppercase;
     cursor: pointer;
+
+    @media (max-width: $maxMediaWidth) {
+      margin-right: 160px;
+    }
+
+    @media (max-width: $correctedTabletMediaWidth) {
+      margin-right: 0;
+    }
 
     @media (max-width: $correctedTabletMediaWidth) {
       font-size: 1.75rem;
@@ -55,8 +67,75 @@ $default-margin: 40px;
     min-width: 250px;
     height: 100%;
 
+    @media (max-width: $maxMediaWidth) {
+      display: none;
+    }
+  }
+
+  &__link {
+    @include link-styling();
+
+    &:hover {
+      color: coral;
+      border-bottom: 2px solid coral;
+    }
+
+    &--active {
+      color: coral;
+      text-transform: uppercase;
+    }
+  }
+
+  &__reg-btn {
+    position: relative;
+    padding: 0 10px;
+    color: coral;
+    background: #f8f8f8;
+    border-color: coral;
+    border-radius: 5px;
+
+    &::before {
+      position: absolute;
+      left: -22px;
+      width: 2px;
+      height: 100%;
+      background: #f8f8f8;
+      content: "";
+      pointer-events: none;
+    }
+
+    &:hover {
+      color: #f8f8f8;
+      background: coral;
+    }
+  }
+
+  &__login-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 195px;
+    height: 100%;
+
     @media (max-width: $correctedTabletMediaWidth) {
       display: none;
+    }
+
+    @media (max-width: $maxMediaWidth) {
+      order: -1;
+    }
+
+    .header__login-handler {
+      display: flex;
+      align-items: center;
+      margin-right: 33px;
+
+      .header__user-icon {
+        width: 37px;
+        height: 37px;
+        margin-left: 8px;
+        cursor: pointer;
+      }
     }
   }
 
@@ -67,7 +146,7 @@ $default-margin: 40px;
     height: 3px;
     background: coral;
 
-    @media (max-width: $correctedTabletMediaWidth) {
+    @media (max-width: $maxMediaWidth) {
       display: block;
     }
 
@@ -87,20 +166,6 @@ $default-margin: 40px;
       height: 3px;
       background: coral;
       content: "";
-    }
-  }
-
-  &__link {
-    @include link-styling();
-
-    &:hover {
-      color: coral;
-      border-bottom: 2px solid coral;
-    }
-
-    &--active {
-      color: coral;
-      text-transform: uppercase;
     }
   }
 

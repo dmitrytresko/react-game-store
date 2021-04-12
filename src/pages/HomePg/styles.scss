@@ -1,4 +1,5 @@
 $maxMediaWidth: 1024px;
+$correcteTabletMediaWidth: 767px;
 
 .home {
   display: flex;
@@ -12,8 +13,12 @@ $maxMediaWidth: 1024px;
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-top: 30px;
+    margin-top: 40px;
     margin-bottom: 30px;
+
+    @media (max-width: $correcteTabletMediaWidth) {
+      margin-top: 20px;
+    }
   }
 
   &__games-container {

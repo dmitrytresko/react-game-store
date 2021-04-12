@@ -100,6 +100,9 @@
     }
 
     &__text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       padding: 5px 10px 5px 15px;
       font-size: 1.25rem;
       font-family: "Teko", sans-serif;
@@ -114,6 +117,13 @@
         color: coral;
         border-color: coral;
       }
+    }
+
+    &__mini-img {
+      width: 18px;
+      height: 18px;
+      margin-bottom: 4px;
+      margin-left: 10px;
     }
   }
 }
