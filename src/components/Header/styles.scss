@@ -6,7 +6,7 @@ $default-margin: 40px;
 
 @mixin link-styling {
   color: #f8f8f8;
-  font-size: 1.475rem;
+  font-size: 1.5rem;
   font-family: "Teko", sans-serif;
   text-decoration: none;
   background: none;
@@ -38,7 +38,7 @@ $default-margin: 40px;
   }
 
   &__title {
-    margin-right: 3.5vw;
+    margin-right: 4.5vw;
     padding: 6px 0;
     color: coral;
     font-size: calc(25px + 1vw);
@@ -96,7 +96,7 @@ $default-margin: 40px;
 
     &::before {
       position: absolute;
-      left: -21.5px;
+      left: -22px;
       width: 2px;
       height: 100%;
       background: #f8f8f8;
@@ -128,12 +128,12 @@ $default-margin: 40px;
     .header__login-handler {
       display: flex;
       align-items: center;
-      margin-right: 32.5px;
+      margin-right: 33px;
 
       .header__user-icon {
-        width: 36.5px;
-        height: 36.5px;
-        margin-left: 7.5px;
+        width: 37px;
+        height: 37px;
+        margin-left: 8px;
         cursor: pointer;
       }
     }

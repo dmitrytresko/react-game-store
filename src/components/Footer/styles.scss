@@ -46,8 +46,8 @@ $tabletMediaWidth: 768px;
     min-height: 25px;
 
     @media (max-width: $maxMediaWidth) {
-      width: 27.5px;
-      height: 27.5px;
+      width: 28px;
+      height: 28px;
     }
 
     &--medium {
@@ -55,8 +55,8 @@ $tabletMediaWidth: 768px;
       height: 40px;
 
       @media (max-width: $maxMediaWidth) {
-        width: 43.5px;
-        height: 27.5px;
+        width: 44px;
+        height: 28px;
       }
     }
 
@@ -65,8 +65,8 @@ $tabletMediaWidth: 768px;
       height: 40px;
 
       @media (max-width: $maxMediaWidth) {
-        width: 55px;
-        height: 27.5px;
+        width: 56px;
+        height: 28px;
       }
     }
   }

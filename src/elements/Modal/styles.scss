@@ -27,11 +27,11 @@ $correctedTabletMediaWidth: 767px;
   font-family: "Teko", sans-serif;
   background: #f8f8f8;
   border-radius: 5px;
-  box-shadow: 0 0 15px 7.5px coral;
+  box-shadow: 0 0 15px 8px coral;
   transform: translate(-50%, -50%);
 
   @media (max-width: $tabletMediaWidth) {
-    box-shadow: 0 0 7.5px 3.5px coral;
+    box-shadow: 0 0 8px 4px coral;
   }
 
   &__head-block {
@@ -69,7 +69,7 @@ $correctedTabletMediaWidth: 767px;
     justify-content: center;
     justify-self: flex-end;
     height: 100%;
-    padding: 0 17.5px;
+    padding: 0 20px;
     background: none;
     border: none;
     border-left: 2px solid transparent;
@@ -90,8 +90,8 @@ $correctedTabletMediaWidth: 767px;
       height: 20px;
 
       @media (max-width: $tabletMediaWidth) {
-        width: 18.5px;
-        height: 18.5px;
+        width: 18px;
+        height: 18px;
       }
     }
   }
@@ -108,7 +108,7 @@ $correctedTabletMediaWidth: 767px;
     .modal__submit-btn {
       width: 50%;
       min-width: 260px;
-      padding: 4px 0 3.5px;
+      padding: 4px 0;
       color: coral;
       font-size: 1.6rem;
       font-family: "Teko", sans-serif;
@@ -121,10 +121,9 @@ $correctedTabletMediaWidth: 767px;
       transition: all 0.4s ease;
 
       &:hover {
-        color: skyblue;
         background: black;
-        border: 2px solid skyblue;
-        box-shadow: 0 0 7.5px 5px skyblue;
+        border: 2px solid coral;
+        box-shadow: 0 0 8px 4px coral;
       }
 
       @media (max-width: $tabletMediaWidth) {

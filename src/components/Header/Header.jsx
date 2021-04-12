@@ -12,9 +12,6 @@ const Header = ({ authenticateUser, userLogin }) => {
   const productsItems = ["PlayStation", "Xbox", "PC"];
   const [dropdownState, setDropdownState] = useState("Products");
 
-  // const [isLogged, setIsLogged] = useState(false);
-  // const [userLogin, setUserLogin] = useState("");
-
   const [modalState, setModalState] = useState({ isOpened: false, signInClicked: false, regClicked: false });
 
   useEffect(() => {
@@ -30,14 +27,12 @@ const Header = ({ authenticateUser, userLogin }) => {
     setDropdownState("Products");
   }
 
-  const onLogInClickHandler = event => {
-    if (event.target.textContent === "Sign In") {
-      setModalState({ isOpened: true, signInClicked: true, regClicked: false });
-    }
+  const onLogInClickHandler = () => {
+    setModalState({ isOpened: true, signInClicked: true, regClicked: false });
+  }
 
-    if (event.target.textContent === "Registration") {
-      setModalState({ isOpened: true, signInClicked: false, regClicked: true });
-    }
+  const onRegClickHandler = () => {
+    setModalState({ isOpened: true, signInClicked: false, regClicked: true });
   }
 
   const confirmUserAuthentication = (userData) => {
@@ -76,7 +71,7 @@ const Header = ({ authenticateUser, userLogin }) => {
           {!userLogin ? (
             <>
               <button className="header__link" type="button" onClick={onLogInClickHandler}>Sign In</button>
-              <button className="header__link header__reg-btn" type="button" onClick={onLogInClickHandler}>Registration</button>
+              <button className="header__link header__reg-btn" type="button" onClick={onRegClickHandler}>Registration</button>
             </>
           ) : (
             <>
