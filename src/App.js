@@ -8,6 +8,7 @@ import AboutPg from "./pages/AboutPg/AboutPg";
 import ProfilePg from "./pages/ProfilePg/ProfilePg";
 import NotFoundPg from "./pages/NotFoundPg/NotFoundPg";
 import ProtectedRoute from "./components/ProtectedRoute";
+import AuthContext from "./components/AuthContext";
 import './styles/App.scss';
 
 class App extends React.Component {
@@ -44,19 +45,21 @@ class App extends React.Component {
 
     return (
       <Router>
-        {this.state.hasError && <Redirect to="/" />}
+        <AuthContext.Provider value={this.state.user?.login}>
+          {this.state.hasError && <Redirect to="/" />}
 
-        <Header authenticateUser={this.authenticateUser} userLogin={this.state.user?.login} />
+          <Header authenticateUser={this.authenticateUser} />
 
-        <Switch>
+          <Switch>
             <Route path="/" exact component={HomePg} />
-            <ProtectedRoute path="/products" component={ProductsPg} userLogin={this.state.user?.login}/>
-            <ProtectedRoute path="/about" exact component={AboutPg} userLogin={this.state.user?.login}/>
-            <ProtectedRoute path="/profile" exact component={ProfilePg} userLogin={this.state.user?.login}/>
+            <ProtectedRoute path="/products" component={ProductsPg} />
+            <ProtectedRoute path="/about" exact component={AboutPg} />
+            <ProtectedRoute path="/profile" exact component={ProfilePg} />
             <Route component={NotFoundPg}></Route>
-        </Switch>
+          </Switch>
 
-        <Footer />
+          <Footer />
+        </AuthContext.Provider>
       </Router>
     );
   }
