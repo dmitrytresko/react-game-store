@@ -41,8 +41,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.user);
-
     return (
       <Router>
         <AuthContext.Provider value={this.state.user?.login}>
