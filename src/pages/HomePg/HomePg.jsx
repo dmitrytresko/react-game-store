@@ -57,7 +57,9 @@ const HomePg = () => {
         })}
       </div>
 
-      <h2 className="page-title">- The best games -</h2>
+      <hr className="home__divider"/>
+
+      <h2 className="page-title">- Highest rated games -</h2>
       {selectedGames ? <div className="home__games-container">
         {selectedGames.map(game => <GameCard key={game.id} gameDetails={game}/>)}
       </div> : ""}

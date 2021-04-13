@@ -13,12 +13,21 @@ $correcteTabletMediaWidth: 767px;
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-top: 40px;
-    margin-bottom: 30px;
+    margin-top: 30px;
+    margin-bottom: 40px;
 
     @media (max-width: $correcteTabletMediaWidth) {
       margin-top: 20px;
     }
+  }
+
+  &__divider {
+    width: 100%;
+    height: 1px;
+    margin-bottom: 27px;
+    background: dimgray;
+    border: 1px solid dimgray;
+    border-radius: 5px;
   }
 
   &__games-container {

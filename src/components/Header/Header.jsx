@@ -56,51 +56,51 @@ const Header = ({ authenticateUser }) => {
     <AuthContext.Consumer>
       {value => (
         <>
-        <header className="header">
-          <nav className="header__navbar">
-            <NavLink to="/" exact className="header__link" activeClassName="header__link--active" onClick={onLinkClickHandler}>Home</NavLink>
-            <Dropdown className="header__link"
-                    options={productsItems}
-                    value={dropdownState}
-                    onChange={event => {
-                      setDropdownState(event.value);
-                    }} />
-            <NavLink to="/about" className="header__link" activeClassName="header__link--active" onClick={onLinkClickHandler}>About</NavLink>
-          </nav>
+          <header className="header">
+            <nav className="header__navbar">
+              <NavLink to="/" exact className="header__link" activeClassName="header__link--active" onClick={onLinkClickHandler}>Home</NavLink>
+              <Dropdown className="header__link"
+                      options={productsItems}
+                      value={dropdownState}
+                      onChange={event => {
+                        setDropdownState(event.value);
+                      }} />
+              <NavLink to="/about" className="header__link" activeClassName="header__link--active" onClick={onLinkClickHandler}>About</NavLink>
+            </nav>
 
-          <h1 className="header__title" onClick={() => history.push("/")}>Best Games Store</h1>
+            <h1 className="header__title" onClick={() => history.push("/")}>Best Games Store</h1>
 
-          <div className="header__login-container">
-            {!value ? (
-              <>
-                <button className="header__link" type="button" onClick={onLogInClickHandler}>Sign In</button>
-                <button className="header__link header__reg-btn" type="button" onClick={onRegClickHandler}>Registration</button>
-              </>
-            ) : (
-              <>
-                <div className="header__login-handler">
-                <p className="header__link" onClick={() => history.push('/profile')}>{value}</p>
-                  <img className="header__user-icon" src={userIcon} onClick={() => history.push('/profile')} />
-                </div>
-                <button className="header__link header__reg-btn" type="button" onClick={onLogOutClickHandler}>Log Out</button>
-              </>
-            )}
-          </div>
+            <div className="header__login-container">
+              {!value ? (
+                <>
+                  <button className="header__link" type="button" onClick={onLogInClickHandler}>Sign In</button>
+                  <button className="header__link header__reg-btn" type="button" onClick={onRegClickHandler}>Registration</button>
+                </>
+              ) : (
+                <>
+                  <div className="header__login-handler">
+                  <p className="header__link" onClick={() => history.push('/profile')}>{value}</p>
+                    <img className="header__user-icon" src={userIcon} onClick={() => history.push('/profile')} />
+                  </div>
+                  <button className="header__link header__reg-btn" type="button" onClick={onLogOutClickHandler}>Log Out</button>
+                </>
+              )}
+            </div>
 
-          <div className="header__burger"></div>
-        </header>
+            <div className="header__burger"></div>
+          </header>
 
-        <Modal opened={modalState.isOpened}
-               type={`${modalState.signInClicked ? "Sign In" : "Registration"}`}
-               confirmUserAuthentication={confirmUserAuthentication}
-               onCloseClick={() => setModalState({ isOpened: false, signInClicked: false, regClicked: false })}>
-                <InputText fieldLabel="Login:" fieldName="login" message="Enter your login here..."></InputText>
-                <InputText fieldLabel="Password:" fieldName="password" message="Enter your password here..."></InputText>
-                {modalState.regClicked ? (
-                  <InputText fieldLabel="Password:" fieldName="confirmPassword" message="Repeat your password here..."></InputText>
-                ) : ""}
-        </Modal>
-      </>
+          <Modal opened={modalState.isOpened}
+                type={`${modalState.signInClicked ? "Sign In" : "Registration"}`}
+                confirmUserAuthentication={confirmUserAuthentication}
+                onCloseClick={() => setModalState({ isOpened: false, signInClicked: false, regClicked: false })}>
+                  <InputText fieldLabel="Login:" fieldName="login" message="Enter your login here..."></InputText>
+                  <InputText fieldLabel="Password:" fieldName="password" message="Enter your password here..."></InputText>
+                  {modalState.regClicked ? (
+                    <InputText fieldLabel="Password:" fieldName="confirmPassword" message="Repeat your password here..."></InputText>
+                  ) : ""}
+          </Modal>
+        </>
       )}
     </AuthContext.Consumer>
   )
