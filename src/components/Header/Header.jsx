@@ -19,12 +19,16 @@ const Header = ({ authenticateUser }) => {
   const userLogin = useSelector(state => state.user?.userName);
 
   useEffect(() => {
-    switch (dropdownState) {
-      case "PlayStation": return history.push("/products/ps");
-      case "Xbox": return history.push("/products/xbox");
-      case "PC": return history.push("/products/pc");
-      default: return;
+    if (isLogged) {
+      switch (dropdownState) {
+        case "PlayStation": return history.push("/products/ps");
+        case "Xbox": return history.push("/products/xbox");
+        case "PC": return history.push("/products/pc");
+        default: return;
+      }
     }
+
+    return setDropdownState("Products");
   }, [dropdownState])
 
   const onLinkClickHandler = () => {
