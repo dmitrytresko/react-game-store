@@ -17,8 +17,8 @@ $minMediaWidth: 320px;
   }
 
   &__logo {
-    width: 64px;
-    height: 64px;
+    width: 3.5vw;
+    height: 3.5vw;
   }
 
   &__games-container {
@@ -36,7 +36,7 @@ $minMediaWidth: 320px;
     align-items: center;
 
     .page-title {
-      margin-bottom: 0;
+      margin-bottom: 5px;
 
       &:nth-child(2n) {
         display: none;
@@ -44,7 +44,7 @@ $minMediaWidth: 320px;
     }
 
     .categories__logo {
-      margin-bottom: 15px;
+      margin-bottom: 20px;
 
       &:first-child {
         display: none;
