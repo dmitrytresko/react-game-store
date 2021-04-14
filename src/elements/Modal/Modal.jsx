@@ -1,4 +1,3 @@
-// import { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import closeImg from "../../assets/img/close.png";
 import { Formik, Form } from "formik";
