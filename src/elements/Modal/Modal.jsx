@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom';
 import { useSelector } from 'react-redux';
 import closeImg from "../../assets/img/close.png";
 import { Formik, Form } from "formik";
+import SubmitBtn from "../SubmitBtn/SubmitBtn";
 import axios from "axios";
 import registrationSchema from "../../validations/registrationValidation";
 import signInSchema from "../../validations/signInValidation";
@@ -107,7 +108,7 @@ const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication
           {children}
 
           <div className="modal__bottom-block">
-            <button className="modal__submit-btn" type="submit">Submit</button>
+            <SubmitBtn>Submit</SubmitBtn>
           </div>
         </Form>
       </Formik>

@@ -1,7 +1,9 @@
 const initialState = {
   isLogged: false,
   userName: null,
-  password: null
+  password: null,
+  address: null,
+  phone: null
 };
 
 const authReducer = (state = initialState, action) => {
@@ -24,6 +26,12 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         userName: payload.newLogin
+      }
+    case "SET_ADDITIONAL_INFO":
+      return {
+        ...state,
+        address: payload.address,
+        phone: payload.phone
       }
     default:
       return state;

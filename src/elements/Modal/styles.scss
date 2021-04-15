@@ -109,31 +109,5 @@ $correctedTabletMediaWidth: 767px;
     margin-top: 25px;
     padding: 20px 0;
     border-top: 2px solid black;
-
-    .modal__submit-btn {
-      width: 45%;
-      min-width: 260px;
-      padding: 4px 0;
-      color: coral;
-      font-size: 1.6rem;
-      font-family: "Teko", sans-serif;
-      text-decoration: none;
-      background: #f8f8f8;
-      border: 2px solid coral;
-      border-radius: 5px;
-      outline: none;
-      cursor: pointer;
-      transition: all 0.4s ease;
-
-      &:hover {
-        background: black;
-        border: 2px solid coral;
-        box-shadow: 0 0 8px 4px coral;
-      }
-
-      @media (max-width: $tabletMediaWidth) {
-        font-size: 1.4rem;
-      }
-    }
   }
 }

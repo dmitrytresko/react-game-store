@@ -4,9 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import userIcon from "../../assets/img/user.png";
 import Modal from "../../elements/Modal/Modal";
 import InputText from "../../elements/InputText/InputText";
+import SubmitBtn from "../../elements/SubmitBtn/SubmitBtn";
 import editIcon from "../../assets/img/edit.png";
 import confirmIcon from "../../assets/img/checked.png";
 import cancelIcon from "../../assets/img/cancel.png";
+import additionalUserInfoSchema from "../../validations/additionalUserInfoValidation";
 import { SET_NEW_PASSWORD } from "../../redux/actions";
 import { SET_NEW_LOGIN } from "../../redux/actions";
 import "./styles.scss";
@@ -14,11 +16,15 @@ import "./styles.scss";
 const ProfilePg = () => {
   const userLogin = useSelector(state => state.user?.userName);
   const userPassword = useSelector(state => state.user?.password);
+  const userAddress = useSelector(state => state.user?.address);
+  const userPhone = useSelector(state => state.user?.phone);
   const hashedPassword = userPassword.split('').map(() => "*");
 
   const [loginChangeClicked, setLoginChangeClicked] = useState(false);
   const [loginInputState, setLoginInputState] = useState(userLogin);
   const [modalState, setModalState] = useState({ isOpened: false, passwordChangeClicked: false });
+
+  const inputRef = useRef();
 
   const dispatch = useDispatch();
 
@@ -27,7 +33,7 @@ const ProfilePg = () => {
   }
 
   useEffect(() => {
-    myRef?.current?.focus();
+    inputRef?.current?.focus();
   },[loginChangeClicked])
 
   const handleLoginInputChange = event => {
@@ -57,7 +63,9 @@ const ProfilePg = () => {
     setModalState({ isOpened: false, passwordChangeClicked: false });
   }
 
-  const myRef = useRef();
+  const onSubmitHandler = () => {
+
+  }
 
   return (
     <>
@@ -69,7 +77,7 @@ const ProfilePg = () => {
             <div className="profile__personal-info-container--individual">
               {loginChangeClicked ? (
                 <>
-                  <input ref={myRef} className="profile__login-input" value={loginInputState} onChange={handleLoginInputChange} />
+                  <input ref={inputRef} className="profile__login-input" value={loginInputState} onChange={handleLoginInputChange} />
                   <button className="profile__edit-login-btn" onClick={onConfirmLoginChangeHandler}>
                     <img src={confirmIcon} />
                   </button>
@@ -96,12 +104,14 @@ const ProfilePg = () => {
           </div>
         </div>
 
-        <Formik initialValues={{
-            address: '',
-            phone: ''
+        <Formik
+          initialValues={{
+            address: userAddress || '',
+            phone: userPhone || ''
           }}
+          validationSchema={additionalUserInfoSchema}
           >
-            <Form className="profile__form">
+            <Form className="profile__form" onSubmit={onSubmitHandler}>
               <h2 className="profile__form-title">Profile info</h2>
               <hr className="profile__form-divider"/>
 
@@ -110,7 +120,7 @@ const ProfilePg = () => {
             </Form>
           </Formik>
 
-          <button className="profile__btn-info">Change info</button>
+          <SubmitBtn>Save info</SubmitBtn>
       </div>
 
       <Modal

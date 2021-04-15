@@ -135,8 +135,9 @@
     transition: all 0.4s ease-out;
 
     &:hover {
-      color: #f8f8f8;
-      background: coral;
+      background: black;
+      border: 2px solid coral;
+      box-shadow: 0 0 8px 4px coral;
     }
   }
 }
