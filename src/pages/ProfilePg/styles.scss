@@ -99,7 +99,6 @@
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 30px;
 
     &-title {
       color: black;
@@ -116,28 +115,6 @@
       background: dimgray;
       border: 1px solid dimgray;
       border-radius: 5px;
-    }
-  }
-
-  &__btn-info {
-    width: 45%;
-    min-width: 260px;
-    padding: 5px 10px;
-    color: coral;
-    font-size: 24px;
-    font-family: "Teko", sans-serif;
-    text-decoration: none;
-    background: #f8f8f8;
-    border: 2px solid coral;
-    border-radius: 5px;
-    outline: none;
-    cursor: pointer;
-    transition: all 0.4s ease-out;
-
-    &:hover {
-      background: black;
-      border: 2px solid coral;
-      box-shadow: 0 0 8px 4px coral;
     }
   }
 }

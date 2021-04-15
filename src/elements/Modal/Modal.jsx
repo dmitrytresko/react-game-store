@@ -94,7 +94,7 @@ const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication
           }
         }
         validationSchema={type === "Registration" ? registrationSchema :  type === "Sign In" ? signInSchema : passwordChangeSchema}
-        onSubmit={(values) => onSubmitHandler(values)}
+        onSubmit={values => onSubmitHandler(values)}
         enableInitialize={true}
       >
         <Form className="modal">

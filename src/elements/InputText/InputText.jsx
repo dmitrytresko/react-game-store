@@ -1,7 +1,7 @@
 import { Field, ErrorMessage } from "formik";
 import "./styles.scss";
 
-const InputText = ({ fieldLabel, fieldName, message, customStyles}) => {
+const InputText = ({ fieldLabel, fieldName, message, customStyles }) => {
   return (
     <label className="input-text" style={customStyles}>
       {fieldLabel}

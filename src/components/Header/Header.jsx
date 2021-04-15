@@ -54,7 +54,14 @@ const Header = ({ authenticateUser }) => {
     const isConfirmed = confirm("Are sure that you want to log out?");
 
     if (isConfirmed) {
-      authenticateUser({ login: null, password: null });
+      authenticateUser({
+        isLogged: false,
+        userName: null,
+        password: null,
+        address: null,
+        phone: null
+      });
+
       history.push('/');
     }
   }

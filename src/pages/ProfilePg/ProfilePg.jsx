@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { Formik, Form } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import userIcon from "../../assets/img/user.png";
@@ -11,6 +12,7 @@ import cancelIcon from "../../assets/img/cancel.png";
 import additionalUserInfoSchema from "../../validations/additionalUserInfoValidation";
 import { SET_NEW_PASSWORD } from "../../redux/actions";
 import { SET_NEW_LOGIN } from "../../redux/actions";
+import { SET_ADDITIONAL_INFO } from "../../redux/actions";
 import "./styles.scss";
 
 const ProfilePg = () => {
@@ -21,10 +23,13 @@ const ProfilePg = () => {
   const hashedPassword = userPassword.split('').map(() => "*");
 
   const [loginChangeClicked, setLoginChangeClicked] = useState(false);
-  const [loginInputState, setLoginInputState] = useState(userLogin);
   const [modalState, setModalState] = useState({ isOpened: false, passwordChangeClicked: false });
 
-  const inputRef = useRef();
+  const [loginInputState, setLoginInputState] = useState(userLogin);
+
+  const loginInputRef = useRef();
+
+  const history = useHistory();
 
   const dispatch = useDispatch();
 
@@ -33,7 +38,7 @@ const ProfilePg = () => {
   }
 
   useEffect(() => {
-    inputRef?.current?.focus();
+    loginInputRef?.current?.focus();
   },[loginChangeClicked])
 
   const handleLoginInputChange = event => {
@@ -63,8 +68,13 @@ const ProfilePg = () => {
     setModalState({ isOpened: false, passwordChangeClicked: false });
   }
 
-  const onSubmitHandler = () => {
+  const onSubmitHandler = values => {
+    const isComfirmed = confirm('Are you sure that you want to save this info about you?');
 
+    if (isComfirmed) {
+      dispatch({type: SET_ADDITIONAL_INFO, payload: {address: values.address, phone: values.phone}});
+      history.push('/');
+    }
   }
 
   return (
@@ -77,7 +87,7 @@ const ProfilePg = () => {
             <div className="profile__personal-info-container--individual">
               {loginChangeClicked ? (
                 <>
-                  <input ref={inputRef} className="profile__login-input" value={loginInputState} onChange={handleLoginInputChange} />
+                  <input ref={loginInputRef} className="profile__login-input" value={loginInputState} onChange={handleLoginInputChange} />
                   <button className="profile__edit-login-btn" onClick={onConfirmLoginChangeHandler}>
                     <img src={confirmIcon} />
                   </button>
@@ -110,17 +120,18 @@ const ProfilePg = () => {
             phone: userPhone || ''
           }}
           validationSchema={additionalUserInfoSchema}
+          onSubmit={values => onSubmitHandler(values)}
           >
-            <Form className="profile__form" onSubmit={onSubmitHandler}>
+            <Form className="profile__form">
               <h2 className="profile__form-title">Profile info</h2>
               <hr className="profile__form-divider"/>
 
-              <InputText fieldLabel="Delivery address:" fieldName="address" message="Enter your delivery address here..."></InputText>
-              <InputText fieldLabel="Phone number:" fieldName="phone" message="Enter your phone number here..."></InputText>
+              <InputText fieldLabel="Delivery address:" fieldName="address" message="Enter your delivery address here..." />
+              <InputText fieldLabel="Phone number:" fieldName="phone" message="Enter your phone number here..." />
+
+              <SubmitBtn>Save info</SubmitBtn>
             </Form>
           </Formik>
-
-          <SubmitBtn>Save info</SubmitBtn>
       </div>
 
       <Modal
