@@ -32,15 +32,6 @@ class App extends React.Component {
     this.setState({ user: userData, hasError: false });
   }
 
-  // componentDidMount() {
-  //   const userData = this.props.user;
-
-  //   if (userData) {
-  //     this.setState({ user: userData, hasError: false });
-  //     console.log(`User ${userData.userName} is authoruized`);
-  //   }
-  // }
-
   render() {
     return (
       <Router>

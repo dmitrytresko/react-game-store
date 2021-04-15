@@ -1,12 +1,17 @@
 import ReactDOM from 'react-dom';
+import { useSelector } from 'react-redux';
 import closeImg from "../../assets/img/close.png";
 import { Formik, Form } from "formik";
 import axios from "axios";
 import registrationSchema from "../../validations/registrationValidation";
 import signInSchema from "../../validations/signInValidation";
+import passwordChangeSchema from "../../validations/passwordChangeValidation";
 import "./styles.scss";
 
-const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication }) => {
+const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication, confirmPasswordChange }) => {
+  const isLogged = useSelector(state => state.user?.isLogged);
+  const userPassword = useSelector(state => state.user?.password);
+
   const onSubmitHandler = async (values) => {
     let formData;
     let requiredSchema;
@@ -30,9 +35,25 @@ const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication
       }
     }
 
+    if (type === "Password change") {
+      requiredSchema = passwordChangeSchema;
+
+      formData = {
+        currentPasswordFromStore: values.currentPasswordFromStore,
+        currentPassword: values.currentPassword,
+        newPassword: values.newPassword,
+        confirmNewPassword: values.confirmNewPassword
+      }
+    }
+
     const isDataValid = await requiredSchema.isValid(formData);
 
     if(isDataValid) {
+      if (isLogged) {
+        confirmPasswordChange(formData.newPassword);
+        return;
+      }
+
       confirmUserAuthentication(formData);
       performRegistrationRequest(formData);
     }
@@ -58,13 +79,23 @@ const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication
     <>
       <div className="content-overlay" />
 
-      <Formik initialValues={{
-        login: '',
-        password: '',
-        confirmPassword: ''
-      }}
-      validationSchema={type === "Registration" ? registrationSchema : signInSchema}
-      onSubmit={(values) => onSubmitHandler(values)}>
+      <Formik
+        initialValues={
+          isLogged ? {
+            currentPasswordFromStore: userPassword,
+            currentPassword: '',
+            newPassword: '',
+            confirmNewPassword: ''
+          } : {
+            login: '',
+            password: '',
+            confirmPassword: ''
+          }
+        }
+        validationSchema={type === "Registration" ? registrationSchema :  type === "Sign In" ? signInSchema : passwordChangeSchema}
+        onSubmit={(values) => onSubmitHandler(values)}
+        enableInitialize={true}
+      >
         <Form className="modal">
           <div className="modal__head-block">
             <h2 className="modal__title">{type}</h2>

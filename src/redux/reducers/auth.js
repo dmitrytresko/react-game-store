@@ -4,7 +4,7 @@ const initialState = {
   password: null
 };
 
-const loggedReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
   const {type, payload} = action;
 
   switch (type) {
@@ -15,9 +15,19 @@ const loggedReducer = (state = initialState, action) => {
         password: payload.password,
         isLogged: payload.login !== null && payload.login ? true : false
       };
+    case "SET_NEW_PASSWORD":
+      return {
+        ...state,
+        password: payload.newPassword
+      }
+    case "SET_NEW_LOGIN":
+      return {
+        ...state,
+        userName: payload.newLogin
+      }
     default:
       return state;
   }
 }
 
-export default loggedReducer;
+export default authReducer;
