@@ -10,10 +10,10 @@
     align-items: center;
     width: 100%;
     height: 128px;
-    margin: 20px 0;
+    margin: 40px 0 60px;
 
     .profile__user-img {
-      margin-right: 20px;
+      margin-right: 25px;
       cursor: pointer;
     }
 
@@ -23,9 +23,66 @@
       justify-content: space-between;
       height: 75%;
 
+      .profile__personal-info-container--individual {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        .profile__login-input {
+          position: relative;
+          padding: 3px 10px;
+          color: black;
+          font-weight: lighter;
+          font-size: 25px;
+          font-family: "Teko", sans-serif;
+          background: #f8f8f8;
+          border: 2px solid dimgray;
+          border-radius: 5px;
+          outline: none;
+          transition: all 0.4s;
+
+          &:focus {
+            border-color: coral;
+            box-shadow: 0 0 10px 3px coral;
+          }
+        }
+
+        .profile__edit-login-btn {
+          margin-left: 12px;
+          background: transparent;
+          border: none;
+          outline: none;
+          cursor: pointer;
+        }
+
+        .profile__edit-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-left: 10px;
+          padding: 5px;
+          background: transparent;
+          border: none;
+          border-radius: 5px;
+          outline: none;
+          cursor: pointer;
+          transition: background-color 0.4s;
+
+          &:hover {
+            color: #f8f8f8;
+            background: #c5c5c5;
+          }
+
+          &--img {
+            width: 18px;
+            height: 18px;
+          }
+        }
+      }
+
       .profile__user-name {
         color: black;
-        font-size: 42px;
+        font-size: 39px;
         font-family: "Teko", sans-serif;
       }
 
@@ -34,6 +91,52 @@
         font-size: 25px;
         font-family: "Teko", sans-serif;
       }
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 30px;
+
+    &-title {
+      color: black;
+      font-weight: normal;
+      font-size: 32px;
+      font-family: "Teko", sans-serif;
+      text-transform: uppercase;
+    }
+
+    &-divider {
+      width: 100%;
+      height: 1px;
+      margin-bottom: 30px;
+      background: dimgray;
+      border: 1px solid dimgray;
+      border-radius: 5px;
+    }
+  }
+
+  &__btn-info {
+    width: 45%;
+    min-width: 260px;
+    padding: 5px 10px;
+    color: coral;
+    font-size: 24px;
+    font-family: "Teko", sans-serif;
+    text-decoration: none;
+    background: #f8f8f8;
+    border: 2px solid coral;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.4s ease-out;
+
+    &:hover {
+      color: #f8f8f8;
+      background: coral;
     }
   }
 }

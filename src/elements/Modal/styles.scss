@@ -1,3 +1,4 @@
+$maxMediaWidth: 1024px;
 $tabletMediaWidth: 768px;
 $correctedTabletMediaWidth: 767px;
 
@@ -56,6 +57,10 @@ $correctedTabletMediaWidth: 767px;
     font-family: "Teko", sans-serif;
     text-transform: uppercase;
 
+    @media (max-width: $maxMediaWidth) {
+      font-size: 1.7rem;
+    }
+
     @media (max-width: $tabletMediaWidth) {
       font-size: 1.6rem;
     }
@@ -106,7 +111,7 @@ $correctedTabletMediaWidth: 767px;
     border-top: 2px solid black;
 
     .modal__submit-btn {
-      width: 50%;
+      width: 45%;
       min-width: 260px;
       padding: 4px 0;
       color: coral;
