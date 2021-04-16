@@ -88,12 +88,14 @@ const ProfilePg = () => {
               {loginChangeClicked ? (
                 <>
                   <input ref={loginInputRef} className="profile__login-input" value={loginInputState} onChange={handleLoginInputChange} />
-                  <button className="profile__edit-login-btn" onClick={onConfirmLoginChangeHandler}>
-                    <img src={confirmIcon} />
-                  </button>
-                  <button className="profile__edit-login-btn" onClick={onCancelLoginChangeHandler}>
-                    <img src={cancelIcon} />
-                  </button>
+                  <div className="profile-login-btn-container">
+                    <button className="profile__edit-login-btn" onClick={onConfirmLoginChangeHandler}>
+                      <img src={confirmIcon} />
+                    </button>
+                    <button className="profile__edit-login-btn" onClick={onCancelLoginChangeHandler}>
+                      <img src={cancelIcon} />
+                    </button>
+                  </div>
                 </>
               ) : (
                 <>
