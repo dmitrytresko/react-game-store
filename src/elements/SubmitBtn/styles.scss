@@ -1,11 +1,12 @@
 $tabletMediaWidth: 768px;
+$maxMediaWidth: 1024px;
 
 .submit-btn {
   width: 45%;
   min-width: 260px;
-  padding: 4px 0;
+  padding: 5px 0;
   color: coral;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-family: "Teko", sans-serif;
   text-decoration: none;
   background: #f8f8f8;
@@ -21,7 +22,14 @@ $tabletMediaWidth: 768px;
     box-shadow: 0 0 8px 4px coral;
   }
 
-  @media (max-width: $tabletMediaWidth) {
-    font-size: 1.4rem;
+  @media (max-width: $maxMediaWidth) {
+    align-self: center;
+    padding: 6px 0;
+    font-size: 1.7rem;
+  }
+
+  @media (max-width: $tabletMediaWidth - 1px) {
+    padding: 5px 0;
+    font-size: 1.5rem;
   }
 }

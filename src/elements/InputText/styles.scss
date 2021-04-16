@@ -12,7 +12,7 @@ $tabletMediaWidth: 768px;
   font-size: 1.6rem;
   font-family: "Teko", sans-serif;
 
-  @media (max-width: $maxMediaWidth) {
+  @media (max-width: $tabletMediaWidth - 1px) {
     font-size: 1.25rem;
   }
 
@@ -31,14 +31,22 @@ $tabletMediaWidth: 768px;
     font-size: 1.3rem;
     font-family: "Teko", sans-serif;
 
+    @media (max-width: $maxMediaWidth) {
+      font-size: 1.5rem;
+    }
+
     @media (max-width: $tabletMediaWidth) {
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: $tabletMediaWidth - 1px) {
       font-size: 1.05rem;
     }
   }
 
   &__input {
     width: 100%;
-    padding: 5px 10px 6px;
+    padding: 6px 10px;
     color: black;
     font-weight: lighter;
     font-size: 1.35rem;
@@ -50,11 +58,13 @@ $tabletMediaWidth: 768px;
     transition: all 0.4s;
 
     @media (max-width: $maxMediaWidth) {
-      padding: 4px 10px 4px 10px;
+      padding: 7px 10px;
+      font-size: 1.7rem;
     }
 
-    @media (max-width: $tabletMediaWidth) {
-      font-size: 1.3rem;
+    @media (max-width: $tabletMediaWidth - 1px) {
+      padding: 6px 10px;
+      font-size: 1.25rem;
     }
 
     &::-webkit-input-placeholder {
@@ -62,7 +72,11 @@ $tabletMediaWidth: 768px;
       font-size: 20px;
 
       @media (max-width: $maxMediaWidth) {
-        font-size: 1.1rem;
+        font-size: 1.5rem;
+      }
+
+      @media (max-width: $tabletMediaWidth - 1px) {
+        font-size: 1.15rem;
       }
     }
 

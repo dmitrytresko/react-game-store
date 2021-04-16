@@ -126,8 +126,10 @@ const ProfilePg = () => {
               <h2 className="profile__form-title">Profile info</h2>
               <hr className="profile__form-divider"/>
 
-              <InputText fieldLabel="Delivery address:" fieldName="address" message="Enter your delivery address here..." />
-              <InputText fieldLabel="Phone number:" fieldName="phone" message="Enter your phone number here..." />
+              <div className="profile__form-inputs">
+                <InputText fieldLabel="Delivery address:" fieldName="address" message="Enter your delivery address here..." />
+                <InputText fieldLabel="Phone number:" fieldName="phone" message="Enter your phone number here..." />
+              </div>
 
               <SubmitBtn>Save info</SubmitBtn>
             </Form>
