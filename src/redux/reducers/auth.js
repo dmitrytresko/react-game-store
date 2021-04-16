@@ -13,9 +13,11 @@ const authReducer = (state = initialState, action) => {
     case "SET_USER_DATA":
       return {
         ...state,
+        isLogged: payload.login !== null && payload.login ? true : false,
         userName: payload.login,
         password: payload.password,
-        isLogged: payload.login !== null && payload.login ? true : false
+        address: payload.address,
+        phone: payload.phone
       };
     case "SET_NEW_PASSWORD":
       return {
