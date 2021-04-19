@@ -1,5 +1,6 @@
 /* eslint-disable */
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import CategoryCard from "../../components/CategoryCard/CategoryCard";
 import GameCard from "../../components/GameCard/GameCard";
@@ -36,9 +37,11 @@ const HomePg = () => {
     return null;
   },[])
 
-  const callSearchValue = async(value) => {
+  const callSearchValue = async(data) => {
     try {
       const response = await axios.get('http://localhost:4000/gamesArr');
+
+      const { value } = data;
 
       return response.data.filter(item => item.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()));
     }
@@ -51,10 +54,13 @@ const HomePg = () => {
     <div className="home">
       <SearchBar message="Enter the game name here..." callSearchValue={callSearchValue}/>
 
-      <div className="home__categories-container">
-        {categoriesArr.map((item, id) => {
-          return <CategoryCard key={id} path={item.path} altName={item.altName} name={item.name} route={item.routePath}/>
-        })}
+      <div className="home__products-container">
+        <div className="home__categories-container">
+          {categoriesArr.map((item, id) => {
+            return <CategoryCard key={id} path={item.path} altName={item.altName} name={item.name} route={item.routePath}/>
+          })}
+        </div>
+        <Link className="home__products-link" to="/products">See full list of products</Link>
       </div>
 
       <hr className="home__divider"/>

@@ -24,7 +24,6 @@ $default-margin: 40px;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: $default-margin - 10px;
   padding: 5px $default-margin;
   background-color: black;
 
@@ -38,7 +37,7 @@ $default-margin: 40px;
   }
 
   &__title {
-    margin-right: 4vw;
+    margin-right: 3.75vw;
     padding: 6px 0;
     color: coral;
     font-size: calc(25px + 1vw);
