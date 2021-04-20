@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Teko:wght@300;400;700&display=swap");
+$maxMediaWidth: 1024px;
+$tabletMediaWidth: 768px;
 $correctedTabletMediaWidth: 767px;
 
 *,
@@ -34,5 +36,38 @@ $correctedTabletMediaWidth: 767px;
     color: black;
     font-size: 5rem;
     font-family: "Teko", sans-serif;
+  }
+}
+
+.submit-btn {
+  width: 45%;
+  min-width: 260px;
+  padding: 5px 0;
+  color: coral;
+  font-size: 24px;
+  font-family: "Teko", sans-serif;
+  text-decoration: none;
+  background: #f8f8f8;
+  border: 2px solid coral;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.4s ease;
+
+  &:hover {
+    background: black;
+    border: 2px solid coral;
+    box-shadow: 0 0 8px 4px coral;
+  }
+
+  @media (max-width: $maxMediaWidth) {
+    align-self: center;
+    padding: 6px 0;
+    font-size: 27px;
+  }
+
+  @media (max-width: $tabletMediaWidth - 1px) {
+    padding: 5px 0;
+    font-size: 23px;
   }
 }

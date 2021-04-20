@@ -19,12 +19,16 @@ const Header = ({ authenticateUser }) => {
   const userLogin = useSelector(state => state.user?.userName);
 
   useEffect(() => {
-    switch (dropdownState) {
-      case "PlayStation": return history.push("/products/ps");
-      case "Xbox": return history.push("/products/xbox");
-      case "PC": return history.push("/products/pc");
-      default: return;
+    if (isLogged) {
+      switch (dropdownState) {
+        case "PlayStation": return history.push("/products/ps");
+        case "Xbox": return history.push("/products/xbox");
+        case "PC": return history.push("/products/pc");
+        default: return;
+      }
     }
+
+    return setDropdownState("Products");
   }, [dropdownState])
 
   const onLinkClickHandler = () => {
@@ -50,7 +54,14 @@ const Header = ({ authenticateUser }) => {
     const isConfirmed = confirm("Are sure that you want to log out?");
 
     if (isConfirmed) {
-      authenticateUser({ login: null, password: null });
+      authenticateUser({
+        isLogged: false,
+        login: null,
+        password: null,
+        address: null,
+        phone: null
+      });
+
       history.push('/');
     }
   }
@@ -92,13 +103,13 @@ const Header = ({ authenticateUser }) => {
       </header>
 
       <Modal opened={modalState.isOpened}
-            type={`${modalState.signInClicked ? "Sign In" : "Registration"}`}
+            type={`${modalState.signInClicked ? "signIn" : "registration"}`}
             confirmUserAuthentication={confirmUserAuthentication}
             onCloseClick={() => setModalState({ isOpened: false, signInClicked: false, regClicked: false })}>
               <InputText fieldLabel="Login:" fieldName="login" message="Enter your login here..."></InputText>
               <InputText fieldLabel="Password:" fieldName="password" message="Enter your password here..."></InputText>
               {modalState.regClicked ? (
-                <InputText fieldLabel="Password:" fieldName="confirmPassword" message="Repeat your password here..."></InputText>
+                <InputText fieldLabel="Confirm password:" fieldName="confirmPassword" message="Repeat your password here..."></InputText>
               ) : ""}
       </Modal>
     </>

@@ -1,17 +1,34 @@
+import { useState } from 'react';
 import ReactDOM from 'react-dom';
+import { useSelector } from 'react-redux';
 import closeImg from "../../assets/img/close.png";
 import { Formik, Form } from "formik";
 import axios from "axios";
 import registrationSchema from "../../validations/registrationValidation";
 import signInSchema from "../../validations/signInValidation";
+import passwordChangeSchema from "../../validations/passwordChangeValidation";
 import "./styles.scss";
+import { useEffect } from 'react';
 
-const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication }) => {
+const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication, confirmPasswordChange }) => {
+  const userState = useSelector(state => state.user);
+  const {isLogged, password} = userState;
+
+  const [title, setTitle] = useState('');
+
+  useEffect(() => {
+    switch(type) {
+      case "registration": return setTitle("Registration");
+      case "signIn": return setTitle("Sign In");
+      case "passwordChange": return setTitle("Password change");
+    }
+  }, [type])
+
   const onSubmitHandler = async (values) => {
     let formData;
     let requiredSchema;
 
-    if (type === "Registration") {
+    if (type === "registration") {
       requiredSchema = registrationSchema;
 
       formData = {
@@ -21,7 +38,7 @@ const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication
       }
     }
 
-    if (type === "Sign In") {
+    if (type === "signIn") {
       requiredSchema = signInSchema;
 
       formData = {
@@ -30,9 +47,25 @@ const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication
       }
     }
 
+    if (type === "passwordChange") {
+      requiredSchema = passwordChangeSchema;
+
+      formData = {
+        currentPasswordFromStore: values.currentPasswordFromStore,
+        currentPassword: values.currentPassword,
+        newPassword: values.newPassword,
+        confirmNewPassword: values.confirmNewPassword
+      }
+    }
+
     const isDataValid = await requiredSchema.isValid(formData);
 
     if(isDataValid) {
+      if (isLogged) {
+        confirmPasswordChange(formData.newPassword);
+        return;
+      }
+
       confirmUserAuthentication(formData);
       performRegistrationRequest(formData);
     }
@@ -58,16 +91,26 @@ const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication
     <>
       <div className="content-overlay" />
 
-      <Formik initialValues={{
-        login: '',
-        password: '',
-        confirmPassword: ''
-      }}
-      validationSchema={type === "Registration" ? registrationSchema : signInSchema}
-      onSubmit={(values) => onSubmitHandler(values)}>
+      <Formik
+        initialValues={
+          isLogged ? {
+            currentPasswordFromStore: password,
+            currentPassword: '',
+            newPassword: '',
+            confirmNewPassword: ''
+          } : {
+            login: '',
+            password: '',
+            confirmPassword: ''
+          }
+        }
+        validationSchema={type === "registration" ? registrationSchema :  type === "signIn" ? signInSchema : passwordChangeSchema}
+        onSubmit={values => onSubmitHandler(values)}
+        enableInitialize={true}
+      >
         <Form className="modal">
           <div className="modal__head-block">
-            <h2 className="modal__title">{type}</h2>
+            <h2 className="modal__title">{title}</h2>
             <button className="modal__close-btn" type="button" onClick={onCloseClick}>
               <img src={closeImg} className="modal__close-btn--img"></img>
             </button>
@@ -76,7 +119,7 @@ const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication
           {children}
 
           <div className="modal__bottom-block">
-            <button className="modal__submit-btn" type="submit">Submit</button>
+            <button className="submit-btn" type="submit">Submit</button>
           </div>
         </Form>
       </Formik>
