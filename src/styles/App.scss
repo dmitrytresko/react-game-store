@@ -19,9 +19,9 @@ $correctedTabletMediaWidth: 767px;
 }
 
 .page-title {
-  margin: 30px 0 15px;
+  margin: 25px 0;
   color: black;
-  font-size: calc(22px + 1vw);
+  font-size: calc(23px + 1vw);
   font-family: "Teko", sans-serif;
   text-align: center;
   text-transform: uppercase;
@@ -32,7 +32,7 @@ $correctedTabletMediaWidth: 767px;
 
   &--not-found {
     color: black;
-    font-size: 5rem;
+    font-size: 40px;
     font-family: "Teko", sans-serif;
   }
 }

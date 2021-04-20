@@ -25,9 +25,11 @@ $minMediaWidth: 320px;
 
     &__title {
       align-self: center;
+      padding: 0 10px;
       color: black;
       font-size: 30px;
       font-family: "Teko", sans-serif;
+      text-align: center;
       text-transform: uppercase;
     }
 
@@ -35,7 +37,7 @@ $minMediaWidth: 320px;
       align-self: center;
       width: 64px;
       height: 64px;
-      margin: 25px 0;
+      margin: 20px 0;
     }
   }
 

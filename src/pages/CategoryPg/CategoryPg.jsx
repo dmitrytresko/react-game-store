@@ -28,8 +28,8 @@ const CategoryPg = () => {
     }
   }
 
-  const callSearch = ({ pathPath, value }) => {
-    switch (pathPath) {
+  const callSearch = ({ category, value }) => {
+    switch (category) {
       case "ps": return callSearchValueWithPsCategory(value);
       case "xbox": return callSearchValueWithXboxCategory(value);
       case "pc": return callSearchValueWithPcCategory(value);
@@ -41,7 +41,7 @@ const CategoryPg = () => {
     <div className="categories">
       <aside className="sidebar">
         <h2 className="sidebar__title">{categoryId ? `- Best games for ${categoryId} -` : "- All available games -"}</h2>
-        <img className="sidebar__mini-logo" src={categoryId === "ps" ? playStationLogo : categoryId === "xbox" ? xboxLogo : windowsLogo}/>
+        {categoryId && <img className="sidebar__mini-logo" src={categoryId === "ps" ? playStationLogo : categoryId === "xbox" ? xboxLogo : windowsLogo}/>}
       </aside>
 
       <div className="categories-content">

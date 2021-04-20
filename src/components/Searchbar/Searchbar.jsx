@@ -23,7 +23,7 @@ const SearchBar = ({ message, callSearchValue }) => {
   const getRequiredGames = async({ query, categoryPath }) => {
     const queryData = {
       value: query,
-      pathPath: categoryPath
+      category: categoryPath
     }
 
     const receivedArr = await callSearchValue(queryData);
