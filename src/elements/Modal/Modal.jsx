@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { useSelector } from 'react-redux';
 import closeImg from "../../assets/img/close.png";
@@ -8,7 +8,6 @@ import registrationSchema from "../../validations/registrationValidation";
 import signInSchema from "../../validations/signInValidation";
 import passwordChangeSchema from "../../validations/passwordChangeValidation";
 import "./styles.scss";
-import { useEffect } from 'react';
 
 const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication, confirmPasswordChange }) => {
   const userState = useSelector(state => state.user);
@@ -21,6 +20,7 @@ const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication
       case "registration": return setTitle("Registration");
       case "signIn": return setTitle("Sign In");
       case "passwordChange": return setTitle("Password change");
+      default: return;
     }
   }, [type])
 
