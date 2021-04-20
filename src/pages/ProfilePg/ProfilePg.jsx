@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import userIcon from "../../assets/img/user.png";
 import Modal from "../../elements/Modal/Modal";
 import InputText from "../../elements/InputText/InputText";
-import SubmitBtn from "../../elements/SubmitBtn/SubmitBtn";
 import editIcon from "../../assets/img/edit.png";
 import confirmIcon from "../../assets/img/checked.png";
 import cancelIcon from "../../assets/img/cancel.png";
@@ -133,14 +132,14 @@ const ProfilePg = () => {
                 <InputText fieldLabel="Phone number:" fieldName="phone" message="Enter your phone number here..." />
               </div>
 
-              <SubmitBtn>Save info</SubmitBtn>
+              <button className="submit-btn" type="submit">Save info</button>
             </Form>
           </Formik>
       </div>
 
       <Modal
         opened={modalState.isOpened}
-        type="Password change"
+        type="passwordChange"
         confirmPasswordChange={confirmPasswordChange}
         onCloseClick={() => setModalState({ isOpened: false, passwordChangeClicked: false })}>
           {modalState.passwordChangeClicked && (

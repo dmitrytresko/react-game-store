@@ -104,7 +104,7 @@ const Header = ({ authenticateUser }) => {
       </header>
 
       <Modal opened={modalState.isOpened}
-            type={`${modalState.signInClicked ? "Sign In" : "Registration"}`}
+            type={`${modalState.signInClicked ? "signIn" : "registration"}`}
             confirmUserAuthentication={confirmUserAuthentication}
             onCloseClick={() => setModalState({ isOpened: false, signInClicked: false, regClicked: false })}>
               <InputText fieldLabel="Login:" fieldName="login" message="Enter your login here..."></InputText>
