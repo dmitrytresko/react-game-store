@@ -16,7 +16,7 @@ const xboxGamesArr = [
     company: "Playground Games",
     path: forzaHorizon4Img,
     rating: fiveStars,
-    price: "$54.99"
+    price: "54.99"
   },
   {
     id: 201,
@@ -24,7 +24,7 @@ const xboxGamesArr = [
     company: "CD Projekt",
     path: theWitcher3Img,
     rating: fiveStars,
-    price: "$39.99"
+    price: "39.99"
   },
   {
     id: 202,
@@ -32,7 +32,7 @@ const xboxGamesArr = [
     company: "NetherRealm Studios",
     path: mc11Img,
     rating: fiveStars,
-    price: "$44.99"
+    price: "44.99"
   },
   {
     id: 203,
@@ -40,7 +40,7 @@ const xboxGamesArr = [
     company: "EA Sports",
     path: fifa21Img,
     rating: fourStars,
-    price: "$99.99"
+    price: "99.99"
   },
   {
     id: 204,
@@ -48,7 +48,7 @@ const xboxGamesArr = [
     company: "Capcom",
     path: residentEvil7Img,
     rating: fourStars,
-    price: "$19.99"
+    price: "19.99"
   },
   {
     id: 205,
@@ -56,7 +56,7 @@ const xboxGamesArr = [
     company: "Ubisoft",
     path: assassinOdysseyImg,
     rating: fourStars,
-    price: "$54.99"
+    price: "54.99"
   },
   {
     id: 206,
@@ -64,7 +64,7 @@ const xboxGamesArr = [
     company: "Crystal Dynamics",
     path: tombRaiderImg,
     rating: fourStars,
-    price: "$24.99"
+    price: "24.99"
   },
   {
     id: 207,
@@ -72,7 +72,7 @@ const xboxGamesArr = [
     company: "‪Psyonix LLC",
     path: rocketLeagueImg,
     rating: fiveStars,
-    price: "FREE"
+    price: "0"
   }
 ]
 
