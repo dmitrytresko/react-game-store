@@ -1,7 +1,7 @@
-$smallMediaWidth: 320px;
-$correctedTabletMediaWidth: 767px;
-$tabletMediaWidth: 768px;
 $maxMediaWidth: 1024px;
+$tabletMediaWidth: 768px;
+$correctedTabletMediaWidth: 767px;
+$smallMediaWidth: 320px;
 $default-margin: 40px;
 
 @mixin link-styling {
@@ -24,10 +24,12 @@ $default-margin: 40px;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  height: 80px;
   padding: 5px $default-margin;
   background-color: black;
 
   @media (max-width: $correctedTabletMediaWidth) {
+    height: 60px;
     margin-bottom: $default-margin/2;
     padding: 0 $default-margin/2;
   }

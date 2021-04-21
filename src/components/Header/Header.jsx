@@ -36,6 +36,11 @@ const Header = ({ authenticateUser }) => {
     setDropdownState("Products");
   }
 
+  const onUserClickHandler = () => {
+    onLinkClickHandler();
+    history.push('/profile')
+  }
+
   const changeDropdownHandler = event => setDropdownState(event.value);
 
   const onLogInClickHandler = () => {
@@ -91,9 +96,9 @@ const Header = ({ authenticateUser }) => {
             </>
           ) : (
             <>
-              <div className="header__login-handler">
-              <p className="header__link" onClick={() => history.push('/profile')}>{userLogin}</p>
-                <img className="header__user-icon" src={userIcon} onClick={() => history.push('/profile')} />
+              <div className="header__login-handler" onClick={onUserClickHandler}>
+                <p className="header__link">{userLogin}</p>
+                  <img className="header__user-icon" src={userIcon}/>
               </div>
               <button className="header__link header__reg-btn" type="button" onClick={onLogOutClickHandler}>Log Out</button>
             </>
