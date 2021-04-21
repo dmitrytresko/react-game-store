@@ -11,7 +11,7 @@ const GameCard = (props) => {
         </div>
         <div className="game-card__info">
           <p className="game-card__company">{props.gameDetails.company}</p>
-          <p className="game-card__price">{props.gameDetails.price}</p>
+          <p className="game-card__price">${props.gameDetails.price}</p>
         </div>
       </div>
     </div>

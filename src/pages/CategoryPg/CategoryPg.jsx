@@ -15,6 +15,9 @@ import "./styles.scss";
 const CategoryPg = () => {
   const { categoryId } = useParams();
 
+  const genresArr = ['Sports', 'RPG', 'Shooter', 'Fighting', 'Survival', 'Horror', 'Racing', 'Adventure', 'Stealth'];
+  const agesArr = ['0', '16', '18'];
+
   const selectGamesArr = (category) => {
     switch (category) {
       case "ps": return psGamesArr;
@@ -42,6 +45,7 @@ const CategoryPg = () => {
       <aside className="sidebar">
         <h2 className="sidebar__title">{categoryId ? `- Best games for ${categoryId} -` : "- All available games -"}</h2>
         {categoryId && <img className="sidebar__mini-logo" src={categoryId === "ps" ? playStationLogo : categoryId === "xbox" ? xboxLogo : windowsLogo}/>}
+
         <div className="sidebar__options-container">
           <p className="sidebar__option-name">Sort</p>
           <label className="sidebar__option-criteria">
@@ -53,17 +57,25 @@ const CategoryPg = () => {
             <select></select>
           </label>
         </div>
+
         <div className="sidebar__options-container">
           <p className="sidebar__option-name">Genres</p>
-          <input type="radio" name="genre"></input>
-          <input type="radio" name="genre"></input>
-          <input type="radio" name="genre"></input>
+          {genresArr.map((genre, index) => (
+            <label className="sidebar__option-label" key={index}>
+              <input type="radio" name="genre" />
+              {genre}
+            </label>
+          ))}
         </div>
+
         <div className="sidebar__options-container">
           <p className="sidebar__option-name">Age</p>
-          <input type="radio" name="age"></input>
-          <input type="radio" name="age"></input>
-          <input type="radio" name="age"></input>
+          {agesArr.map((age, index) =>
+            <label className="sidebar__option-label" key={index}>
+              <input type="radio" name="age" />
+              {age}+
+          </label>
+          )}
         </div>
       </aside>
 
