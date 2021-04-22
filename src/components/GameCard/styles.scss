@@ -2,6 +2,7 @@ $maxMediaWidth: 1024px;
 $tabletMediaWidth: 768px;
 
 .game-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,6 +33,32 @@ $tabletMediaWidth: 768px;
     }
   }
 
+  &__order-btn {
+    position: absolute;
+    right: 0;
+    bottom: 29%;
+    padding: 5px 25px;
+    color: #f8f8f8;
+    font-size: 22px;
+    font-family: "Teko", sans-serif;
+    background: black;
+    border: 2px solid #f8f8f8;
+    border-right: none;
+    border-bottom: none;
+    border-top-left-radius: 5px;
+    cursor: pointer;
+    transition: all 0.4s;
+
+    &:hover {
+      color: coral;
+      border-color: coral;
+    }
+
+    @media (max-width: $maxMediaWidth) {
+      font-size: 20px;
+    }
+  }
+
   &__details-container {
     display: flex;
     flex-direction: column;
@@ -47,21 +74,21 @@ $tabletMediaWidth: 768px;
   &__title {
     max-width: 82%;
     color: coral;
-    font-size: 1.45rem;
+    font-size: 23px;
     font-family: "Teko", sans-serif;
 
     @media (max-width: $tabletMediaWidth) {
-      font-size: 1.3rem;
+      font-size: 21px;
     }
   }
 
   &__company {
     color: white;
-    font-size: 1.35rem;
+    font-size: 22px;
     font-family: "Teko", sans-serif;
 
     @media (max-width: $tabletMediaWidth) {
-      font-size: 1.25rem;
+      font-size: 20px;
     }
   }
 
@@ -83,11 +110,11 @@ $tabletMediaWidth: 768px;
   &__price {
     color: white;
     font-weight: bold;
-    font-size: 1.45rem;
+    font-size: 23px;
     font-family: "Teko", sans-serif;
 
     @media (max-width: $tabletMediaWidth) {
-      font-size: 1.4rem;
+      font-size: 21px;
     }
   }
 
