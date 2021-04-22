@@ -16,7 +16,8 @@ const psGamesArr = [
     company: "EA Sports",
     path: fifa21Img,
     rating: fourStars,
-    price: "59.99"
+    price: "59.99",
+    genre: "Sports"
   },
   {
     id: 101,
@@ -24,7 +25,8 @@ const psGamesArr = [
     company: "Rockstar Games",
     path: rdr2Img,
     rating: fiveStars,
-    price: "51.99"
+    price: "51.99",
+    genre: "Shooter"
   },
   {
     id: 102,
@@ -32,7 +34,8 @@ const psGamesArr = [
     company: "CD Projekt",
     path: theWitcher3Img,
     rating: fiveStars,
-    price: "24.99"
+    price: "24.99",
+    genre: "Action-RPG"
   },
   {
     id: 103,
@@ -40,7 +43,8 @@ const psGamesArr = [
     company: "Sony Interactive",
     path: theLastOfUs2Img,
     rating: fiveStars,
-    price: "54.99"
+    price: "54.99",
+    genre: "Survival horror"
   },
   {
     id: 104,
@@ -48,7 +52,8 @@ const psGamesArr = [
     company: "Bethesda",
     path: fallout4Img,
     rating: fiveStars,
-    price: "14.99"
+    price: "14.99",
+    genre: "Action-RPG"
   },
   {
     id: 105,
@@ -56,7 +61,8 @@ const psGamesArr = [
     company: "Rockstar Games",
     path: gta5Img,
     rating: fiveStars,
-    price: "24.99"
+    price: "24.99",
+    genre: "Action-Adventure"
   },
   {
     id: 106,
@@ -64,7 +70,8 @@ const psGamesArr = [
     company: "Sony Interactive",
     path: horizonZeroDawnImg,
     rating: fiveStars,
-    price: "16.99"
+    price: "16.99",
+    genre: "Action-RPG"
   },
   {
     id: 107,
@@ -72,7 +79,8 @@ const psGamesArr = [
     company: "EA Sports",
     path: ufc4Img,
     rating: fourStars,
-    price: "109.99"
+    price: "109.99",
+    genre: "Fighting"
   }
 ]
 

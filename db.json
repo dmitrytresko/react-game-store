@@ -22,7 +22,7 @@
       "company": "CD Projekt",
       "price": "24.99",
       "age": 18,
-      "genre": "Action RPG"
+      "genre": "Action-RPG"
     },
     {
       "id": 103,
@@ -38,7 +38,7 @@
       "company": "Bethesda",
       "price": "14.99",
       "age": 18,
-      "genre": "Action RPG"
+      "genre": "Action-RPG"
     },
     {
       "id": 105,
@@ -46,7 +46,7 @@
       "company": "Rockstar Games",
       "price": "24.99",
       "age": 18,
-      "genre": "Action adventure"
+      "genre": "Action-Adventure"
     },
     {
       "id": 106,
@@ -54,7 +54,7 @@
       "company": "Sony Interactive",
       "price": "16.99",
       "age": 16,
-      "genre": "Action RPG"
+      "genre": "Action-RPG"
     },
     {
       "id": 107,
@@ -62,7 +62,7 @@
       "company": "EA Sports",
       "price": "109.99",
       "age": 18,
-      "genre": "Fighting sports"
+      "genre": "Fighting"
     },
     {
       "id": 200,
@@ -78,7 +78,7 @@
       "company": "CD Projekt",
       "price": "39.99",
       "age": 18,
-      "genre": "Action RPG"
+      "genre": "Action-RPG"
     },
     {
       "id": 202,
@@ -110,7 +110,7 @@
       "company": "Ubisoft",
       "price": "54.99",
       "age": 18,
-      "genre": "Action adventure"
+      "genre": "Action-Adventure"
     },
     {
       "id": 206,
@@ -118,7 +118,7 @@
       "company": "Crystal Dynamics",
       "price": "24.99",
       "age": 18,
-      "genre": "RPG"
+      "genre": "Action-RPG"
     },
     {
       "id": 207,
@@ -126,7 +126,7 @@
       "company": "‪Psyonix LLC",
       "price": "0",
       "age": 0,
-      "genre": "Sports racing"
+      "genre": "Sports-Racing"
     },
     {
       "id": 300,
@@ -134,7 +134,7 @@
       "company": "IO Interactive",
       "price": "34.99",
       "age": 18,
-      "genre": "Stealth action"
+      "genre": "Action-Stealth"
     },
     {
       "id": 301,
@@ -142,7 +142,7 @@
       "company": "Ubisoft",
       "price": "69.99",
       "age": 18,
-      "genre": "Action RPG"
+      "genre": "Action-RPG"
     },
     {
       "id": 302,
@@ -174,7 +174,7 @@
       "company": "Codemasters",
       "price": "54.99",
       "age": 0,
-      "genre": "Sports racing"
+      "genre": "Sports-Racing"
     },
     {
       "id": 306,
@@ -182,7 +182,7 @@
       "company": "Bethesda Game Studios",
       "price": "19.99",
       "age": 18,
-      "genre": "Action RPG"
+      "genre": "Action-RPG"
     },
     {
       "id": 307,
@@ -297,6 +297,6 @@
   ],
   "auth": {
     "login": "vasya",
-    "password": "11111"
+    "password": "1111"
   }
 }

@@ -1,6 +1,7 @@
 /* eslint-disable */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 import GameCard from "../../components/GameCard/GameCard";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import playStationLogo from "../../assets/img/playstation.png";
@@ -15,20 +16,47 @@ import "./styles.scss";
 const CategoryPg = () => {
   const { categoryId } = useParams();
 
-  const genresArr = ['Sports', 'RPG', 'Shooter', 'Fighting', 'Survival', 'Horror', 'Racing', 'Adventure', 'Stealth'];
+  const [genresArr, setGenresArr] = useState([]);
+  const [outputArr, setOutputArr] = useState([]);
+  const [isGenreRadioChecked, setIsGenreRadioChecked] = useState(null);
+  const [isAgeRadioChecked, setIsAgeRadioChecked] = useState(null);
+
+  const genreRadioInput = useRef();
+  const ageRadioInput = useRef();
+
   const agesArr = ['0', '16', '18'];
 
-  const selectGamesArr = (category) => {
-    switch (category) {
+  const allGamesArr = [
+    ...psGamesArr,
+    ...xboxGamesArr,
+    ...pcGamesArr
+  ];
+
+  const selectGamesArr = () => {
+    switch (categoryId) {
       case "ps": return psGamesArr;
       case "xbox": return xboxGamesArr;
       case "pc": return pcGamesArr;
-      default: return [
-        ...psGamesArr,
-        ...xboxGamesArr,
-        ...pcGamesArr
-      ];
+      default: return allGamesArr;
     }
+  }
+
+  useEffect(() => {
+    setOutputArr(selectGamesArr());
+  }, [categoryId])
+
+  useEffect(() => {
+    setIsGenreRadioChecked(null);
+    setGenresArr(generateGenres());
+    setIsAgeRadioChecked(null);
+  }, [categoryId])
+
+  const generateGenres = () => {
+    const allGenres = selectGamesArr().map(game => game.genre);
+
+    const arrWithUniqueGenres = [...new Set(allGenres)].sort();
+
+    return arrWithUniqueGenres;
   }
 
   const callSearch = ({ category, value }) => {
@@ -37,6 +65,82 @@ const CategoryPg = () => {
       case "xbox": return callSearchValueWithXboxCategory(value);
       case "pc": return callSearchValueWithPcCategory(value);
       default: return callSearchValue(value);
+    }
+  }
+
+  const onGenreRadioChange = async (genre) => {
+    if (genre !== isGenreRadioChecked) {
+      setIsGenreRadioChecked(genre);
+
+      const gamesFilteredByGenre = await filterGamesByGenre(genre);
+
+      const idsOfFilteredGames = gamesFilteredByGenre.map(game => game.id);
+
+      const matchedGamesFilteredByGenre = idsOfFilteredGames.map(gameId => selectGamesArr().find(outputGame => outputGame.id === gameId));
+
+      console.log(matchedGamesFilteredByGenre);
+
+      setOutputArr(matchedGamesFilteredByGenre);
+    }
+    else {
+      setIsGenreRadioChecked(null);
+      setIsAgeRadioChecked(null);
+      setOutputArr(selectGamesArr());
+    }
+  }
+
+  const filterGamesByGenre = async (genreName) => {
+    try {
+      const response = await axios.get('http://localhost:4000/gamesArr');
+
+      const allGamesFilteredByGenre = response.data.filter(item => item.genre.toLocaleLowerCase().includes(genreName.toLocaleLowerCase()));
+
+      switch (categoryId) {
+        case "ps": return allGamesFilteredByGenre.filter(item => item.id >= 100 && item.id < 200);
+        case "xbox": return allGamesFilteredByGenre.filter(item => item.id >= 200 && item.id < 300);
+        case "pc": return allGamesFilteredByGenre.filter(item => item.id >= 300);
+        default: return allGamesFilteredByGenre;
+      }
+    }
+    catch(err) {
+      console.error(err);
+    }
+  }
+
+  const onAgeRadioChange = async (age) => {
+    if (age !== isAgeRadioChecked) {
+      setIsAgeRadioChecked(age);
+
+      const gamesFilteredByAge = await filterGamesByAge(age);
+
+      const idsOfFilteredGames = gamesFilteredByAge.map(game => game.id);
+
+      const matchedGamesFilteredByAge = idsOfFilteredGames.map(gameId => selectGamesArr().find(outputGame => outputGame.id === gameId));
+
+      console.log(matchedGamesFilteredByAge);
+
+      setOutputArr(matchedGamesFilteredByAge);
+    } else {
+      setIsAgeRadioChecked(null);
+      setOutputArr(selectGamesArr());
+    }
+  }
+
+  const filterGamesByAge = async (gameAge) => {
+    try {
+      const response = await axios.get('http://localhost:4000/gamesArr');
+
+      const allGamesFilteredByAge = response.data.filter(item => item.age >= gameAge);
+
+      switch (categoryId) {
+        case "ps": return allGamesFilteredByAge.filter(item => item.id >= 100 && item.id < 200);
+        case "xbox": return allGamesFilteredByAge.filter(item => item.id >= 200 && item.id < 300);
+        case "pc": return allGamesFilteredByAge.filter(item => item.id >= 300);
+        default: return allGamesFilteredByAge;
+      }
+    }
+    catch(err) {
+      console.error(err);
     }
   }
 
@@ -59,20 +163,20 @@ const CategoryPg = () => {
         </div>
 
         <div className="sidebar__options-container">
-          <p className="sidebar__option-name">Genres</p>
+          <p className="sidebar__option-name">Genres:</p>
           {genresArr.map((genre, index) => (
-            <label className="sidebar__option-label" key={index}>
-              <input type="radio" name="genre" />
+            <label className="sidebar__option-label" key={index} >
+              <input type="radio" name="genre" value={genre} ref={genreRadioInput} onClick={() => onGenreRadioChange(genre)} checked={isGenreRadioChecked === genre} />
               {genre}
             </label>
           ))}
         </div>
 
         <div className="sidebar__options-container">
-          <p className="sidebar__option-name">Age</p>
+          <p className="sidebar__option-name">Age:</p>
           {agesArr.map((age, index) =>
             <label className="sidebar__option-label" key={index}>
-              <input type="radio" name="age" />
+              <input type="radio" name="age" value={age} ref={ageRadioInput} onClick={() => onAgeRadioChange(age)} checked={isAgeRadioChecked === age} />
               {age}+
           </label>
           )}
@@ -83,7 +187,7 @@ const CategoryPg = () => {
         <SearchBar message="Enter the game name here..." callSearchValue={callSearch} />
 
         <div className="categories-content__games-container">
-          {selectGamesArr(categoryId).map(game => <GameCard key={game.id} gameDetails={game}/>)}
+          {outputArr.map(game => <GameCard key={game.id} gameDetails={game}/>)}
         </div>
       </div>
     </div>

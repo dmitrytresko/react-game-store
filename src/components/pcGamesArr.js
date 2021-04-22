@@ -16,7 +16,8 @@ const pcGamesArr = [
     company: "IO Interactive",
     path: hitman3Img,
     rating: fiveStars,
-    price: "34.99"
+    price: "34.99",
+    genre: "Action-Stealth"
   },
   {
     id: 301,
@@ -24,7 +25,8 @@ const pcGamesArr = [
     company: "Ubisoft",
     path: assassinValhallaImg,
     rating: fourStars,
-    price: "69.99"
+    price: "69.99",
+    genre: "Action-RPG"
   },
   {
     id: 302,
@@ -32,7 +34,8 @@ const pcGamesArr = [
     company: "EA Sports",
     path: fifa21Img,
     rating: fourStars,
-    price: "49.99"
+    price: "49.99",
+    genre: "Sports"
   },
   {
     id: 303,
@@ -40,7 +43,8 @@ const pcGamesArr = [
     company: "Infinity Ward",
     path: warzoneImg,
     rating: fourStars,
-    price: "0"
+    price: "0",
+    genre: "Shooter"
   },
   {
     id: 304,
@@ -48,7 +52,8 @@ const pcGamesArr = [
     company: "Ubisoft",
     path: rainbowSixImg,
     rating: fiveStars,
-    price: "19.99"
+    price: "19.99",
+    genre: "Shooter"
   },
   {
     id: 305,
@@ -56,7 +61,8 @@ const pcGamesArr = [
     company: "Codemasters",
     path: f12020Img,
     rating: fourStars,
-    price: "54.99"
+    price: "54.99",
+    genre: "Sports-Racing"
   },
   {
     id: 306,
@@ -64,7 +70,8 @@ const pcGamesArr = [
     company: "Bethesda Game Studios",
     path: skyrimImg,
     rating: fiveStars,
-    price: "19.99"
+    price: "19.99",
+    genre: "Action-RPG"
   },
   {
     id: 307,
@@ -72,7 +79,8 @@ const pcGamesArr = [
     company: "Rockstar Games",
     path: rdr2Img,
     rating: fiveStars,
-    price: "34.99"
+    price: "34.99",
+    genre: "Shooter"
   }
 ]
 
