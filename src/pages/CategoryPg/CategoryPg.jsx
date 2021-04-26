@@ -18,9 +18,12 @@ const CategoryPg = () => {
 
   const [genresArr, setGenresArr] = useState([]);
   const [outputArr, setOutputArr] = useState([]);
+  const [selectedSortType, setSelectedSortType] = useState('');
+  // const [sortedArr, setSortedArr] = useState([]);
   const [isGenreRadioChecked, setIsGenreRadioChecked] = useState(null);
   const [isAgeRadioChecked, setIsAgeRadioChecked] = useState(null);
 
+  const criteriaSelectRef = useRef();
   const genreRadioInput = useRef();
   const ageRadioInput = useRef();
 
@@ -46,10 +49,32 @@ const CategoryPg = () => {
   }, [categoryId])
 
   useEffect(() => {
+    criteriaSelectRef.current.value = "-";
+    setSelectedSortType('');
+    // setSortedArr([]);
+  }, [categoryId])
+
+  useEffect(() => {
     setIsGenreRadioChecked(null);
     setGenresArr(generateGenres());
     setIsAgeRadioChecked(null);
   }, [categoryId])
+
+  useEffect(() => {
+    console.log('Output changed');
+  }, [outputArr])
+
+  useEffect(() => {
+    switch (selectedSortType) {
+      case "price":
+        setOutputArr(selectGamesArr().sort((a, b) => a.price - b.price));
+        break;
+      case "rating":
+        setOutputArr(selectGamesArr().sort((a, b) => a.metaRating - b.metaRating));
+        break;
+      default: setOutputArr(selectGamesArr());
+    }
+  }, [selectedSortType])
 
   const generateGenres = () => {
     const allGenres = selectGamesArr().map(game => game.genre);
@@ -66,6 +91,10 @@ const CategoryPg = () => {
       case "pc": return callSearchValueWithPcCategory(value);
       default: return callSearchValue(value);
     }
+  }
+
+  const onSortSelectChange = (event) => {
+    setSelectedSortType(event.target.value);
   }
 
   const onGenreRadioChange = async (genre) => {
@@ -153,12 +182,12 @@ const CategoryPg = () => {
         <div className="sidebar__options-container">
           <p className="sidebar__option-name">Sort</p>
           <label className="sidebar__option-criteria">
-            Rating:
-            <select></select>
-          </label>
-          <label className="sidebar__option-criteria">
-            Price:
-            <select></select>
+            Criteria:
+            <select onChange={onSortSelectChange} ref={criteriaSelectRef}>
+              <option></option>
+              <option value="price">Price</option>
+              <option value="rating">Rating</option>
+            </select>
           </label>
         </div>
 

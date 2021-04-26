@@ -8,6 +8,7 @@ import skyrimImg from "../assets/img/games/pc/skyrim.png";
 import rdr2Img from "../assets/img/games/pc/rdr2.png";
 import fiveStars from "../assets/img/card-items/five-stars.png";
 import fourStars from "../assets/img/card-items/four-stars.png";
+import threeStars from "../assets/img/card-items/three-stars.png";
 
 const pcGamesArr = [
   {
@@ -16,8 +17,9 @@ const pcGamesArr = [
     company: "IO Interactive",
     path: hitman3Img,
     rating: fiveStars,
-    price: "34.99",
-    genre: "Action-Stealth"
+    price: 34.99,
+    genre: "Action-Stealth",
+    metaRating: 87
   },
   {
     id: 301,
@@ -25,17 +27,19 @@ const pcGamesArr = [
     company: "Ubisoft",
     path: assassinValhallaImg,
     rating: fourStars,
-    price: "69.99",
-    genre: "Action-RPG"
+    price: 69.99,
+    genre: "Action-RPG",
+    metaRating: 82
   },
   {
     id: 302,
     name: "FIFA 21: Champions Edition",
     company: "EA Sports",
     path: fifa21Img,
-    rating: fourStars,
-    price: "49.99",
-    genre: "Sports"
+    rating: threeStars,
+    price: 49.99,
+    genre: "Sports",
+    metaRating: 74
   },
   {
     id: 303,
@@ -43,35 +47,39 @@ const pcGamesArr = [
     company: "Infinity Ward",
     path: warzoneImg,
     rating: fourStars,
-    price: "0",
-    genre: "Shooter"
+    price: 0,
+    genre: "Shooter",
+    metaRating: 80
   },
   {
     id: 304,
     name: "Tom Clancy's Rainbow Six Siege",
     company: "Ubisoft",
     path: rainbowSixImg,
-    rating: fiveStars,
-    price: "19.99",
-    genre: "Shooter"
+    rating: fourStars,
+    price: 19.99,
+    genre: "Shooter",
+    metaRating: 79
   },
   {
     id: 305,
     name: "F1 2020",
     company: "Codemasters",
     path: f12020Img,
-    rating: fourStars,
-    price: "54.99",
-    genre: "Sports-Racing"
+    rating: fiveStars,
+    price: 54.99,
+    genre: "Sports-Racing",
+    metaRating: 88
   },
   {
     id: 306,
     name: "The Elder Scrolls V: Skyrim",
     company: "Bethesda Game Studios",
     path: skyrimImg,
-    rating: fiveStars,
-    price: "19.99",
-    genre: "Action-RPG"
+    rating: fourStars,
+    price: 19.99,
+    genre: "Action-RPG",
+    metaRating: 84
   },
   {
     id: 307,
@@ -79,8 +87,9 @@ const pcGamesArr = [
     company: "Rockstar Games",
     path: rdr2Img,
     rating: fiveStars,
-    price: "34.99",
-    genre: "Shooter"
+    price: 34.99,
+    genre: "Shooter",
+    metaRating: 92
   }
 ]
 

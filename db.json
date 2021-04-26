@@ -197,7 +197,7 @@
     {
       "id": 100,
       "name": "FIFA 21: Standard Edition",
-      "metaRating": 74
+      "metaRating": 72
     },
     {
       "id": 101,
@@ -207,7 +207,7 @@
     {
       "id": 102,
       "name": "The Witcher 3: Wild Hunt",
-      "metaRating": 92
+      "metaRating": 93
     },
     {
       "id": 103,
@@ -240,9 +240,19 @@
       "metaRating": 92
     },
     {
+      "id": 201,
+      "name": "The Witcher 3: Wild Hunt",
+      "metaRating": 91
+    },
+    {
       "id": 202,
       "name": "Mortal Kombat 11: Standard Edition",
       "metaRating": 88
+    },
+    {
+      "id": 203,
+      "name": "FIFA 21: Ultimate Edition",
+      "metaRating": 77
     },
     {
       "id": 204,
@@ -262,7 +272,7 @@
     {
       "id": 207,
       "name": "Rocket League",
-      "metaRating": 74
+      "metaRating": 87
     },
     {
       "id": 300,
@@ -273,6 +283,11 @@
       "id": 301,
       "name": "Assassin's Creed Valhalla",
       "metaRating": 82
+    },
+    {
+      "id": 302,
+      "name": "FIFA 21: Champions Edition",
+      "metaRating": 74
     },
     {
       "id": 303,
@@ -293,10 +308,15 @@
       "id": 306,
       "name": "The Elder Scrolls V: Skyrim",
       "metaRating": 84
+    },
+    {
+      "id": 307,
+      "name": "Red Dead Redemption 2",
+      "metaRating": 92
     }
   ],
   "auth": {
     "login": "vasya",
-    "password": "1111"
+    "password": "11111"
   }
 }

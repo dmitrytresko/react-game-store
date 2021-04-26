@@ -1,6 +1,5 @@
 /* eslint-disable */
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import CategoryCard from "../../components/CategoryCard/CategoryCard";
 import GameCard from "../../components/GameCard/GameCard";
@@ -14,6 +13,12 @@ import "./styles.scss";
 const HomePg = () => {
   const [selectedGames, setSelectedGames] = useState([]);
 
+  const allGamesArr = [
+    ...psGamesArr,
+    ...xboxGamesArr,
+    ...pcGamesArr
+  ]
+
   const getTopProductsInfo = async() => {
     try {
       const response = await axios.get('http://localhost:4000/getTopProducts');
@@ -22,7 +27,7 @@ const HomePg = () => {
 
       const gamesWithBestRatings = theBestRatings.map(number => response.data.find(item => item.metaRating === number));
 
-      const matchedBestRatedGames = gamesWithBestRatings.map(game => psGamesArr.find(psGame => psGame.name === game.name));
+      const matchedBestRatedGames = gamesWithBestRatings.map(game => allGamesArr.find(psGame => psGame.name === game.name));
 
       setSelectedGames(matchedBestRatedGames);
     }
