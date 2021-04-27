@@ -18,7 +18,7 @@ const CategoryPg = () => {
 
   const [genresArr, setGenresArr] = useState([]);
   const [outputArr, setOutputArr] = useState([]);
-  const [selectedSortType, setSelectedSortType] = useState('');
+  const [selectedSortType, setSelectedSortType] = useState('Default');
   const [isGenreRadioChecked, setIsGenreRadioChecked] = useState(null);
   const [isAgeRadioChecked, setIsAgeRadioChecked] = useState(null);
 
@@ -36,21 +36,20 @@ const CategoryPg = () => {
 
   const selectGamesArr = () => {
     switch (categoryId) {
-      case "ps": return psGamesArr;
-      case "xbox": return xboxGamesArr;
-      case "pc": return pcGamesArr;
+      case "ps": return [...psGamesArr];
+      case "xbox": return [...xboxGamesArr];
+      case "pc": return [...pcGamesArr];
       default: return allGamesArr;
     }
   }
 
   useEffect(() => {
-    console.log(selectGamesArr());
     setOutputArr(selectGamesArr());
   }, [categoryId])
 
   useEffect(() => {
-    criteriaSelectRef.current.value = "-";
-    setSelectedSortType('');
+    criteriaSelectRef.current.value = "Default";
+    setSelectedSortType('Default');
   }, [categoryId])
 
   useEffect(() => {
@@ -60,11 +59,7 @@ const CategoryPg = () => {
   }, [categoryId])
 
   useEffect(() => {
-    console.log('Output changed');
-  }, [outputArr])
-
-  useEffect(() => {
-    if (!selectedSortType) {
+    if (selectedSortType === 'Default') {
       setOutputArr(selectGamesArr());
     }
   }, [selectedSortType])
@@ -88,6 +83,14 @@ const CategoryPg = () => {
 
   const onSortSelectChange = (event) => {
     setSelectedSortType(event.target.value);
+  }
+
+  const showSelectedGames = () => {
+    switch (selectedSortType) {
+      case 'price': return outputArr.sort((a, b) => b.price - a.price);
+      case 'rating': return outputArr.sort((a, b) => b.metaRating - a.metaRating);
+      default : return outputArr;
+    }
   }
 
   const onGenreRadioChange = async (genre) => {
@@ -177,7 +180,7 @@ const CategoryPg = () => {
           <label className="sidebar__option-criteria">
             Criteria:
             <select onChange={onSortSelectChange} ref={criteriaSelectRef}>
-              <option></option>
+              <option>Default</option>
               <option value="price">Price</option>
               <option value="rating">Rating</option>
             </select>
@@ -209,9 +212,7 @@ const CategoryPg = () => {
         <SearchBar message="Enter the game name here..." callSearchValue={callSearch} />
 
         <div className="categories-content__games-container">
-          {!selectedSortType ? outputArr.map(game => <GameCard key={game.id} gameDetails={game}/>) :
-           selectedSortType === 'price' ? outputArr.sort((a, b) => a.price - b.price).map(game => <GameCard key={game.id} gameDetails={game}/>) :
-           selectedSortType === 'rating' && outputArr.sort((a, b) => a.metaRating - b.metaRating).map(game => <GameCard key={game.id} gameDetails={game}/>)}
+          {showSelectedGames().map(game => <GameCard key={game.id} gameDetails={game}/>)}
         </div>
       </div>
     </div>
