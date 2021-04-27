@@ -19,7 +19,6 @@ const CategoryPg = () => {
   const [genresArr, setGenresArr] = useState([]);
   const [outputArr, setOutputArr] = useState([]);
   const [selectedSortType, setSelectedSortType] = useState('');
-  // const [sortedArr, setSortedArr] = useState([]);
   const [isGenreRadioChecked, setIsGenreRadioChecked] = useState(null);
   const [isAgeRadioChecked, setIsAgeRadioChecked] = useState(null);
 
@@ -45,13 +44,13 @@ const CategoryPg = () => {
   }
 
   useEffect(() => {
+    console.log(selectGamesArr());
     setOutputArr(selectGamesArr());
   }, [categoryId])
 
   useEffect(() => {
     criteriaSelectRef.current.value = "-";
     setSelectedSortType('');
-    // setSortedArr([]);
   }, [categoryId])
 
   useEffect(() => {
@@ -65,14 +64,8 @@ const CategoryPg = () => {
   }, [outputArr])
 
   useEffect(() => {
-    switch (selectedSortType) {
-      case "price":
-        setOutputArr(selectGamesArr().sort((a, b) => a.price - b.price));
-        break;
-      case "rating":
-        setOutputArr(selectGamesArr().sort((a, b) => a.metaRating - b.metaRating));
-        break;
-      default: setOutputArr(selectGamesArr());
+    if (!selectedSortType) {
+      setOutputArr(selectGamesArr());
     }
   }, [selectedSortType])
 
@@ -216,7 +209,9 @@ const CategoryPg = () => {
         <SearchBar message="Enter the game name here..." callSearchValue={callSearch} />
 
         <div className="categories-content__games-container">
-          {outputArr.map(game => <GameCard key={game.id} gameDetails={game}/>)}
+          {!selectedSortType ? outputArr.map(game => <GameCard key={game.id} gameDetails={game}/>) :
+           selectedSortType === 'price' ? outputArr.sort((a, b) => a.price - b.price).map(game => <GameCard key={game.id} gameDetails={game}/>) :
+           selectedSortType === 'rating' && outputArr.sort((a, b) => a.metaRating - b.metaRating).map(game => <GameCard key={game.id} gameDetails={game}/>)}
         </div>
       </div>
     </div>
