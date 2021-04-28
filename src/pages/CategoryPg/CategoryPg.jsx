@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useReducer, useRef } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import GameCard from "../../components/GameCard/GameCard";
@@ -13,14 +13,87 @@ import pcGamesArr from "../../components/pcGamesArr";
 import { callSearchValueWithPsCategory, callSearchValueWithXboxCategory, callSearchValueWithPcCategory, callSearchValue } from "../../api";
 import "./styles.scss";
 
+const ACTIONS = {
+  SET_INITIAL_CARDS_ARR: 'setInitialCardsArr',
+  RESET_SORT_TYPE: 'resetSortType',
+  RESET_FILTERS: 'resetFilters',
+  RESET_FILTERED_ARR_BY_GENRE: 'resetFilteredArrByGenre',
+  RESET_FILTERED_ARR_BY_AGE: 'resetFilteredArrByAge',
+  SET_SORT_TYPE: 'setSortType',
+  SET_IS_GENRE_RADIO_CHECKED: 'setIsGenreRadioChecked',
+  SET_IS_AGE_RADIO_CHECKED: 'setIsAgeRadioChecked',
+  SET_OUTPUT_ARR: 'setOutputArr'
+}
+
+const initialState = {
+  genresArr: [],
+  outputArr: [],
+  selectedSortType: 'Default',
+  isGenreRadioChecked: null,
+  isAgeRadioChecked: null
+}
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case ACTIONS.SET_INITIAL_CARDS_ARR:
+      return {
+        ...state,
+        outputArr: action.payload.selectGamesArr()
+      };
+    case ACTIONS.RESET_SORT_TYPE:
+      return {
+        ...state,
+        selectedSortType: 'Default'
+      };
+    case ACTIONS.RESET_FILTERS:
+      return {
+        ...state,
+        isGenreRadioChecked: null,
+        genresArr: action.payload.generateGenres(),
+        isAgeRadioChecked: null
+      };
+    case ACTIONS.RESET_FILTERED_ARR_BY_GENRE:
+      return {
+        ...state,
+        isGenreRadioChecked: null,
+        genresArr: action.payload.selectGamesArr(),
+        isAgeRadioChecked: null
+      };
+    case ACTIONS.RESET_FILTERED_ARR_BY_GENRE:
+      return {
+        ...state,
+        genresArr: action.payload.selectGamesArr(),
+        isAgeRadioChecked: null
+      };
+    case ACTIONS.SET_SORT_TYPE:
+      return {
+        ...state,
+        selectedSortType: action.payload.value
+      };
+    case ACTIONS.SET_IS_GENRE_RADIO_CHECKED:
+      return {
+        ...state,
+        isGenreRadioChecked: action.payload.value
+      };
+    case ACTIONS.SET_IS_AGE_RADIO_CHECKED:
+      return {
+        ...state,
+        isAgeRadioChecked: action.payload.value
+      };
+    case ACTIONS.SET_OUTPUT_ARR:
+      return {
+        ...state,
+        outputArr: action.payload.value
+      };
+    default: return state;
+  }
+}
+
 const CategoryPg = () => {
   const { categoryId } = useParams();
 
-  const [genresArr, setGenresArr] = useState([]);
-  const [outputArr, setOutputArr] = useState([]);
-  const [selectedSortType, setSelectedSortType] = useState('Default');
-  const [isGenreRadioChecked, setIsGenreRadioChecked] = useState(null);
-  const [isAgeRadioChecked, setIsAgeRadioChecked] = useState(null);
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { genresArr, outputArr, selectedSortType, isGenreRadioChecked, isAgeRadioChecked } = state;
 
   const criteriaSelectRef = useRef();
   const genreRadioInput = useRef();
@@ -44,23 +117,21 @@ const CategoryPg = () => {
   }
 
   useEffect(() => {
-    setOutputArr(selectGamesArr());
+    dispatch({ type: ACTIONS.SET_INITIAL_CARDS_ARR, payload: { selectGamesArr: selectGamesArr }});
   }, [categoryId])
 
   useEffect(() => {
     criteriaSelectRef.current.value = "Default";
-    setSelectedSortType('Default');
+    dispatch({ type: ACTIONS.RESET_SORT_TYPE });
   }, [categoryId])
 
   useEffect(() => {
-    setIsGenreRadioChecked(null);
-    setGenresArr(generateGenres());
-    setIsAgeRadioChecked(null);
+    dispatch({ type: ACTIONS.RESET_FILTERS, payload: { generateGenres: generateGenres }});
   }, [categoryId])
 
   useEffect(() => {
     if (selectedSortType === 'Default') {
-      setOutputArr(selectGamesArr());
+      dispatch({ type: ACTIONS.SET_INITIAL_CARDS_ARR });
     }
   }, [selectedSortType])
 
@@ -82,7 +153,7 @@ const CategoryPg = () => {
   }
 
   const onSortSelectChange = (event) => {
-    setSelectedSortType(event.target.value);
+    dispatch({ type: ACTIONS.SET_SORT_TYPE, payload: { value: event.target.value }});
   }
 
   const showSelectedGames = () => {
@@ -95,7 +166,7 @@ const CategoryPg = () => {
 
   const onGenreRadioChange = async (genre) => {
     if (genre !== isGenreRadioChecked) {
-      setIsGenreRadioChecked(genre);
+      dispatch({ type: ACTIONS.SET_IS_GENRE_RADIO_CHECKED, payload: { value: genre }});
 
       const gamesFilteredByGenre = await filterGamesByGenre(genre);
 
@@ -103,14 +174,10 @@ const CategoryPg = () => {
 
       const matchedGamesFilteredByGenre = idsOfFilteredGames.map(gameId => selectGamesArr().find(outputGame => outputGame.id === gameId));
 
-      console.log(matchedGamesFilteredByGenre);
-
-      setOutputArr(matchedGamesFilteredByGenre);
+      dispatch({ type: ACTIONS.SET_OUTPUT_ARR, payload: { value: matchedGamesFilteredByGenre }});
     }
     else {
-      setIsGenreRadioChecked(null);
-      setIsAgeRadioChecked(null);
-      setOutputArr(selectGamesArr());
+      dispatch({ type: ACTIONS.RESET_FILTERED_ARR_BY_GENRE, payload: { selectGamesArr: selectGamesArr }});
     }
   }
 
@@ -134,7 +201,7 @@ const CategoryPg = () => {
 
   const onAgeRadioChange = async (age) => {
     if (age !== isAgeRadioChecked) {
-      setIsAgeRadioChecked(age);
+      dispatch({ type: ACTIONS.SET_IS_AGE_RADIO_CHECKED, payload: { value: age }});
 
       const gamesFilteredByAge = await filterGamesByAge(age);
 
@@ -142,12 +209,9 @@ const CategoryPg = () => {
 
       const matchedGamesFilteredByAge = idsOfFilteredGames.map(gameId => selectGamesArr().find(outputGame => outputGame.id === gameId));
 
-      console.log(matchedGamesFilteredByAge);
-
-      setOutputArr(matchedGamesFilteredByAge);
+      dispatch({ type: ACTIONS.SET_OUTPUT_ARR, payload: { value: matchedGamesFilteredByAge }});
     } else {
-      setIsAgeRadioChecked(null);
-      setOutputArr(selectGamesArr());
+      dispatch({ type: ACTIONS.RESET_FILTERED_ARR_BY_AGE, payload: { selectGamesArr: selectGamesArr }});
     }
   }
 
