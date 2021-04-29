@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { useState, useEffect, useReducer, useRef } from "react";
+import { useEffect, useReducer, useRef } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import GameCard from "../../components/GameCard/GameCard";
@@ -17,11 +17,9 @@ const ACTIONS = {
   SET_INITIAL_CARDS_ARR: 'setInitialCardsArr',
   RESET_SORT_TYPE: 'resetSortType',
   RESET_FILTERS: 'resetFilters',
-  RESET_FILTERED_ARR_BY_GENRE: 'resetFilteredArrByGenre',
-  RESET_FILTERED_ARR_BY_AGE: 'resetFilteredArrByAge',
+  RESET_FILTERED_ARR: 'resetFilteredArr',
   SET_SORT_TYPE: 'setSortType',
-  SET_IS_GENRE_RADIO_CHECKED: 'setIsGenreRadioChecked',
-  SET_IS_AGE_RADIO_CHECKED: 'setIsAgeRadioChecked',
+  SET_IS_RADIO_CHECKED: 'setIsRadioChecked',
   SET_OUTPUT_ARR: 'setOutputArr'
 }
 
@@ -33,12 +31,12 @@ const initialState = {
   isAgeRadioChecked: null
 }
 
-const reducer = (state, action) => {
-  switch (action.type) {
+const reducer = (state, { type, payload }) => {
+  switch (type) {
     case ACTIONS.SET_INITIAL_CARDS_ARR:
       return {
         ...state,
-        outputArr: action.payload.selectGamesArr()
+        outputArr: [...payload.selectedGames]
       };
     case ACTIONS.RESET_SORT_TYPE:
       return {
@@ -49,41 +47,47 @@ const reducer = (state, action) => {
       return {
         ...state,
         isGenreRadioChecked: null,
-        genresArr: action.payload.generateGenres(),
+        genresArr: payload.generatedGenres,
         isAgeRadioChecked: null
       };
-    case ACTIONS.RESET_FILTERED_ARR_BY_GENRE:
-      return {
-        ...state,
-        isGenreRadioChecked: null,
-        genresArr: action.payload.selectGamesArr(),
-        isAgeRadioChecked: null
+    case ACTIONS.RESET_FILTERED_ARR:
+      if (payload.genre) {
+        return {
+          ...state,
+          isGenreRadioChecked: null,
+          outputArr: [...payload.selectedGames],
+          isAgeRadioChecked: null
+        };
       };
-    case ACTIONS.RESET_FILTERED_ARR_BY_GENRE:
-      return {
-        ...state,
-        genresArr: action.payload.selectGamesArr(),
-        isAgeRadioChecked: null
+      if (payload.age) {
+        return {
+          ...state,
+          outputArr: [...payload.selectedGames],
+          isAgeRadioChecked: null
+        };
       };
     case ACTIONS.SET_SORT_TYPE:
       return {
         ...state,
-        selectedSortType: action.payload.value
+        selectedSortType: payload.value
       };
-    case ACTIONS.SET_IS_GENRE_RADIO_CHECKED:
-      return {
-        ...state,
-        isGenreRadioChecked: action.payload.value
-      };
-    case ACTIONS.SET_IS_AGE_RADIO_CHECKED:
-      return {
-        ...state,
-        isAgeRadioChecked: action.payload.value
-      };
+    case ACTIONS.SET_IS_RADIO_CHECKED:
+      if (payload.genre) {
+        return {
+          ...state,
+          isGenreRadioChecked: payload.genre
+        };
+      }
+      if (payload.age) {
+        return {
+          ...state,
+          isAgeRadioChecked: payload.age
+        };
+      }
     case ACTIONS.SET_OUTPUT_ARR:
       return {
         ...state,
-        outputArr: action.payload.value
+        outputArr: payload.value
       };
     default: return state;
   }
@@ -117,23 +121,25 @@ const CategoryPg = () => {
   }
 
   useEffect(() => {
-    dispatch({ type: ACTIONS.SET_INITIAL_CARDS_ARR, payload: { selectGamesArr: selectGamesArr }});
-  }, [categoryId])
+    const selectedGames = selectGamesArr();
+    dispatch({
+      type: ACTIONS.SET_INITIAL_CARDS_ARR,
+      payload: {
+        selectedGames: selectedGames
+      }
+    });
 
-  useEffect(() => {
     criteriaSelectRef.current.value = "Default";
     dispatch({ type: ACTIONS.RESET_SORT_TYPE });
-  }, [categoryId])
 
-  useEffect(() => {
-    dispatch({ type: ACTIONS.RESET_FILTERS, payload: { generateGenres: generateGenres }});
+    const generatedGenres = generateGenres();
+    dispatch({
+      type: ACTIONS.RESET_FILTERS,
+      payload: {
+        generatedGenres: generatedGenres
+      }
+    });
   }, [categoryId])
-
-  useEffect(() => {
-    if (selectedSortType === 'Default') {
-      dispatch({ type: ACTIONS.SET_INITIAL_CARDS_ARR });
-    }
-  }, [selectedSortType])
 
   const generateGenres = () => {
     const allGenres = selectGamesArr().map(game => game.genre);
@@ -153,7 +159,22 @@ const CategoryPg = () => {
   }
 
   const onSortSelectChange = (event) => {
-    dispatch({ type: ACTIONS.SET_SORT_TYPE, payload: { value: event.target.value }});
+    dispatch({
+      type: ACTIONS.SET_SORT_TYPE,
+      payload: {
+        value: event.target.value
+      }
+    });
+
+    if (selectedSortType !== 'Default') {
+      const selectedGames = selectGamesArr();
+      dispatch({
+        type: ACTIONS.SET_INITIAL_CARDS_ARR,
+        payload: {
+          selectedGames: selectedGames
+        }
+      });
+    }
   }
 
   const showSelectedGames = () => {
@@ -165,8 +186,10 @@ const CategoryPg = () => {
   }
 
   const onGenreRadioChange = async (genre) => {
+    const selectedGames = selectGamesArr();
+
     if (genre !== isGenreRadioChecked) {
-      dispatch({ type: ACTIONS.SET_IS_GENRE_RADIO_CHECKED, payload: { value: genre }});
+      dispatch({ type: ACTIONS.SET_IS_RADIO_CHECKED, payload: { genre: genre }});
 
       const gamesFilteredByGenre = await filterGamesByGenre(genre);
 
@@ -174,10 +197,21 @@ const CategoryPg = () => {
 
       const matchedGamesFilteredByGenre = idsOfFilteredGames.map(gameId => selectGamesArr().find(outputGame => outputGame.id === gameId));
 
-      dispatch({ type: ACTIONS.SET_OUTPUT_ARR, payload: { value: matchedGamesFilteredByGenre }});
+      dispatch({
+        type: ACTIONS.SET_OUTPUT_ARR,
+        payload: {
+          value: matchedGamesFilteredByGenre
+        }
+      });
     }
     else {
-      dispatch({ type: ACTIONS.RESET_FILTERED_ARR_BY_GENRE, payload: { selectGamesArr: selectGamesArr }});
+      dispatch({
+        type: ACTIONS.RESET_FILTERED_ARR,
+        payload: {
+          genre: genre,
+          selectedGames: selectedGames
+        }
+      });
     }
   }
 
@@ -201,7 +235,9 @@ const CategoryPg = () => {
 
   const onAgeRadioChange = async (age) => {
     if (age !== isAgeRadioChecked) {
-      dispatch({ type: ACTIONS.SET_IS_AGE_RADIO_CHECKED, payload: { value: age }});
+      console.log(age);
+
+      dispatch({ type: ACTIONS.SET_IS_RADIO_CHECKED, payload: { age: age }});
 
       const gamesFilteredByAge = await filterGamesByAge(age);
 
@@ -209,9 +245,21 @@ const CategoryPg = () => {
 
       const matchedGamesFilteredByAge = idsOfFilteredGames.map(gameId => selectGamesArr().find(outputGame => outputGame.id === gameId));
 
-      dispatch({ type: ACTIONS.SET_OUTPUT_ARR, payload: { value: matchedGamesFilteredByAge }});
+      dispatch({
+        type: ACTIONS.SET_OUTPUT_ARR,
+        payload: {
+          value: matchedGamesFilteredByAge
+        }
+      });
     } else {
-      dispatch({ type: ACTIONS.RESET_FILTERED_ARR_BY_AGE, payload: { selectGamesArr: selectGamesArr }});
+      const selectedGames = selectGamesArr();
+      dispatch({
+        type: ACTIONS.RESET_FILTERED_ARR,
+        payload: {
+          age: age,
+          selectedGames: selectedGames
+        }
+      });
     }
   }
 
