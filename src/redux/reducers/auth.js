@@ -1,7 +1,7 @@
 const initialState = {
-  isLogged: true,
-  userName: 'vasya',
-  password: '1111',
+  isLogged: false,
+  userName: '',
+  password: '',
   address: null,
   phone: null
 };

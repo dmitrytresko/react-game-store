@@ -44,7 +44,7 @@ const Header = ({ authenticateUser }) => {
   const changeDropdownHandler = event => setDropdownState(event.value);
 
   const onLogInClickHandler = () => {
-    // setModalState({ isOpened: true, signInClicked: true, regClicked: false });
+    setModalState({ isOpened: true, signInClicked: true, regClicked: false });
   }
 
   const onRegClickHandler = () => {
