@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { useEffect, useReducer, useRef } from "react";
+import { useEffect, useCallback, useReducer, useRef } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import GameCard from "../../components/GameCard/GameCard";
@@ -13,19 +13,9 @@ import pcGamesArr from "../../components/pcGamesArr";
 import { callSearchValueWithPsCategory, callSearchValueWithXboxCategory, callSearchValueWithPcCategory, callSearchValue } from "../../api";
 import "./styles.scss";
 
-const ACTIONS = {
-  SET_INITIAL_CARDS_ARR: 'setInitialCardsArr',
-  RESET_SORT_TYPE: 'resetSortType',
-  RESET_FILTERS: 'resetFilters',
-  RESET_FILTERED_ARR: 'resetFilteredArr',
-  SET_SORT_TYPE: 'setSortType',
-  SET_IS_RADIO_CHECKED: 'setIsRadioChecked',
-  SET_OUTPUT_ARR: 'setOutputArr'
-}
-
 const initialState = {
-  genresArr: [],
   outputArr: [],
+  genresArr: [],
   selectedSortType: 'Default',
   isGenreRadioChecked: null,
   isAgeRadioChecked: null
@@ -33,62 +23,38 @@ const initialState = {
 
 const reducer = (state, { type, payload }) => {
   switch (type) {
-    case ACTIONS.SET_INITIAL_CARDS_ARR:
+    case 'setFields': {
       return {
         ...state,
-        outputArr: [...payload.selectedGames]
-      };
-    case ACTIONS.RESET_SORT_TYPE:
+        ...payload
+      }
+    };
+    case 'resetSortAndFilters': {
+      return {
+        ...state,
+        selectedSortType: 'Default',
+        isGenreRadioChecked: null,
+        isAgeRadioChecked: null
+      }
+    };
+    case 'resetGenreFilter': {
+      return {
+        ...state,
+        isGenreRadioChecked: null
+      }
+    };
+    case 'resetAgeFilter': {
+      return {
+        ...state,
+        isAgeRadioChecked: null
+      }
+    };
+    case 'resetSortType': {
       return {
         ...state,
         selectedSortType: 'Default'
-      };
-    case ACTIONS.RESET_FILTERS:
-      return {
-        ...state,
-        isGenreRadioChecked: null,
-        genresArr: payload.generatedGenres,
-        isAgeRadioChecked: null
-      };
-    case ACTIONS.RESET_FILTERED_ARR:
-      if (payload.genre) {
-        return {
-          ...state,
-          isGenreRadioChecked: null,
-          outputArr: [...payload.selectedGames],
-          isAgeRadioChecked: null
-        };
-      };
-      if (payload.age) {
-        return {
-          ...state,
-          outputArr: [...payload.selectedGames],
-          isAgeRadioChecked: null
-        };
-      };
-    case ACTIONS.SET_SORT_TYPE:
-      return {
-        ...state,
-        selectedSortType: payload.value
-      };
-    case ACTIONS.SET_IS_RADIO_CHECKED:
-      if (payload.genre) {
-        return {
-          ...state,
-          isGenreRadioChecked: payload.genre
-        };
       }
-      if (payload.age) {
-        return {
-          ...state,
-          isAgeRadioChecked: payload.age
-        };
-      }
-    case ACTIONS.SET_OUTPUT_ARR:
-      return {
-        ...state,
-        outputArr: payload.value
-      };
+    };
     default: return state;
   }
 }
@@ -97,7 +63,7 @@ const CategoryPg = () => {
   const { categoryId } = useParams();
 
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { genresArr, outputArr, selectedSortType, isGenreRadioChecked, isAgeRadioChecked } = state;
+  const { outputArr, genresArr, selectedSortType, isGenreRadioChecked, isAgeRadioChecked } = state;
 
   const criteriaSelectRef = useRef();
   const genreRadioInput = useRef();
@@ -120,27 +86,6 @@ const CategoryPg = () => {
     }
   }
 
-  useEffect(() => {
-    const selectedGames = selectGamesArr();
-    dispatch({
-      type: ACTIONS.SET_INITIAL_CARDS_ARR,
-      payload: {
-        selectedGames: selectedGames
-      }
-    });
-
-    criteriaSelectRef.current.value = "Default";
-    dispatch({ type: ACTIONS.RESET_SORT_TYPE });
-
-    const generatedGenres = generateGenres();
-    dispatch({
-      type: ACTIONS.RESET_FILTERS,
-      payload: {
-        generatedGenres: generatedGenres
-      }
-    });
-  }, [categoryId])
-
   const generateGenres = () => {
     const allGenres = selectGamesArr().map(game => game.genre);
 
@@ -158,23 +103,13 @@ const CategoryPg = () => {
     }
   }
 
-  const onSortSelectChange = (event) => {
+  const onSortSelectChange = event => {
     dispatch({
-      type: ACTIONS.SET_SORT_TYPE,
+      type: 'setFields',
       payload: {
-        value: event.target.value
+        selectedSortType: event.target.value
       }
     });
-
-    if (selectedSortType !== 'Default') {
-      const selectedGames = selectGamesArr();
-      dispatch({
-        type: ACTIONS.SET_INITIAL_CARDS_ARR,
-        payload: {
-          selectedGames: selectedGames
-        }
-      });
-    }
   }
 
   const showSelectedGames = () => {
@@ -186,100 +121,104 @@ const CategoryPg = () => {
   }
 
   const onGenreRadioChange = async (genre) => {
-    const selectedGames = selectGamesArr();
-
     if (genre !== isGenreRadioChecked) {
-      dispatch({ type: ACTIONS.SET_IS_RADIO_CHECKED, payload: { genre: genre }});
-
-      const gamesFilteredByGenre = await filterGamesByGenre(genre);
-
-      const idsOfFilteredGames = gamesFilteredByGenre.map(game => game.id);
-
-      const matchedGamesFilteredByGenre = idsOfFilteredGames.map(gameId => selectGamesArr().find(outputGame => outputGame.id === gameId));
 
       dispatch({
-        type: ACTIONS.SET_OUTPUT_ARR,
+        type: 'setFields',
         payload: {
-          value: matchedGamesFilteredByGenre
+          isGenreRadioChecked: genre,
         }
       });
     }
     else {
-      dispatch({
-        type: ACTIONS.RESET_FILTERED_ARR,
-        payload: {
-          genre: genre,
-          selectedGames: selectedGames
-        }
-      });
-    }
-  }
-
-  const filterGamesByGenre = async (genreName) => {
-    try {
-      const response = await axios.get('http://localhost:4000/gamesArr');
-
-      const allGamesFilteredByGenre = response.data.filter(item => item.genre.toLocaleLowerCase().includes(genreName.toLocaleLowerCase()));
-
-      switch (categoryId) {
-        case "ps": return allGamesFilteredByGenre.filter(item => item.id >= 100 && item.id < 200);
-        case "xbox": return allGamesFilteredByGenre.filter(item => item.id >= 200 && item.id < 300);
-        case "pc": return allGamesFilteredByGenre.filter(item => item.id >= 300);
-        default: return allGamesFilteredByGenre;
-      }
-    }
-    catch(err) {
-      console.error(err);
+      dispatch({ type: 'resetGenreFilter' });
     }
   }
 
   const onAgeRadioChange = async (age) => {
     if (age !== isAgeRadioChecked) {
-      console.log(age);
-
-      dispatch({ type: ACTIONS.SET_IS_RADIO_CHECKED, payload: { age: age }});
-
-      const gamesFilteredByAge = await filterGamesByAge(age);
-
-      const idsOfFilteredGames = gamesFilteredByAge.map(game => game.id);
-
-      const matchedGamesFilteredByAge = idsOfFilteredGames.map(gameId => selectGamesArr().find(outputGame => outputGame.id === gameId));
-
       dispatch({
-        type: ACTIONS.SET_OUTPUT_ARR,
+        type: 'setFields',
         payload: {
-          value: matchedGamesFilteredByAge
-        }
-      });
-    } else {
-      const selectedGames = selectGamesArr();
-      dispatch({
-        type: ACTIONS.RESET_FILTERED_ARR,
-        payload: {
-          age: age,
-          selectedGames: selectedGames
+          isAgeRadioChecked: age
         }
       });
     }
+    else {
+      dispatch({ type: 'resetAgeFilter' });
+    }
   }
 
-  const filterGamesByAge = async (gameAge) => {
+  const getFilteredGames = async (gameAge = 0, gameGenre = '') => {
     try {
       const response = await axios.get('http://localhost:4000/gamesArr');
 
       const allGamesFilteredByAge = response.data.filter(item => item.age >= gameAge);
 
+      const idsOfFilteredGames = allGamesFilteredByAge.map(game => game.id);
+
+      let matchedGamesFilteredByAge = idsOfFilteredGames.map(gameId => selectGamesArr().find(outputGame => (outputGame.id === gameId)));
+
+      if (gameGenre) {
+        matchedGamesFilteredByAge = matchedGamesFilteredByAge.filter(item => item.genre.toLocaleLowerCase().includes(gameGenre.toLocaleLowerCase()));
+      }
+
       switch (categoryId) {
-        case "ps": return allGamesFilteredByAge.filter(item => item.id >= 100 && item.id < 200);
-        case "xbox": return allGamesFilteredByAge.filter(item => item.id >= 200 && item.id < 300);
-        case "pc": return allGamesFilteredByAge.filter(item => item.id >= 300);
-        default: return allGamesFilteredByAge;
+        case "ps": return matchedGamesFilteredByAge.filter(item => item.id >= 100 && item.id < 200);
+        case "xbox": return matchedGamesFilteredByAge.filter(item => item.id >= 200 && item.id < 300);
+        case "pc": return matchedGamesFilteredByAge.filter(item => item.id >= 300);
+        default: return matchedGamesFilteredByAge;
       }
     }
     catch(err) {
       console.error(err);
     }
   }
+
+  const requestFilterGames = async () => {
+    const filteredGames = await getFilteredGames(isAgeRadioChecked, isGenreRadioChecked);
+
+    dispatch({
+      type: 'setFields',
+      payload: {
+        outputArr: filteredGames,
+      }
+    });
+  }
+
+  useEffect(() => {
+    const selectedGames = selectGamesArr();
+    const generatedGenres = generateGenres();
+    criteriaSelectRef.current.value = "Default";
+
+    dispatch({
+      type: 'setFields',
+      payload: {
+        outputArr: selectedGames,
+        genresArr: generatedGenres
+      }
+    });
+
+    dispatch({ type: 'resetSortAndFilters' });
+  }, [categoryId])
+
+  useEffect(() => {
+    if (!isGenreRadioChecked && !isAgeRadioChecked) {
+      const selectedGames = selectGamesArr();
+
+      dispatch({
+        type: 'setFields',
+        payload: {
+          outputArr: selectedGames,
+        }
+      });
+
+      return;
+    }
+    else {
+      requestFilterGames();
+    }
+  }, [isGenreRadioChecked, isAgeRadioChecked])
 
   return (
     <div className="categories">
@@ -324,7 +263,7 @@ const CategoryPg = () => {
         <SearchBar message="Enter the game name here..." callSearchValue={callSearch} />
 
         <div className="categories-content__games-container">
-          {showSelectedGames().map(game => <GameCard key={game.id} gameDetails={game}/>)}
+           {showSelectedGames()?.map(game => <GameCard key={game.id} gameDetails={game}/>)}
         </div>
       </div>
     </div>
