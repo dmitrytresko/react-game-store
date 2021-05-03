@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { useEffect, useCallback, useReducer, useRef } from "react";
+import { useEffect, useReducer, useRef } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import GameCard from "../../components/GameCard/GameCard";
