@@ -151,24 +151,42 @@ const CategoryPg = () => {
 
   const getFilteredGames = async (gameAge = 0, gameGenre = '') => {
     try {
+      let requiredGamesToFilter;
+      let resultArr;
+
       const response = await axios.get('http://localhost:4000/gamesArr');
 
-      const allGamesFilteredByAge = response.data.filter(item => item.age >= gameAge);
+      switch (categoryId) {
+        case "ps":
+          requiredGamesToFilter = response.data.filter(item => item.id >= 100 && item.id < 200);
+          break;
+        case "xbox":
+          requiredGamesToFilter = response.data.filter(item => item.id >= 200 && item.id < 300);
+          break;
+        case "pc":
+          requiredGamesToFilter = response.data.filter(item => item.id >= 300);
+          break;
+        default:
+          requiredGamesToFilter = response.data;
+          break;
+      }
 
-      const idsOfFilteredGames = allGamesFilteredByAge.map(game => game.id);
+      const requiredGamesFilteredByAge = requiredGamesToFilter.filter(item => item.age >= gameAge);
 
-      let matchedGamesFilteredByAge = idsOfFilteredGames.map(gameId => selectGamesArr().find(outputGame => (outputGame.id === gameId)));
+      const idsOfFilteredGames = requiredGamesFilteredByAge.map(game => game.id);
+
+      const selectedGames = selectGamesArr();
+
+      const matchedGamesFilteredByAge = idsOfFilteredGames.map(gameId => selectedGames.find(outputGame  => (outputGame.id === gameId && outputGame)));
+
+      resultArr = matchedGamesFilteredByAge;
 
       if (gameGenre) {
-        matchedGamesFilteredByAge = matchedGamesFilteredByAge.filter(item => item.genre.toLocaleLowerCase().includes(gameGenre.toLocaleLowerCase()));
+        const matchedGamesFilteredByBothReqs = matchedGamesFilteredByAge.filter(item => item.genre.toLocaleLowerCase().includes(gameGenre.toLocaleLowerCase()));
+        resultArr = matchedGamesFilteredByBothReqs;
       }
 
-      switch (categoryId) {
-        case "ps": return matchedGamesFilteredByAge.filter(item => item.id >= 100 && item.id < 200);
-        case "xbox": return matchedGamesFilteredByAge.filter(item => item.id >= 200 && item.id < 300);
-        case "pc": return matchedGamesFilteredByAge.filter(item => item.id >= 300);
-        default: return matchedGamesFilteredByAge;
-      }
+      return resultArr;
     }
     catch(err) {
       console.error(err);
@@ -204,6 +222,7 @@ const CategoryPg = () => {
 
   useEffect(() => {
     if (!isGenreRadioChecked && !isAgeRadioChecked) {
+
       const selectedGames = selectGamesArr();
 
       dispatch({
