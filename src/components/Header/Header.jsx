@@ -10,7 +10,7 @@ import "./styles.scss";
 
 const Header = ({ authenticateUser }) => {
   const history = useHistory();
-  const productsItems = ["PlayStation", "Xbox", "PC"];
+  const productsItems = ["All games", "PlayStation", "Xbox", "PC"];
   const [dropdownState, setDropdownState] = useState("Products");
 
   const [modalState, setModalState] = useState({ isOpened: false, signInClicked: false, regClicked: false });
@@ -21,6 +21,7 @@ const Header = ({ authenticateUser }) => {
   useEffect(() => {
     if (isLogged) {
       switch (dropdownState) {
+        case "All games": return history.push("/products");
         case "PlayStation": return history.push("/products/ps");
         case "Xbox": return history.push("/products/xbox");
         case "PC": return history.push("/products/pc");
@@ -34,6 +35,13 @@ const Header = ({ authenticateUser }) => {
   const onLinkClickHandler = () => {
     setDropdownState("Products");
   }
+
+  const onUserClickHandler = () => {
+    onLinkClickHandler();
+    history.push('/profile')
+  }
+
+  const changeDropdownHandler = event => setDropdownState(event.value);
 
   const onLogInClickHandler = () => {
     setModalState({ isOpened: true, signInClicked: true, regClicked: false });
@@ -72,11 +80,9 @@ const Header = ({ authenticateUser }) => {
         <nav className="header__navbar">
           <NavLink to="/" exact className="header__link" activeClassName="header__link--active" onClick={onLinkClickHandler}>Home</NavLink>
           <Dropdown className="header__link"
-                  options={productsItems}
-                  value={dropdownState}
-                  onChange={event => {
-                    setDropdownState(event.value);
-                  }} />
+                    options={productsItems}
+                    value={dropdownState}
+                    onChange={changeDropdownHandler} />
           <NavLink to="/about" className="header__link" activeClassName="header__link--active" onClick={onLinkClickHandler}>About</NavLink>
         </nav>
 
@@ -90,9 +96,9 @@ const Header = ({ authenticateUser }) => {
             </>
           ) : (
             <>
-              <div className="header__login-handler">
-              <p className="header__link" onClick={() => history.push('/profile')}>{userLogin}</p>
-                <img className="header__user-icon" src={userIcon} onClick={() => history.push('/profile')} />
+              <div className="header__login-handler" onClick={onUserClickHandler}>
+                <p className="header__link">{userLogin}</p>
+                  <img className="header__user-icon" src={userIcon}/>
               </div>
               <button className="header__link header__reg-btn" type="button" onClick={onLogOutClickHandler}>Log Out</button>
             </>

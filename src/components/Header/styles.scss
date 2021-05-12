@@ -1,7 +1,7 @@
-$smallMediaWidth: 320px;
-$correctedTabletMediaWidth: 767px;
-$tabletMediaWidth: 768px;
 $maxMediaWidth: 1024px;
+$tabletMediaWidth: 768px;
+$correctedTabletMediaWidth: 767px;
+$smallMediaWidth: 320px;
 $default-margin: 40px;
 
 @mixin link-styling {
@@ -24,11 +24,12 @@ $default-margin: 40px;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: $default-margin - 10px;
+  height: 80px;
   padding: 5px $default-margin;
   background-color: black;
 
   @media (max-width: $correctedTabletMediaWidth) {
+    height: 60px;
     margin-bottom: $default-margin/2;
     padding: 0 $default-margin/2;
   }
@@ -38,7 +39,7 @@ $default-margin: 40px;
   }
 
   &__title {
-    margin-right: 4vw;
+    margin-right: 3.75vw;
     padding: 6px 0;
     color: coral;
     font-size: calc(25px + 1vw);
@@ -211,12 +212,14 @@ $default-margin: 40px;
     flex-direction: column;
     align-items: center;
     min-width: 110px;
+    max-height: 300px;
     border: 2px solid coral;
     border-radius: 5px;
   }
 
   .Dropdown-option {
     width: 100%;
+    padding: 10px 10px 10px 0;
     padding-left: 5px;
     color: coral;
     background: none;

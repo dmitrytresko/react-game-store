@@ -16,7 +16,9 @@ const xboxGamesArr = [
     company: "Playground Games",
     path: forzaHorizon4Img,
     rating: fiveStars,
-    price: "$54.99"
+    price: 54.99,
+    genre: "Racing",
+    metaRating: 92
   },
   {
     id: 201,
@@ -24,7 +26,9 @@ const xboxGamesArr = [
     company: "CD Projekt",
     path: theWitcher3Img,
     rating: fiveStars,
-    price: "$39.99"
+    price: 39.99,
+    genre: "Action-RPG",
+    metaRating: 91
   },
   {
     id: 202,
@@ -32,7 +36,9 @@ const xboxGamesArr = [
     company: "NetherRealm Studios",
     path: mc11Img,
     rating: fiveStars,
-    price: "$44.99"
+    price: 44.99,
+    genre: "Fighting",
+    metaRating: 88
   },
   {
     id: 203,
@@ -40,7 +46,9 @@ const xboxGamesArr = [
     company: "EA Sports",
     path: fifa21Img,
     rating: fourStars,
-    price: "$99.99"
+    price: 99.99,
+    genre: "Sports",
+    metaRating: 77
   },
   {
     id: 204,
@@ -48,23 +56,29 @@ const xboxGamesArr = [
     company: "Capcom",
     path: residentEvil7Img,
     rating: fourStars,
-    price: "$19.99"
+    price: 19.99,
+    genre: "Survival horror",
+    metaRating: 86
   },
   {
     id: 205,
     name: "Assassin's Creed Odyssey: Standard Edition",
     company: "Ubisoft",
     path: assassinOdysseyImg,
-    rating: fourStars,
-    price: "$54.99"
+    rating: fiveStars,
+    price: 54.99,
+    genre: "Action-Adventure",
+    metaRating: 87
   },
   {
     id: 206,
     name: "Rise of the Tomb Raider",
     company: "Crystal Dynamics",
     path: tombRaiderImg,
-    rating: fourStars,
-    price: "$24.99"
+    rating: fiveStars,
+    price: 24.99,
+    genre: "Action-RPG",
+    metaRating: 86
   },
   {
     id: 207,
@@ -72,7 +86,9 @@ const xboxGamesArr = [
     company: "‪Psyonix LLC",
     path: rocketLeagueImg,
     rating: fiveStars,
-    price: "FREE"
+    price: 0,
+    genre: "Sports-Racing",
+    metaRating: 87
   }
 ]
 

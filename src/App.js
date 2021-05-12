@@ -1,15 +1,18 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { setUserData } from "./redux/actions";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-import HomePg from "./pages/HomePg/HomePg";
-import ProductsPg from "./pages/ProductsPg/ProductsPg";
-import AboutPg from "./pages/AboutPg/AboutPg";
-import ProfilePg from "./pages/ProfilePg/ProfilePg";
-import NotFoundPg from "./pages/NotFoundPg/NotFoundPg";
-import ProtectedRoute from "./components/ProtectedRoute";
+
+const Header = lazy(() => import("./components/Header/Header"));
+const Footer = lazy(() => import("./components/Footer/Footer"));
+const HomePg = lazy(() => import("./pages/HomePg/HomePg"));
+const ProductsPg = lazy(() => import("./pages/ProductsPg/ProductsPg"));
+const AboutPg = lazy(() => import("./pages/AboutPg/AboutPg"));
+const ProfilePg = lazy(() => import("./pages/ProfilePg/ProfilePg"));
+const NotFoundPg = lazy(() => import("./pages/NotFoundPg/NotFoundPg"));
+const ProtectedRoute = lazy(() => import("./components/ProtectedRoute"));
+
+import loader from "./assets/img/loader.gif"
 import './styles/App.scss';
 
 class App extends React.Component {
@@ -35,19 +38,21 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        {this.state.hasError && <Redirect to="/" />}
+        <Suspense fallback={<img src={loader} style={{display: 'block', margin: 'auto', width: '50px'}}/>} >
+          {this.state.hasError && <Redirect to="/" />}
 
-        <Header authenticateUser={this.authenticateUser} />
+          <Header authenticateUser={this.authenticateUser} />
 
-        <Switch>
-          <Route path="/" exact component={HomePg} />
-          <ProtectedRoute path="/products" component={ProductsPg} />
-          <ProtectedRoute path="/about" exact component={AboutPg} />
-          <ProtectedRoute path="/profile" exact component={ProfilePg} />
-          <Route component={NotFoundPg}></Route>
-        </Switch>
+          <Switch>
+            <Route path="/" exact component={HomePg} />
+            <ProtectedRoute path="/products" component={ProductsPg} />
+            <ProtectedRoute path="/about" exact component={AboutPg} />
+            <ProtectedRoute path="/profile" exact component={ProfilePg} />
+            <Route component={NotFoundPg}></Route>
+          </Switch>
 
-        <Footer />
+          <Footer />
+        </Suspense>
       </Router>
     );
   }

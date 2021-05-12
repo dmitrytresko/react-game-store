@@ -14,7 +14,7 @@ $correcteTabletMediaWidth: 767px;
     justify-content: space-between;
     width: 100%;
     margin-top: 30px;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
 
     @media (max-width: $correcteTabletMediaWidth) {
       margin-top: 20px;
@@ -24,7 +24,7 @@ $correcteTabletMediaWidth: 767px;
   &__divider {
     width: 100%;
     height: 1px;
-    margin-bottom: 27px;
+    margin-bottom: 5px;
     background: dimgray;
     border: 1px solid dimgray;
     border-radius: 5px;
@@ -33,8 +33,9 @@ $correcteTabletMediaWidth: 767px;
   &__games-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 100%;
+    margin-bottom: 20px;
 
     @media (max-width: $maxMediaWidth) {
       flex-direction: column;

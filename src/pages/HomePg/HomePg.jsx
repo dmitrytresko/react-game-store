@@ -13,6 +13,12 @@ import "./styles.scss";
 const HomePg = () => {
   const [selectedGames, setSelectedGames] = useState([]);
 
+  const allGamesArr = [
+    ...psGamesArr,
+    ...xboxGamesArr,
+    ...pcGamesArr
+  ]
+
   const getTopProductsInfo = async() => {
     try {
       const response = await axios.get('http://localhost:4000/getTopProducts');
@@ -21,7 +27,7 @@ const HomePg = () => {
 
       const gamesWithBestRatings = theBestRatings.map(number => response.data.find(item => item.metaRating === number));
 
-      const matchedBestRatedGames = gamesWithBestRatings.map(game => psGamesArr.find(psGame => psGame.name === game.name));
+      const matchedBestRatedGames = gamesWithBestRatings.map(game => allGamesArr.find(psGame => psGame.name === game.name));
 
       setSelectedGames(matchedBestRatedGames);
     }
@@ -36,9 +42,11 @@ const HomePg = () => {
     return null;
   },[])
 
-  const callSearchValue = async(value) => {
+  const callSearchValue = async(queryData) => {
     try {
       const response = await axios.get('http://localhost:4000/gamesArr');
+
+      const { value } = queryData;
 
       return response.data.filter(item => item.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()));
     }

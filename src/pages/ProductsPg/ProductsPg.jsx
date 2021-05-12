@@ -12,9 +12,7 @@ const ProductsPg = () => {
           <CategoryPg />
         </Route>
         <Route path="/">
-          <div className="products">
-            <h1 className="page-title">Products page</h1>
-          </div>
+          <CategoryPg />
         </Route>
       </Switch>
     </>

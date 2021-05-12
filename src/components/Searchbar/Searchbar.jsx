@@ -1,5 +1,6 @@
 /* eslint-disable */
 import { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
 import _ from "lodash";
 import playStationLogo from "../../assets/img/playstation.png";
 import xboxLogo from "../../assets/img/xbox.png";
@@ -12,8 +13,20 @@ const SearchBar = ({ message, callSearchValue }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
 
-  const getRequiredGames = async(query) => {
-    const receivedArr = await callSearchValue(query);
+  const [categoryPath, setCategoryPath] = useState('');
+  const { categoryId } = useParams();
+
+  useEffect(() => {
+    setCategoryPath(() => categoryId);
+  }, [categoryId])
+
+  const getRequiredGames = async({ query, categoryPath }) => {
+    const queryData = {
+      value: query,
+      category: categoryPath
+    }
+
+    const receivedArr = await callSearchValue(queryData);
 
     setResults(receivedArr);
     setIsLoading(false);
@@ -25,7 +38,7 @@ const SearchBar = ({ message, callSearchValue }) => {
     if (query) {
       setResults([]);
       setIsLoading(true);
-      debouncedQuery(query);
+      debouncedQuery({ query, categoryPath });
     }
   }, [query])
 
@@ -49,8 +62,8 @@ const SearchBar = ({ message, callSearchValue }) => {
           </div>
         </form>
 
-        <div className={`found-info ${!!results.length ? 'found-info--visible' : ''}`.trim()}>
-        {query && !!results.length && !isSelected && (
+        <div className={`found-info ${!!results?.length ? 'found-info--visible' : ''}`.trim()}>
+        {query && !!results?.length && !isSelected && (
               results.map((item, index) => {
                 return (
                   <button className="found-info__text" key={index} type="button" onClick={(event) => onButtonClickHandler(event.target.textContent)}>
