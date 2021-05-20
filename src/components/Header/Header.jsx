@@ -5,6 +5,7 @@ import Dropdown from 'react-dropdown';
 import Modal from "../../elements/Modal/Modal";
 import InputText from "../../elements/InputText/InputText";
 import userIcon from "../../assets/img/user.png";
+import cartIcon from "../../assets/img/shopping-cart.png";
 import 'react-dropdown/style.css';
 import "./styles.scss";
 
@@ -15,6 +16,7 @@ const Header = ({ authenticateUser }) => {
 
   const [modalState, setModalState] = useState({ isOpened: false, signInClicked: false, regClicked: false });
 
+  const [cartCount, setCartCount] = useState(0);
   const isLogged = useSelector(state => state.user?.isLogged);
   const userLogin = useSelector(state => state.user?.userName);
 
@@ -74,6 +76,11 @@ const Header = ({ authenticateUser }) => {
     }
   }
 
+  const onCartClickHandler = () => {
+    setCartCount(cartCount + 1);
+    history.push('/cart');
+  }
+
   return (
     <>
       <header className="header">
@@ -88,7 +95,7 @@ const Header = ({ authenticateUser }) => {
 
         <h1 className="header__title" onClick={() => history.push("/")}>Best Games Store</h1>
 
-        <div className="header__login-container">
+        <div className={`header__login-container ${!isLogged ? `narrow` : ''}`.trim()}>
           {!isLogged ? (
             <>
               <button className="header__link" type="button" onClick={onLogInClickHandler}>Sign In</button>
@@ -96,9 +103,15 @@ const Header = ({ authenticateUser }) => {
             </>
           ) : (
             <>
+              <button className="header__cart-btn" onClick={onCartClickHandler}>
+                  <div className="header__cart-btn-counter">
+                    <span className="header__cart-btn-counter--number">{cartCount}</span>
+                  </div>
+                  <img className="header__cart-img" src={cartIcon} />
+              </button>
               <div className="header__login-handler" onClick={onUserClickHandler}>
                 <p className="header__link">{userLogin}</p>
-                  <img className="header__user-icon" src={userIcon}/>
+                <img className="header__user-icon" src={userIcon}/>
               </div>
               <button className="header__link header__reg-btn" type="button" onClick={onLogOutClickHandler}>Log Out</button>
             </>
