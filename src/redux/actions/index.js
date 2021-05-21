@@ -2,6 +2,7 @@ export const SET_USER_DATA = "SET_USER_DATA";
 export const SET_NEW_PASSWORD = "SET_NEW_PASSWORD";
 export const SET_NEW_LOGIN = "SET_NEW_LOGIN";
 export const SET_ADDITIONAL_INFO = "SET_ADDITIONAL_INFO";
+export const SET_CART_COUNT = "SET_CART_COUNT";
 
 export const setUserData = payload => ({
   type: SET_USER_DATA,
@@ -20,6 +21,11 @@ export const setNewLogin = payload => ({
 
 export const setAdditionalInfo = payload => ({
   type: SET_ADDITIONAL_INFO,
+  payload
+});
+
+export const setCartCount = payload => ({
+  type: SET_CART_COUNT,
   payload
 });
 

@@ -16,9 +16,9 @@ const Header = ({ authenticateUser }) => {
 
   const [modalState, setModalState] = useState({ isOpened: false, signInClicked: false, regClicked: false });
 
-  const [cartCount, setCartCount] = useState(0);
   const isLogged = useSelector(state => state.user?.isLogged);
   const userLogin = useSelector(state => state.user?.userName);
+  const userCartCount = useSelector(state => state.user?.cartCount);
 
   useEffect(() => {
     if (isLogged) {
@@ -77,7 +77,6 @@ const Header = ({ authenticateUser }) => {
   }
 
   const onCartClickHandler = () => {
-    setCartCount(cartCount + 1);
     history.push('/cart');
   }
 
@@ -105,7 +104,7 @@ const Header = ({ authenticateUser }) => {
             <>
               <button className="header__cart-btn" onClick={onCartClickHandler}>
                   <div className="header__cart-btn-counter">
-                    <span className="header__cart-btn-counter--number">{cartCount}</span>
+                    <span className="header__cart-btn-counter--number">{userCartCount}</span>
                   </div>
                   <img className="header__cart-img" src={cartIcon} />
               </button>

@@ -149,11 +149,12 @@ $default-margin: 40px;
 
     &:hover &-counter {
       background: coral;
+      box-shadow: 0 0 3px 4px #f8f8f8;
     }
 
     &-counter {
       position: absolute;
-      top: -17%;
+      top: -12%;
       right: 4%;
       display: flex;
       align-items: center;
@@ -167,7 +168,7 @@ $default-margin: 40px;
       &--number {
         color: #000;
         font-weight: bold;
-        font-size: 15px;
+        font-size: 16px;
         font-family: "Teko", sans-serif;
         text-align: center;
       }
