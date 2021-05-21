@@ -25,24 +25,28 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         password: payload.newPassword
-      }
+      };
     case "SET_NEW_LOGIN":
       return {
         ...state,
         userName: payload.newLogin
-      }
+      };
     case "SET_ADDITIONAL_INFO":
       return {
         ...state,
         address: payload.address,
         phone: payload.phone
-      }
-    case "SET_CART_COUNT": {
+      };
+    case "SET_CART_COUNT":
       return {
         ...state,
         cartCount: payload.newCartCount
+      };
+    case "SET_SELECTED_ITEMS":
+      return {
+        ...state,
+        selectedItems: payload.selectedItems
       }
-    }
     default:
       return state;
   }
