@@ -55,6 +55,11 @@ $tabletMediaWidth: 768px;
       border-color: coral;
     }
 
+    &:active {
+      color: #ffffff;
+      border-color: coral;
+    }
+
     @media (max-width: $maxMediaWidth) {
       font-size: 20px;
     }
