@@ -69,7 +69,9 @@ const Header = ({ authenticateUser }) => {
         login: null,
         password: null,
         address: null,
-        phone: null
+        phone: null,
+        cartCount: 0,
+        selectedItems: []
       });
 
       history.push('/');

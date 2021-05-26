@@ -19,7 +19,7 @@ const authReducer = (state = initialState, action) => {
         userName: payload.login,
         password: payload.password,
         address: payload.address,
-        phone: payload.phone
+        phone: payload.phone,
       };
     case "SET_NEW_PASSWORD":
       return {
