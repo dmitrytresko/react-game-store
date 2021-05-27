@@ -96,8 +96,6 @@ const CartPg = () => {
     getListOfUniqueItems(userSelectedItems, 'gameId').forEach(({ gameId, gamePrice }) => {
       const gameSubtotal = calculateSubtotal(gameId, gamePrice);
 
-      console.log(`${gameId}: ${gameSubtotal}`);
-
       result += +gameSubtotal;
     })
 
@@ -127,6 +125,11 @@ const CartPg = () => {
   }
 
   const clearCartHandler = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+
     dispatch({
       type: SET_SELECTED_ITEMS,
       payload: {
@@ -145,6 +148,12 @@ const CartPg = () => {
   useEffect(() => {
     calculateCartTotal();
   })
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0
+    });
+  }, [])
 
   return (
       <div className="cart">
