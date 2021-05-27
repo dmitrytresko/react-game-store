@@ -145,6 +145,10 @@ const CartPg = () => {
     });
   }
 
+  const checkoutHandler = () => {
+    alert(`You're going to buy ${userCartCount} item(-s) for $${cartTotal}`);
+  }
+
   useEffect(() => {
     calculateCartTotal();
   })
@@ -157,7 +161,7 @@ const CartPg = () => {
 
   return (
       <div className="cart">
-        <h2 className="page-title">Shopping cart</h2>
+        <h2 className="page-title">Shopping cart <br></br>{userCartCount && `(${userCartCount} ${userCartCount > 1 ? 'items' : 'item'})`}</h2>
 
         {userCartCount ?
         <>
@@ -203,9 +207,10 @@ const CartPg = () => {
           <hr className="cart__divider"/>
 
           <div className="cart__actions-handler">
+            <button className="cart__action-btn clear-btn" onClick={clearCartHandler}>Clear Cart</button>
             <button button className="cart__action-btn" onClick={continueShoppingHandler}>Continue Shopping</button>
-            <button className="cart__action-btn" onClick={clearCartHandler}>Clear Cart</button>
             <div className="cart__total-text">Cart Total: ${cartTotal}</div>
+            <button className="cart__action-btn checkout-btn" onClick={checkoutHandler}>Proceed To Checkout</button>
           </div>
         </>
           :
