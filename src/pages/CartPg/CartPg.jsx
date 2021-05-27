@@ -161,11 +161,11 @@ const CartPg = () => {
 
   return (
       <div className="cart">
-        <h2 className="page-title">Shopping cart <br></br>{userCartCount ? ( `${userCartCount} item(-s)` ) : "".trim()}</h2>
+        {!userCartCount && <h2 className="page-title">Shopping cart</h2>}
 
         {userCartCount ?
         <>
-          <table>
+          <table style={userCartCount && { marginTop: '70px' }}>
             <thead>
               <tr>
                 <th>Product</th>
@@ -184,7 +184,7 @@ const CartPg = () => {
                   <td>${item.gamePrice}</td>
                   <td>
                     <div className="cart__quantity-changer">
-                      <button onClick={() => decreaseItemQuantity(item.gameId)} className={getRelevantItemQuantity(item.gameId) === 1 ? "disabled-btn" : "".trim()}>
+                      <button onClick={() => decreaseItemQuantity(item.gameId)} className={getRelevantItemQuantity(item.gameId) === 1 ? "disabled-btn" : ""}>
                         <img src={leftArrowImg} />
                       </button>
                         <span>{getRelevantItemQuantity(item.gameId)}</span>
