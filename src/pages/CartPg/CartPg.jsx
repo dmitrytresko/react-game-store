@@ -161,7 +161,7 @@ const CartPg = () => {
 
   return (
       <div className="cart">
-        <h2 className="page-title">Shopping cart <br></br>{userCartCount && `(${userCartCount} ${userCartCount > 1 ? 'items' : 'item'})`}</h2>
+        <h2 className="page-title">Shopping cart <br></br>{userCartCount ? ( `${userCartCount} item(-s)` ) : "".trim()}</h2>
 
         {userCartCount ?
         <>

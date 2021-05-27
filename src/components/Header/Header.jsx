@@ -79,6 +79,7 @@ const Header = ({ authenticateUser }) => {
   }
 
   const onCartClickHandler = () => {
+    setDropdownState("Products");
     history.push('/cart');
   }
 
@@ -104,7 +105,7 @@ const Header = ({ authenticateUser }) => {
             </>
           ) : (
             <>
-              <button className="header__cart-btn" onClick={onCartClickHandler}>
+              <button className="header__cart-btn" type="button" onClick={onCartClickHandler}>
                   <div className="header__cart-btn-counter">
                     <span className="header__cart-btn-counter--number">{userCartCount}</span>
                   </div>

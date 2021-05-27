@@ -2,7 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 300px;
   min-height: 100vh;
+  padding: 0 30px;
 
   &__text {
     color: dimgray;
@@ -178,7 +180,7 @@
   &__divider {
     width: 100%;
     height: 1px;
-    margin: 40px 0 40px;
+    margin: 45px 0 45px;
     background: dimgray;
     border: 1px solid dimgray;
     border-radius: 5px;
@@ -195,7 +197,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      min-width: 255px;
+      width: 250px;
+      min-width: 75px;
       min-height: 55px;
       padding: 0 25px;
       color: #f8f8f8;
@@ -233,7 +236,8 @@
     }
 
     .cart__total-text {
-      min-width: 310px;
+      width: 325px;
+      min-width: 75px;
       font-size: 36px;
       font-family: "Teko", sans-serif;
       text-align: right;
