@@ -182,8 +182,8 @@
     width: 100%;
     height: 1px;
     margin: 40px 0 40px;
-    background: dimgray;
-    border: 1px solid dimgray;
+    background: #ffffff;
+    border: 1px solid #ffffff;
     border-radius: 5px;
   }
 
@@ -202,12 +202,12 @@
       min-width: 75px;
       min-height: 55px;
       padding: 0 10px;
-      color: #f8f8f8;
+      color: #ffffff;
       font-size: 28px;
       font-family: "Teko", sans-serif;
       text-decoration: none;
       background: coral;
-      border: 2px solid transparent;
+      border: 2px solid #ffffff;
       border-radius: 5px;
       outline: none;
       cursor: pointer;
@@ -239,6 +239,7 @@
     .cart__total-text {
       width: 325px;
       min-width: 75px;
+      color: #ffffff;
       font-size: 36px;
       font-family: "Teko", sans-serif;
       text-align: right;
