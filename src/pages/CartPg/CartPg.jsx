@@ -207,10 +207,12 @@ const CartPg = () => {
           <hr className="cart__divider"/>
 
           <div className="cart__actions-handler">
-            <button className="cart__action-btn clear-btn" onClick={clearCartHandler}>Clear Cart</button>
-            <button button className="cart__action-btn" onClick={continueShoppingHandler}>Continue Shopping</button>
             <div className="cart__total-text">Cart Total: ${cartTotal}</div>
-            <button className="cart__action-btn checkout-btn" onClick={checkoutHandler}>Proceed To Checkout</button>
+            <div className="cart__actions-handler--inner">
+              <button className="cart__action-btn clear-btn" onClick={clearCartHandler}>Clear Cart</button>
+              <button button className="cart__action-btn" onClick={continueShoppingHandler}>Continue Shopping</button>
+              <button className="cart__action-btn checkout-btn" onClick={checkoutHandler}>Proceed To Checkout</button>
+            </div>
           </div>
         </>
           :

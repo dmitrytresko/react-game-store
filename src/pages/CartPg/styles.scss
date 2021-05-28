@@ -181,7 +181,7 @@
   &__divider {
     width: 100%;
     height: 1px;
-    margin: 40px 0 40px;
+    margin: 40px 0 20px;
     background: #ffffff;
     border: 1px solid #ffffff;
     border-radius: 5px;
@@ -189,16 +189,24 @@
 
   &__actions-handler {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-end;
     width: 100%;
-    margin-bottom: 80px;
+    margin-bottom: 70px;
+
+    &--inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 10px;
+    }
 
     .cart__action-btn {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 250px;
+      width: 260px;
       min-width: 75px;
       min-height: 55px;
       padding: 0 10px;
@@ -216,6 +224,7 @@
       &:hover {
         color: coral;
         background: black;
+        border: 2px solid coral;
         box-shadow: 0 0 10px 5px coral;
       }
     }
@@ -224,6 +233,7 @@
       &:hover {
         color: #e96479;
         background: black;
+        border: 2px solid #e96479;
         box-shadow: 0 0 10px 5px #e96479;
       }
     }
@@ -232,15 +242,16 @@
       &:hover {
         color: #55b84b;
         background: black;
+        border: 2px solid #55b84b;
         box-shadow: 0 0 10px 5px #55b84b;
       }
     }
 
     .cart__total-text {
-      width: 325px;
+      width: 260px;
       min-width: 75px;
       color: #ffffff;
-      font-size: 36px;
+      font-size: 38px;
       font-family: "Teko", sans-serif;
       text-align: right;
       text-transform: uppercase;
