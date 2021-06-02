@@ -36,8 +36,10 @@ const GameCard = ({ gameDetails }) => {
 
   return (
     <div className="game-card">
-      <img className="game-card__cover" src={gameDetails.path} alt={gameDetails.name} />
-      <button className="game-card__order-btn" onClick={() => addItemToCartHandler(gameDetails)}>Add To Cart</button>
+      <div className="game-card__cover-wrapper">
+        <img className="game-card__cover" src={gameDetails.path} alt={gameDetails.name} />
+        {isUserLoggedIn && <button className="game-card__order-btn" onClick={() => addItemToCartHandler(gameDetails)}>Add To Cart</button>}
+      </div>
       <div className="game-card__details-container">
         <div className="game-card__info">
           <h3 className="game-card__title">{gameDetails.name}</h3>
