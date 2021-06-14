@@ -4,7 +4,7 @@
   align-items: center;
   width: 30%;
   min-width: 90px;
-  padding: 17.5px 0;
+  padding: 17px 0;
   background: #f8f8f8;
   border: 2px solid coral;
   border-radius: 5px;
@@ -16,7 +16,7 @@
     min-width: 32px;
     height: 5vw;
     min-height: 32px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
 
   &__name {
@@ -29,7 +29,7 @@
 
   &:first-child:hover {
     border-color: #003791;
-    box-shadow: 2px 2px 10px 3px #003791;
+    box-shadow: 0 0 10px 4px #003791;
 
     .category-card__name {
       color: #003791;
@@ -38,7 +38,7 @@
 
   &:nth-child(2):hover {
     border-color: #107c10;
-    box-shadow: 2px 2px 10px 3px #107c10;
+    box-shadow: 0 0 10px 4px #107c10;
 
     .category-card__name {
       color: #107c10;
@@ -47,7 +47,7 @@
 
   &:last-child:hover {
     border-color: #00adef;
-    box-shadow: 2px 2px 10px 3px #00adef;
+    box-shadow: 0 0 10px 4px #00adef;
 
     .category-card__name {
       color: #00adef;

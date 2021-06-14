@@ -2,6 +2,7 @@ const initialState = {
   isLogged: false,
   userName: '',
   password: '',
+  isAdmin: false,
   address: null,
   phone: null,
   cartCount: 0,
@@ -18,6 +19,7 @@ const authReducer = (state = initialState, action) => {
         isLogged: payload.login !== null && payload.login ? true : false,
         userName: payload.login,
         password: payload.password,
+        isAdmin: payload.login !== null && payload.login.includes('admin') ? true : false,
         address: payload.address,
         phone: payload.phone,
       };

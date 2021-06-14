@@ -6,6 +6,7 @@ const GameCard = ({ gameDetails }) => {
   const dispatch = useDispatch();
 
   const isUserLoggedIn = useSelector(state => state.user?.isLogged);
+  const isUserAdmin = useSelector(state => state.user?.isAdmin);
   const userCartCount = useSelector(state => state.user?.cartCount);
   const userSelectedItems = useSelector(state => state.user?.selectedItems);
 
@@ -34,11 +35,20 @@ const GameCard = ({ gameDetails }) => {
     }
   }
 
+  const editItemHandler = () => {
+    alert('Edit clicked!');
+  }
+
   return (
     <div className="game-card">
       <div className="game-card__cover-wrapper">
         <img className="game-card__cover" src={gameDetails.path} alt={gameDetails.name} />
-        {isUserLoggedIn && <button className="game-card__order-btn" onClick={() => addItemToCartHandler(gameDetails)}>Add To Cart</button>}
+        {isUserLoggedIn &&
+          <>
+            <button className="game-card__add-btn" onClick={() => addItemToCartHandler(gameDetails)}>Add To Cart</button>
+            {isUserAdmin && <button className="game-card__edit-btn" onClick={() => editItemHandler}>Edit Game</button>}
+          </>
+        }
       </div>
       <div className="game-card__details-container">
         <div className="game-card__info">

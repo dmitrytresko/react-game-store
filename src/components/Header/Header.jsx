@@ -53,7 +53,7 @@ const Header = ({ authenticateUser }) => {
     setModalState({ isOpened: true, signInClicked: false, regClicked: true });
   }
 
-  const confirmUserAuthentication = (userData) => {
+  const confirmUserAuthentication = userData => {
     authenticateUser(userData);
     setModalState({ isOpened: false, signInClicked: false, regClicked: false });
 
@@ -68,6 +68,7 @@ const Header = ({ authenticateUser }) => {
         isLogged: false,
         login: null,
         password: null,
+        isAdmin: false,
         address: null,
         phone: null,
         cartCount: 0,

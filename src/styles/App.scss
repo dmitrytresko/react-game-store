@@ -28,7 +28,7 @@ $correctedTabletMediaWidth: 767px;
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
@@ -38,6 +38,8 @@ $correctedTabletMediaWidth: 767px;
 
 ::-webkit-scrollbar-thumb {
   background-color: coral;
+  background-clip: padding-box;
+  border: 2px white solid;
   border-radius: 5px;
 
   &:hover {
