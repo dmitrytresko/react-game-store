@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_CART_COUNT, SET_SELECTED_ITEMS } from "../../redux/actions";
+import { /* SET_CART_COUNT, SET_SELECTED_ITEMS */ SET_CART_DATA} from "../../redux/actions";
 import trashImg from "../../assets/img/trash.png"
 import leftArrowImg from "../../assets/img/left-arrow.png";
 import rightArrowImg from "../../assets/img/right-arrow.png";
@@ -32,7 +32,9 @@ const CartPg = () => {
   }
 
   const getListOfUniqueItems = (arr, key) => {
-    const resultArr = [...new Map(arr.map(item => [item[key], item])).values()].sort((a, b) => a.gameId > b.gameId ? 1 : -1);
+    const resultArr = arr.filter((item, idx, array) => {
+      return array.map(mapItem => mapItem[key]).indexOf(item[key]) === idx;
+    })
 
     return resultArr;
   }
@@ -50,16 +52,10 @@ const CartPg = () => {
       userSelectedItems.splice(idxOfItemToDecrease, 1);
 
       dispatch({
-        type: SET_SELECTED_ITEMS,
+        type: SET_CART_DATA,
         payload: {
+          newCartCount: userCartCount - 1,
           selectedItems: userSelectedItems
-        }
-      });
-
-      dispatch({
-        type: SET_CART_COUNT,
-        payload: {
-          newCartCount: userCartCount - 1
         }
       });
     }
@@ -72,16 +68,10 @@ const CartPg = () => {
     ];
 
     dispatch({
-      type: SET_SELECTED_ITEMS,
+      type: SET_CART_DATA,
       payload: {
+        newCartCount: userCartCount + 1,
         selectedItems: selectedItemsIncreased
-      }
-    });
-
-    dispatch({
-      type: SET_CART_COUNT,
-      payload: {
-        newCartCount: userCartCount + 1
       }
     });
   }
@@ -106,16 +96,10 @@ const CartPg = () => {
     const newSelectedItemsArr = userSelectedItems.filter(item => item.gameId !== gameToDeleteId);
 
     dispatch({
-      type: SET_SELECTED_ITEMS,
+      type: SET_CART_DATA,
       payload: {
+        newCartCount: newSelectedItemsArr.length,
         selectedItems: newSelectedItemsArr
-      }
-    });
-
-    dispatch({
-      type: SET_CART_COUNT,
-      payload: {
-        newCartCount: newSelectedItemsArr.length
       }
     });
   }
@@ -131,16 +115,10 @@ const CartPg = () => {
     });
 
     dispatch({
-      type: SET_SELECTED_ITEMS,
+      type: SET_CART_DATA,
       payload: {
+        newCartCount: 0,
         selectedItems: []
-      }
-    });
-
-    dispatch({
-      type: SET_CART_COUNT,
-      payload: {
-        newCartCount: 0
       }
     });
   }
