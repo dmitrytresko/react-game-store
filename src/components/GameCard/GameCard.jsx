@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { /* SET_CART_COUNT, SET_SELECTED_ITEMS, */ SET_CART_DATA} from "../../redux/actions";
+import { SET_CART_DATA } from "../../redux/actions";
 import "./styles.scss";
 
 const GameCard = ({ gameDetails }) => {
@@ -26,27 +26,6 @@ const GameCard = ({ gameDetails }) => {
           ]
         }
       });
-
-      // dispatch({
-      //   type: SET_CART_COUNT,
-      //   payload: {
-      //     newCartCount: userCartCount + 1
-      //   }
-      // });
-      // dispatch({
-      //   type: SET_SELECTED_ITEMS,
-      //   payload: {
-      //     selectedItems: [
-      //       ...userSelectedItems,
-      //       {
-      //         gameId: gameDetails.id,
-      //         gameName: gameDetails.name,
-      //         gamePrice: gameDetails.price,
-      //         gameCompany: gameDetails.company,
-      //       }
-      //     ]
-      //   }
-      // });
     }
   }
 

@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { /* SET_CART_COUNT, SET_SELECTED_ITEMS */ SET_CART_DATA} from "../../redux/actions";
+import { SET_CART_DATA} from "../../redux/actions";
 import trashImg from "../../assets/img/trash.png"
 import leftArrowImg from "../../assets/img/left-arrow.png";
 import rightArrowImg from "../../assets/img/right-arrow.png";

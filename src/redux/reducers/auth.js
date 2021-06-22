@@ -43,16 +43,6 @@ const authReducer = (state = initialState, action) => {
         cartCount: payload.newCartCount,
         selectedItems: payload.selectedItems
       };
-    // case "SET_CART_COUNT":
-    //   return {
-    //     ...state,
-    //     cartCount: payload.newCartCount
-    //   };
-    // case "SET_SELECTED_ITEMS":
-    //   return {
-    //     ...state,
-    //     selectedItems: payload.selectedItems
-    //   }
     default:
       return state;
   }
