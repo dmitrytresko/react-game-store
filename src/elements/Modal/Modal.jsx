@@ -24,6 +24,10 @@ const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication
     }
   }, [type])
 
+  useEffect(() => {
+    opened ? document.body.style.overflow = "hidden" : document.body.style.overflow = "visible";
+  }, [opened])
+
   const onSubmitHandler = async (values) => {
     let formData;
     let requiredSchema;
@@ -60,7 +64,7 @@ const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication
 
     const isDataValid = await requiredSchema.isValid(formData);
 
-    if(isDataValid) {
+    if (isDataValid) {
       if (isLogged) {
         confirmPasswordChange(formData.newPassword);
         return;

@@ -39,7 +39,6 @@ $default-margin: 40px;
   }
 
   &__title {
-    margin-right: 3.75vw;
     padding: 6px 0;
     color: coral;
     font-size: calc(25px + 1vw);
@@ -118,12 +117,8 @@ $default-margin: 40px;
     min-width: 195px;
     height: 100%;
 
-    @media (max-width: $correctedTabletMediaWidth) {
-      display: none;
-    }
-
     @media (max-width: $maxMediaWidth) {
-      order: -1;
+      display: none;
     }
 
     .header__login-handler {
@@ -137,6 +132,66 @@ $default-margin: 40px;
         margin-left: 8px;
         cursor: pointer;
       }
+    }
+  }
+
+  &__cart-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 23px;
+    padding: 0 10px;
+    background: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover &-counter {
+      background: coral;
+      // box-shadow: 0 0 2px 2px #f8f8f8;
+
+      &--number {
+        color: #ffffff;
+      }
+    }
+
+    &-counter {
+      position: absolute;
+      top: -12%;
+      right: 4%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      background: #f8f8f8;
+      border-radius: 50%;
+      transition: all 0.4s;
+
+      &--number {
+        margin-top: 2px;
+        color: #000;
+        font-weight: bold;
+        font-size: 18px;
+        font-family: "Teko", sans-serif;
+        text-align: center;
+      }
+    }
+
+    .header__cart-img {
+      width: 40px;
+      height: 40px;
+    }
+
+    &::after {
+      position: absolute;
+      right: -11px;
+      width: 2px;
+      height: 90%;
+      background: #f8f8f8;
+      content: "";
+      pointer-events: none;
     }
   }
 
@@ -168,6 +223,10 @@ $default-margin: 40px;
       background: coral;
       content: "";
     }
+  }
+
+  .narrow {
+    margin-left: 4.25vw;
   }
 
   .Dropdown-control {

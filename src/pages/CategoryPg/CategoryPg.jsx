@@ -239,6 +239,12 @@ const CategoryPg = () => {
     }
   }, [isGenreRadioChecked, isAgeRadioChecked])
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0
+    });
+  }, [])
+
   return (
     <div className="categories">
       <aside className="sidebar">

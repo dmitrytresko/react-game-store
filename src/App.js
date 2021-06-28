@@ -9,6 +9,7 @@ const HomePg = lazy(() => import("./pages/HomePg/HomePg"));
 const ProductsPg = lazy(() => import("./pages/ProductsPg/ProductsPg"));
 const AboutPg = lazy(() => import("./pages/AboutPg/AboutPg"));
 const ProfilePg = lazy(() => import("./pages/ProfilePg/ProfilePg"));
+const CartPg = lazy(() => import("./pages/CartPg/CartPg"));
 const NotFoundPg = lazy(() => import("./pages/NotFoundPg/NotFoundPg"));
 const ProtectedRoute = lazy(() => import("./components/ProtectedRoute"));
 
@@ -46,8 +47,9 @@ class App extends React.Component {
           <Switch>
             <Route path="/" exact component={HomePg} />
             <ProtectedRoute path="/products" component={ProductsPg} />
-            <ProtectedRoute path="/about" exact component={AboutPg} />
+            <ProtectedRoute path="/about" component={AboutPg} />
             <ProtectedRoute path="/profile" exact component={ProfilePg} />
+            <ProtectedRoute path="/cart" component={CartPg} />
             <Route component={NotFoundPg}></Route>
           </Switch>
 

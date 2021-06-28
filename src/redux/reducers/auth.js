@@ -3,7 +3,9 @@ const initialState = {
   userName: '',
   password: '',
   address: null,
-  phone: null
+  phone: null,
+  cartCount: 0,
+  selectedItems: []
 };
 
 const authReducer = (state = initialState, action) => {
@@ -17,24 +19,30 @@ const authReducer = (state = initialState, action) => {
         userName: payload.login,
         password: payload.password,
         address: payload.address,
-        phone: payload.phone
+        phone: payload.phone,
       };
     case "SET_NEW_PASSWORD":
       return {
         ...state,
         password: payload.newPassword
-      }
+      };
     case "SET_NEW_LOGIN":
       return {
         ...state,
         userName: payload.newLogin
-      }
+      };
     case "SET_ADDITIONAL_INFO":
       return {
         ...state,
         address: payload.address,
         phone: payload.phone
-      }
+      };
+    case "SET_CART_DATA":
+      return {
+        ...state,
+        cartCount: payload.newCartCount,
+        selectedItems: payload.selectedItems
+      };
     default:
       return state;
   }

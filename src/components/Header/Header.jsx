@@ -5,6 +5,7 @@ import Dropdown from 'react-dropdown';
 import Modal from "../../elements/Modal/Modal";
 import InputText from "../../elements/InputText/InputText";
 import userIcon from "../../assets/img/user.png";
+import cartIcon from "../../assets/img/shopping-cart.png";
 import 'react-dropdown/style.css';
 import "./styles.scss";
 
@@ -17,6 +18,7 @@ const Header = ({ authenticateUser }) => {
 
   const isLogged = useSelector(state => state.user?.isLogged);
   const userLogin = useSelector(state => state.user?.userName);
+  const userCartCount = useSelector(state => state.user?.cartCount);
 
   useEffect(() => {
     if (isLogged) {
@@ -67,11 +69,18 @@ const Header = ({ authenticateUser }) => {
         login: null,
         password: null,
         address: null,
-        phone: null
+        phone: null,
+        cartCount: 0,
+        selectedItems: []
       });
 
       history.push('/');
     }
+  }
+
+  const onCartClickHandler = () => {
+    setDropdownState("Products");
+    history.push('/cart');
   }
 
   return (
@@ -88,7 +97,7 @@ const Header = ({ authenticateUser }) => {
 
         <h1 className="header__title" onClick={() => history.push("/")}>Best Games Store</h1>
 
-        <div className="header__login-container">
+        <div className={`header__login-container ${!isLogged ? `narrow` : ''}`.trim()}>
           {!isLogged ? (
             <>
               <button className="header__link" type="button" onClick={onLogInClickHandler}>Sign In</button>
@@ -96,9 +105,15 @@ const Header = ({ authenticateUser }) => {
             </>
           ) : (
             <>
+              <button className="header__cart-btn" type="button" onClick={onCartClickHandler}>
+                  <div className="header__cart-btn-counter">
+                    <span className="header__cart-btn-counter--number">{userCartCount}</span>
+                  </div>
+                  <img className="header__cart-img" src={cartIcon} />
+              </button>
               <div className="header__login-handler" onClick={onUserClickHandler}>
                 <p className="header__link">{userLogin}</p>
-                  <img className="header__user-icon" src={userIcon}/>
+                <img className="header__user-icon" src={userIcon}/>
               </div>
               <button className="header__link header__reg-btn" type="button" onClick={onLogOutClickHandler}>Log Out</button>
             </>

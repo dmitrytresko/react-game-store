@@ -48,7 +48,7 @@ const ProfilePg = () => {
     const isComfirmed = confirm('Are you sure that you want to change your login?');
 
     if (isComfirmed) {
-      dispatch({type: SET_NEW_LOGIN, payload: {newLogin: loginInputState}});
+      dispatch({ type: SET_NEW_LOGIN, payload: {newLogin: loginInputState} });
       setLoginChangeClicked(false);
     }
   }
@@ -63,7 +63,7 @@ const ProfilePg = () => {
   }
 
   const confirmPasswordChange = (password) => {
-    dispatch({type: SET_NEW_PASSWORD, payload: {newPassword: password}});
+    dispatch({ type: SET_NEW_PASSWORD, payload: { newPassword: password } });
     setModalState({ isOpened: false, passwordChangeClicked: false });
   }
 
@@ -71,7 +71,7 @@ const ProfilePg = () => {
     const isComfirmed = confirm('Are you sure that you want to save this info about you?');
 
     if (isComfirmed) {
-      dispatch({type: SET_ADDITIONAL_INFO, payload: {address: values.address, phone: values.phone}});
+      dispatch({ type: SET_ADDITIONAL_INFO, payload: {address: values.address, phone: values.phone} });
       history.push('/');
     }
   }
