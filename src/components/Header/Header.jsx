@@ -66,8 +66,8 @@ const Header = ({ authenticateUser }) => {
     if (isConfirmed) {
       authenticateUser({
         isLogged: false,
-        login: null,
-        password: null,
+        login: '',
+        password: '',
         isAdmin: false,
         address: null,
         phone: null,

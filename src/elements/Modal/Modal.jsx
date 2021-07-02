@@ -7,19 +7,31 @@ import axios from "axios";
 import registrationSchema from "../../validations/registrationValidation";
 import signInSchema from "../../validations/signInValidation";
 import passwordChangeSchema from "../../validations/passwordChangeValidation";
+import editGameSchema from "../../validations/editGameValidation";
 import "./styles.scss";
 
 const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication, confirmPasswordChange }) => {
   const userState = useSelector(state => state.user);
-  const {isLogged, password} = userState;
+  const { isLogged, password } = userState;
 
   const [title, setTitle] = useState('');
 
+  const defineValidationShema = () => {
+    switch (type) {
+      case "registration": return registrationSchema;
+      case "signIn": return signInSchema;
+      case "passwordChange": return passwordChangeSchema;
+      case "editGame": return editGameSchema;
+      default: return;
+    }
+  }
+
   useEffect(() => {
-    switch(type) {
+    switch (type) {
       case "registration": return setTitle("Registration");
       case "signIn": return setTitle("Sign In");
       case "passwordChange": return setTitle("Password change");
+      case "editGame": return setTitle("Edit game");
       default: return;
     }
   }, [type])
@@ -70,7 +82,11 @@ const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication
         return;
       }
 
-      confirmUserAuthentication(formData);
+      confirmUserAuthentication({
+        ...formData,
+        cartCount: 0,
+        selectedItems: []
+      });
       performRegistrationRequest(formData);
     }
   }
@@ -108,7 +124,7 @@ const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication
             confirmPassword: ''
           }
         }
-        validationSchema={type === "registration" ? registrationSchema : type === "signIn" ? signInSchema : passwordChangeSchema}
+        validationSchema={defineValidationShema}
         onSubmit={values => onSubmitHandler(values)}
         enableInitialize={true}
       >

@@ -22,6 +22,8 @@ const authReducer = (state = initialState, action) => {
         isAdmin: payload.login !== null && payload.login.includes('admin') ? true : false,
         address: payload.address,
         phone: payload.phone,
+        cartCount: payload.cartCount,
+        selectedItems: payload.selectedItems
       };
     case "SET_NEW_PASSWORD":
       return {

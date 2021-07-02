@@ -9,7 +9,7 @@ $correctedTabletMediaWidth: 767px;
   bottom: 0;
   left: 0;
   z-index: 1000;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.95);
 }
 
 .modal {
@@ -24,7 +24,6 @@ $correctedTabletMediaWidth: 767px;
   width: 40vw;
   min-width: 295px;
   overflow: hidden;
-  font-size: 1.5rem;
   font-family: "Teko", sans-serif;
   background: #f8f8f8;
   border-radius: 5px;

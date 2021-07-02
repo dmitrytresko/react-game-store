@@ -163,58 +163,58 @@ const CartPg = () => {
       <div className="cart">
         {!userCartCount && <h2 className="page-title">Shopping cart</h2>}
 
-        {userCartCount ?
-        <>
-          <table style={userCartCount && { marginTop: '70px' }}>
-            <thead>
-              <tr>
-                <th>Product</th>
-                <th>Platform</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Subtotal</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {getListOfUniqueItems(userSelectedItems, 'gameId')?.map(item => (
-                <tr key={item.gameId}>
-                  <td>{item.gameName}<br></br><p className="cart__company-name">by {item.gameCompany}</p></td>
-                  <td>{showRelevantCategoryName(item.gameId)}</td>
-                  <td>${item.gamePrice}</td>
-                  <td>
-                    <div className="cart__quantity-changer">
-                      <button onClick={() => decreaseItemQuantity(item.gameId)} className={getRelevantItemQuantity(item.gameId) === 1 ? "disabled-btn" : ""}>
-                        <img src={leftArrowImg} />
-                      </button>
-                        <span>{getRelevantItemQuantity(item.gameId)}</span>
-                      <button onClick={() => increaseItemQuantity(item)}>
-                        <img src={rightArrowImg} />
-                      </button>
-                    </div>
-                  </td>
-                  <td>${calculateSubtotal(item.gameId, item.gamePrice)}</td>
-                  <td>
-                    <button className="cart__delete-btn" onClick={() => deleteGameFromCart(item.gameId)}>
-                      <img className="cart__delete-btn--image" src={trashImg} />
-                    </button>
-                  </td>
+        {userCartCount > 0 ?
+          <>
+            <table style={userCartCount && { marginTop: '70px' }}>
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Platform</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Subtotal</th>
+                  <th></th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {getListOfUniqueItems(userSelectedItems, 'gameId')?.map(item => (
+                  <tr key={item.gameId}>
+                    <td>{item.gameName}<br></br><p className="cart__company-name">by {item.gameCompany}</p></td>
+                    <td>{showRelevantCategoryName(item.gameId)}</td>
+                    <td>${item.gamePrice}</td>
+                    <td>
+                      <div className="cart__quantity-changer">
+                        <button onClick={() => decreaseItemQuantity(item.gameId)} className={getRelevantItemQuantity(item.gameId) === 1 ? "disabled-btn" : ""}>
+                          <img src={leftArrowImg} />
+                        </button>
+                          <span>{getRelevantItemQuantity(item.gameId)}</span>
+                        <button onClick={() => increaseItemQuantity(item)}>
+                          <img src={rightArrowImg} />
+                        </button>
+                      </div>
+                    </td>
+                    <td>${calculateSubtotal(item.gameId, item.gamePrice)}</td>
+                    <td>
+                      <button className="cart__delete-btn" onClick={() => deleteGameFromCart(item.gameId)}>
+                        <img className="cart__delete-btn--image" src={trashImg} />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
 
-          <hr className="cart__divider"/>
+            <hr className="cart__divider"/>
 
-          <div className="cart__actions-handler">
-            <div className="cart__total-text">Cart Total: ${cartTotal}</div>
-            <div className="cart__actions-handler--inner">
-              <button className="cart__action-btn clear-btn" onClick={clearCartHandler}>Clear Cart</button>
-              <button button className="cart__action-btn" onClick={continueShoppingHandler}>Continue Shopping</button>
-              <button className="cart__action-btn checkout-btn" onClick={checkoutHandler}>Proceed To Checkout</button>
+            <div className="cart__actions-handler">
+              <div className="cart__total-text">Cart Total: ${cartTotal}</div>
+              <div className="cart__actions-handler--inner">
+                <button className="cart__action-btn clear-btn" onClick={clearCartHandler}>Clear Cart</button>
+                <button button className="cart__action-btn" onClick={continueShoppingHandler}>Continue Shopping</button>
+                <button className="cart__action-btn checkout-btn" onClick={checkoutHandler}>Proceed To Checkout</button>
+              </div>
             </div>
-          </div>
-        </>
+          </>
           :
           <>
             <p className="cart__text">You have no items in your cart.</p>
