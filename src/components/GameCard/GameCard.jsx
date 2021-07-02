@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_CART_COUNT, SET_SELECTED_ITEMS } from "../../redux/actions";
+import { SET_CART_DATA } from "../../redux/actions";
 import Modal from "../../elements/Modal/Modal";
 import InputText from "../../elements/InputText/InputText";
 import "./styles.scss";
@@ -18,14 +18,9 @@ const GameCard = ({ gameDetails }) => {
   const addItemToCartHandler = () => {
     if (isUserLoggedIn) {
       dispatch({
-        type: SET_CART_COUNT,
+        type: SET_CART_DATA,
         payload: {
-          newCartCount: userCartCount + 1
-        }
-      });
-      dispatch({
-        type: SET_SELECTED_ITEMS,
-        payload: {
+          newCartCount: userCartCount + 1,
           selectedItems: [
             ...userSelectedItems,
             {
