@@ -29,6 +29,10 @@ $correctedTabletMediaWidth: 767px;
 
 ::-webkit-scrollbar {
   width: 12px;
+
+  @media (max-width: $correctedTabletMediaWidth) {
+    width: 9px;
+  }
 }
 
 ::-webkit-scrollbar-track {
@@ -67,26 +71,17 @@ $correctedTabletMediaWidth: 767px;
   }
 }
 
-.submit-btn {
+.btn {
   width: 45%;
   min-width: 260px;
   padding: 5px 0;
-  color: coral;
   font-size: 25px;
   font-family: "Teko", sans-serif;
   text-decoration: none;
-  background: #f8f8f8;
-  border: 2px solid coral;
   border-radius: 5px;
   outline: none;
   cursor: pointer;
   transition: all 0.4s ease;
-
-  &:hover {
-    background: black;
-    border: 2px solid coral;
-    box-shadow: 0 0 8px 4px coral;
-  }
 
   @media (max-width: $maxMediaWidth) {
     align-self: center;
@@ -97,5 +92,30 @@ $correctedTabletMediaWidth: 767px;
   @media (max-width: $tabletMediaWidth - 1px) {
     padding: 5px 0;
     font-size: 23px;
+  }
+}
+
+.delete-btn {
+  margin-bottom: 15px;
+  color: #e96479;
+  background: #f8f8f8;
+  border: 2px solid #e96479;
+
+  &:hover {
+    background: black;
+    border: 2px solid #e96479;
+    box-shadow: 0 0 8px 4px #e96479;
+  }
+}
+
+.submit-btn {
+  color: coral;
+  background: #f8f8f8;
+  border: 2px solid coral;
+
+  &:hover {
+    background: black;
+    border: 2px solid coral;
+    box-shadow: 0 0 8px 4px coral;
   }
 }

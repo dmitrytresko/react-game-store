@@ -128,10 +128,10 @@ const Header = ({ authenticateUser }) => {
             type={`${modalState.signInClicked ? "signIn" : "registration"}`}
             confirmUserAuthentication={confirmUserAuthentication}
             onCloseClick={() => setModalState({ isOpened: false, signInClicked: false, regClicked: false })}>
-              <InputText fieldLabel="Login:" fieldName="login" message="Enter your login here..."></InputText>
-              <InputText fieldLabel="Password:" fieldName="password" message="Enter your password here..."></InputText>
+              <InputText fieldLabel="Login:" fieldName="login" fieldType="text" message="Enter your login here..."></InputText>
+              <InputText fieldLabel="Password:" fieldName="password" fieldType="password" message="Enter your password here..."></InputText>
               {modalState.regClicked ? (
-                <InputText fieldLabel="Confirm password:" fieldName="confirmPassword" message="Repeat your password here..."></InputText>
+                <InputText fieldLabel="Confirm password:" fieldName="confirmPassword" fieldType="password" message="Repeat your password here..."></InputText>
               ) : ""}
       </Modal>
     </>

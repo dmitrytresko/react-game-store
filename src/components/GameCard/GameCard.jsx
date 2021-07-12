@@ -66,11 +66,12 @@ const GameCard = ({ gameDetails }) => {
       <Modal opened={modalState.isOpened}
             type={`${modalState.editGameClicked ? "editGame" : "addGame"}`}
             onCloseClick={() => setModalState({ isOpened: false, editGameClicked: false })}>
-              <InputText fieldLabel="Name:" fieldName="name" message="Enter game name here..."></InputText>
-              <InputText fieldLabel="Genre:" fieldName="genre" message="Enter game genre here..."></InputText>
-              <InputText fieldLabel="Price:" fieldName="price" message="Enter game price here..."></InputText>
-              <InputText fieldLabel="Company:" fieldName="company" message="Enter company name here..."></InputText>
-              <InputText fieldLabel="Age:" fieldName="age" message="Enter game age here..."></InputText>
+              <InputText fieldLabel="Name:" fieldName="name" fieldType="text" message="Enter game name here..."></InputText>
+              <InputText fieldLabel="Genre:" fieldName="genre" fieldType="text" message="Enter game genre here..."></InputText>
+              <InputText fieldLabel="Price:" fieldName="price" fieldType="number" message="Enter game price here..."></InputText>
+              <InputText fieldLabel="Company:" fieldName="company" fieldType="text" message="Enter company name here..."></InputText>
+              <InputText fieldLabel="Age:" fieldName="age" fieldType="number" message="Enter game age here..."></InputText>
+              <InputText fieldLabel="Image:" fieldName="image" fieldType="file" message="Select game image here..."></InputText>
       </Modal>
     </>
   )

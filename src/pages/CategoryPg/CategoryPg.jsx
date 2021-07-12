@@ -18,7 +18,7 @@ const initialState = {
   genresArr: [],
   selectedSortType: 'Default',
   isGenreRadioChecked: null,
-  isAgeRadioChecked: null
+  isAgeRadioChecked: '0'
 }
 
 const reducer = (state, { type, payload }) => {
@@ -34,7 +34,7 @@ const reducer = (state, { type, payload }) => {
         ...state,
         selectedSortType: 'Default',
         isGenreRadioChecked: null,
-        isAgeRadioChecked: null
+        isAgeRadioChecked: '0'
       }
     };
     case 'resetGenreFilter': {
@@ -46,7 +46,7 @@ const reducer = (state, { type, payload }) => {
     case 'resetAgeFilter': {
       return {
         ...state,
-        isAgeRadioChecked: null
+        isAgeRadioChecked: '0'
       }
     };
     case 'resetSortType': {

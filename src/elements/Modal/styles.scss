@@ -40,9 +40,10 @@ $correctedTabletMediaWidth: 767px;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 75px;
-    margin-bottom: 30px;
-    border-bottom: 2px solid coral;
+    height: 70px;
+    margin-bottom: 10px;
+    padding: 20px 0;
+    border-bottom: 2px solid black;
 
     @media (max-width: $correctedTabletMediaWidth) {
       height: 50px;
@@ -100,12 +101,29 @@ $correctedTabletMediaWidth: 767px;
     }
   }
 
-  &__bottom-block {
+  &__children-block {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin-top: 25px;
+    max-height: 500px;
+    padding: 20px 0 20px 12px;
+    overflow-y: scroll;
+
+    @media (max-width: $correctedTabletMediaWidth) {
+      max-height: 300px;
+    }
+  }
+
+  &__bottom-block {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
     padding: 20px 0;
     border-top: 2px solid black;
   }

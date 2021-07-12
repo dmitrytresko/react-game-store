@@ -9,12 +9,15 @@ const editGameSchema = object().shape({
         .min(2, "*Game genre must be at least 2 characters"),
   price: number()
         .required("*Please fill in a required field")
+        .min(0, "*Game price must be a positive value")
         .typeError("*Please provide a numeric value for game price"),
   company: string()
         .required("*Please fill in a required field")
         .min(2, "*Company name must be at least 2 characters"),
   age: number()
         .required("*Please fill in a required field")
+        .min(0, "*Game age must be a positive value")
+        .max(18, "*Maximum age restriction must be 18")
         .typeError("*Please provide a numeric value for minimal game age"),
 })
 

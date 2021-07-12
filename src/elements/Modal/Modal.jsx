@@ -26,6 +26,17 @@ const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication
     }
   }
 
+  const deleteGameHandler = () => {
+    const isComfirmed = confirm('Are you sure that you want to delete this game?');
+
+    if (isComfirmed) {
+      // dispatch({ type: SET_NEW_LOGIN, payload: {newLogin: loginInputState} });
+      // setLoginChangeClicked(false);
+
+      console.log('Game is deleted');
+    }
+  }
+
   useEffect(() => {
     switch (type) {
       case "registration": return setTitle("Registration");
@@ -136,10 +147,13 @@ const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication
             </button>
           </div>
 
-          {children}
+          <div className="modal__children-block">
+            {children}
+          </div>
 
           <div className="modal__bottom-block">
-            <button className="submit-btn" type="submit">Submit</button>
+            {type==="editGame" && <button className="btn delete-btn" type="submit" onClick={deleteGameHandler}>Delete Game</button>}
+            <button className="btn submit-btn" type="submit">Submit</button>
           </div>
         </Form>
       </Formik>

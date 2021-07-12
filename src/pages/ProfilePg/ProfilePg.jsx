@@ -115,26 +115,28 @@ const ProfilePg = () => {
           </div>
         </div>
 
-        <Formik
-          initialValues={{
-            address: userAddress || '',
-            phone: userPhone || ''
-          }}
-          validationSchema={additionalUserInfoSchema}
-          onSubmit={values => onSubmitHandler(values)}
-          >
-            <Form className="profile__form">
-              <h2 className="profile__form-title">Profile info</h2>
-              <hr className="profile__form-divider"/>
+        <div className="profile__form-wrapper">
+          <Formik
+            initialValues={{
+              address: userAddress || '',
+              phone: userPhone || ''
+            }}
+            validationSchema={additionalUserInfoSchema}
+            onSubmit={values => onSubmitHandler(values)}
+            >
+              <Form className="profile__form">
+                <h2 className="profile__form-title">Profile info</h2>
+                <hr className="profile__form-divider"/>
 
-              <div className="profile__form-inputs">
-                <InputText fieldLabel="Delivery address:" fieldName="address" message="Enter your delivery address here..." />
-                <InputText fieldLabel="Phone number:" fieldName="phone" message="Enter your phone number here..." />
-              </div>
+                <div className="profile__form-inputs">
+                  <InputText fieldLabel="Delivery address:" fieldName="address" fieldType="text" message="Enter your delivery address here..." />
+                  <InputText fieldLabel="Phone number:" fieldName="phone" fieldType="tel" message="Enter your phone number here..." />
+                </div>
 
-              <button className="submit-btn" type="submit">Save info</button>
-            </Form>
-          </Formik>
+                <button className="btn submit-btn" type="submit">Save info</button>
+              </Form>
+            </Formik>
+        </div>
       </div>
 
       <Modal
@@ -144,10 +146,10 @@ const ProfilePg = () => {
         onCloseClick={() => setModalState({ isOpened: false, passwordChangeClicked: false })}>
           {modalState.passwordChangeClicked && (
             <>
-              <InputText fieldLabel="" fieldName="currentPasswordFromStore" message="" customStyles={{display: "none"}} />
-              <InputText fieldLabel="Current password:" fieldName="currentPassword" message="Enter your current password here..." />
-              <InputText fieldLabel="New password:" fieldName="newPassword" message="Enter your new password here..." />
-              <InputText fieldLabel="Confirm new password:" fieldName="confirmNewPassword" message="Repeat your new password here..." />
+              <InputText fieldLabel="" fieldName="currentPasswordFromStore" fieldType="password" message="" customStyles={{display: "none"}} />
+              <InputText fieldLabel="Current password:" fieldName="currentPassword" fieldType="password" message="Enter your current password here..." />
+              <InputText fieldLabel="New password:" fieldName="newPassword" fieldType="password" message="Enter your new password here..." />
+              <InputText fieldLabel="Confirm new password:" fieldName="confirmNewPassword" fieldType="password" message="Repeat your new password here..." />
             </>
           )}
       </Modal>
