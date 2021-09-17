@@ -1,5 +1,6 @@
 /* eslint-disable */
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import CategoryCard from "../../components/CategoryCard/CategoryCard";
 import GameCard from "../../components/GameCard/GameCard";
@@ -57,17 +58,17 @@ const HomePg = () => {
 
   return (
     <div className="home">
-      <SearchBar message="Enter the game name here..." callSearchValue={callSearchValue}/>
-
       <div className="home__categories-container">
         {categoriesArr.map((item, id) => {
           return <CategoryCard key={id} path={item.path} altName={item.altName} name={item.name} route={item.routePath}/>
         })}
       </div>
 
+      <SearchBar message="Enter the game name here..." callSearchValue={callSearchValue}/>
+
+      <h2 className="home__title">- Highest rated games -</h2>
       <hr className="home__divider"/>
 
-      <h2 className="page-title">- Highest rated games -</h2>
       {selectedGames ? <div className="home__games-container">
         {selectedGames.map(game => <GameCard key={game.id} gameDetails={game}/>)}
       </div> : ""}

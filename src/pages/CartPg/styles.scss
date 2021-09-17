@@ -1,8 +1,10 @@
+$correctedTabletMediaWidth: 767px;
+
 .cart {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 300px;
+  min-width: 275px;
   min-height: 100vh;
   padding: 0 30px;
 
@@ -10,7 +12,12 @@
     color: dimgray;
     font-size: 30px;
     font-family: "Teko", sans-serif;
+    text-align: center;
     text-decoration: none;
+
+    @media (max-width: $correctedTabletMediaWidth) {
+      font-size: 28px;
+    }
   }
 
   &__link {
@@ -29,10 +36,16 @@
     }
   }
 
-  &__game-image {
-    width: 150px;
-    height: 200px;
-    border-radius: 5px;
+  &__empty-cart-img {
+    width: 192px;
+    height: 192px;
+    margin-top: 90px;
+
+    @media (max-width: $correctedTabletMediaWidth) {
+      width: 156px;
+      height: 156px;
+      margin-top: 60px;
+    }
   }
 
   table {
@@ -259,11 +272,5 @@
       text-align: right;
       text-transform: uppercase;
     }
-  }
-
-  &__empty-cart-img {
-    width: 192px;
-    height: 192px;
-    margin-top: 90px;
   }
 }

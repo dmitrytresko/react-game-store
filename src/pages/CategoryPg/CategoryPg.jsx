@@ -252,7 +252,7 @@ const CategoryPg = () => {
         {categoryId && <img className="sidebar__mini-logo" src={categoryId === "ps" ? playStationLogo : categoryId === "xbox" ? xboxLogo : windowsLogo}/>}
 
         <div className="sidebar__options-container">
-          <p className="sidebar__option-name">Sort</p>
+          <p className="sidebar__option-name">Sort:</p>
           <label className="sidebar__option-criteria">
             Criteria:
             <select onChange={onSortSelectChange} ref={criteriaSelectRef}>
@@ -265,8 +265,12 @@ const CategoryPg = () => {
 
         <div className="sidebar__options-container">
           <p className="sidebar__option-name">Genres:</p>
+          <label className="sidebar__option-label">
+            <input type="radio" name="genre" value={null} ref={genreRadioInput} onClick={() => onGenreRadioChange(null)} checked={isGenreRadioChecked === null} />
+            All
+          </label>
           {genresArr.map((genre, index) => (
-            <label className="sidebar__option-label" key={index} >
+            <label className="sidebar__option-label" key={index}>
               <input type="radio" name="genre" value={genre} ref={genreRadioInput} onClick={() => onGenreRadioChange(genre)} checked={isGenreRadioChecked === genre} />
               {genre}
             </label>

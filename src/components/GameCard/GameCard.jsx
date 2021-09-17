@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_CART_DATA } from "../../redux/actions";
 import Modal from "../../elements/Modal/Modal";
@@ -28,6 +28,7 @@ const GameCard = ({ gameDetails }) => {
               gameName: gameDetails.name,
               gamePrice: gameDetails.price,
               gameCompany: gameDetails.company,
+              gameImage: gameDetails.path
             }
           ]
         }
@@ -36,8 +37,16 @@ const GameCard = ({ gameDetails }) => {
   }
 
   const editItemHandler = () => {
+    console.log(gameDetails);
+
     setModalState({ isOpened: true, editGameClicked: true });
   }
+
+  const truncateGameName = (name = '', maxLength = 35) => {
+    return name.length > maxLength ? `${name.substring(0, maxLength)}…` : name;
+  }
+
+  const truncatedName = useMemo(() => truncateGameName(gameDetails.name, 34), [gameDetails.name]);
 
   return (
     <>
@@ -53,7 +62,7 @@ const GameCard = ({ gameDetails }) => {
         </div>
         <div className="game-card__details-container">
           <div className="game-card__info">
-            <h3 className="game-card__title">{gameDetails.name}</h3>
+            <h3 className="game-card__title">{truncatedName}</h3>
             <img className="game-card__rating" src={gameDetails.rating} alt="Star rating" />
           </div>
           <div className="game-card__info">

@@ -17,7 +17,7 @@ $correctedTabletMediaWidth: 767px;
 
     @media (max-width: $correctedTabletMediaWidth) {
       flex-direction: column;
-      margin: 15px 0 30px;
+      margin: 30px 0 25px;
     }
 
     .profile__user-img {
@@ -25,8 +25,8 @@ $correctedTabletMediaWidth: 767px;
       cursor: pointer;
 
       @media (max-width: $correctedTabletMediaWidth) {
-        width: 112px;
-        height: 112px;
+        width: 96px;
+        height: 96px;
         margin-right: 0;
         margin-bottom: 15px;
       }
@@ -141,6 +141,11 @@ $correctedTabletMediaWidth: 767px;
     padding: 25px;
     background: rgba(255, 255, 255, 0.65);
     border-radius: 5px;
+
+    @media (max-width: $correctedTabletMediaWidth) {
+      margin-bottom: 40px;
+      padding: 15px;
+    }
   }
 
   &__form {
