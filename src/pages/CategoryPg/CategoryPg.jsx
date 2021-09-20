@@ -1,7 +1,9 @@
 /* eslint-disable */
-import { useEffect, useReducer, useRef } from "react";
+import { useState, useEffect, useReducer, useRef } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Modal from "../../elements/Modal/Modal";
+import InputText from "../../elements/InputText/InputText";
 import GameCard from "../../components/GameCard/GameCard";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import playStationLogo from "../../assets/img/playstation.png";
@@ -64,6 +66,8 @@ const CategoryPg = () => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
   const { outputArr, genresArr, selectedSortType, isGenreRadioChecked, isAgeRadioChecked } = state;
+
+  const [modalState, setModalState] = useState({ isOpened: false, editGameClicked: false });
 
   const criteriaSelectRef = useRef();
   const genreRadioInput = useRef();
@@ -204,6 +208,10 @@ const CategoryPg = () => {
     });
   }
 
+  const openEditGameModalState = () => {
+    setModalState({ isOpened: true, editGameClicked: "editGame" });
+  }
+
   useEffect(() => {
     const selectedGames = selectGamesArr();
     const generatedGenres = generateGenres();
@@ -246,56 +254,72 @@ const CategoryPg = () => {
   }, [])
 
   return (
-    <div className="categories">
-      <aside className="sidebar">
-        <h2 className="sidebar__title">{categoryId ? `- Best games for ${categoryId} -` : "- All available games -"}</h2>
-        {categoryId && <img className="sidebar__mini-logo" src={categoryId === "ps" ? playStationLogo : categoryId === "xbox" ? xboxLogo : windowsLogo}/>}
+    <>
+      <div className="categories">
+        <aside className="sidebar">
+          <h2 className="sidebar__title">{categoryId ? `- Best games for ${categoryId} -` : "- All available games -"}</h2>
+          {categoryId && <img className="sidebar__mini-logo" src={categoryId === "ps" ? playStationLogo : categoryId === "xbox" ? xboxLogo : windowsLogo}/>}
 
-        <div className="sidebar__options-container">
-          <p className="sidebar__option-name">Sort:</p>
-          <label className="sidebar__option-criteria">
-            Criteria:
-            <select onChange={onSortSelectChange} ref={criteriaSelectRef}>
-              <option>Default</option>
-              <option value="price">Price</option>
-              <option value="rating">Rating</option>
-            </select>
-          </label>
-        </div>
-
-        <div className="sidebar__options-container">
-          <p className="sidebar__option-name">Genres:</p>
-          <label className="sidebar__option-label">
-            <input type="radio" name="genre" value={null} ref={genreRadioInput} onClick={() => onGenreRadioChange(null)} checked={isGenreRadioChecked === null} />
-            All
-          </label>
-          {genresArr.map((genre, index) => (
-            <label className="sidebar__option-label" key={index}>
-              <input type="radio" name="genre" value={genre} ref={genreRadioInput} onClick={() => onGenreRadioChange(genre)} checked={isGenreRadioChecked === genre} />
-              {genre}
+          <div className="sidebar__options-container">
+            <p className="sidebar__option-name">Sort:</p>
+            <label className="sidebar__option-criteria">
+              Criteria:
+              <select onChange={onSortSelectChange} ref={criteriaSelectRef}>
+                <option>Default</option>
+                <option value="price">Price</option>
+                <option value="rating">Rating</option>
+              </select>
             </label>
-          ))}
-        </div>
+          </div>
 
-        <div className="sidebar__options-container">
-          <p className="sidebar__option-name">Age:</p>
-          {agesArr.map((age, index) =>
-            <label className="sidebar__option-label" key={index}>
-              <input type="radio" name="age" value={age} ref={ageRadioInput} onClick={() => onAgeRadioChange(age)} checked={isAgeRadioChecked === age} />
-              {age}+
-          </label>
-          )}
-        </div>
-      </aside>
+          <div className="sidebar__options-container">
+            <p className="sidebar__option-name">Genres:</p>
+            <label className="sidebar__option-label">
+              <input type="radio" name="genre" value={null} ref={genreRadioInput} onClick={() => onGenreRadioChange(null)} checked={isGenreRadioChecked === null} />
+              All
+            </label>
+            {genresArr.map((genre, index) => (
+              <label className="sidebar__option-label" key={index}>
+                <input type="radio" name="genre" value={genre} ref={genreRadioInput} onClick={() => onGenreRadioChange(genre)} checked={isGenreRadioChecked === genre} />
+                {genre}
+              </label>
+            ))}
+          </div>
 
-      <div className="categories-content">
-        <SearchBar message="Enter the game name here..." callSearchValue={callSearch} />
+          <div className="sidebar__options-container">
+            <p className="sidebar__option-name">Age:</p>
+            {agesArr.map((age, index) =>
+              <label className="sidebar__option-label" key={index}>
+                <input type="radio" name="age" value={age} ref={ageRadioInput} onClick={() => onAgeRadioChange(age)} checked={isAgeRadioChecked === age} />
+                {age}+
+            </label>
+            )}
+          </div>
+        </aside>
 
-        <div className="categories-content__games-container">
-           {showSelectedGames()?.map(game => <GameCard key={game.id} gameDetails={game}/>)}
+        <div className="categories-content">
+          <SearchBar message="Enter the game name here..." callSearchValue={callSearch} />
+
+          <div className="categories-content__games-container">
+            {showSelectedGames()?.map(game => <GameCard key={game.id} gameDetails={game} openEditGameModalState={openEditGameModalState} />)}
+          </div>
         </div>
       </div>
-    </div>
+
+      {modalState.isOpened &&
+        <Modal
+          type={`${modalState.editGameClicked ? "editGame" : "addGame"}`}
+          onCloseClick={() => setModalState({ isOpened: false, editGameClicked: false })}
+        >
+          <InputText fieldLabel="Name:" fieldName="name" fieldType="text" message="Enter game name here..."></InputText>
+          <InputText fieldLabel="Genre:" fieldName="genre" fieldType="text" message="Enter game genre here..."></InputText>
+          <InputText fieldLabel="Price:" fieldName="price" fieldType="number" message="Enter game price here..."></InputText>
+          <InputText fieldLabel="Company:" fieldName="company" fieldType="text" message="Enter company name here..."></InputText>
+          <InputText fieldLabel="Age:" fieldName="age" fieldType="number" message="Enter game age here..."></InputText>
+          <InputText fieldLabel="Image:" fieldName="image" fieldType="file" message="Select game image here..."></InputText>
+        </Modal>
+      }
+    </>
   )
 }
 

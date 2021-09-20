@@ -1,3 +1,4 @@
+import React from "react";
 import { useHistory } from "react-router-dom";
 import "./styles.scss";
 
@@ -12,4 +13,4 @@ const CategoryCard = (props) => {
   )
 }
 
-export default CategoryCard;
+export default React.memo(CategoryCard);

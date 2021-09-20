@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+/* eslint-disable */
+import { useEffect, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import { useSelector } from 'react-redux';
 import closeImg from "../../assets/img/close.png";
@@ -14,7 +15,15 @@ const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication
   const userState = useSelector(state => state.user);
   const { isLogged, password } = userState;
 
-  const [title, setTitle] = useState('');
+  const title = useMemo(() => {
+    switch (type) {
+      case "registration": return "Registration";
+      case "signIn": return "Sign In";
+      case "passwordChange": return "Password change";
+      case "editGame": return "Edit game";
+      default: return "";
+    }
+  }, [type]);
 
   const defineValidationShema = () => {
     switch (type) {
@@ -38,18 +47,10 @@ const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication
   }
 
   useEffect(() => {
-    switch (type) {
-      case "registration": return setTitle("Registration");
-      case "signIn": return setTitle("Sign In");
-      case "passwordChange": return setTitle("Password change");
-      case "editGame": return setTitle("Edit game");
-      default: return;
-    }
-  }, [type])
+    document.body.style.overflow = "hidden";
 
-  useEffect(() => {
-    opened ? document.body.style.overflow = "hidden" : document.body.style.overflow = "visible";
-  }, [opened])
+    return () => document.body.style.overflow = "visible";
+  })
 
   const onSubmitHandler = async (values) => {
     let formData;
@@ -115,8 +116,6 @@ const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication
       console.error(error);
     }
   }
-
-  if (!opened) return null;
 
   return ReactDOM.createPortal(
     <>

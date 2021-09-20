@@ -124,18 +124,21 @@ const Header = ({ authenticateUser }) => {
         <div className="header__burger"></div>
       </header>
 
-      <Modal opened={modalState.isOpened}
-            type={`${modalState.signInClicked ? "signIn" : "registration"}`}
-            confirmUserAuthentication={confirmUserAuthentication}
-            onCloseClick={() => setModalState({ isOpened: false, signInClicked: false, regClicked: false })}>
-              <InputText fieldLabel="Login:" fieldName="login" fieldType="text" message="Enter your login here..."></InputText>
-              <InputText fieldLabel="Password:" fieldName="password" fieldType="password" message="Enter your password here..."></InputText>
-              {modalState.regClicked ? (
-                <InputText fieldLabel="Confirm password:" fieldName="confirmPassword" fieldType="password" message="Repeat your password here..."></InputText>
-              ) : ""}
-      </Modal>
+      {modalState.isOpened &&
+        <Modal
+          type={`${modalState.signInClicked ? "signIn" : "registration"}`}
+          confirmUserAuthentication={confirmUserAuthentication}
+          onCloseClick={() => setModalState({ isOpened: false, signInClicked: false, regClicked: false })}
+        >
+          <InputText fieldLabel="Login:" fieldName="login" fieldType="text" message="Enter your login here..."></InputText>
+          <InputText fieldLabel="Password:" fieldName="password" fieldType="password" message="Enter your password here..."></InputText>
+          {modalState.regClicked ? (
+            <InputText fieldLabel="Confirm password:" fieldName="confirmPassword" fieldType="password" message="Repeat your password here..."></InputText>
+          ) : ""}
+        </Modal>
+      }
     </>
   )
 }
 
-export default Header;
+export default React.memo(Header);

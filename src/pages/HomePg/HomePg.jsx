@@ -1,6 +1,8 @@
 /* eslint-disable */
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Modal from "../../elements/Modal/Modal";
+import InputText from "../../elements/InputText/InputText";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import CategoryCard from "../../components/CategoryCard/CategoryCard";
 import GameCard from "../../components/GameCard/GameCard";
@@ -13,6 +15,8 @@ import "./styles.scss";
 
 const HomePg = () => {
   const [selectedGames, setSelectedGames] = useState([]);
+
+  const [modalState, setModalState] = useState({ isOpened: false, editGameClicked: false });
 
   const allGamesArr = [
     ...psGamesArr,
@@ -56,23 +60,43 @@ const HomePg = () => {
     }
   }
 
+  const openEditGameModalState = () => {
+    setModalState({ isOpened: true, editGameClicked: "editGame" });
+  }
+
   return (
-    <div className="home">
-      <div className="home__categories-container">
-        {categoriesArr.map((item, id) => {
-          return <CategoryCard key={id} path={item.path} altName={item.altName} name={item.name} route={item.routePath}/>
-        })}
+    <>
+      <div className="home">
+        <div className="home__categories-container">
+          {categoriesArr.map((item, id) => {
+            return <CategoryCard key={id} path={item.path} altName={item.altName} name={item.name} route={item.routePath}/>
+          })}
+        </div>
+
+        <SearchBar message="Enter the game name here..." callSearchValue={callSearchValue}/>
+
+        <h2 className="home__title">- Highest rated games -</h2>
+        <hr className="home__divider"/>
+
+        {selectedGames ? <div className="home__games-container">
+          {selectedGames.map(game => <GameCard key={game.id} gameDetails={game} openEditGameModalState={openEditGameModalState} />)}
+        </div> : ""}
       </div>
 
-      <SearchBar message="Enter the game name here..." callSearchValue={callSearchValue}/>
-
-      <h2 className="home__title">- Highest rated games -</h2>
-      <hr className="home__divider"/>
-
-      {selectedGames ? <div className="home__games-container">
-        {selectedGames.map(game => <GameCard key={game.id} gameDetails={game}/>)}
-      </div> : ""}
-    </div>
+      {modalState.isOpened &&
+        <Modal
+          type={`${modalState.editGameClicked ? "editGame" : "addGame"}`}
+          onCloseClick={() => setModalState({ isOpened: false, editGameClicked: false })}
+        >
+          <InputText fieldLabel="Name:" fieldName="name" fieldType="text" message="Enter game name here..."></InputText>
+          <InputText fieldLabel="Genre:" fieldName="genre" fieldType="text" message="Enter game genre here..."></InputText>
+          <InputText fieldLabel="Price:" fieldName="price" fieldType="number" message="Enter game price here..."></InputText>
+          <InputText fieldLabel="Company:" fieldName="company" fieldType="text" message="Enter company name here..."></InputText>
+          <InputText fieldLabel="Age:" fieldName="age" fieldType="number" message="Enter game age here..."></InputText>
+          <InputText fieldLabel="Image:" fieldName="image" fieldType="file" message="Select game image here..."></InputText>
+        </Modal>
+      }
+    </>
   )
 }
 

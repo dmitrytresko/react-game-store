@@ -136,10 +136,14 @@ $tabletMediaWidth: 768px;
       width: 100%;
 
       .game-card__title {
+        display: -webkit-box;
         max-width: 82%;
+        overflow: hidden;
         color: coral;
         font-size: 23px;
         font-family: "Teko", sans-serif;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
 
         @media (max-width: $tabletMediaWidth) {
           font-size: 21px;

@@ -151,11 +151,12 @@ const ProfilePg = () => {
         </div>
       </div>
 
-      <Modal
-        opened={modalState.isOpened}
-        type="passwordChange"
-        confirmPasswordChange={confirmPasswordChange}
-        onCloseClick={() => setModalState({ isOpened: false, passwordChangeClicked: false })}>
+      {modalState.isOpened &&
+        <Modal
+          type="passwordChange"
+          confirmPasswordChange={confirmPasswordChange}
+          onCloseClick={() => setModalState({ isOpened: false, passwordChangeClicked: false })}
+        >
           {modalState.passwordChangeClicked && (
             <>
               <InputText fieldLabel="" fieldName="currentPasswordFromStore" fieldType="password" message="" customStyles={{ display: "none" }} />
@@ -164,7 +165,8 @@ const ProfilePg = () => {
               <InputText fieldLabel="Confirm new password:" fieldName="confirmNewPassword" fieldType="password" message="Repeat your new password here..." />
             </>
           )}
-      </Modal>
+        </Modal>
+      }
     </>
   )
 }

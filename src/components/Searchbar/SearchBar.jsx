@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import _ from "lodash";
 import playStationLogo from "../../assets/img/playstation.png";
@@ -81,4 +81,4 @@ const SearchBar = ({ message, callSearchValue }) => {
   )
 }
 
-export default SearchBar;
+export default React.memo(SearchBar);
