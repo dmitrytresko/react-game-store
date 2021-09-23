@@ -6,7 +6,8 @@ const initialState = {
   address: null,
   phone: null,
   cartCount: 0,
-  selectedItems: []
+  selectedItems: [],
+  currentGame: null
 };
 
 const authReducer = (state = initialState, action) => {
@@ -46,6 +47,11 @@ const authReducer = (state = initialState, action) => {
         ...state,
         cartCount: payload.newCartCount,
         selectedItems: payload.selectedItems
+      };
+    case "SET_CURRENT_GAME":
+      return {
+        ...state,
+        currentGame: payload.currentGame,
       };
     default:
       return state;

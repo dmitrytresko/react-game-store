@@ -18,6 +18,7 @@ const pcGamesArr = [
     path: hitman3Img,
     rating: fiveStars,
     price: 34.99,
+    age: 18,
     genre: "Action-Stealth",
     metaRating: 87
   },
@@ -28,6 +29,7 @@ const pcGamesArr = [
     path: assassinValhallaImg,
     rating: fourStars,
     price: 69.99,
+    age: 18,
     genre: "Action-RPG",
     metaRating: 82
   },
@@ -38,6 +40,7 @@ const pcGamesArr = [
     path: fifa21Img,
     rating: threeStars,
     price: 49.99,
+    age: 0,
     genre: "Sports",
     metaRating: 74
   },
@@ -48,6 +51,7 @@ const pcGamesArr = [
     path: warzoneImg,
     rating: fourStars,
     price: 0,
+    age: 18,
     genre: "Shooter",
     metaRating: 80
   },
@@ -58,6 +62,7 @@ const pcGamesArr = [
     path: rainbowSixImg,
     rating: fourStars,
     price: 19.99,
+    age: 18,
     genre: "Shooter",
     metaRating: 79
   },
@@ -68,6 +73,7 @@ const pcGamesArr = [
     path: f12020Img,
     rating: fiveStars,
     price: 54.99,
+    age: 0,
     genre: "Sports-Racing",
     metaRating: 88
   },
@@ -78,6 +84,7 @@ const pcGamesArr = [
     path: skyrimImg,
     rating: fourStars,
     price: 19.99,
+    age: 18,
     genre: "Action-RPG",
     metaRating: 84
   },
@@ -88,6 +95,7 @@ const pcGamesArr = [
     path: rdr2Img,
     rating: fiveStars,
     price: 34.99,
+    age: 18,
     genre: "Shooter",
     metaRating: 92
   }

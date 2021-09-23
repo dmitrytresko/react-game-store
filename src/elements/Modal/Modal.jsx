@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { useEffect, useMemo } from 'react';
 import ReactDOM from 'react-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import closeImg from "../../assets/img/close.png";
 import { Formik, Form } from "formik";
 import axios from "axios";
@@ -11,9 +11,9 @@ import passwordChangeSchema from "../../validations/passwordChangeValidation";
 import editGameSchema from "../../validations/editGameValidation";
 import "./styles.scss";
 
-const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication, confirmPasswordChange }) => {
+const Modal = ({ type, children, onCloseClick, confirmUserAuthentication, confirmPasswordChange }) => {
   const userState = useSelector(state => state.user);
-  const { isLogged, password } = userState;
+  const { isLogged, password, currentGame } = userState;
 
   const title = useMemo(() => {
     switch (type) {
@@ -24,6 +24,32 @@ const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication
       default: return "";
     }
   }, [type]);
+
+  const defineInitialValues = () => {
+    switch (type) {
+      case "registration":
+      case "signIn": return {
+        login: '',
+        password: '',
+        confirmPassword: ''
+      }
+      case "passwordChange": return {
+        currentPasswordFromStore: password,
+        currentPassword: '',
+        newPassword: '',
+        confirmNewPassword: ''
+      };
+      case "editGame": return {
+        name: currentGame.gameName,
+        genre: currentGame.gameGenre,
+        price: currentGame.gamePrice,
+        company: currentGame.gameCompany,
+        age: currentGame.gameAge,
+        image: ''
+      };
+      default: return;
+    }
+  }
 
   const defineValidationShema = () => {
     switch (type) {
@@ -86,11 +112,28 @@ const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication
       }
     }
 
+    if (type === "editGame") {
+      requiredSchema = editGameSchema;
+
+      formData = {
+        name: values.gameName,
+        genre: values.gameGenre,
+        price: values.gamePrice,
+        company: values.gameCompany,
+        age: values.gameAge,
+        image: values.gameImage
+      }
+    }
+
     const isDataValid = await requiredSchema.isValid(formData);
 
     if (isDataValid) {
       if (isLogged) {
-        confirmPasswordChange(formData.newPassword);
+        switch (type) {
+          case "passwordChange": confirmPasswordChange(formData.newPassword);
+          case "editGame": confirmGameModification(formData);
+        }
+
         return;
       }
 
@@ -122,21 +165,10 @@ const Modal = ({ opened, type, children, onCloseClick, confirmUserAuthentication
       <div className="content-overlay" />
 
       <Formik
-        initialValues={
-          isLogged ? {
-            currentPasswordFromStore: password,
-            currentPassword: '',
-            newPassword: '',
-            confirmNewPassword: ''
-          } : {
-            login: '',
-            password: '',
-            confirmPassword: ''
-          }
-        }
+        initialValues={defineInitialValues()}
         validationSchema={defineValidationShema}
         onSubmit={values => onSubmitHandler(values)}
-        enableInitialize={true}
+        enablenInitialize={true}
       >
         <Form className="modal">
           <div className="modal__head-block">

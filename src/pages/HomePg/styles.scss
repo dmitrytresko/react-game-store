@@ -34,6 +34,7 @@ $correctedTabletMediaWidth: 767px;
 
   &__divider {
     width: 60%;
+    min-width: 290px;
     height: 1px;
     background: dimgray;
     border: 1px solid dimgray;
@@ -45,6 +46,7 @@ $correctedTabletMediaWidth: 767px;
     flex-wrap: wrap;
     justify-content: space-around;
     width: 65%;
+    min-width: 290px;
     margin: 30px 0;
 
     @media (max-width: $maxMediaWidth) {

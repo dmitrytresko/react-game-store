@@ -70,7 +70,7 @@ const CartPg = () => {
     alert(`You're going to buy ${userCartCount} item(-s) for $${cartTotal}`);
   }
 
-  const cartTotal = useMemo(calculateCartTotal, [userSelectedItems]);
+  const cartTotal = useMemo(calculateCartTotal, [userCartCount]);
 
   useEffect(() => {
     window.scrollTo({

@@ -11,12 +11,16 @@ import psGamesArr from "../../components/psGamesArr";
 import xboxGamesArr from "../../components/xboxGamesArr";
 import pcGamesArr from "../../components/pcGamesArr";
 import axios from "axios";
+import { SET_CURRENT_GAME } from "../../redux/actions";
 import "./styles.scss";
 
 const HomePg = () => {
   const [selectedGames, setSelectedGames] = useState([]);
 
   const [modalState, setModalState] = useState({ isOpened: false, editGameClicked: false });
+
+  const dispatch = useDispatch();
+  const currentGameImage = useSelector(state => state.user?.currentGame?.gameImage);
 
   const allGamesArr = [
     ...psGamesArr,
@@ -64,12 +68,31 @@ const HomePg = () => {
     setModalState({ isOpened: true, editGameClicked: "editGame" });
   }
 
+  const onEditModalCloseClick = () => {
+    setModalState({ isOpened: false, editGameClicked: false });
+
+    dispatch({
+      type: SET_CURRENT_GAME,
+      payload: {
+        currentGame: null
+      }
+    });
+  }
+
   return (
     <>
       <div className="home">
         <div className="home__categories-container">
           {categoriesArr.map((item, id) => {
-            return <CategoryCard key={id} path={item.path} altName={item.altName} name={item.name} route={item.routePath}/>
+            return <CategoryCard
+                      key={id}
+                      path={item.path}
+                      pathLight={item.pathLight}
+                      altName={item.altName}
+                      altNameLight={item.altNameLight}
+                      name={item.name}
+                      route={item.routePath}
+                    />
           })}
         </div>
 
@@ -85,15 +108,15 @@ const HomePg = () => {
 
       {modalState.isOpened &&
         <Modal
-          type={`${modalState.editGameClicked ? "editGame" : "addGame"}`}
-          onCloseClick={() => setModalState({ isOpened: false, editGameClicked: false })}
+        type={`${modalState.editGameClicked ? "editGame" : "addGame"}`}
+        onCloseClick={() => onEditModalCloseClick()}
         >
           <InputText fieldLabel="Name:" fieldName="name" fieldType="text" message="Enter game name here..."></InputText>
           <InputText fieldLabel="Genre:" fieldName="genre" fieldType="text" message="Enter game genre here..."></InputText>
           <InputText fieldLabel="Price:" fieldName="price" fieldType="number" message="Enter game price here..."></InputText>
           <InputText fieldLabel="Company:" fieldName="company" fieldType="text" message="Enter company name here..."></InputText>
           <InputText fieldLabel="Age:" fieldName="age" fieldType="number" message="Enter game age here..."></InputText>
-          <InputText fieldLabel="Image:" fieldName="image" fieldType="file" message="Select game image here..."></InputText>
+          <InputText fieldLabel="Image:" fieldName="image" fieldType="file" message="Select game image here..." prefix={currentGameImage}></InputText>
         </Modal>
       }
     </>

@@ -18,6 +18,7 @@ const psGamesArr = [
     path: fifa21Img,
     rating: threeStars,
     price: 59.99,
+    age: 0,
     genre: "Sports",
     metaRating: 72
   },
@@ -28,6 +29,7 @@ const psGamesArr = [
     path: rdr2Img,
     rating: fiveStars,
     price: 51.99,
+    age: 18,
     genre: "Shooter",
     metaRating: 97
   },
@@ -38,6 +40,7 @@ const psGamesArr = [
     path: theWitcher3Img,
     rating: fiveStars,
     price: 24.99,
+    age: 18,
     genre: "Action-RPG",
     metaRating: 93
   },
@@ -48,6 +51,7 @@ const psGamesArr = [
     path: theLastOfUs2Img,
     rating: fiveStars,
     price: 54.99,
+    age: 18,
     genre: "Survival horror",
     metaRating: 93
   },
@@ -58,6 +62,7 @@ const psGamesArr = [
     path: fallout4Img,
     rating: fiveStars,
     price: 14.99,
+    age: 18,
     genre: "Action-RPG",
     metaRating: 87
   },
@@ -68,6 +73,7 @@ const psGamesArr = [
     path: gta5Img,
     rating: fiveStars,
     price: 24.99,
+    age: 18,
     genre: "Action-Adventure",
     metaRating: 97
   },
@@ -78,6 +84,7 @@ const psGamesArr = [
     path: horizonZeroDawnImg,
     rating: fiveStars,
     price: 16.99,
+    age: 16,
     genre: "Action-RPG",
     metaRating: 89
   },
@@ -88,6 +95,7 @@ const psGamesArr = [
     path: ufc4Img,
     rating: fourStars,
     price: 109.99,
+    age: 18,
     genre: "Fighting",
     metaRating: 78
   }

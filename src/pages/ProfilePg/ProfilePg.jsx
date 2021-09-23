@@ -9,9 +9,7 @@ import editIcon from "../../assets/img/edit.png";
 import confirmIcon from "../../assets/img/checked.png";
 import cancelIcon from "../../assets/img/cancel.png";
 import additionalUserInfoSchema from "../../validations/additionalUserInfoValidation";
-import { SET_NEW_PASSWORD } from "../../redux/actions";
-import { SET_NEW_LOGIN } from "../../redux/actions";
-import { SET_ADDITIONAL_INFO } from "../../redux/actions";
+import { SET_NEW_PASSWORD, SET_NEW_LOGIN, SET_ADDITIONAL_INFO } from "../../redux/actions";
 import "./styles.scss";
 
 const ProfilePg = () => {

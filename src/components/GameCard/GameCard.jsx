@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_CART_DATA } from "../../redux/actions";
+import { SET_CART_DATA, SET_CURRENT_GAME } from "../../redux/actions";
 import "./styles.scss";
 
 const GameCard = ({ gameDetails, openEditGameModalState }) => {
@@ -33,9 +33,24 @@ const GameCard = ({ gameDetails, openEditGameModalState }) => {
   }
 
   const editItemHandler = () => {
-    console.log(gameDetails);
-
     openEditGameModalState();
+
+    if (gameDetails) {
+      dispatch({
+        type: SET_CURRENT_GAME,
+        payload: {
+          currentGame: {
+            gameId: gameDetails.id,
+            gameGenre: gameDetails.genre,
+            gameName: gameDetails.name,
+            gamePrice: gameDetails.price,
+            gameCompany: gameDetails.company,
+            gameAge: gameDetails.age,
+            gameImage: gameDetails.path
+          }
+        }
+      });
+    }
   }
 
   return (
