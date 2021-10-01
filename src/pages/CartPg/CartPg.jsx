@@ -3,7 +3,7 @@ import React, { useEffect, useMemo } from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_CART_DATA } from "../../redux/actions";
-import emptyCartImg from "../../assets/img/empty-cart.png";
+import emptyCartImg from "../../assets/img/empty-cart.jpg";
 import CartTable from './CartTable';
 import "./styles.scss";
 

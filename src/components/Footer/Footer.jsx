@@ -1,8 +1,8 @@
-import blizzardImg from "../../assets/img/blizzard.png";
-import eaImg from "../../assets/img/electronic_arts.png";
-import ubisoftImg from "../../assets/img/ubisoft.png";
-import rockstarImg from "../../assets/img/rockstar.png";
-import valveImg from "../../assets/img/valve.png";
+import blizzardImg from "../../assets/img/blizzard.jpg";
+import eaImg from "../../assets/img/electronic_arts.jpg";
+import ubisoftImg from "../../assets/img/ubisoft.jpg";
+import rockstarImg from "../../assets/img/rockstar.jpg";
+import valveImg from "../../assets/img/valve.jpg";
 import "./styles.scss";
 
 const Footer = () => {

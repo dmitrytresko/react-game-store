@@ -6,9 +6,9 @@ import rainbowSixImg from "../assets/img/games/pc/rainbow-six.png";
 import f12020Img from "../assets/img/games/pc/f12020.png";
 import skyrimImg from "../assets/img/games/pc/skyrim.png";
 import rdr2Img from "../assets/img/games/pc/rdr2.png";
-import fiveStars from "../assets/img/card-items/five-stars.png";
-import fourStars from "../assets/img/card-items/four-stars.png";
-import threeStars from "../assets/img/card-items/three-stars.png";
+import fiveStars from "../assets/img/card-items/five-stars.jpg";
+import fourStars from "../assets/img/card-items/four-stars.jpg";
+import threeStars from "../assets/img/card-items/three-stars.jpg";
 
 const pcGamesArr = [
   {

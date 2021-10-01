@@ -1,5 +1,15 @@
+import initialPsGamesArr from "../../components/psGamesArr";
+import initialXboxGamesArr from "../../components/xboxGamesArr";
+import initialPcGamesArr from "../../components/pcGamesArr";
+
+const allGamesArr = [
+  ...initialPsGamesArr,
+  ...initialXboxGamesArr,
+  ...initialPcGamesArr
+];
+
 const initialState = {
-  gamesArr: []
+  allGamesArr: allGamesArr
 };
 
 const gamesReducer = (state = initialState, action) => {
@@ -9,7 +19,7 @@ const gamesReducer = (state = initialState, action) => {
     case "SET_GAMES_DATA":
       return {
         ...state,
-        gamesArr: payload.gamesArr
+        gamesArr: payload.allgamesArr
       };
     default:
       return state;

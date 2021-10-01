@@ -2,7 +2,7 @@
 import { useEffect, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import { useDispatch, useSelector } from "react-redux";
-import closeImg from "../../assets/img/close.png";
+import closeImg from "../../assets/img/close.jpg";
 import { Formik, Form } from "formik";
 import axios from "axios";
 import registrationSchema from "../../validations/registrationValidation";

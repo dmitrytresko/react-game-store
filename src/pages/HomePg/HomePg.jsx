@@ -7,9 +7,6 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import CategoryCard from "../../components/CategoryCard/CategoryCard";
 import GameCard from "../../components/GameCard/GameCard";
 import categoriesArr from "../../components/categoriesArr";
-import psGamesArr from "../../components/psGamesArr";
-import xboxGamesArr from "../../components/xboxGamesArr";
-import pcGamesArr from "../../components/pcGamesArr";
 import axios from "axios";
 import { SET_CURRENT_GAME } from "../../redux/actions";
 import "./styles.scss";
@@ -22,11 +19,7 @@ const HomePg = () => {
   const dispatch = useDispatch();
   const currentGameImage = useSelector(state => state.user?.currentGame?.gameImage);
 
-  const allGamesArr = [
-    ...psGamesArr,
-    ...xboxGamesArr,
-    ...pcGamesArr
-  ]
+  const allGamesArr = useSelector(state => state.games.allGamesArr);
 
   const getTopProductsInfo = async() => {
     try {

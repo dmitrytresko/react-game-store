@@ -1,9 +1,9 @@
-import playStationColorfulLogo from "../assets/img/playstation-colorful.png";
-import playStationLightLogo from "../assets/img/playstation-light.png";
-import xboxColorfulLogo from "../assets/img/xbox-colorful.png";
-import xboxLightLogo from "../assets/img/xbox-light.png";
-import windowsColorfulLogo from "../assets/img/windows-colorful.png";
-import windowsLightLogo from "../assets/img/windows-light.png";
+import playStationColorfulLogo from "../assets/img/playstation-colorful.jpg";
+import playStationLightLogo from "../assets/img/playstation-light.jpg";
+import xboxColorfulLogo from "../assets/img/xbox-colorful.jpg";
+import xboxLightLogo from "../assets/img/xbox-light.jpg";
+import windowsColorfulLogo from "../assets/img/windows-colorful.jpg";
+import windowsLightLogo from "../assets/img/windows-light.jpg";
 
 const categoriesArr = [
   {

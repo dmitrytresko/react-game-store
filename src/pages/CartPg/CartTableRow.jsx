@@ -1,9 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { SET_CART_DATA } from "../../redux/actions";
-import trashImg from "../../assets/img/trash.png";
-import leftArrowImg from "../../assets/img/left-arrow.png";
-import rightArrowImg from "../../assets/img/right-arrow.png";
+import trashImg from "../../assets/img/trash.jpg";
+import leftArrowImg from "../../assets/img/left-arrow.jpg";
+import rightArrowImg from "../../assets/img/right-arrow.jpg";
 
 const CartTableRow = ({ game, userCartCount, userSelectedItems, getRelevantItemQuantity, calculateSubtotal }) => {
   const dispatch = useDispatch();

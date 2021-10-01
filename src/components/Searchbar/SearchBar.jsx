@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import _ from "lodash";
-import playStationLogo from "../../assets/img/playstation.png";
-import xboxLogo from "../../assets/img/xbox.png";
-import windowsLogo from "../../assets/img/windows.png";
+import playStationLogo from "../../assets/img/playstation.jpg";
+import xboxLogo from "../../assets/img/xbox.jpg";
+import windowsLogo from "../../assets/img/windows.jpg";
 import "./styles.scss";
 
 const SearchBar = ({ message, callSearchValue }) => {

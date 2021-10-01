@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { useState, useEffect, useReducer, useRef } from "react";
+import { useState, useEffect, useReducer, useRef, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
@@ -7,12 +7,9 @@ import Modal from "../../elements/Modal/Modal";
 import InputText from "../../elements/InputText/InputText";
 import GameCard from "../../components/GameCard/GameCard";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import playStationLogo from "../../assets/img/playstation.png";
-import xboxLogo from "../../assets/img/xbox.png";
-import windowsLogo from "../../assets/img/windows.png";
-import psGamesArr from "../../components/psGamesArr";
-import xboxGamesArr from "../../components/xboxGamesArr";
-import pcGamesArr from "../../components/pcGamesArr";
+import playStationLogo from "../../assets/img/playstation.jpg";
+import xboxLogo from "../../assets/img/xbox.jpg";
+import windowsLogo from "../../assets/img/windows.jpg";
 import { callSearchValueWithPsCategory, callSearchValueWithXboxCategory, callSearchValueWithPcCategory, callSearchValue } from "../../api";
 import { SET_CURRENT_GAME } from "../../redux/actions";
 import "./styles.scss";
@@ -80,11 +77,10 @@ const CategoryPg = () => {
 
   const agesArr = ['0', '16', '18'];
 
-  const allGamesArr = [
-    ...psGamesArr,
-    ...xboxGamesArr,
-    ...pcGamesArr
-  ];
+  const allGamesArr = useSelector(state => state.games.allGamesArr);
+  const psGamesArr = useMemo(() => allGamesArr.filter(game => game.id >= 100 && game.id < 200), [allGamesArr]);
+  const xboxGamesArr = useMemo(() => allGamesArr.filter(game => game.id >= 200 && game.id < 300), [allGamesArr]);
+  const pcGamesArr = useMemo(() => allGamesArr.filter(game => game.id >= 300 && game.id < 400), [allGamesArr]);
 
   const selectGamesArr = () => {
     switch (categoryId) {
@@ -186,7 +182,7 @@ const CategoryPg = () => {
 
       const selectedGames = selectGamesArr();
 
-      const matchedGamesFilteredByAge = idsOfFilteredGames.map(gameId => selectedGames.find(outputGame  => (outputGame.id === gameId && outputGame)));
+      const matchedGamesFilteredByAge = idsOfFilteredGames.map(gameId => selectedGames.find(outputGame => (outputGame.id === gameId && outputGame)));
 
       resultArr = matchedGamesFilteredByAge;
 

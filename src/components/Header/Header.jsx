@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 import Dropdown from 'react-dropdown';
 import Modal from "../../elements/Modal/Modal";
 import InputText from "../../elements/InputText/InputText";
-import userIcon from "../../assets/img/user.png";
-import cartIcon from "../../assets/img/shopping-cart.png";
+import userIcon from "../../assets/img/user.jpg";
+import cartIcon from "../../assets/img/shopping-cart.jpg";
 import 'react-dropdown/style.css';
 import "./styles.scss";
 

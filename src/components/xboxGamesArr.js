@@ -6,8 +6,8 @@ import residentEvil7Img from "../assets/img/games/xbox/resident-evil7.png";
 import theWitcher3Img from "../assets/img/games/xbox/the-witcher3.png";
 import rocketLeagueImg from "../assets/img/games/xbox/rocket-league.png";
 import tombRaiderImg from "../assets/img/games/xbox/tomb-raider.png";
-import fiveStars from "../assets/img/card-items/five-stars.png";
-import fourStars from "../assets/img/card-items/four-stars.png";
+import fiveStars from "../assets/img/card-items/five-stars.jpg";
+import fourStars from "../assets/img/card-items/four-stars.jpg";
 
 const xboxGamesArr = [
   {
