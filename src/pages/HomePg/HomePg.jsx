@@ -17,8 +17,8 @@ const HomePg = () => {
   const [modalState, setModalState] = useState({ isOpened: false, editGameClicked: false });
 
   const dispatch = useDispatch();
-  const currentGameImage = useSelector(state => state.user?.currentGame?.gameImage);
 
+  const currentGameImage = useSelector(state => state.user?.currentGame?.gameImage);
   const allGamesArr = useSelector(state => state.games.allGamesArr);
 
   const getTopProductsInfo = async() => {
@@ -58,7 +58,7 @@ const HomePg = () => {
   }
 
   const openEditGameModalState = () => {
-    setModalState({ isOpened: true, editGameClicked: "editGame" });
+    setModalState({ isOpened: true, editGameClicked: true });
   }
 
   const onEditModalCloseClick = () => {

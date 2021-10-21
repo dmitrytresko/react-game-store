@@ -46,7 +46,7 @@ const ProfilePg = () => {
     const isComfirmed = confirm('Are you sure that you want to change your login?');
 
     if (isComfirmed) {
-      dispatch({ type: SET_NEW_LOGIN, payload: {newLogin: loginInputState} });
+      dispatch({ type: SET_NEW_LOGIN, payload: { newLogin: loginInputState} });
       setLoginChangeClicked(false);
     }
   }

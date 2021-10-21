@@ -19,7 +19,7 @@ const gamesReducer = (state = initialState, action) => {
     case "SET_GAMES_DATA":
       return {
         ...state,
-        gamesArr: payload.allgamesArr
+        allGamesArr: payload.gamesArr
       };
     default:
       return state;

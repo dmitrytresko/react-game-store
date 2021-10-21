@@ -210,7 +210,7 @@ const CategoryPg = () => {
   }
 
   const openEditGameModalState = () => {
-    setModalState({ isOpened: true, editGameClicked: "editGame" });
+    setModalState({ isOpened: true, editGameClicked: true });
   }
 
   const onEditModalCloseClick = () => {

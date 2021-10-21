@@ -9,11 +9,16 @@ import registrationSchema from "../../validations/registrationValidation";
 import signInSchema from "../../validations/signInValidation";
 import passwordChangeSchema from "../../validations/passwordChangeValidation";
 import editGameSchema from "../../validations/editGameValidation";
+import { SET_GAMES_DATA } from "../../redux/actions";
 import "./styles.scss";
 
 const Modal = ({ type, children, onCloseClick, confirmUserAuthentication, confirmPasswordChange }) => {
+  const dispatch = useDispatch();
+
   const userState = useSelector(state => state.user);
   const { isLogged, password, currentGame } = userState;
+
+  const allGamesArr = useSelector(state => state.games.allGamesArr);
 
   const title = useMemo(() => {
     switch (type) {
@@ -65,10 +70,16 @@ const Modal = ({ type, children, onCloseClick, confirmUserAuthentication, confir
     const isComfirmed = confirm('Are you sure that you want to delete this game?');
 
     if (isComfirmed) {
-      // dispatch({ type: SET_NEW_LOGIN, payload: {newLogin: loginInputState} });
-      // setLoginChangeClicked(false);
+      const newGamesArr = allGamesArr.filter(game => game.id !== currentGame.gameId);
 
-      console.log('Game is deleted');
+      dispatch({
+        type: SET_GAMES_DATA,
+        payload: {
+          gamesArr: newGamesArr
+        }
+      });
+
+      alert('Game is succesfully deleted');
     }
   }
 
