@@ -19,6 +19,10 @@ const editGameSchema = object().shape({
         .min(0, "*Game age must be a positive value")
         .max(18, "*Maximum age restriction must be 18")
         .typeError("*Please provide a numeric value for minimal game age"),
+  metaRating: number()
+        .min(0, "*Game rating can't be a negative value")
+        .max(100, "*The maximim rating value must be 100")
+        .typeError("*Please provide a numeric value for game rating"),
 })
 
 export default editGameSchema;

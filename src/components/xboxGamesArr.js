@@ -59,7 +59,7 @@ const xboxGamesArr = [
     name: "Resident Evil 7: Biohazard",
     company: "Capcom",
     path: residentEvil7Img,
-    rating: fourStars,
+    rating: fiveStars,
     price: 19.99,
     age: 18,
     genre: "Survival horror",

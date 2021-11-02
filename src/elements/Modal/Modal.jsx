@@ -3,6 +3,11 @@ import { useEffect, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import { useDispatch, useSelector } from "react-redux";
 import closeImg from "../../assets/img/close.jpg";
+import fiveStars from "../../assets/img/card-items/five-stars.jpg";
+import fourStars from "../../assets/img/card-items/four-stars.jpg";
+import threeStars from "../../assets/img/card-items/three-stars.jpg";
+import twoStars from "../../assets/img/card-items/two-stars.jpg";
+import oneStar from "../../assets/img/card-items/one-star.jpg";
 import { Formik, Form } from "formik";
 import axios from "axios";
 import registrationSchema from "../../validations/registrationValidation";
@@ -50,6 +55,7 @@ const Modal = ({ type, children, onCloseClick, confirmUserAuthentication, confir
         price: currentGame.gamePrice,
         company: currentGame.gameCompany,
         age: currentGame.gameAge,
+        metaRating: currentGame.gameRating,
         image: ''
       };
       default: return;
@@ -72,6 +78,8 @@ const Modal = ({ type, children, onCloseClick, confirmUserAuthentication, confir
     if (isComfirmed) {
       const newGamesArr = allGamesArr.filter(game => game.id !== currentGame.gameId);
 
+      onCloseClick();
+
       dispatch({
         type: SET_GAMES_DATA,
         payload: {
@@ -79,15 +87,48 @@ const Modal = ({ type, children, onCloseClick, confirmUserAuthentication, confir
         }
       });
 
-      alert('Game is succesfully deleted');
+      alert('The game is succesfully deleted');
     }
   }
 
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
+  const confirmGameModification = formData => {
+    const isComfirmed = confirm('Are you sure that you want to edit selected game?');
 
-    return () => document.body.style.overflow = "visible";
-  })
+    if (isComfirmed) {
+      const newGamesArr = [...allGamesArr];
+
+      const gameToEditIdx = newGamesArr.findIndex(item => item.id === currentGame.gameId);
+
+      if (gameToEditIdx !== -1) {
+        newGamesArr[gameToEditIdx] = {
+          id: currentGame.gameId,
+          name: formData.name,
+          company: formData.company,
+          path: formData.image,
+          rating: formData.metaRating >= 85 ? fiveStars :
+                  formData.metaRating >= 75 ? fourStars :
+                  formData.metaRating >= 60 ? threeStars :
+                  formData.metaRating >= 40 ? twoStars :
+                  oneStar,
+          price: formData.price,
+          age: formData.age,
+          genre: formData.genre,
+          metaRating: formData.metaRating
+        }
+
+        onCloseClick();
+
+        dispatch({
+          type: SET_GAMES_DATA,
+          payload: {
+            gamesArr: newGamesArr
+          }
+        });
+
+        alert('The game is succesfully edited');
+      }
+    }
+  }
 
   const onSubmitHandler = async (values) => {
     let formData;
@@ -127,12 +168,13 @@ const Modal = ({ type, children, onCloseClick, confirmUserAuthentication, confir
       requiredSchema = editGameSchema;
 
       formData = {
-        name: values.gameName,
-        genre: values.gameGenre,
-        price: values.gamePrice,
-        company: values.gameCompany,
-        age: values.gameAge,
-        image: values.gameImage
+        name: values.name,
+        genre: values.genre,
+        price: values.price,
+        company: values.company,
+        age: values.age,
+        metaRating: values.metaRating,
+        image: values.image
       }
     }
 
@@ -141,8 +183,14 @@ const Modal = ({ type, children, onCloseClick, confirmUserAuthentication, confir
     if (isDataValid) {
       if (isLogged) {
         switch (type) {
-          case "passwordChange": confirmPasswordChange(formData.newPassword);
-          case "editGame": confirmGameModification(formData);
+          case "passwordChange":
+            confirmPasswordChange(formData.newPassword);
+            break;
+          case "editGame":
+            confirmGameModification(formData);
+            break;
+          default:
+            return;
         }
 
         return;
@@ -171,6 +219,12 @@ const Modal = ({ type, children, onCloseClick, confirmUserAuthentication, confir
     }
   }
 
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+
+    return () => document.body.style.overflow = "visible";
+  })
+
   return ReactDOM.createPortal(
     <>
       <div className="content-overlay" />
@@ -194,7 +248,7 @@ const Modal = ({ type, children, onCloseClick, confirmUserAuthentication, confir
           </div>
 
           <div className="modal__bottom-block">
-            {type==="editGame" && <button className="btn delete-btn" type="submit" onClick={deleteGameHandler}>Delete Game</button>}
+            {type==="editGame" && <button className="btn delete-btn" type="button" onClick={deleteGameHandler}>Delete Game</button>}
             <button className="btn submit-btn" type="submit">Submit</button>
           </div>
         </Form>

@@ -46,6 +46,7 @@ const GameCard = ({ gameDetails, openEditGameModalState }) => {
             gamePrice: gameDetails.price,
             gameCompany: gameDetails.company,
             gameAge: gameDetails.age,
+            gameRating: gameDetails.metaRating,
             gameImage: gameDetails.path
           }
         }

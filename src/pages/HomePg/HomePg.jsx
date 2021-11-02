@@ -21,28 +21,22 @@ const HomePg = () => {
   const currentGameImage = useSelector(state => state.user?.currentGame?.gameImage);
   const allGamesArr = useSelector(state => state.games.allGamesArr);
 
-  const getTopProductsInfo = async() => {
+  const getTopProductsInfo = () => {
     try {
-      const response = await axios.get('http://localhost:4000/getTopProducts');
+      // const response = await axios.get('http://localhost:4000/getTopProducts');
+      // const theBestRatings = response.data.map(item => item.metaRating).sort().reverse().slice(0, 3);
+      // const gamesWithBestRatings = theBestRatings.map(number => response.data.find(item => item.metaRating === number));
+      // const matchedBestRatedGames = gamesWithBestRatings.map(game => allGamesArr.find(psGame => psGame.name === game.name));
 
-      const theBestRatings = response.data.map(item => item.metaRating).sort().reverse().slice(0, 3);
+      const copyArr = [...allGamesArr]
+      const gamesWithBestRatings = copyArr.sort((a, b) => b.metaRating - a.metaRating).slice(0, 3);
 
-      const gamesWithBestRatings = theBestRatings.map(number => response.data.find(item => item.metaRating === number));
-
-      const matchedBestRatedGames = gamesWithBestRatings.map(game => allGamesArr.find(psGame => psGame.name === game.name));
-
-      setSelectedGames(matchedBestRatedGames);
+      setSelectedGames(gamesWithBestRatings);
     }
     catch (err) {
       console.error(err);
     }
   }
-
-  useEffect(() => {
-    getTopProductsInfo();
-
-    return null;
-  },[])
 
   const callSearchValue = async(queryData) => {
     try {
@@ -71,6 +65,12 @@ const HomePg = () => {
       }
     });
   }
+
+  useEffect(() => {
+    getTopProductsInfo();
+
+    return null;
+  }, [allGamesArr])
 
   return (
     <>
@@ -101,14 +101,15 @@ const HomePg = () => {
 
       {modalState.isOpened &&
         <Modal
-        type={`${modalState.editGameClicked ? "editGame" : "addGame"}`}
-        onCloseClick={() => onEditModalCloseClick()}
+          type={`${modalState.editGameClicked ? "editGame" : "addGame"}`}
+          onCloseClick={onEditModalCloseClick}
         >
           <InputText fieldLabel="Name:" fieldName="name" fieldType="text" message="Enter game name here..."></InputText>
           <InputText fieldLabel="Genre:" fieldName="genre" fieldType="text" message="Enter game genre here..."></InputText>
           <InputText fieldLabel="Price:" fieldName="price" fieldType="number" message="Enter game price here..."></InputText>
           <InputText fieldLabel="Company:" fieldName="company" fieldType="text" message="Enter company name here..."></InputText>
           <InputText fieldLabel="Age:" fieldName="age" fieldType="number" message="Enter game age here..."></InputText>
+          <InputText fieldLabel="Rating (uut of 100 points):" fieldName="metaRating" fieldType="number" message="Enter game rating here..."></InputText>
           <InputText fieldLabel="Image:" fieldName="image" fieldType="file" message="Select game image here..." prefix={currentGameImage}></InputText>
         </Modal>
       }

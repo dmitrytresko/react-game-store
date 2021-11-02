@@ -61,8 +61,12 @@ const ProfilePg = () => {
   }
 
   const confirmPasswordChange = (password) => {
-    dispatch({ type: SET_NEW_PASSWORD, payload: { newPassword: password } });
-    setModalState({ isOpened: false, passwordChangeClicked: false });
+    const isComfirmed = confirm('Are you sure that you want to change your password?');
+
+    if (isComfirmed) {
+      dispatch({ type: SET_NEW_PASSWORD, payload: { newPassword: password } });
+      setModalState({ isOpened: false, passwordChangeClicked: false });
+    }
   }
 
   const onSubmitHandler = values => {

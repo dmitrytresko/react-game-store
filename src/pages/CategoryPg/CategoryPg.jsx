@@ -260,6 +260,15 @@ const CategoryPg = () => {
   }, [isGenreRadioChecked, isAgeRadioChecked])
 
   useEffect(() => {
+    dispatch({
+      type: 'setFields',
+      payload: {
+        outputArr: selectGamesArr(),
+      }
+    });
+  }, [allGamesArr])
+
+  useEffect(() => {
     window.scrollTo({
       top: 0
     });
@@ -321,13 +330,14 @@ const CategoryPg = () => {
       {modalState.isOpened &&
         <Modal
           type={`${modalState.editGameClicked ? "editGame" : "addGame"}`}
-          onCloseClick={() => onEditModalCloseClick()}
+          onCloseClick={onEditModalCloseClick}
         >
           <InputText fieldLabel="Name:" fieldName="name" fieldType="text" message="Enter game name here..."></InputText>
           <InputText fieldLabel="Genre:" fieldName="genre" fieldType="text" message="Enter game genre here..."></InputText>
           <InputText fieldLabel="Price:" fieldName="price" fieldType="number" message="Enter game price here..."></InputText>
           <InputText fieldLabel="Company:" fieldName="company" fieldType="text" message="Enter company name here..."></InputText>
           <InputText fieldLabel="Age:" fieldName="age" fieldType="number" message="Enter game age here..."></InputText>
+          <InputText fieldLabel="Rating (out of 100 points):" fieldName="metaRating" fieldType="number" message="Enter game rating here..."></InputText>
           <InputText fieldLabel="Image:" fieldName="image" fieldType="file" message="Select game image here..." prefix={currentGameImage}></InputText>
         </Modal>
       }
