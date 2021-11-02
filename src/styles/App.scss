@@ -72,6 +72,12 @@ $correctedTabletMediaWidth: 767px;
   }
 }
 
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .btn {
   width: 45%;
   min-width: 260px;

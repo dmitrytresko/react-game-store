@@ -10,6 +10,7 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import playStationLogo from "../../assets/img/playstation.jpg";
 import xboxLogo from "../../assets/img/xbox.jpg";
 import windowsLogo from "../../assets/img/windows.jpg";
+import noSearchResults from "../../assets/img/search-no-results.jpg";
 import { callSearchValueWithPsCategory, callSearchValueWithXboxCategory, callSearchValueWithPcCategory, callSearchValue } from "../../api";
 import { SET_CURRENT_GAME } from "../../redux/actions";
 import "./styles.scss";
@@ -67,6 +68,7 @@ const CategoryPg = () => {
   const { outputArr, genresArr, selectedSortType, isGenreRadioChecked, isAgeRadioChecked } = state;
 
   const [modalState, setModalState] = useState({ isOpened: false, editGameClicked: false });
+  const [noResultsState, setNoResultsState] = useState(false);
 
   const dispatchFunc = useDispatch();
   const currentGameImage = useSelector(state => state.user?.currentGame?.gameImage);
@@ -154,40 +156,40 @@ const CategoryPg = () => {
     }
   }
 
-  const getFilteredGames = async (gameAge = 0, gameGenre = '') => {
+  const getFilteredGames = (gameAge = 0, gameGenre = '') => {
     try {
-      let requiredGamesToFilter;
+      // let requiredGamesToFilter;
       let resultArr;
 
-      const response = await axios.get('http://localhost:4000/gamesArr');
+      // const response = await axios.get('http://localhost:4000/gamesArr');
 
-      switch (categoryId) {
-        case "ps":
-          requiredGamesToFilter = response.data.filter(item => item.id >= 100 && item.id < 200);
-          break;
-        case "xbox":
-          requiredGamesToFilter = response.data.filter(item => item.id >= 200 && item.id < 300);
-          break;
-        case "pc":
-          requiredGamesToFilter = response.data.filter(item => item.id >= 300);
-          break;
-        default:
-          requiredGamesToFilter = response.data;
-          break;
-      }
+      // switch (categoryId) {
+      //   case "ps":
+      //     requiredGamesToFilter = response.data.filter(item => item.id >= 100 && item.id < 200);
+      //     break;
+      //   case "xbox":
+      //     requiredGamesToFilter = response.data.filter(item => item.id >= 200 && item.id < 300);
+      //     break;
+      //   case "pc":
+      //     requiredGamesToFilter = response.data.filter(item => item.id >= 300);
+      //     break;
+      //   default:
+      //     requiredGamesToFilter = response.data;
+      //     break;
+      // }
 
-      const requiredGamesFilteredByAge = requiredGamesToFilter.filter(item => item.age >= gameAge);
+      const requiredGamesFilteredByAge = selectGamesArr().filter(item => item.age >= gameAge);
 
-      const idsOfFilteredGames = requiredGamesFilteredByAge.map(game => game.id);
+      // const idsOfFilteredGames = requiredGamesFilteredByAge.map(game => game.id);
 
-      const selectedGames = selectGamesArr();
+      // const selectedGames = selectGamesArr();
 
-      const matchedGamesFilteredByAge = idsOfFilteredGames.map(gameId => selectedGames.find(outputGame => (outputGame.id === gameId && outputGame)));
+      // const matchedGamesFilteredByAge = idsOfFilteredGames.map(gameId => selectedGames.find(outputGame => (outputGame.id === gameId && outputGame)));
 
-      resultArr = matchedGamesFilteredByAge;
+      resultArr = requiredGamesFilteredByAge;
 
       if (gameGenre) {
-        const matchedGamesFilteredByBothReqs = matchedGamesFilteredByAge.filter(item => item.genre.toLocaleLowerCase().includes(gameGenre.toLocaleLowerCase()));
+        const matchedGamesFilteredByBothReqs = requiredGamesFilteredByAge.filter(item => item.genre.toLocaleLowerCase().includes(gameGenre.toLocaleLowerCase()));
         resultArr = matchedGamesFilteredByBothReqs;
       }
 
@@ -198,8 +200,8 @@ const CategoryPg = () => {
     }
   }
 
-  const requestFilterGames = async () => {
-    const filteredGames = await getFilteredGames(isAgeRadioChecked, isGenreRadioChecked);
+  const requestFilterGames = () => {
+    const filteredGames = getFilteredGames(isAgeRadioChecked, isGenreRadioChecked);
 
     dispatch({
       type: 'setFields',
@@ -269,6 +271,14 @@ const CategoryPg = () => {
   }, [allGamesArr])
 
   useEffect(() => {
+    if (outputArr.length === 0) {
+      setNoResultsState(true);
+    } else {
+      setNoResultsState(false);
+    }
+  }, [outputArr])
+
+  useEffect(() => {
     window.scrollTo({
       top: 0
     });
@@ -323,6 +333,12 @@ const CategoryPg = () => {
 
           <div className="categories-content__games-container">
             {showSelectedGames()?.map(game => <GameCard key={game.id} gameDetails={game} openEditGameModalState={openEditGameModalState} />)}
+            {noResultsState && (
+              <div className="column">
+                <h2 className="page-title">No results found :(</h2>
+                <img className="categories__no-results-img" src={noSearchResults} alt="No results" />
+              </div>
+            )}
           </div>
         </div>
       </div>
