@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Category card should render Category card component 1`] = `
+<div>
+  <div
+    class="category-card"
+  >
+    <img
+      alt="Colorful Logo"
+      class="category-card__logo"
+      src="test-file-stub"
+    />
+    <img
+      alt="Light Logo"
+      class="category-card__logo--light"
+      src="test-file-stub"
+    />
+    <h2
+      class="category-card__name"
+    >
+      Platform
+    </h2>
+  </div>
+</div>
+`;
