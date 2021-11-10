@@ -76,17 +76,17 @@ const HomePg = () => {
     <>
       <div className="home">
         <div className="home__categories-container">
-          {categoriesArr.map((item, id) => {
-            return <CategoryCard
-                      key={id}
-                      path={item.path}
-                      pathLight={item.pathLight}
-                      altName={item.altName}
-                      altNameLight={item.altNameLight}
-                      name={item.name}
-                      route={item.routePath}
-                    />
-          })}
+          {categoriesArr.map((item, id) =>
+            <CategoryCard
+              key={id}
+              path={item.path}
+              pathLight={item.pathLight}
+              altName={item.altName}
+              altNameLight={item.altNameLight}
+              name={item.name}
+              route={item.routePath}
+            />
+          )}
         </div>
 
         <SearchBar message="Enter the game name here..." callSearchValue={callSearchValue}/>
@@ -94,9 +94,11 @@ const HomePg = () => {
         <h2 className="home__title">- Highest rated games -</h2>
         <hr className="home__divider"/>
 
-        {selectedGames ? <div className="home__games-container">
-          {selectedGames.map(game => <GameCard key={game.id} gameDetails={game} openEditGameModalState={openEditGameModalState} />)}
-        </div> : ""}
+        {selectedGames ?
+          <div className="home__games-container">
+            {selectedGames.map(game => <GameCard key={game.id} gameDetails={game} openEditGameModalState={openEditGameModalState} />)}
+          </div> :
+        ""}
       </div>
 
       {modalState.isOpened &&

@@ -1,5 +1,4 @@
-$maxMediaWidth: 1024px;
-$correctedTabletMediaWidth: 767px;
+@import '/src/styles/App.scss';
 
 .home {
   display: flex;
@@ -24,7 +23,7 @@ $correctedTabletMediaWidth: 767px;
     color: black;
     font-weight: normal;
     font-size: 32px;
-    font-family: "Teko", sans-serif;
+    font-family: $primary-font;
     text-transform: uppercase;
 
     @media (max-width: $correctedTabletMediaWidth) {

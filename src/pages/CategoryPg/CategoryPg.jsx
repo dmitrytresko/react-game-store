@@ -20,7 +20,7 @@ const initialState = {
   genresArr: [],
   selectedSortType: 'Default',
   isGenreRadioChecked: null,
-  isAgeRadioChecked: '0'
+  isAgeRadioChecked: 0
 }
 
 const reducer = (state, { type, payload }) => {
@@ -36,7 +36,7 @@ const reducer = (state, { type, payload }) => {
         ...state,
         selectedSortType: 'Default',
         isGenreRadioChecked: null,
-        isAgeRadioChecked: '0'
+        isAgeRadioChecked: 0
       }
     };
     case 'resetGenreFilter': {
@@ -48,7 +48,7 @@ const reducer = (state, { type, payload }) => {
     case 'resetAgeFilter': {
       return {
         ...state,
-        isAgeRadioChecked: '0'
+        isAgeRadioChecked: 0
       }
     };
     case 'resetSortType': {
@@ -77,7 +77,7 @@ const CategoryPg = () => {
   const genreRadioInput = useRef();
   const ageRadioInput = useRef();
 
-  const agesArr = ['0', '16', '18'];
+  const agesArr = [0, 16, 18];
 
   const allGamesArr = useSelector(state => state.games.allGamesArr);
   const psGamesArr = useMemo(() => allGamesArr.filter(game => game.id >= 100 && game.id < 200), [allGamesArr]);

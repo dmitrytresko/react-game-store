@@ -1,6 +1,4 @@
-$largeMediaWidth: 1201px;
-$maxMediaWidth: 1024px;
-$tabletMediaWidth: 768px;
+@import '/src/styles/App.scss';
 
 .game-card {
   display: flex;
@@ -30,7 +28,7 @@ $tabletMediaWidth: 768px;
     min-height: 340px;
     overflow: hidden;
     background: black;
-    border-bottom: 2px solid #f8f8f8;
+    border-bottom: $primary-border #f8f8f8;
     transition: all 0.4s ease-in-out;
 
     @media (max-width: $largeMediaWidth) {
@@ -55,11 +53,11 @@ $tabletMediaWidth: 768px;
       right: 0;
       bottom: 0;
       padding: 5px 20px;
-      color: coral;
+      color: $primary-color;
       font-size: 23px;
-      font-family: "Teko", sans-serif;
+      font-family: $primary-font;
       background: #f8f8f8;
-      border: 2px solid coral;
+      border: $primary-border $primary-color;
       border-right: none;
       border-bottom: none;
       border-top-left-radius: 5px;
@@ -70,12 +68,12 @@ $tabletMediaWidth: 768px;
 
       &:hover {
         color: #f8f8f8;
-        background: coral;
-        border-color: coral;
+        background: $primary-color;
+        border-color: $primary-color;
       }
 
       &:active {
-        color: coral;
+        color: $primary-color;
         background: black;
       }
 
@@ -89,11 +87,11 @@ $tabletMediaWidth: 768px;
       bottom: 0;
       left: 0;
       padding: 5px 20px;
-      color: coral;
+      color: $primary-color;
       font-size: 23px;
-      font-family: "Teko", sans-serif;
+      font-family: $primary-font;
       background: #f8f8f8;
-      border: 2px solid coral;
+      border: $primary-border $primary-color;
       border-bottom: none;
       border-left: none;
       border-top-right-radius: 5px;
@@ -104,12 +102,12 @@ $tabletMediaWidth: 768px;
 
       &:hover {
         color: #f8f8f8;
-        background: coral;
-        border-color: coral;
+        background: $primary-color;
+        border-color: $primary-color;
       }
 
       &:active {
-        color: coral;
+        color: $primary-color;
         background: black;
       }
 
@@ -139,9 +137,9 @@ $tabletMediaWidth: 768px;
         display: -webkit-box;
         max-width: 82%;
         overflow: hidden;
-        color: coral;
+        color: $primary-color;
         font-size: 23px;
-        font-family: "Teko", sans-serif;
+        font-family: $primary-font;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;
 
@@ -153,7 +151,7 @@ $tabletMediaWidth: 768px;
       .game-card__company {
         color: #f8f8f8;
         font-size: 23px;
-        font-family: "Teko", sans-serif;
+        font-family: $primary-font;
 
         @media (max-width: $tabletMediaWidth) {
           font-size: 20px;
@@ -169,7 +167,7 @@ $tabletMediaWidth: 768px;
         color: white;
         font-weight: bold;
         font-size: 24px;
-        font-family: "Teko", sans-serif;
+        font-family: $primary-font;
 
         @media (max-width: $tabletMediaWidth) {
           font-size: 21px;
@@ -187,12 +185,12 @@ $tabletMediaWidth: 768px;
   }
 
   &:hover {
-    box-shadow: 0 0 10px 3px coral;
+    box-shadow: 0 0 10px 3px $primary-color;
     transform: translateY(-5px);
   }
 
   &:hover &__cover-wrapper {
-    border-color: coral;
+    border-color: $primary-color;
 
     .game-card__cover {
       opacity: 0.4;
@@ -219,7 +217,7 @@ $tabletMediaWidth: 768px;
     }
 
     .game-card__price {
-      color: coral;
+      color: $primary-color;
     }
   }
 }

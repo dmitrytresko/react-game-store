@@ -1,6 +1,4 @@
-$maxMediaWidth: 1024px;
-$tabletMediaWidth: 768px;
-$correctedTabletMediaWidth: 767px;
+@import '/src/styles/App.scss';
 
 .content-overlay {
   position: fixed;
@@ -24,15 +22,15 @@ $correctedTabletMediaWidth: 767px;
   width: 40vw;
   min-width: 300px;
   overflow: hidden;
-  font-family: "Teko", sans-serif;
+  font-family: $primary-font;
   background: #f8f8f8;
   border-radius: 5px;
-  box-shadow: 0 0 12px 8px coral;
+  box-shadow: 0 0 12px 8px $primary-color;
   transform: translate(-50%, -50%);
   transition: transform 0.4s;
 
   @media (max-width: $tabletMediaWidth) {
-    box-shadow: 0 0 8px 4px coral;
+    box-shadow: 0 0 8px 4px $primary-color;
   }
 
   &__head-block {
@@ -44,7 +42,7 @@ $correctedTabletMediaWidth: 767px;
     height: 70px;
     margin-bottom: 10px;
     padding: 20px 0;
-    border-bottom: 2px solid black;
+    border-bottom: $primary-border black;
 
     @media (max-width: $correctedTabletMediaWidth) {
       height: 50px;
@@ -52,10 +50,10 @@ $correctedTabletMediaWidth: 767px;
   }
 
   &__title {
-    color: coral;
+    color: $primary-color;
     font-weight: bolder;
     font-size: 34px;
-    font-family: "Teko", sans-serif;
+    font-family: $primary-font;
     text-transform: uppercase;
 
     @media (max-width: $maxMediaWidth) {
@@ -78,14 +76,14 @@ $correctedTabletMediaWidth: 767px;
     padding: 0 20px;
     background: none;
     border: none;
-    border-left: 2px solid transparent;
+    border-left: $primary-border transparent;
     outline: none;
     cursor: pointer;
     transition: all 0.4s ease-out;
 
     &:hover {
       background: #fce9eb;
-      border-left: 2px solid black;
+      border-left: $primary-border black;
     }
 
     @media (max-width: $tabletMediaWidth) {
@@ -124,6 +122,6 @@ $correctedTabletMediaWidth: 767px;
     width: 100%;
     margin-top: 10px;
     padding: 20px 0;
-    border-top: 2px solid black;
+    border-top: $primary-border black;
   }
 }

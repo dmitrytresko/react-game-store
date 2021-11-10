@@ -60,7 +60,7 @@ const GameCard = ({ gameDetails, openEditGameModalState }) => {
         <img className="game-card__cover" src={gameDetails.path} alt={gameDetails.name} />
         {isUserLoggedIn &&
           <>
-            <button className="game-card__add-btn" onClick={() => addItemToCartHandler(gameDetails)}>Add To Cart</button>
+            <button className="game-card__add-btn" onClick={addItemToCartHandler}>Add To Cart</button>
             {isUserAdmin && <button className="game-card__edit-btn" onClick={editItemHandler}>Edit Game</button>}
           </>
         }
