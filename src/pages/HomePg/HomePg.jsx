@@ -8,7 +8,7 @@ import CategoryCard from "../../components/CategoryCard/CategoryCard";
 import GameCard from "../../components/GameCard/GameCard";
 import categoriesArr from "../../components/categoriesArr";
 import axios from "axios";
-import { SET_CURRENT_GAME } from "../../redux/actions";
+import { setCurrentGame } from "../../redux/actions";
 import "./styles.scss";
 
 const HomePg = () => {
@@ -58,12 +58,11 @@ const HomePg = () => {
   const onEditModalCloseClick = () => {
     setModalState({ isOpened: false, editGameClicked: false });
 
-    dispatch({
-      type: SET_CURRENT_GAME,
-      payload: {
+    dispatch(
+      setCurrentGame({
         currentGame: null
-      }
-    });
+      })
+    );
   }
 
   useEffect(() => {

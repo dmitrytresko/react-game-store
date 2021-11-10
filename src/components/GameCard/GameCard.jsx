@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_CART_DATA, SET_CURRENT_GAME } from "../../redux/actions";
+import { setCartData, setCurrentGame } from "../../redux/actions";
 import "./styles.scss";
 
 const GameCard = ({ gameDetails, openEditGameModalState }) => {
@@ -13,9 +13,8 @@ const GameCard = ({ gameDetails, openEditGameModalState }) => {
 
   const addItemToCartHandler = () => {
     if (isUserLoggedIn) {
-      dispatch({
-        type: SET_CART_DATA,
-        payload: {
+      dispatch(
+        setCartData ({
           newCartCount: userCartCount + 1,
           selectedItems: [
             ...userSelectedItems,
@@ -27,8 +26,8 @@ const GameCard = ({ gameDetails, openEditGameModalState }) => {
               gameImage: gameDetails.path
             }
           ]
-        }
-      });
+        })
+      );
     }
   }
 
@@ -36,9 +35,8 @@ const GameCard = ({ gameDetails, openEditGameModalState }) => {
     openEditGameModalState();
 
     if (gameDetails) {
-      dispatch({
-        type: SET_CURRENT_GAME,
-        payload: {
+      dispatch(
+        setCurrentGame({
           currentGame: {
             gameId: gameDetails.id,
             gameGenre: gameDetails.genre,
@@ -49,8 +47,8 @@ const GameCard = ({ gameDetails, openEditGameModalState }) => {
             gameRating: gameDetails.metaRating,
             gameImage: gameDetails.path
           }
-        }
-      });
+        })
+      );
     }
   }
 

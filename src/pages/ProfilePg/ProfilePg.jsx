@@ -9,7 +9,7 @@ import editIcon from "../../assets/img/edit.jpg";
 import confirmIcon from "../../assets/img/confirm.jpg";
 import cancelIcon from "../../assets/img/cancel.jpg";
 import additionalUserInfoSchema from "../../validations/additionalUserInfoValidation";
-import { SET_NEW_PASSWORD, SET_NEW_LOGIN, SET_ADDITIONAL_INFO } from "../../redux/actions";
+import { setNewPassword, setNewLogin, setAdditionalInfo } from "../../redux/actions";
 import "./styles.scss";
 
 const ProfilePg = () => {
@@ -46,7 +46,11 @@ const ProfilePg = () => {
     const isComfirmed = confirm('Are you sure that you want to change your login?');
 
     if (isComfirmed) {
-      dispatch({ type: SET_NEW_LOGIN, payload: { newLogin: loginInputState} });
+      dispatch(
+        setNewLogin({
+          newLogin: loginInputState
+        })
+      );
       setLoginChangeClicked(false);
     }
   }
@@ -64,7 +68,11 @@ const ProfilePg = () => {
     const isComfirmed = confirm('Are you sure that you want to change your password?');
 
     if (isComfirmed) {
-      dispatch({ type: SET_NEW_PASSWORD, payload: { newPassword: password } });
+      dispatch(
+        setNewPassword({
+          newPassword: password
+        })
+      );
       setModalState({ isOpened: false, passwordChangeClicked: false });
     }
   }
@@ -73,7 +81,12 @@ const ProfilePg = () => {
     const isComfirmed = confirm('Are you sure that you want to save this info about you?');
 
     if (isComfirmed) {
-      dispatch({ type: SET_ADDITIONAL_INFO, payload: {address: values.address, phone: values.phone} });
+      dispatch(
+        setAdditionalInfo({
+          address: values.address,
+          phone: values.phone
+        })
+      );
       history.push('/');
     }
   }

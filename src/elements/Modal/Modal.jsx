@@ -14,7 +14,7 @@ import registrationSchema from "../../validations/registrationValidation";
 import signInSchema from "../../validations/signInValidation";
 import passwordChangeSchema from "../../validations/passwordChangeValidation";
 import editGameSchema from "../../validations/editGameValidation";
-import { SET_GAMES_DATA } from "../../redux/actions";
+import { setGamesData } from "../../redux/actions";
 import "./styles.scss";
 
 const Modal = ({ type, children, onCloseClick, confirmUserAuthentication, confirmPasswordChange }) => {
@@ -80,12 +80,11 @@ const Modal = ({ type, children, onCloseClick, confirmUserAuthentication, confir
 
       onCloseClick();
 
-      dispatch({
-        type: SET_GAMES_DATA,
-        payload: {
+      dispatch(
+        setGamesData({
           gamesArr: newGamesArr
-        }
-      });
+        })
+      );
 
       alert('The game is succesfully deleted');
     }
@@ -118,12 +117,11 @@ const Modal = ({ type, children, onCloseClick, confirmUserAuthentication, confir
 
         onCloseClick();
 
-        dispatch({
-          type: SET_GAMES_DATA,
-          payload: {
+        dispatch(
+          setGamesData({
             gamesArr: newGamesArr
-          }
-        });
+          })
+        );
 
         alert('The game is succesfully edited');
       }

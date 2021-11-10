@@ -12,7 +12,7 @@ import xboxLogo from "../../assets/img/xbox.jpg";
 import windowsLogo from "../../assets/img/windows.jpg";
 import noSearchResults from "../../assets/img/search-no-results.jpg";
 import { callSearchValueWithPsCategory, callSearchValueWithXboxCategory, callSearchValueWithPcCategory, callSearchValue } from "../../api";
-import { SET_CURRENT_GAME } from "../../redux/actions";
+import { setCurrentGame } from "../../redux/actions";
 import "./styles.scss";
 
 const initialState = {
@@ -218,12 +218,11 @@ const CategoryPg = () => {
   const onEditModalCloseClick = () => {
     setModalState({ isOpened: false, editGameClicked: false });
 
-    dispatchFunc({
-      type: SET_CURRENT_GAME,
-      payload: {
+    dispatchFunc(
+      setCurrentGame({
         currentGame: null
-      }
-    });
+      })
+    );
   }
 
   useEffect(() => {

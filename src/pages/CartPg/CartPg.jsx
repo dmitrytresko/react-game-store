@@ -2,7 +2,7 @@
 import React, { useEffect, useMemo } from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_CART_DATA } from "../../redux/actions";
+import { setCartData } from "../../redux/actions";
 import emptyCartImg from "../../assets/img/empty-cart.jpg";
 import CartTable from './CartTable';
 import "./styles.scss";
@@ -57,13 +57,12 @@ const CartPg = () => {
       behavior: 'smooth'
     });
 
-    dispatch({
-      type: SET_CART_DATA,
-      payload: {
+    dispatch(
+      setCartData({
         newCartCount: 0,
         selectedItems: []
-      }
-    });
+      })
+    );
   }
 
   const checkoutHandler = () => {
