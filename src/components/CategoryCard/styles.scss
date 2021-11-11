@@ -40,12 +40,6 @@
     cursor: pointer;
     transition: all 0.4s;
 
-    $largeMediaWidth: 1201px;
-    $maxMediaWidth: 1024px;
-    $tabletMediaWidth: 768px;
-    $correctedTabletMediaWidth: 767px;
-    $minMediaWidth: 320px;
-
     @media (max-width: $largeMediaWidth) {
       font-size: 23px;
     }
