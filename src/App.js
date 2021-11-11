@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import { connect } from "react-redux";
 import { setUserData } from "./redux/actions";
 
+import HomePg from "./pages/HomePg/HomePg";
+
 const Header = lazy(() => import("./components/Header/Header"));
 const Footer = lazy(() => import("./components/Footer/Footer"));
-const HomePg = lazy(() => import("./pages/HomePg/HomePg"));
 const ProductsPg = lazy(() => import("./pages/ProductsPg/ProductsPg"));
 const AboutPg = lazy(() => import("./pages/AboutPg/AboutPg"));
 const ProfilePg = lazy(() => import("./pages/ProfilePg/ProfilePg"));

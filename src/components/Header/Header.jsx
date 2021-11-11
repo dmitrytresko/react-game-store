@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 import Dropdown from 'react-dropdown';
 import Modal from "../../elements/Modal/Modal";
 import InputText from "../../elements/InputText/InputText";
-import userIcon from "../../assets/img/user.png";
-import cartIcon from "../../assets/img/shopping-cart.png";
+import userIcon from "../../assets/img/user.jpg";
+import cartIcon from "../../assets/img/shopping-cart.jpg";
 import 'react-dropdown/style.css';
 import "./styles.scss";
 
@@ -53,7 +53,7 @@ const Header = ({ authenticateUser }) => {
     setModalState({ isOpened: true, signInClicked: false, regClicked: true });
   }
 
-  const confirmUserAuthentication = (userData) => {
+  const confirmUserAuthentication = userData => {
     authenticateUser(userData);
     setModalState({ isOpened: false, signInClicked: false, regClicked: false });
 
@@ -66,8 +66,9 @@ const Header = ({ authenticateUser }) => {
     if (isConfirmed) {
       authenticateUser({
         isLogged: false,
-        login: null,
-        password: null,
+        login: '',
+        password: '',
+        isAdmin: false,
         address: null,
         phone: null,
         cartCount: 0,
@@ -123,18 +124,21 @@ const Header = ({ authenticateUser }) => {
         <div className="header__burger"></div>
       </header>
 
-      <Modal opened={modalState.isOpened}
-            type={`${modalState.signInClicked ? "signIn" : "registration"}`}
-            confirmUserAuthentication={confirmUserAuthentication}
-            onCloseClick={() => setModalState({ isOpened: false, signInClicked: false, regClicked: false })}>
-              <InputText fieldLabel="Login:" fieldName="login" message="Enter your login here..."></InputText>
-              <InputText fieldLabel="Password:" fieldName="password" message="Enter your password here..."></InputText>
-              {modalState.regClicked ? (
-                <InputText fieldLabel="Confirm password:" fieldName="confirmPassword" message="Repeat your password here..."></InputText>
-              ) : ""}
-      </Modal>
+      {modalState.isOpened &&
+        <Modal
+          type={`${modalState.signInClicked ? "signIn" : "registration"}`}
+          confirmUserAuthentication={confirmUserAuthentication}
+          onCloseClick={() => setModalState({ isOpened: false, signInClicked: false, regClicked: false })}
+        >
+          <InputText fieldLabel="Login:" fieldName="login" fieldType="text" message="Enter your login here..."></InputText>
+          <InputText fieldLabel="Password:" fieldName="password" fieldType="password" message="Enter your password here..."></InputText>
+          {modalState.regClicked ? (
+            <InputText fieldLabel="Confirm password:" fieldName="confirmPassword" fieldType="password" message="Repeat your password here..."></InputText>
+          ) : ""}
+        </Modal>
+      }
     </>
   )
 }
 
-export default Header;
+export default React.memo(Header);

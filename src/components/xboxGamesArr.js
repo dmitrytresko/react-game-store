@@ -6,8 +6,8 @@ import residentEvil7Img from "../assets/img/games/xbox/resident-evil7.png";
 import theWitcher3Img from "../assets/img/games/xbox/the-witcher3.png";
 import rocketLeagueImg from "../assets/img/games/xbox/rocket-league.png";
 import tombRaiderImg from "../assets/img/games/xbox/tomb-raider.png";
-import fiveStars from "../assets/img/card-items/five-stars.png";
-import fourStars from "../assets/img/card-items/four-stars.png";
+import fiveStars from "../assets/img/card-items/five-stars.jpg";
+import fourStars from "../assets/img/card-items/four-stars.jpg";
 
 const xboxGamesArr = [
   {
@@ -17,6 +17,7 @@ const xboxGamesArr = [
     path: forzaHorizon4Img,
     rating: fiveStars,
     price: 54.99,
+    age: 0,
     genre: "Racing",
     metaRating: 92
   },
@@ -27,6 +28,7 @@ const xboxGamesArr = [
     path: theWitcher3Img,
     rating: fiveStars,
     price: 39.99,
+    age: 18,
     genre: "Action-RPG",
     metaRating: 91
   },
@@ -37,6 +39,7 @@ const xboxGamesArr = [
     path: mc11Img,
     rating: fiveStars,
     price: 44.99,
+    age: 18,
     genre: "Fighting",
     metaRating: 88
   },
@@ -47,6 +50,7 @@ const xboxGamesArr = [
     path: fifa21Img,
     rating: fourStars,
     price: 99.99,
+    age: 0,
     genre: "Sports",
     metaRating: 77
   },
@@ -55,8 +59,9 @@ const xboxGamesArr = [
     name: "Resident Evil 7: Biohazard",
     company: "Capcom",
     path: residentEvil7Img,
-    rating: fourStars,
+    rating: fiveStars,
     price: 19.99,
+    age: 18,
     genre: "Survival horror",
     metaRating: 86
   },
@@ -67,6 +72,7 @@ const xboxGamesArr = [
     path: assassinOdysseyImg,
     rating: fiveStars,
     price: 54.99,
+    age: 18,
     genre: "Action-Adventure",
     metaRating: 87
   },
@@ -77,6 +83,7 @@ const xboxGamesArr = [
     path: tombRaiderImg,
     rating: fiveStars,
     price: 24.99,
+    age: 18,
     genre: "Action-RPG",
     metaRating: 86
   },
@@ -87,6 +94,7 @@ const xboxGamesArr = [
     path: rocketLeagueImg,
     rating: fiveStars,
     price: 0,
+    age: 0,
     genre: "Sports-Racing",
     metaRating: 87
   }

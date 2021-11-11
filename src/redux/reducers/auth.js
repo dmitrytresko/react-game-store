@@ -2,10 +2,12 @@ const initialState = {
   isLogged: false,
   userName: '',
   password: '',
+  isAdmin: false,
   address: null,
   phone: null,
   cartCount: 0,
-  selectedItems: []
+  selectedItems: [],
+  currentGame: null
 };
 
 const authReducer = (state = initialState, action) => {
@@ -18,8 +20,11 @@ const authReducer = (state = initialState, action) => {
         isLogged: payload.login !== null && payload.login ? true : false,
         userName: payload.login,
         password: payload.password,
+        isAdmin: payload.login !== null && payload.login.includes('admin') ? true : false,
         address: payload.address,
         phone: payload.phone,
+        cartCount: payload.cartCount,
+        selectedItems: payload.selectedItems
       };
     case "SET_NEW_PASSWORD":
       return {
@@ -42,6 +47,11 @@ const authReducer = (state = initialState, action) => {
         ...state,
         cartCount: payload.newCartCount,
         selectedItems: payload.selectedItems
+      };
+    case "SET_CURRENT_GAME":
+      return {
+        ...state,
+        currentGame: payload.currentGame,
       };
     default:
       return state;

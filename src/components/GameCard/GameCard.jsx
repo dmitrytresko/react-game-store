@@ -1,19 +1,20 @@
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_CART_DATA } from "../../redux/actions";
+import { setCartData, setCurrentGame } from "../../redux/actions";
 import "./styles.scss";
 
-const GameCard = ({ gameDetails }) => {
+const GameCard = ({ gameDetails, openEditGameModalState }) => {
   const dispatch = useDispatch();
 
   const isUserLoggedIn = useSelector(state => state.user?.isLogged);
+  const isUserAdmin = useSelector(state => state.user?.isAdmin);
   const userCartCount = useSelector(state => state.user?.cartCount);
   const userSelectedItems = useSelector(state => state.user?.selectedItems);
 
   const addItemToCartHandler = () => {
     if (isUserLoggedIn) {
-      dispatch({
-        type: SET_CART_DATA,
-        payload: {
+      dispatch(
+        setCartData ({
           newCartCount: userCartCount + 1,
           selectedItems: [
             ...userSelectedItems,
@@ -22,10 +23,32 @@ const GameCard = ({ gameDetails }) => {
               gameName: gameDetails.name,
               gamePrice: gameDetails.price,
               gameCompany: gameDetails.company,
+              gameImage: gameDetails.path
             }
           ]
-        }
-      });
+        })
+      );
+    }
+  }
+
+  const editItemHandler = () => {
+    openEditGameModalState();
+
+    if (gameDetails) {
+      dispatch(
+        setCurrentGame({
+          currentGame: {
+            gameId: gameDetails.id,
+            gameGenre: gameDetails.genre,
+            gameName: gameDetails.name,
+            gamePrice: gameDetails.price,
+            gameCompany: gameDetails.company,
+            gameAge: gameDetails.age,
+            gameRating: gameDetails.metaRating,
+            gameImage: gameDetails.path
+          }
+        })
+      );
     }
   }
 
@@ -33,7 +56,12 @@ const GameCard = ({ gameDetails }) => {
     <div className="game-card">
       <div className="game-card__cover-wrapper">
         <img className="game-card__cover" src={gameDetails.path} alt={gameDetails.name} />
-        {isUserLoggedIn && <button className="game-card__order-btn" onClick={addItemToCartHandler}>Add To Cart</button>}
+        {isUserLoggedIn &&
+          <>
+            <button className="game-card__add-btn" onClick={addItemToCartHandler}>Add To Cart</button>
+            {isUserAdmin && <button className="game-card__edit-btn" onClick={editItemHandler}>Edit Game</button>}
+          </>
+        }
       </div>
       <div className="game-card__details-container">
         <div className="game-card__info">
@@ -49,4 +77,4 @@ const GameCard = ({ gameDetails }) => {
   )
 }
 
-export default GameCard;
+export default React.memo(GameCard);

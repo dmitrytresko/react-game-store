@@ -1,6 +1,4 @@
-$maxMediaWidth: 1024px;
-$tabletMediaWidth: 768px;
-$correctedTabletMediaWidth: 767px;
+@import '/src/styles/App.scss';
 
 .content-overlay {
   position: fixed;
@@ -9,7 +7,7 @@ $correctedTabletMediaWidth: 767px;
   bottom: 0;
   left: 0;
   z-index: 1000;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.95);
 }
 
 .modal {
@@ -22,17 +20,17 @@ $correctedTabletMediaWidth: 767px;
   align-items: center;
   justify-content: center;
   width: 40vw;
-  min-width: 295px;
+  min-width: 300px;
   overflow: hidden;
-  font-size: 1.5rem;
-  font-family: "Teko", sans-serif;
+  font-family: $primary-font;
   background: #f8f8f8;
   border-radius: 5px;
-  box-shadow: 0 0 15px 8px coral;
+  box-shadow: 0 0 12px 8px $primary-color;
   transform: translate(-50%, -50%);
+  transition: transform 0.4s;
 
   @media (max-width: $tabletMediaWidth) {
-    box-shadow: 0 0 8px 4px coral;
+    box-shadow: 0 0 8px 4px $primary-color;
   }
 
   &__head-block {
@@ -41,9 +39,10 @@ $correctedTabletMediaWidth: 767px;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 75px;
-    margin-bottom: 30px;
-    border-bottom: 2px solid coral;
+    height: 70px;
+    margin-bottom: 10px;
+    padding: 20px 0;
+    border-bottom: $primary-border black;
 
     @media (max-width: $correctedTabletMediaWidth) {
       height: 50px;
@@ -51,18 +50,18 @@ $correctedTabletMediaWidth: 767px;
   }
 
   &__title {
-    color: coral;
+    color: $primary-color;
     font-weight: bolder;
-    font-size: 2.25rem;
-    font-family: "Teko", sans-serif;
+    font-size: 34px;
+    font-family: $primary-font;
     text-transform: uppercase;
 
     @media (max-width: $maxMediaWidth) {
-      font-size: 1.7rem;
+      font-size: 30px;
     }
 
     @media (max-width: $tabletMediaWidth) {
-      font-size: 1.6rem;
+      font-size: 24px;
     }
   }
 
@@ -77,13 +76,14 @@ $correctedTabletMediaWidth: 767px;
     padding: 0 20px;
     background: none;
     border: none;
-    border-left: 2px solid transparent;
+    border-left: $primary-border transparent;
     outline: none;
     cursor: pointer;
     transition: all 0.4s ease-out;
 
     &:hover {
-      border-left: 2px solid coral;
+      background: #fce9eb;
+      border-left: $primary-border black;
     }
 
     @media (max-width: $tabletMediaWidth) {
@@ -91,23 +91,37 @@ $correctedTabletMediaWidth: 767px;
     }
 
     &--img {
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
 
       @media (max-width: $tabletMediaWidth) {
-        width: 18px;
-        height: 18px;
+        width: 16px;
+        height: 16px;
       }
+    }
+  }
+
+  &__children-block {
+    width: 100%;
+    max-height: 500px;
+    padding: 10px 0 10px 12px;
+    overflow-y: scroll;
+
+    @media (max-width: $correctedTabletMediaWidth) {
+      max-height: 290px;
+      padding: 5px 0 5px 12px;
     }
   }
 
   &__bottom-block {
     display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin-top: 25px;
+    margin-top: 10px;
     padding: 20px 0;
-    border-top: 2px solid black;
+    border-top: $primary-border black;
   }
 }

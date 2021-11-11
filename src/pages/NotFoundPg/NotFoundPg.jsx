@@ -1,5 +1,5 @@
 import { useLocation } from "react-router";
-import notFoundImg from "../../assets/img/not-found.png";
+import notFoundImg from "../../assets/img/not-found.jpg";
 import "./styles.scss";
 
 const NotFoundPg = () => {

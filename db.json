@@ -316,7 +316,7 @@
     }
   ],
   "auth": {
-    "login": "vasya",
-    "password": "1111111"
+    "login": "admin",
+    "password": "admin"
   }
 }

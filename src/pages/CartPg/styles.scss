@@ -1,16 +1,23 @@
+@import '/src/styles/App.scss';
+
 .cart {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 300px;
+  min-width: 275px;
   min-height: 100vh;
   padding: 0 30px;
 
   &__text {
     color: dimgray;
     font-size: 30px;
-    font-family: "Teko", sans-serif;
+    font-family: $primary-font;
+    text-align: center;
     text-decoration: none;
+
+    @media (max-width: $correctedTabletMediaWidth) {
+      font-size: 28px;
+    }
   }
 
   &__link {
@@ -19,38 +26,44 @@
     transition: all 0.4s ease-out;
 
     &:hover {
-      color: coral;
+      color: $primary-color;
       text-decoration: underline;
     }
 
     &:active {
-      color: coral;
+      color: $primary-color;
       text-decoration: underline;
     }
   }
 
-  &__game-image {
-    width: 150px;
-    height: 200px;
-    border-radius: 5px;
+  &__empty-cart-img {
+    width: 192px;
+    height: 192px;
+    margin-top: 90px;
+
+    @media (max-width: $correctedTabletMediaWidth) {
+      width: 156px;
+      height: 156px;
+      margin-top: 60px;
+    }
   }
 
   table {
     margin-top: 10px;
     overflow: hidden;
-    font-family: "Teko", sans-serif;
+    font-family: $primary-font;
     text-align: left;
     background-color: #ffffff;
     border-radius: 5px;
     border-collapse: collapse;
-    box-shadow: 0 5px 10px coral;
+    box-shadow: 0 5px 10px $primary-color;
 
     thead {
-      color: coral;
+      color: $primary-color;
       font-size: 30px;
       text-align: center;
       background-color: #ffffff;
-      box-shadow: 0 5px 10px coral;
+      box-shadow: 0 5px 10px $primary-color;
     }
 
     tbody {
@@ -105,7 +118,7 @@
           justify-content: center;
           width: 35px;
           height: 100%;
-          background: coral;
+          background: $primary-color;
           border: none;
           cursor: pointer;
           transition: all 0.4s;
@@ -190,12 +203,14 @@
   &__actions-handler {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     align-items: flex-end;
     width: 100%;
     margin-bottom: 70px;
 
     &--inner {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       width: 100%;
@@ -211,21 +226,22 @@
       min-height: 55px;
       padding: 0 10px;
       color: #ffffff;
-      font-size: 28px;
-      font-family: "Teko", sans-serif;
+      font-size: 29px;
+      font-family: $primary-font;
+      text-transform: uppercase;
       text-decoration: none;
-      background: coral;
-      border: 2px solid #ffffff;
+      background: $primary-color;
+      border: $primary-border #ffffff;
       border-radius: 5px;
       outline: none;
       cursor: pointer;
       transition: all 0.4s ease-out;
 
       &:hover {
-        color: coral;
+        color: $primary-color;
         background: black;
-        border: 2px solid coral;
-        box-shadow: 0 0 10px 5px coral;
+        border: $primary-border $primary-color;
+        box-shadow: 0 0 10px 5px $primary-color;
       }
     }
 
@@ -233,7 +249,7 @@
       &:hover {
         color: #e96479;
         background: black;
-        border: 2px solid #e96479;
+        border: $primary-border #e96479;
         box-shadow: 0 0 10px 5px #e96479;
       }
     }
@@ -242,7 +258,7 @@
       &:hover {
         color: #55b84b;
         background: black;
-        border: 2px solid #55b84b;
+        border: $primary-border #55b84b;
         box-shadow: 0 0 10px 5px #55b84b;
       }
     }
@@ -252,15 +268,9 @@
       min-width: 75px;
       color: #ffffff;
       font-size: 38px;
-      font-family: "Teko", sans-serif;
+      font-family: $primary-font;
       text-align: right;
       text-transform: uppercase;
     }
-  }
-
-  &__empty-cart-img {
-    width: 192px;
-    height: 192px;
-    margin-top: 90px;
   }
 }

@@ -1,6 +1,4 @@
-$maxMediaWidth: 1024px;
-$tabletMediaWidth: 768px;
-$correctedTabletMediaWidth: 767px;
+@import '/src/styles/App.scss';
 
 .profile {
   display: flex;
@@ -17,7 +15,7 @@ $correctedTabletMediaWidth: 767px;
 
     @media (max-width: $correctedTabletMediaWidth) {
       flex-direction: column;
-      margin: 15px 0 30px;
+      margin: 30px 0 25px;
     }
 
     .profile__user-img {
@@ -25,8 +23,8 @@ $correctedTabletMediaWidth: 767px;
       cursor: pointer;
 
       @media (max-width: $correctedTabletMediaWidth) {
-        width: 112px;
-        height: 112px;
+        width: 96px;
+        height: 96px;
         margin-right: 0;
         margin-bottom: 15px;
       }
@@ -58,16 +56,16 @@ $correctedTabletMediaWidth: 767px;
           color: black;
           font-weight: lighter;
           font-size: 24px;
-          font-family: "Teko", sans-serif;
+          font-family: $primary-font;
           background: #f8f8f8;
-          border: 2px solid dimgray;
+          border: $primary-border dimgray;
           border-radius: 5px;
           outline: none;
           transition: all 0.4s;
 
           &:focus {
-            border-color: coral;
-            box-shadow: 0 0 10px 3px coral;
+            border-color: $primary-color;
+            box-shadow: 0 0 10px 3px $primary-color;
           }
 
           @media (max-width: $correctedTabletMediaWidth) {
@@ -117,7 +115,7 @@ $correctedTabletMediaWidth: 767px;
       .profile__user-name {
         color: black;
         font-size: 39px;
-        font-family: "Teko", sans-serif;
+        font-family: $primary-font;
 
         @media (max-width: $correctedTabletMediaWidth) {
           font-size: 30px;
@@ -127,12 +125,24 @@ $correctedTabletMediaWidth: 767px;
       .profile__user-password {
         color: black;
         font-size: 25px;
-        font-family: "Teko", sans-serif;
+        font-family: $primary-font;
 
         @media (max-width: $correctedTabletMediaWidth) {
           font-size: 22px;
         }
       }
+    }
+  }
+
+  &__form-wrapper {
+    width: 100%;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.65);
+    border-radius: 5px;
+
+    @media (max-width: $correctedTabletMediaWidth) {
+      margin-bottom: 40px;
+      padding: 15px;
     }
   }
 
@@ -146,7 +156,7 @@ $correctedTabletMediaWidth: 767px;
       color: black;
       font-weight: normal;
       font-size: 32px;
-      font-family: "Teko", sans-serif;
+      font-family: $primary-font;
       text-transform: uppercase;
 
       @media (max-width: $correctedTabletMediaWidth) {
