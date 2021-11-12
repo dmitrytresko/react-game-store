@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer should render Footer component 1`] = `
+<div>
+  <footer
+    class="footer"
+  >
+    <p
+      class="footer__tagline"
+    >
+      Incredible convenient
+    </p>
+    <div
+      class="footer__icons-container"
+    >
+      <a
+        class="footer__link"
+        href="https://www.blizzard.com/en-us/"
+        rel="noreferrer"
+        target="_blank"
+      >
+        <img
+          alt="Blizzard logo"
+          class="footer__img--large"
+          src="test-file-stub"
+        />
+      </a>
+      <a
+        class="footer__link"
+        href="https://www.ea.com/sports"
+        rel="noreferrer"
+        target="_blank"
+      >
+        <img
+          alt="EA logo"
+          class="footer__img"
+          src="test-file-stub"
+        />
+      </a>
+      <a
+        class="footer__link"
+        href="https://www.ubisoft.com/en-us/"
+        rel="noreferrer"
+        target="_blank"
+      >
+        <img
+          alt="Ubisoft logo"
+          class="footer__img--medium"
+          src="test-file-stub"
+        />
+      </a>
+      <a
+        class="footer__link"
+        href="https://www.rockstargames.com/"
+        rel="noreferrer"
+        target="_blank"
+      >
+        <img
+          alt="Rockstar logo"
+          class="footer__img"
+          src="test-file-stub"
+        />
+      </a>
+      <a
+        class="footer__link"
+        href="https://www.valvesoftware.com/en/"
+        rel="noreferrer"
+        target="_blank"
+      >
+        <img
+          alt="Valve logo"
+          class="footer__img--large"
+          src="test-file-stub"
+        />
+      </a>
+    </div>
+  </footer>
+</div>
+`;

@@ -1,3 +1,4 @@
+import React from "react";
 import blizzardImg from "../../assets/img/blizzard.jpg";
 import eaImg from "../../assets/img/electronic_arts.jpg";
 import ubisoftImg from "../../assets/img/ubisoft.jpg";
