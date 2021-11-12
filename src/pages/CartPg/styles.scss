@@ -1,4 +1,4 @@
-$correctedTabletMediaWidth: 767px;
+@import '/src/styles/App.scss';
 
 .cart {
   display: flex;
@@ -11,7 +11,7 @@ $correctedTabletMediaWidth: 767px;
   &__text {
     color: dimgray;
     font-size: 30px;
-    font-family: "Teko", sans-serif;
+    font-family: $primary-font;
     text-align: center;
     text-decoration: none;
 
@@ -26,12 +26,12 @@ $correctedTabletMediaWidth: 767px;
     transition: all 0.4s ease-out;
 
     &:hover {
-      color: coral;
+      color: $primary-color;
       text-decoration: underline;
     }
 
     &:active {
-      color: coral;
+      color: $primary-color;
       text-decoration: underline;
     }
   }
@@ -51,19 +51,19 @@ $correctedTabletMediaWidth: 767px;
   table {
     margin-top: 10px;
     overflow: hidden;
-    font-family: "Teko", sans-serif;
+    font-family: $primary-font;
     text-align: left;
     background-color: #ffffff;
     border-radius: 5px;
     border-collapse: collapse;
-    box-shadow: 0 5px 10px coral;
+    box-shadow: 0 5px 10px $primary-color;
 
     thead {
-      color: coral;
+      color: $primary-color;
       font-size: 30px;
       text-align: center;
       background-color: #ffffff;
-      box-shadow: 0 5px 10px coral;
+      box-shadow: 0 5px 10px $primary-color;
     }
 
     tbody {
@@ -118,7 +118,7 @@ $correctedTabletMediaWidth: 767px;
           justify-content: center;
           width: 35px;
           height: 100%;
-          background: coral;
+          background: $primary-color;
           border: none;
           cursor: pointer;
           transition: all 0.4s;
@@ -227,21 +227,21 @@ $correctedTabletMediaWidth: 767px;
       padding: 0 10px;
       color: #ffffff;
       font-size: 29px;
-      font-family: "Teko", sans-serif;
+      font-family: $primary-font;
       text-transform: uppercase;
       text-decoration: none;
-      background: coral;
-      border: 2px solid #ffffff;
+      background: $primary-color;
+      border: $primary-border #ffffff;
       border-radius: 5px;
       outline: none;
       cursor: pointer;
       transition: all 0.4s ease-out;
 
       &:hover {
-        color: coral;
+        color: $primary-color;
         background: black;
-        border: 2px solid coral;
-        box-shadow: 0 0 10px 5px coral;
+        border: $primary-border $primary-color;
+        box-shadow: 0 0 10px 5px $primary-color;
       }
     }
 
@@ -249,7 +249,7 @@ $correctedTabletMediaWidth: 767px;
       &:hover {
         color: #e96479;
         background: black;
-        border: 2px solid #e96479;
+        border: $primary-border #e96479;
         box-shadow: 0 0 10px 5px #e96479;
       }
     }
@@ -258,7 +258,7 @@ $correctedTabletMediaWidth: 767px;
       &:hover {
         color: #55b84b;
         background: black;
-        border: 2px solid #55b84b;
+        border: $primary-border #55b84b;
         box-shadow: 0 0 10px 5px #55b84b;
       }
     }
@@ -268,7 +268,7 @@ $correctedTabletMediaWidth: 767px;
       min-width: 75px;
       color: #ffffff;
       font-size: 38px;
-      font-family: "Teko", sans-serif;
+      font-family: $primary-font;
       text-align: right;
       text-transform: uppercase;
     }

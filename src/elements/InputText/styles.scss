@@ -1,5 +1,4 @@
-$maxMediaWidth: 1024px;
-$tabletMediaWidth: 768px;
+@import '/src/styles/App.scss';
 
 .input-text {
   display: flex;
@@ -11,7 +10,7 @@ $tabletMediaWidth: 768px;
   margin-bottom: 15px;
   color: black;
   font-size: 1.6rem;
-  font-family: "Teko", sans-serif;
+  font-family: $primary-font;
 
   @media (max-width: $tabletMediaWidth - 1px) {
     font-size: 1.3rem;
@@ -30,7 +29,7 @@ $tabletMediaWidth: 768px;
     color: red;
     font-weight: lighter;
     font-size: 1.3rem;
-    font-family: "Teko", sans-serif;
+    font-family: $primary-font;
 
     @media (max-width: $maxMediaWidth) {
       font-size: 1.5rem;
@@ -47,9 +46,9 @@ $tabletMediaWidth: 768px;
     color: black;
     font-weight: lighter;
     font-size: 1.35rem;
-    font-family: "Teko", sans-serif;
+    font-family: $primary-font;
     background: #f8f8f8;
-    border: 2px solid dimgray;
+    border: $primary-border dimgray;
     border-radius: 5px;
     outline: none;
     transition: all 0.4s;
@@ -78,8 +77,8 @@ $tabletMediaWidth: 768px;
     }
 
     &:focus {
-      border-color: coral;
-      box-shadow: 0 0 10px 3px coral;
+      border-color: $primary-color;
+      box-shadow: 0 0 10px 3px $primary-color;
     }
   }
 }

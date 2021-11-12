@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { SET_CART_DATA } from "../../redux/actions";
+import { setCartData } from "../../redux/actions";
 import trashImg from "../../assets/img/trash.jpg";
 import leftArrowImg from "../../assets/img/left-arrow.jpg";
 import rightArrowImg from "../../assets/img/right-arrow.jpg";
@@ -26,13 +26,12 @@ const CartTableRow = ({ game, userCartCount, userSelectedItems, getRelevantItemQ
     if (idxOfItemToDecrease > -1) {
       userSelectedItems.splice(idxOfItemToDecrease, 1);
 
-      dispatch({
-        type: SET_CART_DATA,
-        payload: {
+      dispatch(
+        setCartData({
           newCartCount: userCartCount - 1,
           selectedItems: userSelectedItems
-        }
-      });
+        })
+      );
     }
   }
 
@@ -42,25 +41,23 @@ const CartTableRow = ({ game, userCartCount, userSelectedItems, getRelevantItemQ
       itemToAdd
     ];
 
-    dispatch({
-      type: SET_CART_DATA,
-      payload: {
+    dispatch(
+      setCartData({
         newCartCount: userCartCount + 1,
         selectedItems: selectedItemsIncreased
-      }
-    });
+      })
+    );
   }
 
   const deleteGameFromCart = gameToDeleteId => {
     const newSelectedItemsArr = userSelectedItems.filter(item => item.gameId !== gameToDeleteId);
 
-    dispatch({
-      type: SET_CART_DATA,
-      payload: {
+    dispatch(
+      setCartData({
         newCartCount: newSelectedItemsArr.length,
         selectedItems: newSelectedItemsArr
-      }
-    });
+      })
+    );
   }
 
   return (

@@ -1,4 +1,4 @@
-$correcteTabletMediaWidth: 767px;
+@import '/src/styles/App.scss';
 
 .search-container {
   display: flex;
@@ -12,7 +12,7 @@ $correcteTabletMediaWidth: 767px;
     width: 100%;
     margin-top: 30px;
 
-    @media (max-width: $correcteTabletMediaWidth) {
+    @media (max-width: $correctedTabletMediaWidth) {
       margin-top: 5px;
     }
 
@@ -21,9 +21,9 @@ $correcteTabletMediaWidth: 767px;
       padding: 6px 45px 6px 15px;
       color: black;
       font-size: 20px;
-      font-family: "Teko", sans-serif;
+      font-family: $primary-font;
       background: #f8f8f8;
-      border: 2px solid dimgray;
+      border: $primary-border dimgray;
       border-radius: 15px;
       outline: none;
       transition: all 0.4s;
@@ -34,8 +34,8 @@ $correcteTabletMediaWidth: 767px;
       }
 
       &:focus {
-        border-color: coral;
-        box-shadow: 0 0 10px 5px coral;
+        border-color: $primary-color;
+        box-shadow: 0 0 10px 5px $primary-color;
       }
     }
 
@@ -70,7 +70,7 @@ $correcteTabletMediaWidth: 767px;
         .loader {
           width: 24px;
           height: 24px;
-          border: 3px solid coral;
+          border: 3px solid $primary-color;
           border-top: 3px solid #f8f8f8;
           border-radius: 50%;
           transition: all 0.5s;
@@ -96,7 +96,7 @@ $correcteTabletMediaWidth: 767px;
     min-width: 300px;
     max-height: 0;
     margin-top: 5px;
-    font-family: "Teko", sans-serif;
+    font-family: $primary-font;
     border: none;
     border-radius: 15px;
     transition: all 0.4s ease;
@@ -112,17 +112,17 @@ $correcteTabletMediaWidth: 767px;
       justify-content: center;
       padding: 5px 10px 5px 15px;
       font-size: 1.25rem;
-      font-family: "Teko", sans-serif;
+      font-family: $primary-font;
       background: #f8f8f8;
-      border: 2px solid transparent;
+      border: $primary-border transparent;
       border-radius: 15px;
       outline: none;
       cursor: pointer;
       transition: all 0.4s ease;
 
       &:hover {
-        color: coral;
-        border-color: coral;
+        color: $primary-color;
+        border-color: $primary-color;
       }
     }
 
