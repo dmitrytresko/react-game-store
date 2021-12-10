@@ -1,0 +1,136 @@
+@import '/src/styles/App.scss';
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  width: 37.5%;
+  min-width: 300px;
+  max-width: 590px;
+
+  .searchbar {
+    position: relative;
+    width: 100%;
+    margin-top: 30px;
+
+    @media (max-width: $correctedTabletMediaWidth) {
+      margin-top: 5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 6px 45px 6px 15px;
+      color: black;
+      font-size: 20px;
+      font-family: $primary-font;
+      background: #f8f8f8;
+      border: $primary-border dimgray;
+      border-radius: 15px;
+      outline: none;
+      transition: all 0.4s;
+
+      &::-webkit-input-placeholder {
+        color: dimgray;
+        font-size: 20px;
+      }
+
+      &:focus {
+        border-color: $primary-color;
+        box-shadow: 0 0 10px 5px $primary-color;
+      }
+    }
+
+    &-submit {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 10%;
+      min-width: 50px;
+      height: 100%;
+      overflow: hidden;
+      background: url(../../assets/img/loupe.jpg) no-repeat center center;
+      border: none;
+      outline: none;
+      cursor: pointer;
+
+      &--active {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 10%;
+        min-width: 50px;
+        height: 100%;
+        overflow: hidden;
+        border: none;
+        outline: none;
+        cursor: pointer;
+
+        .loader {
+          width: 24px;
+          height: 24px;
+          border: 3px solid $primary-color;
+          border-top: 3px solid #f8f8f8;
+          border-radius: 50%;
+          transition: all 0.5s;
+          animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+      }
+    }
+  }
+
+  .found-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 300px;
+    max-height: 0;
+    margin-top: 5px;
+    font-family: $primary-font;
+    border: none;
+    border-radius: 15px;
+    transition: all 0.4s ease;
+
+    &--visible {
+      max-height: 129px;
+      overflow-y: auto;
+    }
+
+    &__text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px 10px 5px 15px;
+      font-size: 1.25rem;
+      font-family: $primary-font;
+      background: #f8f8f8;
+      border: $primary-border transparent;
+      border-radius: 15px;
+      outline: none;
+      cursor: pointer;
+      transition: all 0.4s ease;
+
+      &:hover {
+        color: $primary-color;
+        border-color: $primary-color;
+      }
+    }
+
+    &__mini-img {
+      width: 18px;
+      height: 18px;
+      margin-bottom: 4px;
+      margin-left: 10px;
+    }
+  }
+}

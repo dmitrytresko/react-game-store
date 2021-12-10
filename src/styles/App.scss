@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Teko:wght@300;400;700&display=swap");
+@import './config/normalize';
+@import './config/variables';
+@import './config/mixins';
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background-image: linear-gradient(
+    to top,
+    #696969,
+    #8b8b8b,
+    #aeaeae,
+    #d2d2d2,
+    #f8f8f8
+  );
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+
+  @media (max-width: $correctedTabletMediaWidth) {
+    width: 8px;
+  }
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 5px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $primary-color;
+  background-clip: padding-box;
+  border: $primary-border white;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #ff9c77;
+  }
+}
+
+.page-title {
+  margin: 25px 0 30px;
+  color: black;
+  font-size: calc(23px + 1vw);
+  font-family: $primary-font;
+  text-align: center;
+  text-transform: uppercase;
+
+  @media (max-width: $correctedTabletMediaWidth) {
+    margin: 15px 0 20px;
+    font-size: 30px;
+  }
+
+  &--not-found {
+    color: black;
+    font-size: 40px;
+    font-family: $primary-font;
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn {
+  width: 45%;
+  min-width: 260px;
+  padding: 5px 0;
+  font-size: 25px;
+  font-family: $primary-font;
+  text-decoration: none;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.4s ease;
+
+  @media (max-width: $maxMediaWidth) {
+    align-self: center;
+    padding: 6px 0;
+    font-size: 27px;
+  }
+
+  @media (max-width: $tabletMediaWidth - 1px) {
+    padding: 5px 0;
+    font-size: 23px;
+  }
+}
+
+.delete-btn {
+  margin-bottom: 15px;
+  color: #e96479;
+  background: #f8f8f8;
+  border: $primary-border #e96479;
+
+  &:hover {
+    background: black;
+    border: $primary-border #e96479;
+    box-shadow: 0 0 8px 4px #e96479;
+  }
+}
+
+.submit-btn {
+  color: $primary-color;
+  background: #f8f8f8;
+  border: $primary-border $primary-color;
+
+  &:hover {
+    background: black;
+    border: $primary-border $primary-color;
+    box-shadow: 0 0 8px 4px $primary-color;
+  }
+}

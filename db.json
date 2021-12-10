@@ -1,0 +1,322 @@
+{
+  "gamesArr": [
+    {
+      "id": 100,
+      "name": "FIFA 21: Standard Edition",
+      "company": "EA Sports",
+      "price": "59.99",
+      "age": 0,
+      "genre": "Sports"
+    },
+    {
+      "id": 101,
+      "name": "Red Dead Redemption 2",
+      "company": "Rockstar Games",
+      "price": "51.99",
+      "age": 18,
+      "genre": "Shooter"
+    },
+    {
+      "id": 102,
+      "name": "The Witcher 3: Wild Hunt",
+      "company": "CD Projekt",
+      "price": "24.99",
+      "age": 18,
+      "genre": "Action-RPG"
+    },
+    {
+      "id": 103,
+      "name": "The Last of Us Part II",
+      "company": "Sony Interactive",
+      "price": "54.99",
+      "age": 18,
+      "genre": "Survival horror"
+    },
+    {
+      "id": 104,
+      "name": "Fallout 4",
+      "company": "Bethesda",
+      "price": "14.99",
+      "age": 18,
+      "genre": "Action-RPG"
+    },
+    {
+      "id": 105,
+      "name": "Grand Theft Auto V",
+      "company": "Rockstar Games",
+      "price": "24.99",
+      "age": 18,
+      "genre": "Action-Adventure"
+    },
+    {
+      "id": 106,
+      "name": "Horizon Zero Dawn",
+      "company": "Sony Interactive",
+      "price": "16.99",
+      "age": 16,
+      "genre": "Action-RPG"
+    },
+    {
+      "id": 107,
+      "name": "UFC 4",
+      "company": "EA Sports",
+      "price": "109.99",
+      "age": 18,
+      "genre": "Fighting"
+    },
+    {
+      "id": 200,
+      "name": "Forza Horizon 4: Standard Edition",
+      "company": "Playground Games",
+      "price": "54.99",
+      "age": 0,
+      "genre": "Racing"
+    },
+    {
+      "id": 201,
+      "name": "The Witcher 3: Wild Hunt",
+      "company": "CD Projekt",
+      "price": "39.99",
+      "age": 18,
+      "genre": "Action-RPG"
+    },
+    {
+      "id": 202,
+      "name": "Mortal Kombat 11: Standard Edition",
+      "company": "NetherRealm Studios",
+      "price": "44.99",
+      "age": 18,
+      "genre": "Fighting"
+    },
+    {
+      "id": 203,
+      "name": "FIFA 21: Ultimate Edition",
+      "company": "EA Sports",
+      "price": "99.99",
+      "age": 0,
+      "genre": "Sports"
+    },
+    {
+      "id": 204,
+      "name": "Resident Evil 7: Biohazard",
+      "company": "Capcom",
+      "price": "19.99",
+      "age": 18,
+      "genre": "Survival horror"
+    },
+    {
+      "id": 205,
+      "name": "Assassin's Creed Odyssey: Standard Edition",
+      "company": "Ubisoft",
+      "price": "54.99",
+      "age": 18,
+      "genre": "Action-Adventure"
+    },
+    {
+      "id": 206,
+      "name": "Rise of the Tomb Raider",
+      "company": "Crystal Dynamics",
+      "price": "24.99",
+      "age": 18,
+      "genre": "Action-RPG"
+    },
+    {
+      "id": 207,
+      "name": "Rocket League",
+      "company": "‪Psyonix LLC",
+      "price": "0",
+      "age": 0,
+      "genre": "Sports-Racing"
+    },
+    {
+      "id": 300,
+      "name": "Hitman 3",
+      "company": "IO Interactive",
+      "price": "34.99",
+      "age": 18,
+      "genre": "Action-Stealth"
+    },
+    {
+      "id": 301,
+      "name": "Assassin's Creed Valhalla",
+      "company": "Ubisoft",
+      "price": "69.99",
+      "age": 18,
+      "genre": "Action-RPG"
+    },
+    {
+      "id": 302,
+      "name": "FIFA 21: Champions Edition",
+      "company": "EA Sports",
+      "price": "49.99",
+      "age": 0,
+      "genre": "Sports"
+    },
+    {
+      "id": 303,
+      "name": "Call of Duty: Warzone",
+      "company": "Infinity Ward",
+      "price": "0",
+      "age": 18,
+      "genre": "Shooter"
+    },
+    {
+      "id": 304,
+      "name": "Tom Clancy's Rainbow Six Siege",
+      "company": "Ubisoft",
+      "price": "19.99",
+      "age": 18,
+      "genre": "Shooter"
+    },
+    {
+      "id": 305,
+      "name": "F1 2020",
+      "company": "Codemasters",
+      "price": "54.99",
+      "age": 0,
+      "genre": "Sports-Racing"
+    },
+    {
+      "id": 306,
+      "name": "The Elder Scrolls V: Skyrim",
+      "company": "Bethesda Game Studios",
+      "price": "19.99",
+      "age": 18,
+      "genre": "Action-RPG"
+    },
+    {
+      "id": 307,
+      "name": "Red Dead Redemption 2",
+      "company": "Rockstar Games",
+      "price": "34.99",
+      "age": 18,
+      "genre": "Shooter"
+    }
+  ],
+  "getTopProducts": [
+    {
+      "id": 100,
+      "name": "FIFA 21: Standard Edition",
+      "metaRating": 72
+    },
+    {
+      "id": 101,
+      "name": "Red Dead Redemption 2",
+      "metaRating": 97
+    },
+    {
+      "id": 102,
+      "name": "The Witcher 3: Wild Hunt",
+      "metaRating": 93
+    },
+    {
+      "id": 103,
+      "name": "The Last of Us Part II",
+      "metaRating": 93
+    },
+    {
+      "id": 104,
+      "name": "Fallout 4",
+      "metaRating": 87
+    },
+    {
+      "id": 105,
+      "name": "Grand Theft Auto V",
+      "metaRating": 96
+    },
+    {
+      "id": 106,
+      "name": "Horizon Zero Dawn",
+      "metaRating": 89
+    },
+    {
+      "id": 107,
+      "name": "UFC 4",
+      "metaRating": 78
+    },
+    {
+      "id": 200,
+      "name": "Forza Horizon 4: Standard Edition",
+      "metaRating": 92
+    },
+    {
+      "id": 201,
+      "name": "The Witcher 3: Wild Hunt",
+      "metaRating": 91
+    },
+    {
+      "id": 202,
+      "name": "Mortal Kombat 11: Standard Edition",
+      "metaRating": 88
+    },
+    {
+      "id": 203,
+      "name": "FIFA 21: Ultimate Edition",
+      "metaRating": 77
+    },
+    {
+      "id": 204,
+      "name": "Resident Evil 7: Biohazard",
+      "metaRating": 86
+    },
+    {
+      "id": 205,
+      "name": "Assassin's Creed Odyssey: Standard Edition",
+      "metaRating": 87
+    },
+    {
+      "id": 206,
+      "name": "Rise of the Tomb Raider",
+      "metaRating": 86
+    },
+    {
+      "id": 207,
+      "name": "Rocket League",
+      "metaRating": 87
+    },
+    {
+      "id": 300,
+      "name": "Hitman 3",
+      "metaRating": 87
+    },
+    {
+      "id": 301,
+      "name": "Assassin's Creed Valhalla",
+      "metaRating": 82
+    },
+    {
+      "id": 302,
+      "name": "FIFA 21: Champions Edition",
+      "metaRating": 74
+    },
+    {
+      "id": 303,
+      "name": "Call of Duty: Warzone",
+      "metaRating": 80
+    },
+    {
+      "id": 304,
+      "name": "Tom Clancy's Rainbow Six Siege",
+      "metaRating": 79
+    },
+    {
+      "id": 305,
+      "name": "F1 2020",
+      "metaRating": 88
+    },
+    {
+      "id": 306,
+      "name": "The Elder Scrolls V: Skyrim",
+      "metaRating": 84
+    },
+    {
+      "id": 307,
+      "name": "Red Dead Redemption 2",
+      "metaRating": 92
+    }
+  ],
+  "auth": {
+    "login": "admin",
+    "password": "admin"
+  }
+}
