@@ -1,5 +1,10 @@
 import React, { Suspense, lazy } from "react";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import { connect } from "react-redux";
 import { setUserData } from "./redux/actions";
 
@@ -14,8 +19,8 @@ const CartPg = lazy(() => import("./pages/CartPg/CartPg"));
 const NotFoundPg = lazy(() => import("./pages/NotFoundPg/NotFoundPg"));
 const ProtectedRoute = lazy(() => import("./components/ProtectedRoute"));
 
-import loader from "./assets/img/loader.gif"
-import './styles/App.scss';
+import loader from "./assets/img/loader.gif";
+import "./styles/App.scss";
 
 class App extends React.Component {
   constructor(props) {
@@ -26,6 +31,10 @@ class App extends React.Component {
 
   static getDerivedStateFromError() {
     return { hasError: true };
+  }
+
+  componentDidMount() {
+    document.title = "DonnyPlay | Gaming Store";
   }
 
   componentDidCatch(error) {
@@ -40,7 +49,14 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <Suspense fallback={<img src={loader} style={{display: 'block', margin: 'auto', width: '50px'}}/>} >
+        <Suspense
+          fallback={
+            <img
+              src={loader}
+              style={{ display: "block", margin: "auto", width: "50px" }}
+            />
+          }
+        >
           {this.state.hasError && <Redirect to="/" />}
 
           <Header authenticateUser={this.authenticateUser} />
@@ -61,12 +77,12 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   userState: state.user,
-})
+});
 
-const mapDispatchToProps = dispatch => ({
-  setUserDataFunc: (data) => dispatch(setUserData(data))
-})
+const mapDispatchToProps = (dispatch) => ({
+  setUserDataFunc: (data) => dispatch(setUserData(data)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

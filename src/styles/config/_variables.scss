@@ -1,11 +1,56 @@
-$primary-color: coral;
+// colors
+$primary-color: #9296f0;
+$secondary-color: #5b63b7;
+$hover-color: #434886;
+$light-color: #b7b9ff;
+$gray-color: #aba9bc;
+$warn-color: #fb4f93;
+$success-color: #1dc198;
+$black-color: #000000;
+$white-color: #ffffff;
+
+// font
 $primary-font: "Teko", sans-serif;
-$primary-border: 2px solid;
+$huge-font-size: 40px;
+$large-font-size: 32px;
+$mid-large-font-size: 24px;
+$primary-font-size: 16px;
+$mid-small-font-size: 14px;
+$small-font-size: 12px;
+$bold-font-weight: 700;
+$normal-font-weight: 400;
+$thin-font-weight: 300;
+$large-line-height: 45px;
+$normal-line-height: 22px;
+$mid-small-line-height: 18px;
+$small-line-height: 14px;
 
-$default-margin: 40px;
+$large-width: 420px;
+$mid-large-width: 350px;
+$normal-width: 200px;
+$mid-small-width: 180px;
+$small-width: 120px;
 
+// common values
+$default-margin: 24px;
+$default-border: 1px solid;
+$default-border-radius: 4px;
+$default-shadow: 0 2px 4px $secondary-color;
+$default-transition: all 0.3s ease-in-out;
+
+// breakpoints
 $largeMediaWidth: 1201px;
 $maxMediaWidth: 1024px;
 $tabletMediaWidth: 768px;
 $correctedTabletMediaWidth: 767px;
 $minMediaWidth: 320px;
+
+$large-screen-min: 1281px;
+$desktop-max: 1280px;
+$desktop-min: 1025px;
+$laptop-max: 1024px;
+$laptop-min: 769px;
+$tablet-max: 768px;
+$tablet-min: 481px;
+$mobile-max: 480px;
+$mobile-min: 0;

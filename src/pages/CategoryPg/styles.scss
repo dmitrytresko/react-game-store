@@ -1,8 +1,7 @@
-@import '/src/styles/App.scss';
+@import "/src/styles/App.scss";
 
 .categories {
   display: flex;
-  justify-content: space-between;
   width: 100%;
   min-width: 300px;
   min-height: 100vh;
@@ -16,12 +15,12 @@
     display: flex;
     flex-direction: column;
     float: left;
-    width: 20%;
+    min-width: 204px;
     min-height: 100vh;
-    padding: 20px 30px;
+    padding: 16px 24px;
     overflow-y: auto;
-    background: #f0f1f5;
-    box-shadow: 0 0 15px 7px black;
+    background: $white-color;
+    border-right: $default-border $success-color;
 
     @media (max-width: $maxMediaWidth) {
       width: 30%;
@@ -57,23 +56,23 @@
 
       &:first-of-type {
         margin-top: 35px;
-        border-top: $primary-border black;
+        border-top: $default-border $black-color;
       }
 
       &:not(:last-child) {
-        border-bottom: $primary-border black;
+        border-bottom: $default-border $black-color;
       }
 
       .sidebar__option-name {
         margin-bottom: 10px;
-        color: black;
+        color: $black-color;
         font-weight: bold;
         font-size: 27px;
         font-family: $primary-font;
       }
 
       .sidebar__option-label {
-        color: black;
+        color: $black-color;
         font-size: 24px;
         font-family: $primary-font;
       }
@@ -82,7 +81,7 @@
         display: flex;
         align-items: center;
         margin-bottom: 10px;
-        color: black;
+        color: $black-color;
         font-size: 24px;
         font-family: $primary-font;
 
@@ -92,7 +91,7 @@
           color: $primary-color;
           font-size: 24px;
           font-family: $primary-font;
-          background: black;
+          background: $black-color;
           border-radius: 5px;
           outline: none;
           cursor: pointer;
@@ -113,9 +112,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80%;
-    min-width: 300px;
-    padding: 0 140px;
+    flex-grow: 1;
+    min-width: 296px;
+    padding: 0 $default-margin;
 
     @media (max-width: $maxMediaWidth) {
       width: 70%;
@@ -128,17 +127,16 @@
     }
 
     &__games-container {
-      display: flex;
       flex-wrap: wrap;
-      justify-content: center;
       width: 100%;
-      margin: 30px 0;
+      margin: 32px 0;
+      gap: 16px;
 
       .categories__no-results-img {
         @media (max-width: $correctedTabletMediaWidth) {
           width: 96px;
           height: 96px;
-          margin-bottom: 15px;
+          margin-bottom: 16px;
         }
       }
 

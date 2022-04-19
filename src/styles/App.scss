@@ -1,120 +1,112 @@
 @import url("https://fonts.googleapis.com/css2?family=Teko:wght@300;400;700&display=swap");
-@import './config/normalize';
-@import './config/variables';
-@import './config/mixins';
+@import "./config/common";
+@import "./config/normalize";
+@import "./config/variables";
+@import "./config/mixins";
 
 #root {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 100%;
   min-height: 100vh;
   background-image: linear-gradient(
-    to top,
-    #696969,
-    #8b8b8b,
-    #aeaeae,
-    #d2d2d2,
-    #f8f8f8
+    to bottom,
+    #eeeeff,
+    #e5e5ff,
+    #ddddff,
+    #d4d4ff,
+    #cbccff
   );
+}
+
+body {
+  font-family: $primary-font;
+  font-weight: $normal-font-weight;
+  color: $black-color;
 }
 
 ::-webkit-scrollbar {
   width: 12px;
 
-  @media (max-width: $correctedTabletMediaWidth) {
+  @include breakpoint($tablet-max) {
     width: 8px;
   }
 }
 
 ::-webkit-scrollbar-track {
   background: transparent;
-  border-radius: 5px;
+  border-radius: $default-border-radius;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.15);
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: $primary-color;
+  background-color: $secondary-color;
   background-clip: padding-box;
-  border: $primary-border white;
-  border-radius: 5px;
+  border: $default-border $white-color;
+  border-radius: $default-border-radius;
 
   &:hover {
-    background-color: #ff9c77;
+    background-color: $light-color;
   }
 }
 
 .page-title {
-  margin: 25px 0 30px;
-  color: black;
-  font-size: calc(23px + 1vw);
-  font-family: $primary-font;
+  margin: $default-margin 0;
+  font-size: $large-font-size;
   text-align: center;
   text-transform: uppercase;
 
-  @media (max-width: $correctedTabletMediaWidth) {
-    margin: 15px 0 20px;
-    font-size: 30px;
+  @include breakpoint($tablet-max) {
+    margin: 20px;
+    font-size: $mid-large-font-size;
   }
 
   &--not-found {
-    color: black;
-    font-size: 40px;
-    font-family: $primary-font;
+    font-size: $huge-font-size;
   }
-}
-
-.column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .btn {
-  width: 45%;
-  min-width: 260px;
-  padding: 5px 0;
-  font-size: 25px;
+  width: 60%;
+  min-width: 264px;
+  padding: 12px;
+  border-radius: $default-border-radius;
+  font-size: $mid-large-font-size;
   font-family: $primary-font;
   text-decoration: none;
-  border-radius: 5px;
   outline: none;
   cursor: pointer;
-  transition: all 0.4s ease;
+  transition: $default-transition;
 
-  @media (max-width: $maxMediaWidth) {
+  @include breakpoint($tablet-max) {
     align-self: center;
-    padding: 6px 0;
-    font-size: 27px;
+    padding: 10px;
   }
 
-  @media (max-width: $tabletMediaWidth - 1px) {
-    padding: 5px 0;
-    font-size: 23px;
+  @include breakpoint($mobile-max) {
+    font-size: 20px;
   }
 }
 
 .delete-btn {
-  margin-bottom: 15px;
-  color: #e96479;
-  background: #f8f8f8;
-  border: $primary-border #e96479;
+  margin-top: 16px;
+  border: $default-border $warn-color;
+  background-color: $white-color;
+  color: $warn-color;
 
   &:hover {
-    background: black;
-    border: $primary-border #e96479;
-    box-shadow: 0 0 8px 4px #e96479;
+    background-color: $warn-color;
+    border: $default-border $warn-color;
+    color: $white-color;
   }
 }
 
 .submit-btn {
-  color: $primary-color;
-  background: #f8f8f8;
-  border: $primary-border $primary-color;
+  margin-top: 16px;
+  border: $default-border $secondary-color;
+  background-color: $secondary-color;
+  color: $white-color;
 
   &:hover {
-    background: black;
-    border: $primary-border $primary-color;
-    box-shadow: 0 0 8px 4px $primary-color;
+    background-color: $hover-color;
+    border: $default-border $hover-color;
   }
 }

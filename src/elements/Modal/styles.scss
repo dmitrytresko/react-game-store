@@ -1,4 +1,4 @@
-@import '/src/styles/App.scss';
+@import "/src/styles/App.scss";
 
 .content-overlay {
   position: fixed;
@@ -7,7 +7,9 @@
   bottom: 0;
   left: 0;
   z-index: 1000;
-  background: rgba(0, 0, 0, 0.95);
+  background-color: #000000;
+  transition: $default-transition;
+  opacity: 0.85;
 }
 
 .modal {
@@ -20,108 +22,74 @@
   align-items: center;
   justify-content: center;
   width: 40vw;
-  min-width: 300px;
-  overflow: hidden;
-  font-family: $primary-font;
-  background: #f8f8f8;
-  border-radius: 5px;
-  box-shadow: 0 0 12px 8px $primary-color;
+  min-width: 576px;
+  padding: 36px 0 48px;
+  overflow: auto;
+  background-color: $white-color;
+  border-radius: $default-border-radius;
   transform: translate(-50%, -50%);
-  transition: transform 0.4s;
+  transition: $default-transition;
 
-  @media (max-width: $tabletMediaWidth) {
-    box-shadow: 0 0 8px 4px $primary-color;
+  @include breakpoint($tablet-max) {
+    min-width: 400px;
   }
 
-  &__head-block {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 70px;
-    margin-bottom: 10px;
-    padding: 20px 0;
-    border-bottom: $primary-border black;
-
-    @media (max-width: $correctedTabletMediaWidth) {
-      height: 50px;
-    }
-  }
-
-  &__title {
-    color: $primary-color;
-    font-weight: bolder;
-    font-size: 34px;
-    font-family: $primary-font;
-    text-transform: uppercase;
-
-    @media (max-width: $maxMediaWidth) {
-      font-size: 30px;
-    }
-
-    @media (max-width: $tabletMediaWidth) {
-      font-size: 24px;
-    }
+  @include breakpoint($mobile-max) {
+    min-width: 296px;
+    padding: 32px 0;
   }
 
   &__close-btn {
     position: absolute;
-    right: 0;
+    right: 16px;
+    top: 16px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    justify-self: flex-end;
-    height: 100%;
-    padding: 0 20px;
+    align-items: flex-start;
     background: none;
     border: none;
-    border-left: $primary-border transparent;
-    outline: none;
     cursor: pointer;
-    transition: all 0.4s ease-out;
+    transition: $default-transition;
 
-    &:hover {
-      background: #fce9eb;
-      border-left: $primary-border black;
-    }
-
-    @media (max-width: $tabletMediaWidth) {
-      padding: 0 15px;
+    @include breakpoint($mobile-max) {
+      right: 12px;
+      top: 12px;
     }
 
     &--img {
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
+    }
+  }
 
-      @media (max-width: $tabletMediaWidth) {
-        width: 16px;
-        height: 16px;
-      }
+  &__title {
+    margin: 0 8px;
+    margin-bottom: $default-margin;
+    text-align: center;
+    font-size: $huge-font-size;
+    line-height: $large-line-height;
+    font-weight: $bold-font-weight;
+    color: $black-color;
+
+    @include breakpoint($mobile-max) {
+      margin-bottom: 8px;
+      font-size: $large-font-size;
     }
   }
 
   &__children-block {
     width: 100%;
-    max-height: 500px;
-    padding: 10px 0 10px 12px;
-    overflow-y: scroll;
+    max-height: 440px;
+    padding: 12px 0;
+    overflow-y: overlay;
 
-    @media (max-width: $correctedTabletMediaWidth) {
-      max-height: 290px;
-      padding: 5px 0 5px 12px;
+    @include breakpoint($mobile-max) {
+      max-height: 264px;
     }
   }
 
-  &__bottom-block {
-    display: flex;
+  &__footer {
     flex-direction: column;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
     width: 100%;
-    margin-top: 10px;
-    padding: 20px 0;
-    border-top: $primary-border black;
   }
 }

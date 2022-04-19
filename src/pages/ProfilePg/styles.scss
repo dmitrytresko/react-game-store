@@ -1,83 +1,106 @@
-@import '/src/styles/App.scss';
+@import "/src/styles/App.scss";
 
 .profile {
-  display: flex;
-  flex-direction: column;
-  width: 40%;
-  min-width: 290px;
+  max-width: 100%;
+  min-width: 296px;
   min-height: 100vh;
+  padding: 48px;
+
+  @include breakpoint($tablet-max) {
+    padding: 40px 0;
+  }
+
+  @include breakpoint($mobile-max) {
+    padding: 32px 0;
+  }
 
   &__personal-info-container {
-    display: flex;
-    align-items: center;
     width: 100%;
-    margin: 70px 0 60px;
+    margin-bottom: 48px;
 
-    @media (max-width: $correctedTabletMediaWidth) {
+    @include breakpoint($tablet-max) {
       flex-direction: column;
-      margin: 30px 0 25px;
+      margin-bottom: $default-margin;
     }
 
     .profile__user-img {
-      margin-right: 25px;
+      margin-right: $default-margin;
       cursor: pointer;
 
-      @media (max-width: $correctedTabletMediaWidth) {
+      @include breakpoint($tablet-max) {
         width: 96px;
         height: 96px;
         margin-right: 0;
-        margin-bottom: 15px;
+        margin-bottom: 16px;
       }
     }
 
     &--inner {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 95px;
-
-      @media (max-width: $correctedTabletMediaWidth) {
-        align-items: center;
-        height: 80px;
-      }
-
       .profile__personal-info-container--individual {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        width: 100%;
 
-        @media (max-width: $correctedTabletMediaWidth) {
+        @include breakpoint($tablet-max) {
           justify-content: center;
         }
 
-        .profile__login-input {
-          padding: 2px 10px;
-          color: black;
-          font-weight: lighter;
-          font-size: 24px;
-          font-family: $primary-font;
-          background: #f8f8f8;
-          border: $primary-border dimgray;
-          border-radius: 5px;
-          outline: none;
-          transition: all 0.4s;
+        .profile__user-name {
+          color: $black-color;
+          font-size: $huge-font-size;
 
-          &:focus {
-            border-color: $primary-color;
-            box-shadow: 0 0 10px 3px $primary-color;
+          @include breakpoint($tablet-max) {
+            font-size: $large-font-size;
+          }
+        }
+
+        .profile__login-input {
+          width: 200px;
+          min-width: 0;
+          padding: 8px;
+          color: $black-color;
+          font-weight: $thin-font-weight;
+          font-size: $mid-large-font-size;
+          font-family: $primary-font;
+          border: $default-border $gray-color;
+          border-radius: $default-border-radius;
+          background-color: $white-color;
+          outline: none;
+          transition: $default-transition;
+
+          @include breakpoint($tablet-max) {
+            padding: 10px;
+            font-size: 22px;
           }
 
-          @media (max-width: $correctedTabletMediaWidth) {
-            font-size: 22px;
+          @include breakpoint($mobile-max) {
+            padding: 8px;
+            font-size: 20px;
+          }
+
+          &::-webkit-input-placeholder {
+            color: $gray-color;
+            font-size: 20px;
+
+            @include breakpoint($tablet-max) {
+              font-size: 22px;
+            }
+
+            @include breakpoint($tablet-max) {
+              font-size: 18px;
+            }
+          }
+
+          &:focus {
+            border-color: $secondary-color;
           }
         }
 
         .profile-login-btn-container {
           display: flex;
           justify-content: space-between;
-          width: 75px;
-          margin-left: 12px;
+          width: 80px;
+          margin-left: 16px;
 
           .profile__edit-login-btn {
             background: transparent;
@@ -91,43 +114,31 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-left: 10px;
-          padding: 5px;
-          background: transparent;
+          margin-left: 12px;
+          padding: 4px;
           border: none;
-          border-radius: 5px;
+          border-radius: $default-border-radius;
+          background-color: transparent;
           outline: none;
           cursor: pointer;
-          transition: background-color 0.4s;
+          transition: $default-transition;
 
           &:hover {
-            color: #f8f8f8;
-            background: #c5c5c5;
+            background-color: rgba($white-color, 0.65);
           }
 
           &--img {
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
           }
-        }
-      }
-
-      .profile__user-name {
-        color: black;
-        font-size: 39px;
-        font-family: $primary-font;
-
-        @media (max-width: $correctedTabletMediaWidth) {
-          font-size: 30px;
         }
       }
 
       .profile__user-password {
-        color: black;
-        font-size: 25px;
-        font-family: $primary-font;
+        color: $black-color;
+        font-size: $mid-large-font-size;
 
-        @media (max-width: $correctedTabletMediaWidth) {
+        @include breakpoint($tablet-max) {
           font-size: 22px;
         }
       }
@@ -135,53 +146,45 @@
   }
 
   &__form-wrapper {
-    width: 100%;
-    padding: 25px;
-    background: rgba(255, 255, 255, 0.65);
-    border-radius: 5px;
+    width: 45%;
+    min-width: 296px;
+    align-self: center;
+    padding: $default-margin;
+    background: rgba($white-color, 0.65);
+    border-radius: $default-border-radius;
 
-    @media (max-width: $correctedTabletMediaWidth) {
-      margin-bottom: 40px;
-      padding: 15px;
+    @include breakpoint($tablet-max) {
+      padding: 16px;
     }
   }
 
   &__form {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     width: 100%;
 
     &-title {
-      color: black;
-      font-weight: normal;
-      font-size: 32px;
-      font-family: $primary-font;
+      color: $black-color;
+      font-size: $large-font-size;
+      font-weight: $normal-font-weight;
       text-transform: uppercase;
 
-      @media (max-width: $correctedTabletMediaWidth) {
-        font-size: 28px;
+      @include breakpoint($mobile-max) {
+        font-size: 22px;
       }
     }
 
     &-divider {
       width: 100%;
       height: 1px;
-      margin-bottom: 30px;
-      background: dimgray;
-      border: 1px solid dimgray;
-      border-radius: 5px;
+      margin-bottom: $default-margin;
+      background-color: $black-color;
+      border-radius: $default-border-radius;
     }
 
     &-inputs {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      margin-bottom: 20px;
-
-      @media (max-width: $maxMediaWidth) {
-        align-items: center;
-      }
+      flex-wrap: wrap;
+      width: 100%;
+      margin-bottom: 8px;
+      gap: 8px;
     }
   }
 }

@@ -1,4 +1,4 @@
-@import '/src/styles/App.scss';
+@import "/src/styles/App.scss";
 
 .cart {
   display: flex;
@@ -9,15 +9,11 @@
   padding: 0 30px;
 
   &__text {
-    color: dimgray;
-    font-size: 30px;
-    font-family: $primary-font;
+    color: $black-color;
+    font-size: $large-font-size;
+    line-height: $normal-line-height;
     text-align: center;
     text-decoration: none;
-
-    @media (max-width: $correctedTabletMediaWidth) {
-      font-size: 28px;
-    }
   }
 
   &__link {
@@ -26,12 +22,12 @@
     transition: all 0.4s ease-out;
 
     &:hover {
-      color: $primary-color;
+      color: $secondary-color;
       text-decoration: underline;
     }
 
     &:active {
-      color: $primary-color;
+      color: $secondary-color;
       text-decoration: underline;
     }
   }
@@ -231,7 +227,7 @@
       text-transform: uppercase;
       text-decoration: none;
       background: $primary-color;
-      border: $primary-border #ffffff;
+      border: $default-border #ffffff;
       border-radius: 5px;
       outline: none;
       cursor: pointer;
@@ -239,8 +235,8 @@
 
       &:hover {
         color: $primary-color;
-        background: black;
-        border: $primary-border $primary-color;
+        background: $black-color;
+        border: $default-border $primary-color;
         box-shadow: 0 0 10px 5px $primary-color;
       }
     }
@@ -248,8 +244,8 @@
     .clear-btn {
       &:hover {
         color: #e96479;
-        background: black;
-        border: $primary-border #e96479;
+        background: $black-color;
+        border: $default-border #e96479;
         box-shadow: 0 0 10px 5px #e96479;
       }
     }
@@ -257,8 +253,8 @@
     .checkout-btn {
       &:hover {
         color: #55b84b;
-        background: black;
-        border: $primary-border #55b84b;
+        background: $black-color;
+        border: $default-border #55b84b;
         box-shadow: 0 0 10px 5px #55b84b;
       }
     }

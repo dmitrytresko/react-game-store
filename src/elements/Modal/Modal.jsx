@@ -1,8 +1,9 @@
 /* eslint-disable */
-import { useEffect, useMemo } from 'react';
-import ReactDOM from 'react-dom';
+import { useEffect, useMemo } from "react";
+import ReactDOM from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import closeImg from "../../assets/img/close.jpg";
+import crossImg from "../../assets/img/cross.jpg";
 import fiveStars from "../../assets/img/card-items/five-stars.jpg";
 import fourStars from "../../assets/img/card-items/four-stars.jpg";
 import threeStars from "../../assets/img/card-items/three-stars.jpg";
@@ -17,86 +18,115 @@ import editGameSchema from "../../validations/editGameValidation";
 import { setGamesData } from "../../redux/actions";
 import "./styles.scss";
 
-const Modal = ({ type, children, onCloseClick, confirmUserAuthentication, confirmPasswordChange }) => {
+const Modal = ({
+  type,
+  children,
+  onCloseClick,
+  confirmUserAuthentication,
+  confirmPasswordChange,
+  modalClass,
+}) => {
   const dispatch = useDispatch();
 
-  const userState = useSelector(state => state.user);
+  const userState = useSelector((state) => state.user);
   const { isLogged, password, currentGame } = userState;
 
-  const allGamesArr = useSelector(state => state.games.allGamesArr);
-
-  const title = useMemo(() => {
-    switch (type) {
-      case "registration": return "Registration";
-      case "signIn": return "Sign In";
-      case "passwordChange": return "Password change";
-      case "editGame": return "Edit game";
-      default: return "";
-    }
-  }, [type]);
+  const allGamesArr = useSelector((state) => state.games.allGamesArr);
 
   const defineInitialValues = () => {
     switch (type) {
       case "registration":
-      case "signIn": return {
-        login: '',
-        password: '',
-        confirmPassword: ''
-      }
-      case "passwordChange": return {
-        currentPasswordFromStore: password,
-        currentPassword: '',
-        newPassword: '',
-        confirmNewPassword: ''
-      };
-      case "editGame": return {
-        name: currentGame.gameName,
-        genre: currentGame.gameGenre,
-        price: currentGame.gamePrice,
-        company: currentGame.gameCompany,
-        age: currentGame.gameAge,
-        metaRating: currentGame.gameRating,
-        image: ''
-      };
-      default: return;
+      case "signIn":
+        return {
+          login: "",
+          password: "",
+          confirmPassword: "",
+        };
+      case "passwordChange":
+        return {
+          currentPasswordFromStore: password,
+          currentPassword: "",
+          newPassword: "",
+          confirmNewPassword: "",
+        };
+      case "editGame":
+        return {
+          name: currentGame.gameName,
+          genre: currentGame.gameGenre,
+          price: currentGame.gamePrice,
+          company: currentGame.gameCompany,
+          age: currentGame.gameAge,
+          metaRating: currentGame.gameRating,
+          image: "",
+        };
+      default:
+        return;
     }
-  }
+  };
 
-  const defineValidationShema = () => {
+  const defineValidationSchema = () => {
     switch (type) {
-      case "registration": return registrationSchema;
-      case "signIn": return signInSchema;
-      case "passwordChange": return passwordChangeSchema;
-      case "editGame": return editGameSchema;
-      default: return;
+      case "registration":
+        return registrationSchema;
+      case "signIn":
+        return signInSchema;
+      case "passwordChange":
+        return passwordChangeSchema;
+      case "editGame":
+        return editGameSchema;
+      default:
+        return;
     }
-  }
+  };
+
+  const defineModalTitle = () => {
+    switch (type) {
+      case "registration":
+        return "Sign Up";
+      case "signIn":
+        return "Sign In";
+      case "passwordChange":
+        return "Change Password";
+      case "editGame":
+        return "Edit Game";
+      default:
+        return;
+    }
+  };
 
   const deleteGameHandler = () => {
-    const isComfirmed = confirm('Are you sure that you want to delete this game?');
+    const isConfirmed = confirm(
+      "Are you sure that you want to delete this game?"
+    );
 
-    if (isComfirmed) {
-      const newGamesArr = allGamesArr.filter(game => game.id !== currentGame.gameId);
+    if (isConfirmed) {
+      const newGamesArr = allGamesArr.filter(
+        (game) => game.id !== currentGame.gameId
+      );
 
       onCloseClick();
 
       dispatch(
         setGamesData({
-          gamesArr: newGamesArr
+          gamesArr: newGamesArr,
         })
       );
 
-      alert('The game is succesfully deleted');
+      alert("The game is successfully deleted");
     }
-  }
+  };
 
-  const confirmGameModification = formData => {
-    const isComfirmed = confirm('Are you sure that you want to edit selected game?');
+  const confirmGameModification = (formData) => {
+    const isConfirmed = confirm(
+      "Are you sure that you want to edit selected game?"
+    );
 
-    if (isComfirmed) {
+    if (isConfirmed) {
       const newGamesArr = [...allGamesArr];
 
-      const gameToEditIdx = newGamesArr.findIndex(item => item.id === currentGame.gameId);
+      const gameToEditIdx = newGamesArr.findIndex(
+        (item) => item.id === currentGame.gameId
+      );
 
       if (gameToEditIdx !== -1) {
         newGamesArr[gameToEditIdx] = {
@@ -104,29 +134,34 @@ const Modal = ({ type, children, onCloseClick, confirmUserAuthentication, confir
           name: formData.name,
           company: formData.company,
           path: formData.image,
-          rating: formData.metaRating >= 85 ? fiveStars :
-                  formData.metaRating >= 75 ? fourStars :
-                  formData.metaRating >= 60 ? threeStars :
-                  formData.metaRating >= 40 ? twoStars :
-                  oneStar,
+          rating:
+            formData.metaRating >= 85
+              ? fiveStars
+              : formData.metaRating >= 75
+              ? fourStars
+              : formData.metaRating >= 60
+              ? threeStars
+              : formData.metaRating >= 40
+              ? twoStars
+              : oneStar,
           price: formData.price,
           age: formData.age,
           genre: formData.genre,
-          metaRating: formData.metaRating
-        }
+          metaRating: formData.metaRating,
+        };
 
         onCloseClick();
 
         dispatch(
           setGamesData({
-            gamesArr: newGamesArr
+            gamesArr: newGamesArr,
           })
         );
 
-        alert('The game is succesfully edited');
+        alert("The game is successfully edited");
       }
     }
-  }
+  };
 
   const onSubmitHandler = async (values) => {
     let formData;
@@ -138,8 +173,8 @@ const Modal = ({ type, children, onCloseClick, confirmUserAuthentication, confir
       formData = {
         login: values.login,
         password: values.password,
-        confirmPassword: values.confirmPassword
-      }
+        confirmPassword: values.confirmPassword,
+      };
     }
 
     if (type === "signIn") {
@@ -147,8 +182,8 @@ const Modal = ({ type, children, onCloseClick, confirmUserAuthentication, confir
 
       formData = {
         login: values.login,
-        password: values.password
-      }
+        password: values.password,
+      };
     }
 
     if (type === "passwordChange") {
@@ -158,8 +193,8 @@ const Modal = ({ type, children, onCloseClick, confirmUserAuthentication, confir
         currentPasswordFromStore: values.currentPasswordFromStore,
         currentPassword: values.currentPassword,
         newPassword: values.newPassword,
-        confirmNewPassword: values.confirmNewPassword
-      }
+        confirmNewPassword: values.confirmNewPassword,
+      };
     }
 
     if (type === "editGame") {
@@ -172,8 +207,8 @@ const Modal = ({ type, children, onCloseClick, confirmUserAuthentication, confir
         company: values.company,
         age: values.age,
         metaRating: values.metaRating,
-        image: values.image
-      }
+        image: values.image,
+      };
     }
 
     const isDataValid = await requiredSchema.isValid(formData);
@@ -197,31 +232,30 @@ const Modal = ({ type, children, onCloseClick, confirmUserAuthentication, confir
       confirmUserAuthentication({
         ...formData,
         cartCount: 0,
-        selectedItems: []
+        selectedItems: [],
       });
       performRegistrationRequest(formData);
     }
-  }
+  };
 
   const performRegistrationRequest = async (formData) => {
     try {
-      const response = await axios.post('http://localhost:4000/auth', {
+      const response = await axios.post("http://localhost:4000/auth", {
         login: formData.login,
-        password: formData.password
-    })
+        password: formData.password,
+      });
 
-    console.log(response);
-    }
-    catch (error) {
+      console.log(response);
+    } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
 
-    return () => document.body.style.overflow = "visible";
-  })
+    return () => (document.body.style.overflow = "overlay");
+  });
 
   return ReactDOM.createPortal(
     <>
@@ -229,31 +263,41 @@ const Modal = ({ type, children, onCloseClick, confirmUserAuthentication, confir
 
       <Formik
         initialValues={defineInitialValues()}
-        validationSchema={defineValidationShema}
-        onSubmit={values => onSubmitHandler(values)}
+        validationSchema={defineValidationSchema}
+        onSubmit={(values) => onSubmitHandler(values)}
         enablenInitialize={true}
       >
-        <Form className="modal">
-          <div className="modal__head-block">
-            <h2 className="modal__title">{title}</h2>
-            <button className="modal__close-btn" type="button" onClick={onCloseClick}>
-              <img src={closeImg} className="modal__close-btn--img"></img>
+        <Form className={`modal ${modalClass}`}>
+          <button
+            className="modal__close-btn"
+            type="button"
+            onClick={onCloseClick}
+          >
+            <img src={crossImg} className="modal__close-btn--img"></img>
+          </button>
+
+          <p className="modal__title">{defineModalTitle()}</p>
+          <div className="modal__children-block">{children}</div>
+
+          <div className="modal__footer flex-center">
+            {type === "editGame" && (
+              <button
+                className="btn delete-btn"
+                type="button"
+                onClick={deleteGameHandler}
+              >
+                Delete Game
+              </button>
+            )}
+            <button className="btn submit-btn" type="submit">
+              Submit
             </button>
-          </div>
-
-          <div className="modal__children-block">
-            {children}
-          </div>
-
-          <div className="modal__bottom-block">
-            {type==="editGame" && <button className="btn delete-btn" type="button" onClick={deleteGameHandler}>Delete Game</button>}
-            <button className="btn submit-btn" type="submit">Submit</button>
           </div>
         </Form>
       </Formik>
     </>,
-    document.getElementById('portal')
-  )
-}
+    document.getElementById("portal")
+  );
+};
 
 export default Modal;

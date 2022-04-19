@@ -1,4 +1,4 @@
-@import '/src/styles/App.scss';
+@import "/src/styles/App.scss";
 
 .category-card {
   display: flex;
@@ -7,9 +7,9 @@
   width: 100%;
   min-width: 90px;
   padding: 20px 0 10px;
-  background: black;
-  border-top: $primary-border #f8f8f8;
-  border-bottom: $primary-border #f8f8f8;
+  background: $black-color;
+  border-top: $default-border #f8f8f8;
+  border-bottom: $default-border #f8f8f8;
   cursor: pointer;
   transition: all 0.7s ease;
 
@@ -54,7 +54,7 @@
   }
 
   &:first-child {
-    background: black;
+    background: $black-color;
     box-shadow: inset 0px 10px 10px -10px #f8f8f8;
 
     &:hover {
@@ -83,7 +83,7 @@
   }
 
   &:nth-child(2) {
-    background: black;
+    background: $black-color;
     box-shadow: inset 0px 10px 10px -10px #f8f8f8;
 
     &:hover {
@@ -109,7 +109,7 @@
   }
 
   &:last-child {
-    background: black;
+    background: $black-color;
     box-shadow: inset 0px 10px 10px -10px #f8f8f8;
 
     &:hover {

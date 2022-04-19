@@ -1,0 +1,65 @@
+@import "./variables";
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.center-x {
+  &:not(.flex-column) {
+    display: flex;
+    justify-content: center;
+  }
+
+  &.flex-column {
+    align-items: center;
+  }
+}
+
+.center-y {
+  &:not(.flex-column) {
+    display: flex;
+    align-items: center;
+  }
+
+  &.flex-column {
+    justify-content: center;
+  }
+}
+
+.left-align {
+  &:not(.flex-column) {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  &.flex-column {
+    align-items: flex-start;
+  }
+}
+
+.large {
+  width: $large-width;
+}
+
+.mid-large {
+  width: $mid-large-width;
+}
+
+.normal {
+  width: $normal-width;
+}
+
+.mid-small {
+  width: $mid-small-width;
+}
+
+.small {
+  width: $small-width;
+}

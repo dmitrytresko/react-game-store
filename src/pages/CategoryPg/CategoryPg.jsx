@@ -11,67 +11,84 @@ import playStationLogo from "../../assets/img/playstation.jpg";
 import xboxLogo from "../../assets/img/xbox.jpg";
 import windowsLogo from "../../assets/img/windows.jpg";
 import noSearchResults from "../../assets/img/search-no-results.jpg";
-import { callSearchValueWithPsCategory, callSearchValueWithXboxCategory, callSearchValueWithPcCategory, callSearchValue } from "../../api";
+import {
+  callSearchValueWithPsCategory,
+  callSearchValueWithXboxCategory,
+  callSearchValueWithPcCategory,
+  callSearchValue,
+} from "../../api";
 import { setCurrentGame } from "../../redux/actions";
 import "./styles.scss";
 
 const initialState = {
   outputArr: [],
   genresArr: [],
-  selectedSortType: 'Default',
+  selectedSortType: "Default",
   isGenreRadioChecked: null,
-  isAgeRadioChecked: 0
-}
+  isAgeRadioChecked: 0,
+};
 
 const reducer = (state, { type, payload }) => {
   switch (type) {
-    case 'setFields': {
+    case "setFields": {
       return {
         ...state,
-        ...payload
-      }
-    };
-    case 'resetSortAndFilters': {
+        ...payload,
+      };
+    }
+    case "resetSortAndFilters": {
       return {
         ...state,
-        selectedSortType: 'Default',
+        selectedSortType: "Default",
         isGenreRadioChecked: null,
-        isAgeRadioChecked: 0
-      }
-    };
-    case 'resetGenreFilter': {
+        isAgeRadioChecked: 0,
+      };
+    }
+    case "resetGenreFilter": {
       return {
         ...state,
-        isGenreRadioChecked: null
-      }
-    };
-    case 'resetAgeFilter': {
+        isGenreRadioChecked: null,
+      };
+    }
+    case "resetAgeFilter": {
       return {
         ...state,
-        isAgeRadioChecked: 0
-      }
-    };
-    case 'resetSortType': {
+        isAgeRadioChecked: 0,
+      };
+    }
+    case "resetSortType": {
       return {
         ...state,
-        selectedSortType: 'Default'
-      }
-    };
-    default: return state;
+        selectedSortType: "Default",
+      };
+    }
+    default:
+      return state;
   }
-}
+};
 
 const CategoryPg = () => {
   const { categoryId } = useParams();
 
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { outputArr, genresArr, selectedSortType, isGenreRadioChecked, isAgeRadioChecked } = state;
+  const {
+    outputArr,
+    genresArr,
+    selectedSortType,
+    isGenreRadioChecked,
+    isAgeRadioChecked,
+  } = state;
 
-  const [modalState, setModalState] = useState({ isOpened: false, editGameClicked: false });
+  const [modalState, setModalState] = useState({
+    isOpened: false,
+    editGameClicked: false,
+  });
   const [noResultsState, setNoResultsState] = useState(false);
 
   const dispatchFunc = useDispatch();
-  const currentGameImage = useSelector(state => state.user?.currentGame?.gameImage);
+  const currentGameImage = useSelector(
+    (state) => state.user?.currentGame?.gameImage
+  );
 
   const criteriaSelectRef = useRef();
   const genreRadioInput = useRef();
@@ -79,84 +96,101 @@ const CategoryPg = () => {
 
   const agesArr = [0, 16, 18];
 
-  const allGamesArr = useSelector(state => state.games.allGamesArr);
-  const psGamesArr = useMemo(() => allGamesArr.filter(game => game.id >= 100 && game.id < 200), [allGamesArr]);
-  const xboxGamesArr = useMemo(() => allGamesArr.filter(game => game.id >= 200 && game.id < 300), [allGamesArr]);
-  const pcGamesArr = useMemo(() => allGamesArr.filter(game => game.id >= 300 && game.id < 400), [allGamesArr]);
+  const allGamesArr = useSelector((state) => state.games.allGamesArr);
+  const psGamesArr = useMemo(
+    () => allGamesArr.filter((game) => game.id >= 100 && game.id < 200),
+    [allGamesArr]
+  );
+  const xboxGamesArr = useMemo(
+    () => allGamesArr.filter((game) => game.id >= 200 && game.id < 300),
+    [allGamesArr]
+  );
+  const pcGamesArr = useMemo(
+    () => allGamesArr.filter((game) => game.id >= 300 && game.id < 400),
+    [allGamesArr]
+  );
 
   const selectGamesArr = () => {
     switch (categoryId) {
-      case "ps": return [...psGamesArr];
-      case "xbox": return [...xboxGamesArr];
-      case "pc": return [...pcGamesArr];
-      default: return allGamesArr;
+      case "ps":
+        return [...psGamesArr];
+      case "xbox":
+        return [...xboxGamesArr];
+      case "pc":
+        return [...pcGamesArr];
+      default:
+        return allGamesArr;
     }
-  }
+  };
 
   const generateGenres = () => {
-    const allGenres = selectGamesArr().map(game => game.genre);
+    const allGenres = selectGamesArr().map((game) => game.genre);
 
     const arrWithUniqueGenres = [...new Set(allGenres)].sort();
 
     return arrWithUniqueGenres;
-  }
+  };
 
   const callSearch = ({ category, value }) => {
     switch (category) {
-      case "ps": return callSearchValueWithPsCategory(value);
-      case "xbox": return callSearchValueWithXboxCategory(value);
-      case "pc": return callSearchValueWithPcCategory(value);
-      default: return callSearchValue(value);
+      case "ps":
+        return callSearchValueWithPsCategory(value);
+      case "xbox":
+        return callSearchValueWithXboxCategory(value);
+      case "pc":
+        return callSearchValueWithPcCategory(value);
+      default:
+        return callSearchValue(value);
     }
-  }
+  };
 
-  const onSortSelectChange = event => {
+  const onSortSelectChange = (event) => {
     dispatch({
-      type: 'setFields',
+      type: "setFields",
       payload: {
-        selectedSortType: event.target.value
-      }
+        selectedSortType: event.target.value,
+      },
     });
-  }
+  };
 
   const showSelectedGames = () => {
     switch (selectedSortType) {
-      case 'price': return outputArr.sort((a, b) => b.price - a.price);
-      case 'rating': return outputArr.sort((a, b) => b.metaRating - a.metaRating);
-      default : return outputArr;
+      case "price":
+        return outputArr.sort((a, b) => b.price - a.price);
+      case "rating":
+        return outputArr.sort((a, b) => b.metaRating - a.metaRating);
+      default:
+        return outputArr;
     }
-  }
+  };
 
   const onGenreRadioChange = async (genre) => {
     if (genre !== isGenreRadioChecked) {
-
       dispatch({
-        type: 'setFields',
+        type: "setFields",
         payload: {
           isGenreRadioChecked: genre,
-        }
+        },
       });
+    } else {
+      dispatch({ type: "resetGenreFilter" });
     }
-    else {
-      dispatch({ type: 'resetGenreFilter' });
-    }
-  }
+  };
 
   const onAgeRadioChange = async (age) => {
     if (age !== isAgeRadioChecked) {
       dispatch({
-        type: 'setFields',
+        type: "setFields",
         payload: {
-          isAgeRadioChecked: age
-        }
+          isAgeRadioChecked: age,
+        },
       });
+    } else {
+      dispatch({ type: "resetAgeFilter" });
     }
-    else {
-      dispatch({ type: 'resetAgeFilter' });
-    }
-  }
+  };
 
-  const getFilteredGames = (gameAge = 0, gameGenre = '') => {
+  const getFilteredGames = (gameAge = 0, gameGenre = "") => {
     try {
       // let requiredGamesToFilter;
       let resultArr;
@@ -178,7 +212,9 @@ const CategoryPg = () => {
       //     break;
       // }
 
-      const requiredGamesFilteredByAge = selectGamesArr().filter(item => item.age >= gameAge);
+      const requiredGamesFilteredByAge = selectGamesArr().filter(
+        (item) => item.age >= gameAge
+      );
 
       // const idsOfFilteredGames = requiredGamesFilteredByAge.map(game => game.id);
 
@@ -189,41 +225,48 @@ const CategoryPg = () => {
       resultArr = requiredGamesFilteredByAge;
 
       if (gameGenre) {
-        const matchedGamesFilteredByBothReqs = requiredGamesFilteredByAge.filter(item => item.genre.toLocaleLowerCase().includes(gameGenre.toLocaleLowerCase()));
+        const matchedGamesFilteredByBothReqs =
+          requiredGamesFilteredByAge.filter((item) =>
+            item.genre
+              .toLocaleLowerCase()
+              .includes(gameGenre.toLocaleLowerCase())
+          );
         resultArr = matchedGamesFilteredByBothReqs;
       }
 
       return resultArr;
-    }
-    catch(err) {
+    } catch (err) {
       console.error(err);
     }
-  }
+  };
 
   const requestFilterGames = () => {
-    const filteredGames = getFilteredGames(isAgeRadioChecked, isGenreRadioChecked);
+    const filteredGames = getFilteredGames(
+      isAgeRadioChecked,
+      isGenreRadioChecked
+    );
 
     dispatch({
-      type: 'setFields',
+      type: "setFields",
       payload: {
         outputArr: filteredGames,
-      }
+      },
     });
-  }
+  };
 
   const openEditGameModalState = () => {
     setModalState({ isOpened: true, editGameClicked: true });
-  }
+  };
 
   const onEditModalCloseClick = () => {
     setModalState({ isOpened: false, editGameClicked: false });
 
     dispatchFunc(
       setCurrentGame({
-        currentGame: null
+        currentGame: null,
       })
     );
-  }
+  };
 
   useEffect(() => {
     const selectedGames = selectGamesArr();
@@ -231,43 +274,41 @@ const CategoryPg = () => {
     criteriaSelectRef.current.value = "Default";
 
     dispatch({
-      type: 'setFields',
+      type: "setFields",
       payload: {
         outputArr: selectedGames,
-        genresArr: generatedGenres
-      }
+        genresArr: generatedGenres,
+      },
     });
 
-    dispatch({ type: 'resetSortAndFilters' });
-  }, [categoryId])
+    dispatch({ type: "resetSortAndFilters" });
+  }, [categoryId]);
 
   useEffect(() => {
     if (!isGenreRadioChecked && !isAgeRadioChecked) {
-
       const selectedGames = selectGamesArr();
 
       dispatch({
-        type: 'setFields',
+        type: "setFields",
         payload: {
           outputArr: selectedGames,
-        }
+        },
       });
 
       return;
-    }
-    else {
+    } else {
       requestFilterGames();
     }
-  }, [isGenreRadioChecked, isAgeRadioChecked])
+  }, [isGenreRadioChecked, isAgeRadioChecked]);
 
   useEffect(() => {
     dispatch({
-      type: 'setFields',
+      type: "setFields",
       payload: {
         outputArr: selectGamesArr(),
-      }
+      },
     });
-  }, [allGamesArr])
+  }, [allGamesArr]);
 
   useEffect(() => {
     if (outputArr.length === 0) {
@@ -275,20 +316,35 @@ const CategoryPg = () => {
     } else {
       setNoResultsState(false);
     }
-  }, [outputArr])
+  }, [outputArr]);
 
   useEffect(() => {
     window.scrollTo({
-      top: 0
+      top: 0,
     });
-  }, [])
+  }, []);
 
   return (
     <>
       <div className="categories">
         <aside className="sidebar">
-          <h2 className="sidebar__title">{categoryId ? `- Best games for ${categoryId} -` : "- All available games -"}</h2>
-          {categoryId && <img className="sidebar__mini-logo" src={categoryId === "ps" ? playStationLogo : categoryId === "xbox" ? xboxLogo : windowsLogo}/>}
+          <h2 className="sidebar__title">
+            {categoryId
+              ? `- Best games for ${categoryId} -`
+              : "- All available games -"}
+          </h2>
+          {categoryId && (
+            <img
+              className="sidebar__mini-logo"
+              src={
+                categoryId === "ps"
+                  ? playStationLogo
+                  : categoryId === "xbox"
+                  ? xboxLogo
+                  : windowsLogo
+              }
+            />
+          )}
 
           <div className="sidebar__options-container">
             <p className="sidebar__option-name">Sort:</p>
@@ -305,12 +361,26 @@ const CategoryPg = () => {
           <div className="sidebar__options-container">
             <p className="sidebar__option-name">Genres:</p>
             <label className="sidebar__option-label">
-              <input type="radio" name="genre" value={null} ref={genreRadioInput} onClick={() => onGenreRadioChange(null)} checked={isGenreRadioChecked === null} />
+              <input
+                type="radio"
+                name="genre"
+                value={null}
+                ref={genreRadioInput}
+                onClick={() => onGenreRadioChange(null)}
+                checked={isGenreRadioChecked === null}
+              />
               All
             </label>
             {genresArr.map((genre, index) => (
               <label className="sidebar__option-label" key={index}>
-                <input type="radio" name="genre" value={genre} ref={genreRadioInput} onClick={() => onGenreRadioChange(genre)} checked={isGenreRadioChecked === genre} />
+                <input
+                  type="radio"
+                  name="genre"
+                  value={genre}
+                  ref={genreRadioInput}
+                  onClick={() => onGenreRadioChange(genre)}
+                  checked={isGenreRadioChecked === genre}
+                />
                 {genre}
               </label>
             ))}
@@ -318,46 +388,102 @@ const CategoryPg = () => {
 
           <div className="sidebar__options-container">
             <p className="sidebar__option-name">Age:</p>
-            {agesArr.map((age, index) =>
+            {agesArr.map((age, index) => (
               <label className="sidebar__option-label" key={index}>
-                <input type="radio" name="age" value={age} ref={ageRadioInput} onClick={() => onAgeRadioChange(age)} checked={isAgeRadioChecked === age} />
+                <input
+                  type="radio"
+                  name="age"
+                  value={age}
+                  ref={ageRadioInput}
+                  onClick={() => onAgeRadioChange(age)}
+                  checked={isAgeRadioChecked === age}
+                />
                 {age}+
-            </label>
-            )}
+              </label>
+            ))}
           </div>
         </aside>
 
         <div className="categories-content">
-          <SearchBar message="Enter the game name here..." callSearchValue={callSearch} />
+          <SearchBar
+            message="Enter the game name here..."
+            callSearchValue={callSearch}
+          />
 
-          <div className="categories-content__games-container">
-            {showSelectedGames()?.map(game => <GameCard key={game.id} gameDetails={game} openEditGameModalState={openEditGameModalState} />)}
+          <div className="categories-content__games-container center-x">
+            {showSelectedGames()?.map((game) => (
+              <GameCard
+                key={game.id}
+                gameDetails={game}
+                openEditGameModalState={openEditGameModalState}
+              />
+            ))}
             {noResultsState && (
               <div className="column">
                 <h2 className="page-title">No results found :(</h2>
-                <img className="categories__no-results-img" src={noSearchResults} alt="No results" />
+                <img
+                  className="categories__no-results-img"
+                  src={noSearchResults}
+                  alt="No results"
+                />
               </div>
             )}
           </div>
         </div>
       </div>
 
-      {modalState.isOpened &&
+      {modalState.isOpened && (
         <Modal
           type={`${modalState.editGameClicked ? "editGame" : "addGame"}`}
           onCloseClick={onEditModalCloseClick}
         >
-          <InputText fieldLabel="Name:" fieldName="name" fieldType="text" message="Enter game name here..."></InputText>
-          <InputText fieldLabel="Genre:" fieldName="genre" fieldType="text" message="Enter game genre here..."></InputText>
-          <InputText fieldLabel="Price:" fieldName="price" fieldType="number" message="Enter game price here..."></InputText>
-          <InputText fieldLabel="Company:" fieldName="company" fieldType="text" message="Enter company name here..."></InputText>
-          <InputText fieldLabel="Age:" fieldName="age" fieldType="number" message="Enter game age here..."></InputText>
-          <InputText fieldLabel="Rating (out of 100 points):" fieldName="metaRating" fieldType="number" message="Enter game rating here..."></InputText>
-          <InputText fieldLabel="Image:" fieldName="image" fieldType="file" message="Select game image here..." prefix={currentGameImage}></InputText>
+          <InputText
+            fieldLabel="Name:"
+            fieldName="name"
+            fieldType="text"
+            message="Enter game name here..."
+          ></InputText>
+          <InputText
+            fieldLabel="Genre:"
+            fieldName="genre"
+            fieldType="text"
+            message="Enter game genre here..."
+          ></InputText>
+          <InputText
+            fieldLabel="Price:"
+            fieldName="price"
+            fieldType="number"
+            message="Enter game price here..."
+          ></InputText>
+          <InputText
+            fieldLabel="Company:"
+            fieldName="company"
+            fieldType="text"
+            message="Enter company name here..."
+          ></InputText>
+          <InputText
+            fieldLabel="Age:"
+            fieldName="age"
+            fieldType="number"
+            message="Enter game age here..."
+          ></InputText>
+          <InputText
+            fieldLabel="Rating (out of 100 points):"
+            fieldName="metaRating"
+            fieldType="number"
+            message="Enter game rating here..."
+          ></InputText>
+          <InputText
+            fieldLabel="Image:"
+            fieldName="image"
+            fieldType="file"
+            message="Select game image here..."
+            prefix={currentGameImage}
+          ></InputText>
         </Modal>
-      }
+      )}
     </>
-  )
-}
+  );
+};
 
 export default CategoryPg;

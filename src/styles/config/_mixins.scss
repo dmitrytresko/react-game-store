@@ -1,13 +1,54 @@
 @import "./variables";
 
 @mixin link-styling {
-  color: #f8f8f8;
-  font-size: 24px;
-  font-family: $primary-font;
-  text-decoration: none;
   background: none;
-  border: $primary-border transparent;
+  border: $default-border transparent;
+  font-size: $mid-large-font-size;
+  font-family: $primary-font;
+  font-weight: $normal-font-weight;
+  text-decoration: none;
+  color: $white-color;
   outline: none;
   cursor: pointer;
-  transition: all 0.4s ease-out;
+  transition: $default-transition;
+}
+
+@mixin breakpoint($bp) {
+  @if $bp == $large-screen-min {
+    @media (min-width: $large-screen-min) {
+      @content;
+    }
+  } @else if $bp == $desktop-max {
+    @media (max-width: $desktop-max) {
+      @content;
+    }
+  } @else if $bp == $desktop-min {
+    @media (min-width: $desktop-min) {
+      @content;
+    }
+  } @else if $bp == $laptop-max {
+    @media (max-width: $laptop-max) {
+      @content;
+    }
+  } @else if $bp == $laptop-min {
+    @media (min-width: $laptop-min) {
+      @content;
+    }
+  } @else if $bp == $tablet-max {
+    @media (max-width: $tablet-max) {
+      @content;
+    }
+  } @else if $bp == $tablet-min {
+    @media (min-width: $tablet-min) {
+      @content;
+    }
+  } @else if $bp == $mobile-max {
+    @media (max-width: $mobile-max) {
+      @content;
+    }
+  } @else if $bp == $mobile-min {
+    @media (min-width: $mobile-min) {
+      @content;
+    }
+  }
 }

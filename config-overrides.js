@@ -1,10 +1,11 @@
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 module.exports = function override(config) {
   config.plugins.push(new BundleAnalyzerPlugin());
 
   config.optimization.splitChunks = {
-    chunks: 'async',
+    chunks: "async",
     minSize: 20000,
     minChunks: 1,
     maxAsyncRequests: 30,
@@ -25,4 +26,4 @@ module.exports = function override(config) {
   };
 
   return config;
-}
+};

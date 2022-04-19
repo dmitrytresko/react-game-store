@@ -1,51 +1,30 @@
-@import '/src/styles/App.scss';
+@import "/src/styles/App.scss";
 
 .game-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 24%;
-  min-width: 240px;
-  max-width: 290px;
-  margin: 0 10px 20px;
+  max-width: 248px;
+  min-width: 216px;
   overflow: hidden;
-  border-radius: 5px;
+  border-radius: $default-border-radius;
   cursor: pointer;
-  transition: all 0.4s ease;
-
-  @media (min-width: $maxMediaWidth) {
-    min-width: 260px;
-  }
-
-  @media (min-width: $tabletMediaWidth) {
-    min-width: 250px;
-  }
+  transition: $default-transition;
 
   &__cover-wrapper {
     position: relative;
     width: 100%;
-    height: 19.5vw;
-    min-height: 340px;
+    height: 328px;
     overflow: hidden;
-    background: black;
-    border-bottom: $primary-border #f8f8f8;
-    transition: all 0.4s ease-in-out;
-
-    @media (max-width: $largeMediaWidth) {
-      height: 350px;
-      min-height: 0;
-    }
-
-    @media (max-width: $maxMediaWidth) {
-      height: 335px;
-      min-height: 0;
-    }
+    background: $black-color;
+    border-bottom: $default-border #f8f8f8;
+    transition: $default-transition;
 
     .game-card__cover {
       width: 100%;
       height: 100%;
       opacity: 1;
-      transition: opacity 0.4s ease-in-out;
+      transition: opacity 0.3s ease-in-out;
     }
 
     .game-card__add-btn {
@@ -57,14 +36,14 @@
       font-size: 23px;
       font-family: $primary-font;
       background: #f8f8f8;
-      border: $primary-border $primary-color;
+      border: $default-border $primary-color;
       border-right: none;
       border-bottom: none;
       border-top-left-radius: 5px;
       outline: none;
       transform: translateY(50px);
       cursor: pointer;
-      transition: all 0.4s;
+      transition: $default-transition;
 
       &:hover {
         color: #f8f8f8;
@@ -74,7 +53,7 @@
 
       &:active {
         color: $primary-color;
-        background: black;
+        background: $black-color;
       }
 
       @media (max-width: $maxMediaWidth) {
@@ -91,14 +70,14 @@
       font-size: 23px;
       font-family: $primary-font;
       background: #f8f8f8;
-      border: $primary-border $primary-color;
+      border: $default-border $primary-color;
       border-bottom: none;
       border-left: none;
       border-top-right-radius: 5px;
       outline: none;
       transform: translateY(50px);
       cursor: pointer;
-      transition: all 0.4s;
+      transition: $default-transition;
 
       &:hover {
         color: #f8f8f8;
@@ -108,7 +87,7 @@
 
       &:active {
         color: $primary-color;
-        background: black;
+        background: $black-color;
       }
 
       @media (max-width: $maxMediaWidth) {
@@ -125,8 +104,8 @@
     width: 100%;
     min-height: 135px;
     padding: 15px;
-    background: black;
-    transition: all 0.4s;
+    background-color: $black-color;
+    transition: $default-transition;
 
     .game-card__info {
       display: flex;
@@ -209,7 +188,7 @@
     background-color: #f8f8f8;
 
     .game-card__title {
-      color: black;
+      color: $black-color;
     }
 
     .game-card__company {
