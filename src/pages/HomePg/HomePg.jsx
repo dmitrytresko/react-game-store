@@ -81,6 +81,8 @@ const HomePg = () => {
   return (
     <>
       <div className="home">
+        <div className="home__banner"></div>
+
         <div className="home__categories-container">
           {categoriesArr.map((item, id) => (
             <CategoryCard

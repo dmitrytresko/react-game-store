@@ -71,7 +71,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 100%;
 
     @include breakpoint($tablet-max) {
       display: none;
@@ -96,11 +95,12 @@
     @include link-styling();
 
     &:hover {
-      color: $light-color;
-      border-bottom: $default-border $light-color;
+      border-bottom: $default-border $primary-color;
+      color: $primary-color;
     }
 
     &--active {
+      border-bottom: $default-border $primary-color;
       color: $primary-color;
       text-transform: uppercase;
     }
@@ -108,7 +108,7 @@
 
   &__reg-btn {
     position: relative;
-    padding: 0 10px;
+    padding: 0 12px;
     margin-left: 24px;
     background-color: transparent;
     border-color: $primary-color;
@@ -252,7 +252,7 @@
     }
 
     &:hover .Dropdown-placeholder {
-      color: $light-color;
+      color: $primary-color;
     }
   }
 

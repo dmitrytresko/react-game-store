@@ -6,12 +6,10 @@
   align-items: center;
   width: 100%;
   min-width: 90px;
-  padding: 20px 0 10px;
+  padding: 16px 0 8px;
   background: $black-color;
-  border-top: $default-border #f8f8f8;
-  border-bottom: $default-border #f8f8f8;
   cursor: pointer;
-  transition: all 0.7s ease;
+  transition: $default-transition;
 
   &__logo {
     width: 3.5vw;
@@ -19,7 +17,7 @@
     height: 3.5vw;
     min-height: 35px;
     margin-bottom: 10px;
-    transition: all 0.4s ease;
+    transition: $default-transition;
 
     &--light {
       display: none;
@@ -55,12 +53,8 @@
 
   &:first-child {
     background: $black-color;
-    box-shadow: inset 0px 10px 10px -10px #f8f8f8;
 
     &:hover {
-      border-top-color: #003791;
-      border-bottom-color: #003791;
-
       -moz-box-shadow: inset 0 10px 10px -10px #003791,
         inset -10px 0 10px -10px #003791, inset 0 -10px 10px -10px #003791;
       -webkit-box-shadow: inset 0 10px 10px -10px #003791,
@@ -84,12 +78,8 @@
 
   &:nth-child(2) {
     background: $black-color;
-    box-shadow: inset 0px 10px 10px -10px #f8f8f8;
 
     &:hover {
-      border-top-color: #107c10;
-      border-bottom-color: #107c10;
-
       -moz-box-shadow: inset 0 0px 10px #107c10;
       -webkit-box-shadow: inset 0 0px 10px #107c10;
       box-shadow: inset 0 0px 10px #107c10;
@@ -110,12 +100,8 @@
 
   &:last-child {
     background: $black-color;
-    box-shadow: inset 0px 10px 10px -10px #f8f8f8;
 
     &:hover {
-      border-top-color: #00adef;
-      border-bottom-color: #00adef;
-
       -moz-box-shadow: inset 0 10px 10px -10px #00adef,
         inset 10px 0 10px -10px #00adef, inset 0 -10px 10px -10px #00adef;
       -webkit-box-shadow: inset 0 10px 10px -10px #00adef,
