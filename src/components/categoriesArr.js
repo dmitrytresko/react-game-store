@@ -12,8 +12,8 @@ const categoriesArr = [
     pathLight: playStationLightLogo,
     altName: "PS Colorful Logo",
     altNameLight: "PS Light Logo",
-    name: "PlayStation",
-    routePath: "/products/ps"
+    name: "PS",
+    routePath: "/products/ps",
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ const categoriesArr = [
     altName: "Xbox Colorful Logo",
     altNameLight: "Xbox Light Logo",
     name: "Xbox ",
-    routePath: "/products/xbox"
+    routePath: "/products/xbox",
   },
   {
     id: 3,
@@ -31,7 +31,7 @@ const categoriesArr = [
     altName: "Windows Colorful Logo",
     altNameLight: "Windows Light Logo",
     name: "PC",
-    routePath: "/products/pc"
+    routePath: "/products/pc",
   },
 ];
 

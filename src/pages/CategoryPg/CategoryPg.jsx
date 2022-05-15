@@ -330,8 +330,8 @@ const CategoryPg = () => {
         <aside className="sidebar">
           <h2 className="sidebar__title">
             {categoryId
-              ? `- Best games for ${categoryId} -`
-              : "- All available games -"}
+              ? `Best games for ${categoryId}`
+              : "All available games"}
           </h2>
           {categoryId && (
             <img

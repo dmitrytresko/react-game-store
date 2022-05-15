@@ -8,43 +8,101 @@
   min-width: 296px;
   min-height: 100vh;
 
+  &__search-header {
+    width: 100%;
+    display: flex;
+    padding: 8px $default-margin;
+    background-color: $white-color;
+    gap: 16px;
+
+    @include breakpoint($tablet-max) {
+      padding: 8px 16px;
+    }
+  }
+
   &__banner {
     width: 100%;
-    height: 60vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+    height: 55vh;
+    padding: 48px $default-margin;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
       url("../../assets/img/home-banner.png") no-repeat center center;
     background-size: cover;
+
+    @include breakpoint($tablet-max) {
+      padding: 48px 16px;
+    }
+
+    @include breakpoint($mobile-max) {
+      height: calc(100vh - 64px);
+    }
+
+    &__title {
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 36px;
+      text-transform: uppercase;
+      line-height: 36px;
+      color: $success-color;
+
+      @include breakpoint($mobile-max) {
+        font-size: $large-font-size;
+        line-height: 32px;
+      }
+    }
+
+    &__text {
+      text-align: center;
+      font-size: $mid-large-font-size;
+      font-weight: $thin-font-weight;
+      line-height: $normal-line-height;
+      color: $white-color;
+
+      @include breakpoint($mobile-max) {
+        font-size: 22px;
+      }
+    }
+
+    &__btn {
+      width: 180px !important;
+      margin: 48px 0 12px;
+      border: $default-border $primary-color;
+      background-color: transparent;
+      color: $primary-color;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $primary-color;
+        color: $white-color;
+      }
+    }
   }
 
   &__categories-container {
     display: flex;
-    width: 100%;
+    flex-wrap: wrap;
+    width: 50%;
+    gap: 16px;
 
-    @media (max-width: $correctedTabletMediaWidth) {
-      margin-bottom: 20px;
+    @include breakpoint($tablet-max) {
+      width: 100%;
+    }
+
+    @include breakpoint($mobile-max) {
+      gap: 12px;
     }
   }
 
-  &__title {
-    margin-top: 20px;
-    color: $black-color;
-    font-weight: normal;
-    font-size: 32px;
-    font-family: $primary-font;
-    text-transform: uppercase;
+  &__games-wrapper {
+    width: auto;
+    align-self: center;
+    margin: $default-margin 12px;
+    padding: $default-margin;
+    background: rgba($white-color, 0.65);
+    border-radius: $default-border-radius;
 
-    @media (max-width: $correctedTabletMediaWidth) {
-      font-size: 28px;
+    @include breakpoint($tablet-max) {
+      padding: 16px;
     }
-  }
-
-  &__divider {
-    width: 60%;
-    min-width: 290px;
-    height: 1px;
-    background: dimgray;
-    border: 1px solid dimgray;
-    border-radius: 5px;
   }
 
   &__games-container {
@@ -52,10 +110,8 @@
     justify-content: center;
     flex-wrap: wrap;
     width: 100%;
-    min-width: 288px;
-    margin: 32px 0;
-    padding: 0 32px;
-    gap: 32px;
+    margin-top: 32px;
+    gap: 24px;
 
     @include breakpoint($tablet-max) {
       gap: 16px;

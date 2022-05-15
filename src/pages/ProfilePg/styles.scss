@@ -168,7 +168,7 @@
       text-transform: uppercase;
 
       @include breakpoint($mobile-max) {
-        font-size: 22px;
+        font-size: $mid-large-font-size;
       }
     }
 

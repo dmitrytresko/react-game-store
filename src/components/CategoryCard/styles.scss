@@ -1,15 +1,18 @@
 @import "/src/styles/App.scss";
 
 .category-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  min-width: 90px;
+  flex-grow: 1;
   padding: 16px 0 8px;
-  background: $black-color;
+  background-color: rgba($color: $white-color, $alpha: 0.3);
+  background-color: transparent;
+  border: $default-border $white-color;
+  border-radius: $default-border-radius;
   cursor: pointer;
   transition: $default-transition;
+
+  &:hover {
+    background-color: $white-color;
+  }
 
   &__logo {
     width: 3.5vw;
@@ -22,21 +25,20 @@
     &--light {
       display: none;
       width: 3.5vw;
-      min-width: 35px;
+      min-width: 36px;
       height: 3.5vw;
-      min-height: 35px;
-      margin-bottom: 10px;
+      min-height: 36px;
+      margin-bottom: 8px;
     }
   }
 
   &__name {
-    color: #f8f8f8;
+    color: $white-color;
     font-weight: normal;
-    font-size: 25px;
-    font-family: $primary-font;
+    font-size: $mid-large-font-size;
     text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.4s;
+    transition: $default-transition;
 
     @media (max-width: $largeMediaWidth) {
       font-size: 23px;
@@ -52,15 +54,8 @@
   }
 
   &:first-child {
-    background: $black-color;
-
     &:hover {
-      -moz-box-shadow: inset 0 10px 10px -10px #003791,
-        inset -10px 0 10px -10px #003791, inset 0 -10px 10px -10px #003791;
-      -webkit-box-shadow: inset 0 10px 10px -10px #003791,
-        inset -10px 0 10px -10px #003791, inset 0 -10px 10px -10px #003791;
-      box-shadow: inset 0 10px 10px -10px #003791,
-        inset -10px 0 10px -10px #003791, inset 0 -10px 10px -10px #003791;
+      border: $default-border #003791;
 
       .category-card__logo {
         display: none;
@@ -77,12 +72,8 @@
   }
 
   &:nth-child(2) {
-    background: $black-color;
-
     &:hover {
-      -moz-box-shadow: inset 0 0px 10px #107c10;
-      -webkit-box-shadow: inset 0 0px 10px #107c10;
-      box-shadow: inset 0 0px 10px #107c10;
+      border: $default-border #107c10;
 
       .category-card__logo {
         display: none;
@@ -99,15 +90,8 @@
   }
 
   &:last-child {
-    background: $black-color;
-
     &:hover {
-      -moz-box-shadow: inset 0 10px 10px -10px #00adef,
-        inset 10px 0 10px -10px #00adef, inset 0 -10px 10px -10px #00adef;
-      -webkit-box-shadow: inset 0 10px 10px -10px #00adef,
-        inset 10px 0 10px -10px #00adef, inset 0 -10px 10px -10px #00adef;
-      box-shadow: inset 0 10px 10px -10px #00adef,
-        inset 10px 0 10px -10px #00adef, inset 0 -10px 10px -10px #00adef;
+      border: $default-border #00adef;
 
       .category-card__logo {
         display: none;
@@ -121,9 +105,5 @@
         color: #00adef;
       }
     }
-  }
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.9);
   }
 }

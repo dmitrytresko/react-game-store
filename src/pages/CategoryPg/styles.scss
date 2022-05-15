@@ -3,7 +3,7 @@
 .categories {
   display: flex;
   width: 100%;
-  min-width: 300px;
+  min-width: 296px;
   min-height: 100vh;
 
   .sidebar {
@@ -15,18 +15,17 @@
     display: flex;
     flex-direction: column;
     float: left;
-    min-width: 204px;
+    min-width: 216px;
     min-height: 100vh;
-    padding: 16px 24px;
-    overflow-y: auto;
-    background: $white-color;
+    padding: 16px;
+    background-color: $white-color;
     border-right: $default-border $success-color;
 
-    @media (max-width: $maxMediaWidth) {
-      width: 30%;
+    @include breakpoint($tablet-max) {
+      min-width: 180px;
     }
 
-    @media (max-width: $correctedTabletMediaWidth) {
+    @include breakpoint($mobile-max) {
       display: none;
     }
 
@@ -114,17 +113,7 @@
     align-items: center;
     flex-grow: 1;
     min-width: 296px;
-    padding: 0 $default-margin;
-
-    @media (max-width: $maxMediaWidth) {
-      width: 70%;
-    }
-
-    @media (max-width: $correctedTabletMediaWidth) {
-      width: 100%;
-      margin-top: 20px;
-      padding: 0;
-    }
+    padding: $default-margin;
 
     &__games-container {
       flex-wrap: wrap;
@@ -138,12 +127,6 @@
           height: 96px;
           margin-bottom: 16px;
         }
-      }
-
-      @media (max-width: $maxMediaWidth) {
-        flex-direction: column;
-        align-items: center;
-        margin-top: 25px;
       }
     }
   }

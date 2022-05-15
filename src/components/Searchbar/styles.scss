@@ -3,39 +3,45 @@
 .search-container {
   display: flex;
   flex-direction: column;
-  width: 37.5%;
-  min-width: 300px;
-  max-width: 590px;
+  width: 40%;
+  min-width: 280px;
+  max-width: 544px;
+
+  @include breakpoint($tablet-max) {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: $default-margin;
+  }
 
   .searchbar {
     position: relative;
     width: 100%;
-    margin-top: 30px;
 
-    @media (max-width: $correctedTabletMediaWidth) {
-      margin-top: 5px;
+    @include breakpoint($tablet-max) {
+      margin-top: 4px;
     }
 
     input {
       width: 100%;
-      padding: 6px 45px 6px 15px;
-      color: $black-color;
-      font-size: 20px;
-      font-family: $primary-font;
-      border: $default-border dimgray;
+      padding: 4px 24px 4px 12px;
+      border: $default-border $gray-color;
       border-radius: $default-border-radius;
       background-color: $white-color;
+      color: $black-color;
+      font-size: 22px;
+      font-family: $primary-font;
+      font-weight: $thin-font-weight;
       outline: none;
       transition: $default-transition;
 
       &::-webkit-input-placeholder {
-        color: dimgray;
+        color: $black-color;
         font-size: 20px;
       }
 
       &:focus {
-        border-color: $primary-color;
-        box-shadow: 0 0 10px 5px $primary-color;
+        box-shadow: 0px 0px 8px $primary-color;
+        border-color: $black-color;
       }
     }
 
@@ -93,13 +99,13 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-width: 300px;
+    min-width: 296px;
     max-height: 0;
     margin-top: 5px;
     font-family: $primary-font;
     border: none;
-    border-radius: 15px;
-    transition: all 0.4s ease;
+    border-radius: $default-border-radius;
+    transition: $default-transition;
 
     &--visible {
       max-height: 129px;
@@ -113,12 +119,12 @@
       padding: 5px 10px 5px 15px;
       font-size: 1.25rem;
       font-family: $primary-font;
-      background: #f8f8f8;
+      background-color: $white-color;
       border: $default-border transparent;
-      border-radius: 15px;
+      border-radius: $default-border-radius;
       outline: none;
       cursor: pointer;
-      transition: all 0.4s ease;
+      transition: $default-transition;
 
       &:hover {
         color: $primary-color;

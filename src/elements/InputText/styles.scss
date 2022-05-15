@@ -7,14 +7,15 @@
   width: 60%;
   min-width: 264px;
   margin: 0 auto;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   color: $black-color;
   line-height: $normal-line-height;
 
   span {
-    margin-bottom: 2px;
+    margin-bottom: 4px;
     font-size: $mid-large-font-size;
-    color: $hover-color;
+    font-weight: $thin-font-weight;
+    color: $black-color;
 
     @include breakpoint($mobile-max) {
       font-size: 22px;
@@ -29,19 +30,27 @@
   }
 
   &__error {
+    display: flex;
+    align-items: baseline;
     width: 100%;
     margin-top: 4px;
     color: $warn-color;
     font-weight: lighter;
     font-size: 18px;
+
+    &--icon {
+      width: 12px;
+      height: 12px;
+      margin-right: 4px;
+    }
   }
 
   &__input {
     width: 100%;
-    padding: 8px;
+    padding: 6px 8px;
     color: $black-color;
     font-weight: $thin-font-weight;
-    font-size: $mid-large-font-size;
+    font-size: 22px;
     font-family: $primary-font;
     border: $default-border $gray-color;
     border-radius: $default-border-radius;
@@ -50,12 +59,11 @@
     transition: $default-transition;
 
     @include breakpoint($tablet-max) {
-      padding: 10px;
-      font-size: 22px;
+      padding: 8px 10px;
     }
 
     @include breakpoint($mobile-max) {
-      padding: 8px;
+      padding: 6px 8px;
       font-size: 20px;
     }
 
@@ -73,7 +81,8 @@
     }
 
     &:focus {
-      border-color: $secondary-color;
+      box-shadow: 0px 0px 8px $primary-color;
+      border-color: $black-color;
     }
   }
 }

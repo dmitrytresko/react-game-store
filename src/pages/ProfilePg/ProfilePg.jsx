@@ -178,8 +178,8 @@ const ProfilePg = () => {
             onSubmit={(values) => onSubmitHandler(values)}
           >
             <Form className="profile__form flex-column">
-              <h2 className="profile__form-title">Profile info</h2>
-              <hr className="profile__form-divider" />
+              <h2 className="section-title">Profile info</h2>
+              <hr className="divider" />
 
               <div className="profile__form-inputs flex-column">
                 <InputText
@@ -188,8 +188,6 @@ const ProfilePg = () => {
                   fieldType="email"
                   message="Enter your email here..."
                   customStyles={{
-                    margin: 0,
-                    marginBottom: "15px",
                     width: "100%",
                   }}
                 />
@@ -199,8 +197,6 @@ const ProfilePg = () => {
                   fieldType="tel"
                   message="Enter your phone number here..."
                   customStyles={{
-                    margin: 0,
-                    marginBottom: "15px",
                     width: "100%",
                   }}
                 />
@@ -210,8 +206,6 @@ const ProfilePg = () => {
                   fieldType="text"
                   message="Enter your delivery address here..."
                   customStyles={{
-                    margin: 0,
-                    marginBottom: "15px",
                     width: "100%",
                   }}
                 />

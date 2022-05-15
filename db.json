@@ -317,6 +317,6 @@
   ],
   "auth": {
     "login": "admin",
-    "password": "admin"
+    "password": "test123"
   }
 }

@@ -64,7 +64,7 @@ class App extends React.Component {
           <Switch>
             <Route path="/" exact component={HomePg} />
             <ProtectedRoute path="/products" component={ProductsPg} />
-            <ProtectedRoute path="/about" component={AboutPg} />
+            <Route path="/about" component={AboutPg} />
             <ProtectedRoute path="/profile" exact component={ProfilePg} />
             <ProtectedRoute path="/cart" component={CartPg} />
             <Route component={NotFoundPg}></Route>

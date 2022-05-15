@@ -1,4 +1,87 @@
 @import "./variables";
+@import "./mixins";
+
+.page-title {
+  margin: $default-margin 0;
+  font-size: $large-font-size;
+  text-align: center;
+  text-transform: uppercase;
+
+  @include breakpoint($tablet-max) {
+    margin: 20px;
+    font-size: $mid-large-font-size;
+  }
+
+  &--not-found {
+    font-size: $huge-font-size;
+  }
+}
+
+.section-title {
+  color: $black-color;
+  font-size: 32px;
+  font-weight: $normal-font-weight;
+  text-transform: uppercase;
+
+  @include breakpoint($mobile-max) {
+    font-size: $mid-large-font-size;
+  }
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  margin-bottom: $default-margin;
+  background-color: $black-color;
+  border-radius: $default-border-radius;
+}
+
+.btn {
+  width: 60%;
+  min-width: 264px;
+  padding: 8px;
+  border-radius: $default-border-radius;
+  font-size: $mid-large-font-size;
+  font-family: $primary-font;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  transition: $default-transition;
+
+  @include breakpoint($tablet-max) {
+    align-self: center;
+    padding: 10px;
+  }
+
+  @include breakpoint($mobile-max) {
+    font-size: 20px;
+  }
+}
+
+.delete-btn {
+  margin-top: 16px;
+  border: $default-border $warn-color;
+  background-color: $white-color;
+  color: $warn-color;
+
+  &:hover {
+    background-color: $warn-color;
+    border: $default-border $warn-color;
+    color: $white-color;
+  }
+}
+
+.submit-btn {
+  margin-top: 16px;
+  border: $default-border $secondary-color;
+  background-color: $secondary-color;
+  color: $white-color;
+
+  &:hover {
+    background-color: $hover-color;
+    border: $default-border $hover-color;
+  }
+}
 
 .flex-center {
   display: flex;

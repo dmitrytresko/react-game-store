@@ -1,4 +1,5 @@
 import { Field, ErrorMessage } from "formik";
+import warningIcon from "../../assets/img/warning.png";
 import "./styles.scss";
 
 const InputText = ({
@@ -27,11 +28,14 @@ const InputText = ({
           placeholder={message}
           autoComplete="off"
         />
-        <ErrorMessage
-          className="input-text__error"
-          name={fieldName}
-          component="p"
-        ></ErrorMessage>
+        <ErrorMessage name={fieldName}>
+          {(msg) => (
+            <div className="input-text__error">
+              <img className="input-text__error--icon" src={warningIcon} />
+              {msg}
+            </div>
+          )}
+        </ErrorMessage>
       </div>
     </label>
   );

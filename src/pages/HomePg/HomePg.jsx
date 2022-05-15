@@ -1,5 +1,6 @@
 /* eslint-disable */
 import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "../../elements/Modal/Modal";
 import InputText from "../../elements/InputText/InputText";
@@ -12,14 +13,15 @@ import { setCurrentGame } from "../../redux/actions";
 import "./styles.scss";
 
 const HomePg = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
   const [selectedGames, setSelectedGames] = useState([]);
 
   const [modalState, setModalState] = useState({
     isOpened: false,
     editGameClicked: false,
   });
-
-  const dispatch = useDispatch();
 
   const currentGameImage = useSelector(
     (state) => state.user?.currentGame?.gameImage
@@ -81,43 +83,66 @@ const HomePg = () => {
   return (
     <>
       <div className="home">
-        <div className="home__banner"></div>
+        {/* <div className="home__search-header flex-center">
+          <SearchBar
+            message="Enter the game name here..."
+            callSearchValue={callSearchValue}
+          />
+        </div> */}
 
-        <div className="home__categories-container">
-          {categoriesArr.map((item, id) => (
-            <CategoryCard
-              key={id}
-              path={item.path}
-              pathLight={item.pathLight}
-              altName={item.altName}
-              altNameLight={item.altNameLight}
-              name={item.name}
-              route={item.routePath}
-            />
-          ))}
-        </div>
+        <div className="home__banner flex-column flex-center">
+          <h2 className="home__banner__title">Find your favorite games</h2>
+          <p className="home__banner__text">
+            We provide our customers with a full list of best and most popular
+            games in wide variety of genres for each modern console.<br></br>
+            Join our community to explore a wonderful world of gaming together!
+          </p>
 
-        <SearchBar
-          message="Enter the game name here..."
-          callSearchValue={callSearchValue}
-        />
-
-        <h2 className="home__title">- Highest rated games -</h2>
-        <hr className="home__divider" />
-
-        {selectedGames ? (
-          <div className="home__games-container">
-            {selectedGames.map((game) => (
-              <GameCard
-                key={game.id}
-                gameDetails={game}
-                openEditGameModalState={openEditGameModalState}
+          <button
+            className="btn home__banner__btn"
+            onClick={() => history.push("/products")}
+          >
+            See all products
+          </button>
+          <p className="home__banner__text" style={{ marginBottom: "12px" }}>
+            or
+          </p>
+          <div className="home__categories-container">
+            {categoriesArr.map((item, id) => (
+              <CategoryCard
+                key={id}
+                path={item.path}
+                pathLight={item.pathLight}
+                altName={item.altName}
+                altNameLight={item.altNameLight}
+                name={item.name}
+                route={item.routePath}
+                style={{ height: "calc(100% - 5px)" }}
               />
             ))}
           </div>
-        ) : (
-          ""
-        )}
+        </div>
+
+        <div className="home__games-wrapper">
+          <h2 className="section-title" style={{ textAlign: "center" }}>
+            Highest rated games
+          </h2>
+          <hr className="divider" />
+
+          {selectedGames ? (
+            <div className="home__games-container">
+              {selectedGames.map((game) => (
+                <GameCard
+                  key={game.id}
+                  gameDetails={game}
+                  openEditGameModalState={openEditGameModalState}
+                />
+              ))}
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
 
       {modalState.isOpened && (
