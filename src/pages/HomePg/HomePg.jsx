@@ -8,25 +8,29 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import CategoryCard from "../../components/CategoryCard/CategoryCard";
 import GameCard from "../../components/GameCard/GameCard";
 import categoriesArr from "../../components/categoriesArr";
+import { sales } from "../../common/sales";
 import axios from "axios";
 import { setCurrentGame } from "../../redux/actions";
+import timerIcon from "../../assets/img/timer.jpg";
+import discountIcon from "../../assets/img/discount.jpg";
 import "./styles.scss";
 
 const HomePg = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const [selectedGames, setSelectedGames] = useState([]);
+  const currentSale = sales[0];
 
+  const [selectedGames, setSelectedGames] = useState([]);
   const [modalState, setModalState] = useState({
     isOpened: false,
     editGameClicked: false,
   });
 
+  const allGamesArr = useSelector((state) => state.games.allGamesArr);
   const currentGameImage = useSelector(
     (state) => state.user?.currentGame?.gameImage
   );
-  const allGamesArr = useSelector((state) => state.games.allGamesArr);
 
   const getTopProductsInfo = () => {
     try {
@@ -83,9 +87,29 @@ const HomePg = () => {
   return (
     <>
       <div className="home">
+        <div className="home__sales center-y">
+          <div className="home__sales__deal-exp-container">
+            <img className="home__sales--img" src={timerIcon} />
+            <p className="home__sales--text">Deal ends soon!</p>
+          </div>
+          <div className="home__sales__promo-container">
+            <span className="home__sales--promo sale-name">
+              {currentSale.name}
+            </span>
+            <div className="home__sales--promo discount">
+              {currentSale.discount}% off{" "}
+              <img src={discountIcon} className="discount-img"></img>
+            </div>
+            <div className="home__sales--promo">
+              Use code:
+              <span className="promo"> {currentSale.promo}</span>
+            </div>
+          </div>
+        </div>
+
         {/* <div className="home__search-header flex-center">
           <SearchBar
-            message="Enter the game name here..."
+            message="Enter the game name here"
             callSearchValue={callSearchValue}
           />
         </div> */}

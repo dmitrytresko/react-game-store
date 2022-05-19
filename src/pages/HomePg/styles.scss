@@ -8,11 +8,138 @@
   min-width: 296px;
   min-height: 100vh;
 
+  &__sales {
+    width: 100%;
+    display: flex;
+    padding: 12px 48px 12px 30px;
+    background-color: $black-color;
+    border-top: $default-border;
+    border-image: linear-gradient(
+      to right,
+      $success-color,
+      $warn-color,
+      $primary-color
+    );
+    border-image-slice: 1;
+    gap: 16px;
+
+    @include breakpoint($tablet-max) {
+      padding: 8px 16px;
+    }
+
+    &__deal-exp-container {
+      display: flex;
+      align-items: center;
+      margin-right: 24px;
+
+      @include breakpoint($mobile-max) {
+        display: none;
+      }
+    }
+
+    &--img {
+      width: 28px;
+      height: 28px;
+
+      @include breakpoint($laptop-max) {
+        width: 26px;
+        height: 26px;
+      }
+
+      @include breakpoint($tablet-max) {
+        width: 22px;
+        height: 22px;
+      }
+
+      @include breakpoint($mobile-max) {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    &--text {
+      margin-left: 8px;
+      font-size: $mid-large-font-size;
+      font-weight: $thin-font-weight;
+      line-height: 28px;
+      text-transform: uppercase;
+      color: $white-color;
+
+      @include breakpoint($tablet-max) {
+        display: none;
+      }
+    }
+
+    &__promo-container {
+      display: flex;
+      justify-content: space-evenly;
+      flex-grow: 1;
+      margin-left: auto;
+      gap: 24px;
+    }
+
+    &--promo {
+      font-size: 36px;
+      font-weight: $bold-font-weight;
+      line-height: 40px;
+      text-transform: uppercase;
+      text-align: center;
+      color: $white-color;
+      transition: color 0.3s;
+
+      @include breakpoint($laptop-max) {
+        font-size: 26px;
+        line-height: 30px;
+      }
+
+      @include breakpoint($mobile-max) {
+        font-size: 22px;
+        line-height: 26px;
+      }
+
+      .promo {
+        color: $warn-color;
+      }
+    }
+
+    .sale-name {
+      animation: color-change 2s infinite;
+
+      @include breakpoint($tablet-max) {
+        display: none;
+      }
+    }
+
+    .discount {
+      position: relative;
+
+      &-img {
+        position: absolute;
+        top: -4px;
+        right: -18px;
+        width: 22px;
+        height: 22px;
+
+        @include breakpoint($laptop-max) {
+          right: -16px;
+          width: 20px;
+          height: 20px;
+        }
+
+        @include breakpoint($tablet-max) {
+          right: -14px;
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+  }
+
   &__search-header {
     width: 100%;
     display: flex;
-    padding: 8px $default-margin;
-    background-color: $white-color;
+    padding: 12px $default-margin;
+    background-color: $black-color;
     gap: 16px;
 
     @include breakpoint($tablet-max) {
@@ -22,7 +149,7 @@
 
   &__banner {
     width: 100%;
-    height: 55vh;
+    height: 57.5vh;
     padding: 48px $default-margin;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
       url("../../assets/img/home-banner.png") no-repeat center center;
@@ -39,14 +166,19 @@
     &__title {
       margin-bottom: 20px;
       text-align: center;
-      font-size: 36px;
+      font-size: 40px;
       text-transform: uppercase;
-      line-height: 36px;
+      line-height: 45px;
       color: $success-color;
+
+      @include breakpoint($tablet-max) {
+        font-size: 36px;
+        line-height: 40px;
+      }
 
       @include breakpoint($mobile-max) {
         font-size: $large-font-size;
-        line-height: 32px;
+        line-height: 36px;
       }
     }
 
@@ -64,7 +196,7 @@
 
     &__btn {
       width: 180px !important;
-      margin: 48px 0 12px;
+      margin: 40px 0 12px;
       border: $default-border $primary-color;
       background-color: transparent;
       color: $primary-color;
@@ -118,3 +250,29 @@
     }
   }
 }
+
+@keyframes color-change {
+  0% {
+    color: $warn-color;
+  }
+  33% {
+    color: $success-color;
+  }
+  66% {
+    color: $primary-color;
+  }
+  100% {
+    color: $warn-color;
+  }
+}
+// @-webkit-keyframes color-change {
+//   0% {
+//     color: $warn-color;
+//   }
+//   50% {
+//     color: $success-color;
+//   }
+//   100% {
+//     color: $primary-color;
+//   }
+// }
