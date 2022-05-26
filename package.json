@@ -6,6 +6,7 @@
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
+    "concurrently": "^7.2.1",
     "formik": "^2.2.6",
     "lodash": "^4.17.21",
     "prettier": "^2.2.1",
@@ -31,6 +32,7 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
+    "dev": "concurrently -n 'main,server' -c 'cyan,green' \"npm start\" \"json-server --watch db.json --port 4000\"",
     "test": "jest",
     "test:all": "set CI=true && react-scripts test && npm run lint",
     "eject": "react-scripts eject",
