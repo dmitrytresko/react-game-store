@@ -315,8 +315,16 @@
       "metaRating": 92
     }
   ],
-  "auth": {
-    "login": "faw4t",
-    "password": "a4tgae4"
-  }
+  "auth": [
+    {
+      "login": "admin1",
+      "password": "test1234",
+      "id": 1
+    },
+    {
+      "login": "admin2",
+      "password": "test1234",
+      "id": 2
+    }
+  ]
 }
