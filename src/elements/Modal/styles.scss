@@ -87,6 +87,22 @@
     }
   }
 
+  &__error {
+    display: flex;
+    align-items: baseline;
+    width: 60%;
+    min-width: 264px;
+    font-weight: lighter;
+    font-size: 18px;
+    color: $warn-color;
+
+    &--icon {
+      width: 12px;
+      height: 12px;
+      margin-right: 4px;
+    }
+  }
+
   &__footer {
     flex-direction: column;
     flex-wrap: wrap;

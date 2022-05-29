@@ -267,7 +267,7 @@ const Modal = ({
               selectedItems: [],
             })
           : setErrorMessage(
-              "There is no account with such username. Try again"
+              "There is no account with such credentials. Try again"
             );
       }
 
