@@ -1,14 +1,14 @@
 /* eslint-disable */
-import { useEffect, useMemo } from "react";
+import { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
-import closeImg from "../../assets/img/close.jpg";
 import crossImg from "../../assets/img/cross.jpg";
 import fiveStars from "../../assets/img/card-items/five-stars.jpg";
 import fourStars from "../../assets/img/card-items/four-stars.jpg";
 import threeStars from "../../assets/img/card-items/three-stars.jpg";
 import twoStars from "../../assets/img/card-items/two-stars.jpg";
 import oneStar from "../../assets/img/card-items/one-star.jpg";
+import warningIcon from "../../assets/img/warning.png";
 import { Formik, Form } from "formik";
 import axios from "axios";
 import registrationSchema from "../../validations/registrationValidation";
@@ -30,8 +30,10 @@ const Modal = ({
 
   const userState = useSelector((state) => state.user);
   const { isLogged, password, currentGame } = userState;
-
   const allGamesArr = useSelector((state) => state.games.allGamesArr);
+
+  const [users, setUsers] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const defineInitialValues = () => {
     switch (type) {
@@ -163,6 +165,34 @@ const Modal = ({
     }
   };
 
+  const doesUserExist = (formData) => {
+    const existingUser = users?.find(
+      (item) =>
+        item.login === formData.login && item.password === formData.password
+    );
+
+    return existingUser ? true : false;
+  };
+
+  const isLoginAvailable = (formData) => {
+    const existingLogin = users
+      ?.map((item) => ({ login: item.login }))
+      .find((item) => item.login === formData.login);
+
+    return existingLogin ? false : true;
+  };
+
+  const registerUser = async (formData) => {
+    try {
+      await axios.post("http://localhost:4000/auth", {
+        login: formData.login,
+        password: formData.password,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const onSubmitHandler = async (values) => {
     let formData;
     let requiredSchema;
@@ -229,25 +259,34 @@ const Modal = ({
         return;
       }
 
-      confirmUserAuthentication({
-        ...formData,
-        cartCount: 0,
-        selectedItems: [],
-      });
-      performRegistrationRequest(formData);
-    }
-  };
+      if (type === "signIn") {
+        doesUserExist(formData)
+          ? confirmUserAuthentication({
+              ...formData,
+              cartCount: 0,
+              selectedItems: [],
+            })
+          : setErrorMessage(
+              "There is no account with such username. Try again"
+            );
+      }
 
-  const performRegistrationRequest = async (formData) => {
-    try {
-      const response = await axios.post("http://localhost:4000/auth", {
-        login: formData.login,
-        password: formData.password,
-      });
+      if (type === "registration") {
+        if (isLoginAvailable(formData)) {
+          registerUser(formData);
+          confirmUserAuthentication({
+            ...formData,
+            cartCount: 0,
+            selectedItems: [],
+          });
 
-      console.log(response);
-    } catch (error) {
-      console.error(error);
+          return;
+        }
+
+        setErrorMessage(
+          "This login is already taken by someone else. Try another one"
+        );
+      }
     }
   };
 
@@ -256,6 +295,12 @@ const Modal = ({
 
     return () => (document.body.style.overflow = "overlay");
   });
+
+  useEffect(async () => {
+    const response = await axios.get("http://localhost:4000/auth");
+
+    setUsers(response.data);
+  }, []);
 
   return ReactDOM.createPortal(
     <>
@@ -278,6 +323,13 @@ const Modal = ({
 
           <p className="modal__title">{defineModalTitle()}</p>
           <div className="modal__children-block">{children}</div>
+
+          {errorMessage && (
+            <div className="modal__error">
+              <img className="modal__error--icon" src={warningIcon} />
+              {errorMessage}
+            </div>
+          )}
 
           <div className="modal__footer flex-center">
             {type === "editGame" && (
