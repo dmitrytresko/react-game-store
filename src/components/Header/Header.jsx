@@ -171,6 +171,7 @@ const Header = ({ authenticateUser }) => {
                   className="header__cart-btn"
                   type="button"
                   onClick={onCartClickHandler}
+                  title="Shopping cart"
                 >
                   <div className="header__cart-btn-counter">
                     <span className="header__cart-btn-counter--number">
@@ -182,6 +183,7 @@ const Header = ({ authenticateUser }) => {
                 <div
                   className="header__login-handler"
                   onClick={onUserClickHandler}
+                  title="Profile"
                 >
                   <p className="header__link">{userLogin}</p>
                   <img className="header__user-icon" src={userIcon} />
