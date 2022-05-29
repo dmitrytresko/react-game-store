@@ -79,9 +79,9 @@
     }
 
     &--promo {
-      font-size: 36px;
+      font-size: 34px;
       font-weight: $bold-font-weight;
-      line-height: 40px;
+      line-height: 38px;
       text-transform: uppercase;
       text-align: center;
       color: $white-color;
@@ -166,9 +166,9 @@
     &__title {
       margin-bottom: 20px;
       text-align: center;
-      font-size: 40px;
+      font-size: 44px;
       text-transform: uppercase;
-      line-height: 45px;
+      line-height: 48px;
       color: $success-color;
 
       @include breakpoint($tablet-max) {

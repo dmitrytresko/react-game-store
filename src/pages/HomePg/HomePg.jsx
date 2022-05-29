@@ -126,7 +126,7 @@ const HomePg = () => {
             className="btn home__banner__btn"
             onClick={() => history.push("/products")}
           >
-            See all products
+            See All Products
           </button>
           <p className="home__banner__text" style={{ marginBottom: "12px" }}>
             or
