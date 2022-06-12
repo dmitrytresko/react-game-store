@@ -1,17 +1,19 @@
+const user = JSON.parse(localStorage.getItem("user"));
+
 const initialState = {
-  isLogged: false,
-  userName: '',
-  password: '',
-  isAdmin: false,
+  isLogged: user ? true : false,
+  userName: user.login ?? "",
+  password: user.password ?? "",
+  isAdmin: user.login.includes("admin") ? true : false,
   address: null,
   phone: null,
   cartCount: 0,
   selectedItems: [],
-  currentGame: null
+  currentGame: null,
 };
 
 const authReducer = (state = initialState, action) => {
-  const {type, payload} = action;
+  const { type, payload } = action;
 
   switch (type) {
     case "SET_USER_DATA":
@@ -20,33 +22,33 @@ const authReducer = (state = initialState, action) => {
         isLogged: payload.login !== null && payload.login ? true : false,
         userName: payload.login,
         password: payload.password,
-        isAdmin: payload.login !== null && payload.login.includes('admin') ? true : false,
+        isAdmin: payload.login.includes("admin") ? true : false,
         address: payload.address,
         phone: payload.phone,
         cartCount: payload.cartCount,
-        selectedItems: payload.selectedItems
+        selectedItems: payload.selectedItems,
       };
     case "SET_NEW_PASSWORD":
       return {
         ...state,
-        password: payload.newPassword
+        password: payload.newPassword,
       };
     case "SET_NEW_LOGIN":
       return {
         ...state,
-        userName: payload.newLogin
+        userName: payload.newLogin,
       };
     case "SET_ADDITIONAL_INFO":
       return {
         ...state,
         address: payload.address,
-        phone: payload.phone
+        phone: payload.phone,
       };
     case "SET_CART_DATA":
       return {
         ...state,
         cartCount: payload.newCartCount,
-        selectedItems: payload.selectedItems
+        selectedItems: payload.selectedItems,
       };
     case "SET_CURRENT_GAME":
       return {
@@ -56,6 +58,6 @@ const authReducer = (state = initialState, action) => {
     default:
       return state;
   }
-}
+};
 
 export default authReducer;
