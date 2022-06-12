@@ -109,7 +109,7 @@
   &__reg-btn {
     position: relative;
     padding: 0 12px;
-    margin-left: 24px;
+    margin-left: $default-margin;
     background-color: transparent;
     border-color: $primary-color;
     border-radius: $default-border-radius;
@@ -157,10 +157,10 @@
     cursor: pointer;
 
     &:hover &-counter {
-      background-color: $secondary-color;
+      background-color: $success-color;
 
       &--number {
-        color: #ffffff;
+        color: $white-color;
       }
     }
 
@@ -179,11 +179,11 @@
 
       &--number {
         margin-top: 2px;
-        color: #000;
-        font-weight: bold;
+        color: $black-color;
         font-size: 18px;
+        line-height: 22px;
+        font-weight: $bold-font-weight;
         font-family: $primary-font;
-        text-align: center;
       }
     }
 
@@ -233,10 +233,6 @@
     }
   }
 
-  .narrow {
-    margin-left: 4.25vw;
-  }
-
   .Dropdown-control {
     padding: 0px 16px 0 0;
     background: none;
@@ -259,7 +255,7 @@
   .Dropdown-arrow {
     position: absolute;
     top: calc(50% - 0.25rem);
-    right: 3px;
+    right: 2px;
     display: block;
     width: 0;
     height: 0;
