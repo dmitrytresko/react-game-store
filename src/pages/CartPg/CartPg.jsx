@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCartData } from "../../redux/actions";
 import emptyCartImg from "../../assets/img/empty-cart.jpg";
 import warningIcon from "../../assets/img/warning.png";
+import clearCartIcon from "../../assets/img/clear-cart.png";
 import CartTable from "./CartTable";
 import { sales } from "../../common/sales";
 import "./styles.scss";
@@ -129,115 +130,116 @@ const CartPg = () => {
           }}
         >
           <div
-            style={{
-              width: "100%",
-              maxWidth: "100%",
-              minWidth: "782px",
-              maxHeight: "500px",
-              overflow: "auto",
-            }}
+            className="flex-column"
+            style={{ width: "100%", maxWidth: "100%" }}
           >
-            <CartTable
-              userCartCount={userCartCount}
-              userSelectedItems={userSelectedItems}
-              uniqueItemsList={uniqueItemsList}
-              getRelevantItemQuantity={getRelevantItemQuantity}
-              calculateSubtotal={calculateSubtotal}
-            />
+            <div
+              style={{
+                width: "100%",
+                maxWidth: "100%",
+                minWidth: "782px",
+                maxHeight: "516px",
+                overflow: "auto",
+              }}
+            >
+              <CartTable
+                userCartCount={userCartCount}
+                userSelectedItems={userSelectedItems}
+                uniqueItemsList={uniqueItemsList}
+                getRelevantItemQuantity={getRelevantItemQuantity}
+                calculateSubtotal={calculateSubtotal}
+              />
+            </div>
           </div>
 
-          <div className="cart__actions-handler flex-column ">
-            <div
-              className="cart__actions-handler--inner"
-              style={{ cursor: "pointer" }}
-              onClick={() => setIsPromoOpened(!isPromoOpened)}
-            >
-              <p className="cart__text">Want to use promo code?</p>
-              <div className="cart__text">{isPromoOpened ? "-" : "+"}</div>
-            </div>
-            {isPromoOpened && (
-              <div className="cart__promo-section">
-                <input
-                  className="cart__promo-section__input"
-                  style={{ margin: "12px 0 8px" }}
-                  placeholder="Enter your promo here..."
-                  value={promoValue}
-                  onChange={(e) => changePromoValueHandler(e)}
-                />
-                {promoError && (
-                  <div className="cart__promo-section__error">
-                    <img
-                      className="cart__promo-section__error--icon"
-                      src={warningIcon}
-                    />
-                    {promoError}
-                  </div>
-                )}
-                <button
-                  className="btn submit-btn"
-                  style={{
-                    marginTop: "12px",
-                    width: "100%",
-                    minWidth: 0,
-                    maxWidth: "100%",
-                  }}
-                  disabled={!promoValue}
-                  onClick={applyPromoHandler}
-                >
-                  Apply
-                </button>
-              </div>
-            )}
-
-            <hr className="divider" style={{ margin: "24px 0" }} />
-
-            <div className="flex-column">
+          <div
+            className="flex-column center-x"
+            style={{ width: "32.5%", minWidth: "264px" }}
+          >
+            <div className="cart__actions-handler flex-column ">
               <div
                 className="cart__actions-handler--inner"
-                style={{ marginBottom: "8px" }}
+                style={{ cursor: "pointer" }}
+                onClick={() => setIsPromoOpened(!isPromoOpened)}
               >
-                <span className="cart__total-text">Initial Total:</span>
-                <span className="cart__total-text">${cartTotal}</span>
+                <p className="cart__text">Want to use promo code?</p>
+                <div className="cart__text">{isPromoOpened ? "-" : "+"}</div>
               </div>
-              <div className="cart__actions-handler--inner">
-                <span className="cart__total-text">Discount:</span>
-                <span className="cart__total-text">${promoDiscount}</span>
-              </div>
+              {isPromoOpened && (
+                <div className="cart__promo-section">
+                  <input
+                    className="cart__promo-section__input"
+                    style={{ margin: "12px 0 8px" }}
+                    placeholder="Enter your promo here..."
+                    value={promoValue}
+                    onChange={(e) => changePromoValueHandler(e)}
+                  />
+                  {promoError && (
+                    <div className="cart__promo-section__error">
+                      <img
+                        className="cart__promo-section__error--icon"
+                        src={warningIcon}
+                      />
+                      {promoError}
+                    </div>
+                  )}
+                  <button
+                    className="btn submit-btn"
+                    style={{
+                      marginTop: "12px",
+                      width: "100%",
+                      minWidth: 0,
+                      maxWidth: "100%",
+                    }}
+                    disabled={!promoValue}
+                    onClick={applyPromoHandler}
+                  >
+                    Apply
+                  </button>
+                </div>
+              )}
 
               <hr className="divider" style={{ margin: "24px 0" }} />
 
-              <div className="cart__actions-handler--inner">
-                <span className="cart__total-text">Cart Total:</span>
-                <span
-                  className="cart__total-text"
-                  style={{ fontWeight: "700" }}
+              <div className="flex-column">
+                <div
+                  className="cart__actions-handler--inner"
+                  style={{ marginBottom: "8px" }}
                 >
-                  ${(cartTotal - promoDiscount).toFixed(2)}
-                </span>
+                  <span className="cart__total-text">Initial Total:</span>
+                  <span className="cart__total-text">${cartTotal}</span>
+                </div>
+                <div className="cart__actions-handler--inner">
+                  <span className="cart__total-text">Discount:</span>
+                  <span className="cart__total-text">${promoDiscount}</span>
+                </div>
+
+                <hr className="divider" style={{ margin: "24px 0" }} />
+
+                <div className="cart__actions-handler--inner">
+                  <span className="cart__total-text">Cart Total:</span>
+                  <span
+                    className="cart__total-text"
+                    style={{ fontWeight: "700" }}
+                  >
+                    ${(cartTotal - promoDiscount).toFixed(2)}
+                  </span>
+                </div>
+                <button
+                  className="cart__action-btn btn success-btn"
+                  onClick={checkoutHandler}
+                >
+                  Checkout
+                </button>
               </div>
-              <button
-                className="cart__action-btn btn success-btn"
-                onClick={checkoutHandler}
-              >
-                Checkout
-              </button>
             </div>
 
-            {/* <div className="cart__actions-handler--inner flex-column">
-              <button
-                className="cart__action-btn btn delete-btn clear-btn"
-                style={{ marginTop: 0 }}
-                onClick={clearCartHandler}
-              >
-                Clear Cart
-              </button>
-              <button
-                className="cart__action-btn btn submit-btn"
-                onClick={goToProducts}
-              >
-                Continue Shopping
-              </button>
-            </div> */}
+            <div style={{ width: "100%", padding: "0 24px" }}>
+              <div className="clear-link" onClick={clearCartHandler}>
+                <img src={clearCartIcon} className="clear-link--img black" />
+                <span>Clear Cart</span>
+              </div>
+            </div>
           </div>
         </div>
       ) : (

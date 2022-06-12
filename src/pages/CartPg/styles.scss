@@ -200,8 +200,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 32.5%;
-    min-width: 264px;
+    width: 100%;
     padding: $default-margin;
     background: rgba($white-color, 0.65);
 
@@ -294,13 +293,30 @@
     .cart__action-btn {
       min-width: 100%;
     }
+  }
 
-    .clear-btn {
-      background-color: transparent;
+  .clear-link {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: $default-margin;
+    border-bottom: $default-border transparent;
+    color: $black-color;
+    font-size: $mid-large-font-size;
+    font-weight: $thin-font-weight;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: $default-transition;
 
-      &:hover {
-        background-color: $warn-color;
-      }
+    &:hover {
+      border-bottom: $default-border $warn-color;
+      color: $warn-color;
+    }
+
+    &--img {
+      width: 26px;
+      height: 26px;
+      margin-right: 8px;
     }
   }
 }
