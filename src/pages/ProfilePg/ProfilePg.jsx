@@ -17,6 +17,10 @@ import {
 import "./styles.scss";
 
 const ProfilePg = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const loginInputRef = useRef();
+
   const userLogin = useSelector((state) => state.user?.userName);
   const userPassword = useSelector((state) => state.user?.password);
   const userEmail = useSelector((state) => state.user?.email);
@@ -24,27 +28,16 @@ const ProfilePg = () => {
   const userPhone = useSelector((state) => state.user?.phone);
   const hashedPassword = userPassword.split("").map(() => "*");
 
+  const [loginInputState, setLoginInputState] = useState(userLogin);
   const [loginChangeClicked, setLoginChangeClicked] = useState(false);
   const [modalState, setModalState] = useState({
     isOpened: false,
     passwordChangeClicked: false,
   });
 
-  const [loginInputState, setLoginInputState] = useState(userLogin);
-
-  const loginInputRef = useRef();
-
-  const history = useHistory();
-
-  const dispatch = useDispatch();
-
   const onLoginChangeClickHandler = () => {
     setLoginChangeClicked(true);
   };
-
-  useEffect(() => {
-    loginInputRef?.current?.focus();
-  }, [loginChangeClicked]);
 
   const handleLoginInputChange = (event) => {
     setLoginInputState(event.target.value);
@@ -105,6 +98,10 @@ const ProfilePg = () => {
       history.push("/");
     }
   };
+
+  useEffect(() => {
+    loginInputRef?.current?.focus();
+  }, [loginChangeClicked]);
 
   return (
     <>
