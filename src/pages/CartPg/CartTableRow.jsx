@@ -5,23 +5,31 @@ import trashImg from "../../assets/img/trash.jpg";
 import leftArrowImg from "../../assets/img/left-arrow.jpg";
 import rightArrowImg from "../../assets/img/right-arrow.jpg";
 
-const CartTableRow = ({ game, userCartCount, userSelectedItems, getRelevantItemQuantity, calculateSubtotal }) => {
+const CartTableRow = ({
+  game,
+  userCartCount,
+  userSelectedItems,
+  getRelevantItemQuantity,
+  calculateSubtotal,
+}) => {
   const dispatch = useDispatch();
 
-  const showRelevantCategoryName = gameId => {
+  const showRelevantCategoryName = (gameId) => {
     if (gameId >= 100 && gameId < 200) {
-      return 'PS4';
+      return "PS";
     }
     if (gameId >= 200 && gameId < 300) {
-      return 'Xbox';
+      return "Xbox";
     }
     if (gameId >= 300) {
-      return 'PC';
+      return "PC";
     }
-  }
+  };
 
-  const decreaseItemQuantity = idxOfItemToDelete => {
-    const idxOfItemToDecrease = userSelectedItems.map(item => item.gameId).lastIndexOf(idxOfItemToDelete);
+  const decreaseItemQuantity = (idxOfItemToDelete) => {
+    const idxOfItemToDecrease = userSelectedItems
+      .map((item) => item.gameId)
+      .lastIndexOf(idxOfItemToDelete);
 
     if (idxOfItemToDecrease > -1) {
       userSelectedItems.splice(idxOfItemToDecrease, 1);
@@ -29,36 +37,35 @@ const CartTableRow = ({ game, userCartCount, userSelectedItems, getRelevantItemQ
       dispatch(
         setCartData({
           newCartCount: userCartCount - 1,
-          selectedItems: userSelectedItems
+          selectedItems: userSelectedItems,
         })
       );
     }
-  }
+  };
 
-  const increaseItemQuantity = itemToAdd => {
-    const selectedItemsIncreased = [
-      ...userSelectedItems,
-      itemToAdd
-    ];
+  const increaseItemQuantity = (itemToAdd) => {
+    const selectedItemsIncreased = [...userSelectedItems, itemToAdd];
 
     dispatch(
       setCartData({
         newCartCount: userCartCount + 1,
-        selectedItems: selectedItemsIncreased
+        selectedItems: selectedItemsIncreased,
       })
     );
-  }
+  };
 
-  const deleteGameFromCart = gameToDeleteId => {
-    const newSelectedItemsArr = userSelectedItems.filter(item => item.gameId !== gameToDeleteId);
+  const deleteGameFromCart = (gameToDeleteId) => {
+    const newSelectedItemsArr = userSelectedItems.filter(
+      (item) => item.gameId !== gameToDeleteId
+    );
 
     dispatch(
       setCartData({
         newCartCount: newSelectedItemsArr.length,
-        selectedItems: newSelectedItemsArr
+        selectedItems: newSelectedItemsArr,
       })
     );
-  }
+  };
 
   return (
     <tr key={game.gameId}>
@@ -89,6 +96,7 @@ const CartTableRow = ({ game, userCartCount, userSelectedItems, getRelevantItemQ
       <td>
         <button
           className="cart__delete-btn"
+          title="Delete From Cart"
           onClick={() => deleteGameFromCart(game.gameId)}
         >
           <img className="cart__delete-btn--image" src={trashImg} />

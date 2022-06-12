@@ -1,21 +1,27 @@
 import React from "react";
-import CartTableRow from './CartTableRow';
+import CartTableRow from "./CartTableRow";
 
-const CartTable = ({ userCartCount, userSelectedItems, uniqueItemsList, getRelevantItemQuantity, calculateSubtotal }) => {
+const CartTable = ({
+  userCartCount,
+  userSelectedItems,
+  uniqueItemsList,
+  getRelevantItemQuantity,
+  calculateSubtotal,
+}) => {
   return (
-    <table style={userCartCount && { marginTop: '70px' }}>
-      <thead>
+    <table>
+      <thead className="cart__table-head">
         <tr>
-          <th>Product</th>
-          <th>Platform</th>
-          <th>Price</th>
-          <th>Quantity</th>
-          <th>Subtotal</th>
+          <th className="cart__table-head-td">Product</th>
+          <th className="cart__table-head-td">Platform</th>
+          <th className="cart__table-head-td">Price</th>
+          <th className="cart__table-head-td">Quantity</th>
+          <th className="cart__table-head-td">Subtotal</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
-        {uniqueItemsList?.map(item => (
+        {uniqueItemsList?.map((item) => (
           <CartTableRow
             key={item.gameId}
             game={item}

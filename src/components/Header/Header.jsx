@@ -69,6 +69,8 @@ const Header = ({ authenticateUser }) => {
     authenticateUser(userData);
     setModalState({ isOpened: false, signInClicked: false, regClicked: false });
 
+    localStorage.setItem("user", JSON.stringify({ ...userData }));
+
     history.push("/profile");
   };
 
@@ -94,6 +96,8 @@ const Header = ({ authenticateUser }) => {
         cartCount: 0,
         selectedItems: [],
       });
+
+      localStorage.removeItem("user");
 
       history.push("/");
     }
@@ -171,7 +175,7 @@ const Header = ({ authenticateUser }) => {
                   className="header__cart-btn"
                   type="button"
                   onClick={onCartClickHandler}
-                  title="Shopping cart"
+                  title="Shopping Cart"
                 >
                   <div className="header__cart-btn-counter">
                     <span className="header__cart-btn-counter--number">

@@ -63,10 +63,23 @@ class App extends React.Component {
 
           <Switch>
             <Route path="/" exact component={HomePg} />
-            <ProtectedRoute path="/products" component={ProductsPg} />
+            <ProtectedRoute
+              path="/products"
+              component={ProductsPg}
+              authenticateUser={this.authenticateUser}
+            />
             <Route path="/about" component={AboutPg} />
-            <ProtectedRoute path="/profile" exact component={ProfilePg} />
-            <ProtectedRoute path="/cart" component={CartPg} />
+            <ProtectedRoute
+              path="/profile"
+              exact
+              component={ProfilePg}
+              authenticateUser={this.authenticateUser}
+            />
+            <ProtectedRoute
+              path="/cart"
+              component={CartPg}
+              authenticateUser={this.authenticateUser}
+            />
             <Route component={NotFoundPg}></Route>
           </Switch>
 
