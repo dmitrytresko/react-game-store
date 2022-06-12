@@ -4,16 +4,15 @@
 .page-title {
   margin: $default-margin 0;
   font-size: $large-font-size;
+  font-weight: $bold-font-weight;
+  line-height: 36px;
   text-align: center;
   text-transform: uppercase;
 
   @include breakpoint($tablet-max) {
-    margin: 20px;
-    font-size: $mid-large-font-size;
-  }
-
-  &--not-found {
-    font-size: $huge-font-size;
+    margin: 16px 0;
+    font-size: 26px;
+    line-height: 30px;
   }
 }
 
@@ -56,6 +55,21 @@
   @include breakpoint($mobile-max) {
     font-size: 20px;
   }
+
+  &:hover {
+    transform: scale(1.01);
+  }
+
+  &:active {
+    transform: scale(0.99);
+  }
+
+  &:disabled {
+    background-color: $gray-color;
+    border-color: $gray-color;
+    color: $white-color;
+    pointer-events: none;
+  }
 }
 
 .delete-btn {
@@ -64,7 +78,7 @@
   background-color: $white-color;
   color: $warn-color;
 
-  &:hover {
+  &:not(:disabled):hover {
     background-color: $warn-color;
     border: $default-border $warn-color;
     color: $white-color;
@@ -77,9 +91,21 @@
   background-color: $secondary-color;
   color: $white-color;
 
-  &:hover {
+  &:not(:disabled):hover {
     background-color: $hover-color;
     border: $default-border $hover-color;
+  }
+}
+
+.success-btn {
+  margin-top: 16px;
+  border: $default-border $success-color;
+  background-color: $success-color;
+  color: $white-color;
+
+  &:not(:disabled):hover {
+    background-color: #139b79;
+    border: $default-border #139b79;
   }
 }
 
