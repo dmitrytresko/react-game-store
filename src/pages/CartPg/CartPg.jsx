@@ -89,12 +89,18 @@ const CartPg = () => {
       behavior: "smooth",
     });
 
-    dispatch(
-      setCartData({
-        newCartCount: 0,
-        selectedItems: [],
-      })
+    const isConfirmed = confirm(
+      "Are you sure that you want to clear your shopping cart?"
     );
+
+    if (isConfirmed) {
+      dispatch(
+        setCartData({
+          newCartCount: 0,
+          selectedItems: [],
+        })
+      );
+    }
   };
 
   const checkoutHandler = () => {
