@@ -9,7 +9,7 @@ import tombRaiderImg from "../assets/img/games/xbox/tomb-raider.png";
 import fiveStars from "../assets/img/card-items/five-stars.jpg";
 import fourStars from "../assets/img/card-items/four-stars.jpg";
 
-const xboxGamesArr = [
+const xboxGames = [
   {
     id: 200,
     name: "Forza Horizon 4: Standard Edition",
@@ -19,7 +19,7 @@ const xboxGamesArr = [
     price: 54.99,
     age: 0,
     genre: "Racing",
-    metaRating: 92
+    metaRating: 92,
   },
   {
     id: 201,
@@ -30,7 +30,7 @@ const xboxGamesArr = [
     price: 39.99,
     age: 18,
     genre: "Action-RPG",
-    metaRating: 91
+    metaRating: 91,
   },
   {
     id: 202,
@@ -41,7 +41,7 @@ const xboxGamesArr = [
     price: 44.99,
     age: 18,
     genre: "Fighting",
-    metaRating: 88
+    metaRating: 88,
   },
   {
     id: 203,
@@ -52,7 +52,7 @@ const xboxGamesArr = [
     price: 99.99,
     age: 0,
     genre: "Sports",
-    metaRating: 77
+    metaRating: 77,
   },
   {
     id: 204,
@@ -63,7 +63,7 @@ const xboxGamesArr = [
     price: 19.99,
     age: 18,
     genre: "Survival horror",
-    metaRating: 86
+    metaRating: 86,
   },
   {
     id: 205,
@@ -74,7 +74,7 @@ const xboxGamesArr = [
     price: 54.99,
     age: 18,
     genre: "Action-Adventure",
-    metaRating: 87
+    metaRating: 87,
   },
   {
     id: 206,
@@ -85,7 +85,7 @@ const xboxGamesArr = [
     price: 24.99,
     age: 18,
     genre: "Action-RPG",
-    metaRating: 86
+    metaRating: 86,
   },
   {
     id: 207,
@@ -96,8 +96,8 @@ const xboxGamesArr = [
     price: 0,
     age: 0,
     genre: "Sports-Racing",
-    metaRating: 87
-  }
-]
+    metaRating: 87,
+  },
+];
 
-export default xboxGamesArr;
+export default xboxGames;

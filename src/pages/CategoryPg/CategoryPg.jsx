@@ -96,30 +96,30 @@ const CategoryPg = () => {
 
   const agesArr = [0, 16, 18];
 
-  const allGamesArr = useSelector((state) => state.games.allGamesArr);
-  const psGamesArr = useMemo(
-    () => allGamesArr.filter((game) => game.id >= 100 && game.id < 200),
-    [allGamesArr]
+  const allGames = useSelector((state) => state.games.allGames);
+  const psGames = useMemo(
+    () => allGames.filter((game) => game.id >= 100 && game.id < 200),
+    [allGames]
   );
-  const xboxGamesArr = useMemo(
-    () => allGamesArr.filter((game) => game.id >= 200 && game.id < 300),
-    [allGamesArr]
+  const xboxGames = useMemo(
+    () => allGames.filter((game) => game.id >= 200 && game.id < 300),
+    [allGames]
   );
-  const pcGamesArr = useMemo(
-    () => allGamesArr.filter((game) => game.id >= 300 && game.id < 400),
-    [allGamesArr]
+  const pcGames = useMemo(
+    () => allGames.filter((game) => game.id >= 300 && game.id < 400),
+    [allGames]
   );
 
   const selectGamesArr = () => {
     switch (categoryId) {
       case "ps":
-        return [...psGamesArr];
+        return [...psGames];
       case "xbox":
-        return [...xboxGamesArr];
+        return [...xboxGames];
       case "pc":
-        return [...pcGamesArr];
+        return [...pcGames];
       default:
-        return allGamesArr;
+        return allGames;
     }
   };
 
@@ -195,7 +195,7 @@ const CategoryPg = () => {
       // let requiredGamesToFilter;
       let resultArr;
 
-      // const response = await axios.get('http://localhost:4000/gamesArr');
+      // const response = await axios.get('http://localhost:4000/games');
 
       // switch (categoryId) {
       //   case "ps":
@@ -308,7 +308,7 @@ const CategoryPg = () => {
         outputArr: selectGamesArr(),
       },
     });
-  }, [allGamesArr]);
+  }, [allGames]);
 
   useEffect(() => {
     if (outputArr.length === 0) {

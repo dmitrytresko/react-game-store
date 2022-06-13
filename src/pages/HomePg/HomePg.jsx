@@ -7,7 +7,7 @@ import InputText from "../../elements/InputText/InputText";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import CategoryCard from "../../components/CategoryCard/CategoryCard";
 import GameCard from "../../components/GameCard/GameCard";
-import categoriesArr from "../../components/categoriesArr";
+import categories from "../../common/categories";
 import { sales } from "../../common/sales";
 import axios from "axios";
 import { setCurrentGame } from "../../redux/actions";
@@ -27,7 +27,7 @@ const HomePg = () => {
     editGameClicked: false,
   });
 
-  const allGamesArr = useSelector((state) => state.games.allGamesArr);
+  const allGames = useSelector((state) => state.games.allGames);
   const currentGameImage = useSelector(
     (state) => state.user?.currentGame?.gameImage
   );
@@ -37,9 +37,9 @@ const HomePg = () => {
       // const response = await axios.get('http://localhost:4000/getTopProducts');
       // const theBestRatings = response.data.map(item => item.metaRating).sort().reverse().slice(0, 3);
       // const gamesWithBestRatings = theBestRatings.map(number => response.data.find(item => item.metaRating === number));
-      // const matchedBestRatedGames = gamesWithBestRatings.map(game => allGamesArr.find(psGame => psGame.name === game.name));
+      // const matchedBestRatedGames = gamesWithBestRatings.map(game => allGames.find(psGame => psGame.name === game.name));
 
-      const copyArr = [...allGamesArr];
+      const copyArr = [...allGames];
       const gamesWithBestRatings = copyArr
         .sort((a, b) => b.metaRating - a.metaRating)
         .slice(0, 3);
@@ -52,7 +52,7 @@ const HomePg = () => {
 
   const callSearchValue = async (queryData) => {
     try {
-      const response = await axios.get("http://localhost:4000/gamesArr");
+      const response = await axios.get("http://localhost:4000/games");
 
       const { value } = queryData;
 
@@ -82,7 +82,7 @@ const HomePg = () => {
     getTopProductsInfo();
 
     return null;
-  }, [allGamesArr]);
+  }, [allGames]);
 
   return (
     <>
@@ -132,7 +132,7 @@ const HomePg = () => {
             or
           </p>
           <div className="home__categories-container">
-            {categoriesArr.map((item, id) => (
+            {categories.map((item, id) => (
               <CategoryCard
                 key={id}
                 path={item.path}

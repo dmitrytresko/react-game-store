@@ -10,7 +10,7 @@ import fiveStars from "../assets/img/card-items/five-stars.jpg";
 import fourStars from "../assets/img/card-items/four-stars.jpg";
 import threeStars from "../assets/img/card-items/three-stars.jpg";
 
-const psGamesArr = [
+const psGames = [
   {
     id: 100,
     name: "FIFA 21: Standard Edition",
@@ -20,7 +20,7 @@ const psGamesArr = [
     price: 59.99,
     age: 0,
     genre: "Sports",
-    metaRating: 72
+    metaRating: 72,
   },
   {
     id: 101,
@@ -31,7 +31,7 @@ const psGamesArr = [
     price: 51.99,
     age: 18,
     genre: "Shooter",
-    metaRating: 97
+    metaRating: 97,
   },
   {
     id: 102,
@@ -42,7 +42,7 @@ const psGamesArr = [
     price: 24.99,
     age: 18,
     genre: "Action-RPG",
-    metaRating: 93
+    metaRating: 93,
   },
   {
     id: 103,
@@ -53,7 +53,7 @@ const psGamesArr = [
     price: 54.99,
     age: 18,
     genre: "Survival horror",
-    metaRating: 93
+    metaRating: 93,
   },
   {
     id: 104,
@@ -64,7 +64,7 @@ const psGamesArr = [
     price: 14.99,
     age: 18,
     genre: "Action-RPG",
-    metaRating: 87
+    metaRating: 87,
   },
   {
     id: 105,
@@ -75,7 +75,7 @@ const psGamesArr = [
     price: 24.99,
     age: 18,
     genre: "Action-Adventure",
-    metaRating: 97
+    metaRating: 97,
   },
   {
     id: 106,
@@ -86,7 +86,7 @@ const psGamesArr = [
     price: 16.99,
     age: 16,
     genre: "Action-RPG",
-    metaRating: 89
+    metaRating: 89,
   },
   {
     id: 107,
@@ -97,8 +97,8 @@ const psGamesArr = [
     price: 109.99,
     age: 18,
     genre: "Fighting",
-    metaRating: 78
-  }
-]
+    metaRating: 78,
+  },
+];
 
-export default psGamesArr;
+export default psGames;

@@ -30,7 +30,7 @@ const Modal = ({
 
   const userState = useSelector((state) => state.user);
   const { isLogged, password, currentGame } = userState;
-  const allGamesArr = useSelector((state) => state.games.allGamesArr);
+  const allGames = useSelector((state) => state.games.allGames);
 
   const [users, setUsers] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
@@ -102,7 +102,7 @@ const Modal = ({
     );
 
     if (isConfirmed) {
-      const newGamesArr = allGamesArr.filter(
+      const newGamesArr = allGames.filter(
         (game) => game.id !== currentGame.gameId
       );
 
@@ -124,7 +124,7 @@ const Modal = ({
     );
 
     if (isConfirmed) {
-      const newGamesArr = [...allGamesArr];
+      const newGamesArr = [...allGames];
 
       const gameToEditIdx = newGamesArr.findIndex(
         (item) => item.id === currentGame.gameId

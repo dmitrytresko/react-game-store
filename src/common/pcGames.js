@@ -10,7 +10,7 @@ import fiveStars from "../assets/img/card-items/five-stars.jpg";
 import fourStars from "../assets/img/card-items/four-stars.jpg";
 import threeStars from "../assets/img/card-items/three-stars.jpg";
 
-const pcGamesArr = [
+const pcGames = [
   {
     id: 300,
     name: "Hitman 3",
@@ -20,7 +20,7 @@ const pcGamesArr = [
     price: 34.99,
     age: 18,
     genre: "Action-Stealth",
-    metaRating: 87
+    metaRating: 87,
   },
   {
     id: 301,
@@ -31,7 +31,7 @@ const pcGamesArr = [
     price: 69.99,
     age: 18,
     genre: "Action-RPG",
-    metaRating: 82
+    metaRating: 82,
   },
   {
     id: 302,
@@ -42,7 +42,7 @@ const pcGamesArr = [
     price: 49.99,
     age: 0,
     genre: "Sports",
-    metaRating: 74
+    metaRating: 74,
   },
   {
     id: 303,
@@ -53,7 +53,7 @@ const pcGamesArr = [
     price: 0,
     age: 18,
     genre: "Shooter",
-    metaRating: 80
+    metaRating: 80,
   },
   {
     id: 304,
@@ -64,7 +64,7 @@ const pcGamesArr = [
     price: 19.99,
     age: 18,
     genre: "Shooter",
-    metaRating: 79
+    metaRating: 79,
   },
   {
     id: 305,
@@ -75,7 +75,7 @@ const pcGamesArr = [
     price: 54.99,
     age: 0,
     genre: "Sports-Racing",
-    metaRating: 88
+    metaRating: 88,
   },
   {
     id: 306,
@@ -86,7 +86,7 @@ const pcGamesArr = [
     price: 19.99,
     age: 18,
     genre: "Action-RPG",
-    metaRating: 84
+    metaRating: 84,
   },
   {
     id: 307,
@@ -97,8 +97,8 @@ const pcGamesArr = [
     price: 34.99,
     age: 18,
     genre: "Shooter",
-    metaRating: 92
-  }
-]
+    metaRating: 92,
+  },
+];
 
-export default pcGamesArr;
+export default pcGames;

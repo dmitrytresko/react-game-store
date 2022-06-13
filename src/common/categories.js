@@ -5,7 +5,7 @@ import xboxLightLogo from "../assets/img/xbox-light.jpg";
 import windowsColorfulLogo from "../assets/img/windows-colorful.jpg";
 import windowsLightLogo from "../assets/img/windows-light.jpg";
 
-const categoriesArr = [
+const categories = [
   {
     id: 1,
     path: playStationColorfulLogo,
@@ -35,4 +35,4 @@ const categoriesArr = [
   },
 ];
 
-export default categoriesArr;
+export default categories;
