@@ -272,8 +272,8 @@ const CartPg = () => {
           </div>
           {openConfirmDialog.confirmClearCart && (
             <ConfirmDialog
-              title="Are you sure that you want to clear your shopping cart?"
-              bodyText="Please note that all items from your shopping cart will be removed after confirming this action"
+              title="Confirm Clear Cart"
+              bodyText="Are you sure that you want to clear your shopping cart? Please note that all items from your shopping cart will be removed after confirming this action."
               confirmHandler={clearCartHandler}
               onCloseClick={() =>
                 setOpenConfirmDialog({

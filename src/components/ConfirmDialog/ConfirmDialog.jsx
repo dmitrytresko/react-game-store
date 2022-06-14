@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { useEffect } from "react";
 import ReactDOM from "react-dom";
 import crossImg from "../../assets/img/cross.jpg";
@@ -15,7 +14,7 @@ const ConfirmDialog = ({ title, bodyText, confirmHandler, onCloseClick }) => {
     <>
       <div className="content-overlay" />
 
-      <div className="dialog">
+      <div className="dialog flex-column center-x">
         <button
           className="modal__close-btn"
           type="button"
@@ -24,11 +23,11 @@ const ConfirmDialog = ({ title, bodyText, confirmHandler, onCloseClick }) => {
           <img src={crossImg} className="modal__close-btn--img"></img>
         </button>
 
-        <div className="dialog__title">
+        <div className="dialog__title center-x">
           <p>{title}</p>
         </div>
 
-        <div className="dialog__body">
+        <div className="dialog__body center-x">
           <p>{bodyText}</p>
         </div>
 

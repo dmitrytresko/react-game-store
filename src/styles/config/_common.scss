@@ -68,12 +68,8 @@
     font-size: 20px;
   }
 
-  &:hover {
-    transform: scale(1.01);
-  }
-
   &:active {
-    transform: scale(0.99);
+    transform: scale(0.98);
   }
 
   &:disabled {

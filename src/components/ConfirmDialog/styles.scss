@@ -7,7 +7,7 @@
   z-index: 1000;
   width: 40vw;
   min-width: 576px;
-  padding: 36px;
+  padding: 36px 48px;
   overflow: auto;
   background-color: $white-color;
   border-radius: $default-border-radius;
@@ -49,7 +49,7 @@
     margin-bottom: $default-margin;
     text-align: center;
     font-size: $huge-font-size;
-    line-height: 42px;
+    line-height: $large-line-height;
     font-weight: $bold-font-weight;
     color: $black-color;
 
@@ -60,7 +60,7 @@
   }
 
   &__body {
-    margin-bottom: 36px;
+    margin-bottom: 40px;
     padding: 0 16px;
     text-align: center;
     font-size: 22px;
@@ -78,10 +78,42 @@
   &__footer {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
+    width: 100%;
+    gap: $default-margin;
 
     .dialog__btn {
       flex-grow: 1;
+      padding: 8px;
+      border: $default-border;
+      border-radius: $default-border-radius;
+      font-size: $mid-large-font-size;
+      font-family: $primary-font;
+      line-height: 28px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: $default-transition;
+
+      &.cancel {
+        border-color: $warn-color;
+        background-color: $white-color;
+        color: $warn-color;
+
+        &:hover {
+          background-color: $warn-color;
+          color: $white-color;
+        }
+      }
+
+      &.confirm {
+        border-color: $secondary-color;
+        background-color: $secondary-color;
+        color: $white-color;
+
+        &:hover {
+          border-color: $hover-color;
+          background-color: $hover-color;
+        }
+      }
     }
   }
 }
