@@ -1,5 +1,5 @@
 /* eslint-disable*/
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setCartData } from "../../redux/actions";
@@ -9,6 +9,7 @@ import clearCartIcon from "../../assets/img/clear-cart.png";
 import CartTable from "./CartTable";
 import { sales } from "../../common/sales";
 import "./styles.scss";
+import ConfirmDialog from "../../components/ConfirmDialog/ConfirmDialog";
 
 const CartPg = () => {
   const history = useHistory();
@@ -17,6 +18,10 @@ const CartPg = () => {
   const userCartCount = useSelector((state) => state.user?.cartCount);
   const userSelectedItems = useSelector((state) => state.user?.selectedItems);
 
+  const [openConfirmDialog, setOpenConfirmDialog] = useState({
+    confirmClearCart: false,
+    confirmCheckout: false,
+  });
   const [isPromoOpened, setIsPromoOpened] = useState(false);
   const [isPromoActivated, setIsPromoActivated] = useState(false);
   const [promoValue, setPromoValue] = useState("");
@@ -89,18 +94,12 @@ const CartPg = () => {
       behavior: "smooth",
     });
 
-    const isConfirmed = confirm(
-      "Are you sure that you want to clear your shopping cart?"
+    dispatch(
+      setCartData({
+        newCartCount: 0,
+        selectedItems: [],
+      })
     );
-
-    if (isConfirmed) {
-      dispatch(
-        setCartData({
-          newCartCount: 0,
-          selectedItems: [],
-        })
-      );
-    }
   };
 
   const checkoutHandler = () => {
@@ -192,7 +191,7 @@ const CartPg = () => {
                   <button
                     className="btn submit-btn"
                     style={{
-                      marginTop: "12px",
+                      marginTop: "8px",
                       width: "100%",
                       minWidth: 0,
                       maxWidth: "100%",
@@ -205,28 +204,33 @@ const CartPg = () => {
                 </div>
               )}
 
-              <hr className="divider" style={{ margin: "24px 0" }} />
+              <hr className="divider" style={{ margin: "24px 0 20px" }} />
 
               <div className="flex-column">
                 <div
                   className="cart__actions-handler--inner"
                   style={{ marginBottom: "8px" }}
                 >
-                  <span className="cart__total-text">Initial Total:</span>
+                  <span className="cart__total-text">Initial Total</span>
                   <span className="cart__total-text">${cartTotal}</span>
                 </div>
                 <div className="cart__actions-handler--inner">
-                  <span className="cart__total-text">Discount:</span>
+                  <span className="cart__total-text">Discount</span>
                   <span className="cart__total-text">${promoDiscount}</span>
                 </div>
 
-                <hr className="divider" style={{ margin: "24px 0" }} />
+                <hr className="divider" style={{ margin: "20px 0" }} />
 
                 <div className="cart__actions-handler--inner">
-                  <span className="cart__total-text">Cart Total:</span>
                   <span
                     className="cart__total-text"
-                    style={{ fontWeight: "700" }}
+                    style={{ fontWeight: "400" }}
+                  >
+                    Cart Total
+                  </span>
+                  <span
+                    className="cart__total-text"
+                    style={{ fontWeight: "400" }}
                   >
                     ${(cartTotal - promoDiscount).toFixed(2)}
                   </span>
@@ -234,19 +238,51 @@ const CartPg = () => {
                 <button
                   className="cart__action-btn btn success-btn"
                   onClick={checkoutHandler}
+                  style={{ marginTop: "24px" }}
                 >
                   Checkout
                 </button>
+                {openConfirmDialog.confirmCheckout && (
+                  <ConfirmDialog
+                    onCloseClick={() =>
+                      setOpenConfirmDialog({
+                        confirmClearCart: false,
+                        confirmCheckout: false,
+                      })
+                    }
+                  />
+                )}
               </div>
             </div>
 
             <div style={{ width: "100%", padding: "0 24px" }}>
-              <div className="clear-link" onClick={clearCartHandler}>
-                <img src={clearCartIcon} className="clear-link--img black" />
+              <div
+                className="clear-link"
+                onClick={() =>
+                  setOpenConfirmDialog({
+                    confirmClearCart: true,
+                    confirmCheckout: false,
+                  })
+                }
+              >
+                <img src={clearCartIcon} className="clear-link--img" />
                 <span>Clear Cart</span>
               </div>
             </div>
           </div>
+          {openConfirmDialog.confirmClearCart && (
+            <ConfirmDialog
+              title="Are you sure that you want to clear your shopping cart?"
+              bodyText="Please note that all items from your shopping cart will be removed after confirming this action"
+              confirmHandler={clearCartHandler}
+              onCloseClick={() =>
+                setOpenConfirmDialog({
+                  confirmClearCart: false,
+                  confirmCheckout: false,
+                })
+              }
+            />
+          )}
         </div>
       ) : (
         <div className="wrapper flex-column center-x">

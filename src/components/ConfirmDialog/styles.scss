@@ -1,17 +1,13 @@
 @import "/src/styles/App.scss";
 
-.modal {
+.dialog {
   position: fixed;
   top: 50%;
   left: 50%;
   z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 40vw;
   min-width: 576px;
-  padding: 36px 0 48px;
+  padding: 36px;
   overflow: auto;
   background-color: $white-color;
   border-radius: $default-border-radius;
@@ -50,50 +46,42 @@
   }
 
   &__title {
-    margin: 0 8px;
     margin-bottom: $default-margin;
     text-align: center;
     font-size: $huge-font-size;
-    line-height: $large-line-height;
+    line-height: 42px;
     font-weight: $bold-font-weight;
     color: $black-color;
 
     @include breakpoint($mobile-max) {
-      margin-bottom: 8px;
+      margin-bottom: 16px;
       font-size: $large-font-size;
     }
   }
 
-  &__children-block {
-    width: 100%;
-    max-height: 440px;
-    padding: 12px 0;
-    overflow-y: overlay;
+  &__body {
+    margin-bottom: 36px;
+    padding: 0 16px;
+    text-align: center;
+    font-size: 22px;
+    line-height: 26px;
+    font-weight: $thin-font-weight;
+    color: $gray-color;
 
     @include breakpoint($mobile-max) {
-      max-height: 264px;
-    }
-  }
-
-  &__error {
-    display: flex;
-    align-items: baseline;
-    width: 60%;
-    min-width: 264px;
-    font-weight: lighter;
-    font-size: 18px;
-    color: $warn-color;
-
-    &--icon {
-      width: 12px;
-      height: 12px;
-      margin-right: 4px;
+      margin-bottom: 16px;
+      font-size: 22px;
+      line-height: 26px;
     }
   }
 
   &__footer {
-    flex-direction: column;
+    display: flex;
     flex-wrap: wrap;
-    width: 100%;
+    gap: 16px;
+
+    .dialog__btn {
+      flex-grow: 1;
+    }
   }
 }
