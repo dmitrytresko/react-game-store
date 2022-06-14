@@ -2,9 +2,9 @@ const user = JSON.parse(localStorage.getItem("user"));
 
 const initialState = {
   isLogged: user ? true : false,
-  userName: user.login ?? "",
-  password: user.password ?? "",
-  isAdmin: user.login.includes("admin") ? true : false,
+  userName: user?.login ?? "",
+  password: user?.password ?? "",
+  isAdmin: user?.login.includes("admin") ? true : false,
   address: null,
   phone: null,
   cartCount: 0,
