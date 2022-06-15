@@ -3,13 +3,13 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setCartData } from "../../redux/actions";
+import ConfirmDialog from "../../components/ConfirmDialog/ConfirmDialog";
+import CartTable from "./CartTable";
 import emptyCartImg from "../../assets/img/empty-cart.jpg";
 import warningIcon from "../../assets/img/warning.png";
 import clearCartIcon from "../../assets/img/clear-cart.png";
-import CartTable from "./CartTable";
 import { sales } from "../../common/sales";
 import "./styles.scss";
-import ConfirmDialog from "../../components/ConfirmDialog/ConfirmDialog";
 
 const CartPg = () => {
   const history = useHistory();
@@ -88,6 +88,13 @@ const CartPg = () => {
     history.push("/products");
   };
 
+  const closeConfirmDialog = () => {
+    setOpenConfirmDialog({
+      confirmClearCart: false,
+      confirmCheckout: false,
+    });
+  };
+
   const clearCartHandler = () => {
     window.scrollTo({
       top: 0,
@@ -100,10 +107,13 @@ const CartPg = () => {
         selectedItems: [],
       })
     );
+
+    closeConfirmDialog();
   };
 
   const checkoutHandler = () => {
     alert(`You're going to buy ${userCartCount} item(-s) for $${cartTotal}`);
+    closeConfirmDialog();
   };
 
   const cartTotal = useMemo(calculateCartTotal, [userCartCount]);
@@ -237,20 +247,32 @@ const CartPg = () => {
                 </div>
                 <button
                   className="cart__action-btn btn success-btn"
-                  onClick={checkoutHandler}
+                  onClick={() =>
+                    setOpenConfirmDialog({
+                      confirmClearCart: false,
+                      confirmCheckout: true,
+                    })
+                  }
                   style={{ marginTop: "24px" }}
                 >
                   Checkout
                 </button>
                 {openConfirmDialog.confirmCheckout && (
                   <ConfirmDialog
-                    onCloseClick={() =>
-                      setOpenConfirmDialog({
-                        confirmClearCart: false,
-                        confirmCheckout: false,
-                      })
+                    title="Confirm Checkout"
+                    confirmHandler={checkoutHandler}
+                    onCloseClick={closeConfirmDialog}
+                  >
+                    {
+                      <p>
+                        Are you sure that you want to proceed to checkout?{" "}
+                        You're going to buy
+                        <br />
+                        {userCartCount} item(-s) for $
+                        {(cartTotal - promoDiscount).toFixed(2)}.
+                      </p>
                     }
-                  />
+                  </ConfirmDialog>
                 )}
               </div>
             </div>
@@ -273,15 +295,17 @@ const CartPg = () => {
           {openConfirmDialog.confirmClearCart && (
             <ConfirmDialog
               title="Confirm Clear Cart"
-              bodyText="Are you sure that you want to clear your shopping cart? Please note that all items from your shopping cart will be removed after confirming this action."
               confirmHandler={clearCartHandler}
-              onCloseClick={() =>
-                setOpenConfirmDialog({
-                  confirmClearCart: false,
-                  confirmCheckout: false,
-                })
+              onCloseClick={closeConfirmDialog}
+            >
+              {
+                <p>
+                  Are you sure that you want to clear your shopping cart? Please
+                  note that all items from your shopping cart will be removed
+                  after confirming this action.
+                </p>
               }
-            />
+            </ConfirmDialog>
           )}
         </div>
       ) : (

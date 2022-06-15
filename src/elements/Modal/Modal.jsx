@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
+import ConfirmDialog from "../../components/ConfirmDialog/ConfirmDialog";
 import crossImg from "../../assets/img/cross.jpg";
 import fiveStars from "../../assets/img/card-items/five-stars.jpg";
 import fourStars from "../../assets/img/card-items/four-stars.jpg";
@@ -32,8 +33,15 @@ const Modal = ({
   const { isLogged, password, currentGame } = userState;
   const allGames = useSelector((state) => state.games.allGames);
 
+  const [openConfirmDialog, setOpenConfirmDialog] = useState({
+    confirmDeleteGame: false,
+    confirmEditGame: false,
+    confirmPasswordChange: false,
+  });
   const [users, setUsers] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
+  const [editFormData, setEditFormData] = useState(null);
+  const [newPassword, setNewPassword] = useState("");
 
   const defineInitialValues = () => {
     switch (type) {
@@ -96,17 +104,59 @@ const Modal = ({
     }
   };
 
+  const closeConfirmDialog = () => {
+    setOpenConfirmDialog({
+      confirmDeleteGame: false,
+      confirmEditGame: false,
+      confirmPasswordChange: false,
+    });
+  };
+
   const deleteGameHandler = () => {
-    const isConfirmed = confirm(
-      "Are you sure that you want to delete this game?"
+    const newGamesArr = allGames.filter(
+      (game) => game.id !== currentGame.gameId
     );
 
-    if (isConfirmed) {
-      const newGamesArr = allGames.filter(
-        (game) => game.id !== currentGame.gameId
-      );
+    dispatch(
+      setGamesData({
+        gamesArr: newGamesArr,
+      })
+    );
 
-      onCloseClick();
+    closeConfirmDialog();
+    onCloseClick();
+
+    alert("The game is successfully deleted");
+  };
+
+  const confirmGameModification = (formData) => {
+    const newGamesArr = [...allGames];
+
+    const gameToEditIdx = newGamesArr.findIndex(
+      (item) => item.id === currentGame.gameId
+    );
+
+    if (gameToEditIdx !== -1) {
+      newGamesArr[gameToEditIdx] = {
+        id: currentGame.gameId,
+        name: formData.name,
+        company: formData.company,
+        path: formData.image,
+        rating:
+          formData.metaRating >= 85
+            ? fiveStars
+            : formData.metaRating >= 75
+            ? fourStars
+            : formData.metaRating >= 60
+            ? threeStars
+            : formData.metaRating >= 40
+            ? twoStars
+            : oneStar,
+        price: formData.price,
+        age: formData.age,
+        genre: formData.genre,
+        metaRating: formData.metaRating,
+      };
 
       dispatch(
         setGamesData({
@@ -114,54 +164,10 @@ const Modal = ({
         })
       );
 
-      alert("The game is successfully deleted");
-    }
-  };
+      closeConfirmDialog();
+      onCloseClick();
 
-  const confirmGameModification = (formData) => {
-    const isConfirmed = confirm(
-      "Are you sure that you want to edit selected game?"
-    );
-
-    if (isConfirmed) {
-      const newGamesArr = [...allGames];
-
-      const gameToEditIdx = newGamesArr.findIndex(
-        (item) => item.id === currentGame.gameId
-      );
-
-      if (gameToEditIdx !== -1) {
-        newGamesArr[gameToEditIdx] = {
-          id: currentGame.gameId,
-          name: formData.name,
-          company: formData.company,
-          path: formData.image,
-          rating:
-            formData.metaRating >= 85
-              ? fiveStars
-              : formData.metaRating >= 75
-              ? fourStars
-              : formData.metaRating >= 60
-              ? threeStars
-              : formData.metaRating >= 40
-              ? twoStars
-              : oneStar,
-          price: formData.price,
-          age: formData.age,
-          genre: formData.genre,
-          metaRating: formData.metaRating,
-        };
-
-        onCloseClick();
-
-        dispatch(
-          setGamesData({
-            gamesArr: newGamesArr,
-          })
-        );
-
-        alert("The game is successfully edited");
-      }
+      alert("The game is successfully edited");
     }
   };
 
@@ -225,6 +231,8 @@ const Modal = ({
         newPassword: values.newPassword,
         confirmNewPassword: values.confirmNewPassword,
       };
+
+      setNewPassword(formData.newPassword);
     }
 
     if (type === "editGame") {
@@ -239,6 +247,8 @@ const Modal = ({
         metaRating: values.metaRating,
         image: values.image,
       };
+
+      setEditFormData({ ...formData });
     }
 
     const isDataValid = await requiredSchema.isValid(formData);
@@ -247,10 +257,18 @@ const Modal = ({
       if (isLogged) {
         switch (type) {
           case "passwordChange":
-            confirmPasswordChange(formData.newPassword);
+            setOpenConfirmDialog({
+              confirmDeleteGame: false,
+              confirmEditGame: false,
+              confirmPasswordChange: true,
+            });
             break;
           case "editGame":
-            confirmGameModification(formData);
+            setOpenConfirmDialog({
+              confirmDeleteGame: false,
+              confirmEditGame: true,
+              confirmPasswordChange: false,
+            });
             break;
           default:
             return;
@@ -304,7 +322,17 @@ const Modal = ({
 
   return ReactDOM.createPortal(
     <>
-      <div className="content-overlay" />
+      <div
+        className="content-overlay"
+        style={{
+          opacity:
+            openConfirmDialog.confirmDeleteGame ||
+            openConfirmDialog.confirmEditGame ||
+            openConfirmDialog.confirmPasswordChange
+              ? 0
+              : 1,
+        }}
+      />
 
       <Formik
         initialValues={defineInitialValues()}
@@ -312,7 +340,17 @@ const Modal = ({
         onSubmit={(values) => onSubmitHandler(values)}
         enablenInitialize={true}
       >
-        <Form className={`modal ${modalClass}`}>
+        <Form
+          className={`modal ${modalClass}`}
+          style={{
+            opacity:
+              openConfirmDialog.confirmDeleteGame ||
+              openConfirmDialog.confirmEditGame ||
+              openConfirmDialog.confirmPasswordChange
+                ? 0
+                : 1,
+          }}
+        >
           <button
             className="modal__close-btn"
             type="button"
@@ -333,17 +371,71 @@ const Modal = ({
 
           <div className="modal__footer flex-center">
             {type === "editGame" && (
-              <button
-                className="btn delete-btn"
-                type="button"
-                onClick={deleteGameHandler}
-              >
-                Delete Game
-              </button>
+              <>
+                <button
+                  className="btn delete-btn"
+                  type="button"
+                  onClick={() => {
+                    setOpenConfirmDialog({
+                      confirmDeleteGame: true,
+                      confirmEditGame: false,
+                      confirmPasswordChange: false,
+                    });
+                  }}
+                >
+                  Delete Game
+                </button>
+                {openConfirmDialog.confirmDeleteGame && (
+                  <ConfirmDialog
+                    title="Confirm Delete Game"
+                    isDelete
+                    confirmHandler={deleteGameHandler}
+                    onCloseClick={closeConfirmDialog}
+                  >
+                    {
+                      <p>
+                        Are you sure that you want to delete this game? Please
+                        note that selected item will be permanently removed from
+                        database.
+                      </p>
+                    }
+                  </ConfirmDialog>
+                )}
+              </>
             )}
             <button className="btn submit-btn" type="submit">
               Submit
             </button>
+            {openConfirmDialog.confirmEditGame && (
+              <ConfirmDialog
+                title="Confirm Edit Game"
+                confirmHandler={() => confirmGameModification(editFormData)}
+                onCloseClick={closeConfirmDialog}
+              >
+                {
+                  <p>
+                    Are you sure that you want to edit this game? Please note
+                    that information of selected game will be changed after
+                    submitting.
+                  </p>
+                }
+              </ConfirmDialog>
+            )}
+            {openConfirmDialog.confirmPasswordChange && (
+              <ConfirmDialog
+                title="Confirm Password Change"
+                confirmHandler={() => confirmPasswordChange(newPassword)}
+                onCloseClick={closeConfirmDialog}
+              >
+                {
+                  <p>
+                    Are you sure that you want to change your password? Please
+                    note that it will be permanently replaced with the new one
+                    after confirming this action.
+                  </p>
+                }
+              </ConfirmDialog>
+            )}
           </div>
         </Form>
       </Formik>

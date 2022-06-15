@@ -4,6 +4,7 @@ import { Formik, Form } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "../../elements/Modal/Modal";
 import InputText from "../../elements/InputText/InputText";
+import ConfirmDialog from "../../components/ConfirmDialog/ConfirmDialog";
 import userIcon from "../../assets/img/user.jpg";
 import editIcon from "../../assets/img/edit.jpg";
 import confirmIcon from "../../assets/img/confirm.jpg";
@@ -26,13 +27,16 @@ const ProfilePg = () => {
   const userEmail = useSelector((state) => state.user?.email);
   const userAddress = useSelector((state) => state.user?.address);
   const userPhone = useSelector((state) => state.user?.phone);
-  const hashedPassword = userPassword.split("").map(() => "*");
+  const hashedPassword = userPassword.split?.("").map(() => "*");
 
   const [loginInputState, setLoginInputState] = useState(userLogin);
   const [loginChangeClicked, setLoginChangeClicked] = useState(false);
   const [modalState, setModalState] = useState({
     isOpened: false,
     passwordChangeClicked: false,
+  });
+  const [openConfirmDialog, setOpenConfirmDialog] = useState({
+    confirmLoginChange: false,
   });
 
   const onLoginChangeClickHandler = () => {
@@ -43,19 +47,19 @@ const ProfilePg = () => {
     setLoginInputState(event.target.value);
   };
 
-  const onConfirmLoginChangeHandler = () => {
-    const isConfirmed = confirm(
-      "Are you sure that you want to change your login?"
+  const onModalCloseClick = () => {
+    setModalState({ isOpened: false, passwordChangeClicked: false });
+  };
+
+  const confirmLoginChangeHandler = () => {
+    dispatch(
+      setNewLogin({
+        newLogin: loginInputState,
+      })
     );
 
-    if (isConfirmed) {
-      dispatch(
-        setNewLogin({
-          newLogin: loginInputState,
-        })
-      );
-      setLoginChangeClicked(false);
-    }
+    setLoginChangeClicked(false);
+    closeConfirmDialog();
   };
 
   const onCancelLoginChangeHandler = () => {
@@ -68,35 +72,31 @@ const ProfilePg = () => {
   };
 
   const confirmPasswordChange = (password) => {
-    const isConfirmed = confirm(
-      "Are you sure that you want to change your password?"
+    dispatch(
+      setNewPassword({
+        newPassword: password,
+      })
     );
 
-    if (isConfirmed) {
-      dispatch(
-        setNewPassword({
-          newPassword: password,
-        })
-      );
-      setModalState({ isOpened: false, passwordChangeClicked: false });
-    }
+    onModalCloseClick();
+  };
+
+  const closeConfirmDialog = () => {
+    setOpenConfirmDialog({
+      confirmLoginChange: false,
+    });
   };
 
   const onSubmitHandler = (values) => {
-    const isConfirmed = confirm(
-      "Are you sure that you want to save this info about you?"
+    dispatch(
+      setAdditionalInfo({
+        email: values.email,
+        address: values.address,
+        phone: values.phone,
+      })
     );
 
-    if (isConfirmed) {
-      dispatch(
-        setAdditionalInfo({
-          email: values.email,
-          address: values.address,
-          phone: values.phone,
-        })
-      );
-      history.push("/");
-    }
+    history.push("/");
   };
 
   useEffect(() => {
@@ -125,10 +125,30 @@ const ProfilePg = () => {
                   <div className="profile-login-btn-container">
                     <button
                       className="profile__edit-login-btn"
-                      onClick={onConfirmLoginChangeHandler}
+                      onClick={() =>
+                        setOpenConfirmDialog({
+                          confirmLoginChange: true,
+                        })
+                      }
                     >
                       <img src={confirmIcon} />
                     </button>
+                    {openConfirmDialog.confirmLoginChange && (
+                      <ConfirmDialog
+                        title="Confirm Login Change"
+                        confirmHandler={confirmLoginChangeHandler}
+                        onCloseClick={closeConfirmDialog}
+                      >
+                        {
+                          <p>
+                            Are you sure that you want to change your login?
+                            Please note that your login will be permanently
+                            altered after confirming if it is not taken already.
+                          </p>
+                        }
+                      </ConfirmDialog>
+                    )}
+
                     <button
                       className="profile__edit-login-btn"
                       onClick={onCancelLoginChangeHandler}
@@ -224,9 +244,7 @@ const ProfilePg = () => {
         <Modal
           type="passwordChange"
           confirmPasswordChange={confirmPasswordChange}
-          onCloseClick={() =>
-            setModalState({ isOpened: false, passwordChangeClicked: false })
-          }
+          onCloseClick={onModalCloseClick}
         >
           {modalState.passwordChangeClicked && (
             <>

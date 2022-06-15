@@ -3,7 +3,13 @@ import ReactDOM from "react-dom";
 import crossImg from "../../assets/img/cross.jpg";
 import "./styles.scss";
 
-const ConfirmDialog = ({ title, bodyText, confirmHandler, onCloseClick }) => {
+const ConfirmDialog = ({
+  title,
+  children,
+  isDelete = false,
+  confirmHandler,
+  onCloseClick,
+}) => {
   useEffect(() => {
     document.body.style.overflow = "hidden";
 
@@ -27,15 +33,19 @@ const ConfirmDialog = ({ title, bodyText, confirmHandler, onCloseClick }) => {
           <p>{title}</p>
         </div>
 
-        <div className="dialog__body center-x">
-          <p>{bodyText}</p>
-        </div>
+        <div className="dialog__body center-x">{children}</div>
 
         <div className="dialog__footer">
-          <button className="dialog__btn cancel" onClick={onCloseClick}>
+          <button
+            className={`dialog__btn ${isDelete ? "warn-cancel" : "cancel"}`}
+            onClick={onCloseClick}
+          >
             Cancel
           </button>
-          <button className="dialog__btn confirm" onClick={confirmHandler}>
+          <button
+            className={`dialog__btn ${isDelete ? "warn-confirm" : "confirm"}`}
+            onClick={confirmHandler}
+          >
             Confirm
           </button>
         </div>

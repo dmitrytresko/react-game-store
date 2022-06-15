@@ -16,11 +16,12 @@
 
   @include breakpoint($tablet-max) {
     min-width: 400px;
+    padding: 32px 36px;
   }
 
   @include breakpoint($mobile-max) {
     min-width: 296px;
-    padding: 32px 0;
+    padding: 32px $default-margin;
   }
 
   &__close-btn {
@@ -69,7 +70,7 @@
     color: $gray-color;
 
     @include breakpoint($mobile-max) {
-      margin-bottom: 16px;
+      margin-bottom: 32px;
       font-size: 22px;
       line-height: 26px;
     }
@@ -80,6 +81,11 @@
     flex-wrap: wrap;
     width: 100%;
     gap: $default-margin;
+
+    @include breakpoint($mobile-max) {
+      flex-direction: column;
+      gap: 16px;
+    }
 
     .dialog__btn {
       flex-grow: 1;
@@ -104,6 +110,17 @@
         }
       }
 
+      &.warn-cancel {
+        border-color: $secondary-color;
+        background-color: $white-color;
+        color: $secondary-color;
+
+        &:hover {
+          background-color: $secondary-color;
+          color: $white-color;
+        }
+      }
+
       &.confirm {
         border-color: $secondary-color;
         background-color: $secondary-color;
@@ -112,6 +129,17 @@
         &:hover {
           border-color: $hover-color;
           background-color: $hover-color;
+        }
+      }
+
+      &.warn-confirm {
+        border-color: $warn-color;
+        background-color: $warn-color;
+        color: $white-color;
+
+        &:hover {
+          border-color: #cd4179;
+          background-color: #cd4179;
         }
       }
     }

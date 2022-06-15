@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import Dropdown from "react-dropdown";
 import Modal from "../../elements/Modal/Modal";
 import InputText from "../../elements/InputText/InputText";
+import ConfirmDialog from "../../components/ConfirmDialog/ConfirmDialog";
 import logoOutlined from "../../assets/img/don-logo-outlined.png";
 import userIcon from "../../assets/img/user.jpg";
 import cartIcon from "../../assets/img/shopping-cart.jpg";
@@ -19,6 +20,9 @@ const Header = ({ authenticateUser }) => {
     isOpened: false,
     signInClicked: false,
     regClicked: false,
+  });
+  const [openConfirmDialog, setOpenConfirmDialog] = useState({
+    confirmLogOut: false,
   });
 
   const isLogged = useSelector((state) => state.user?.isLogged);
@@ -82,25 +86,28 @@ const Header = ({ authenticateUser }) => {
     setModalState({ isOpened: true, signInClicked: false, regClicked: true });
   };
 
-  const onLogOutClickHandler = () => {
-    const isConfirmed = confirm("Are sure that you want to log out?");
+  const logOutHandler = () => {
+    authenticateUser({
+      isLogged: false,
+      login: "",
+      password: "",
+      isAdmin: false,
+      address: null,
+      phone: null,
+      cartCount: 0,
+      selectedItems: [],
+    });
 
-    if (isConfirmed) {
-      authenticateUser({
-        isLogged: false,
-        login: "",
-        password: "",
-        isAdmin: false,
-        address: null,
-        phone: null,
-        cartCount: 0,
-        selectedItems: [],
-      });
+    localStorage.removeItem("user");
+    history.push("/");
 
-      localStorage.removeItem("user");
+    closeConfirmDialog();
+  };
 
-      history.push("/");
-    }
+  const closeConfirmDialog = () => {
+    setOpenConfirmDialog({
+      confirmLogOut: false,
+    });
   };
 
   const defineModalType = () => {
@@ -195,10 +202,28 @@ const Header = ({ authenticateUser }) => {
                 <button
                   className="header__link header__reg-btn"
                   type="button"
-                  onClick={onLogOutClickHandler}
+                  onClick={() => {
+                    setOpenConfirmDialog({
+                      confirmLogOut: true,
+                    });
+                  }}
                 >
                   Log Out
                 </button>
+                {openConfirmDialog.confirmLogOut && (
+                  <ConfirmDialog
+                    title="Confirm Log Out"
+                    confirmHandler={logOutHandler}
+                    onCloseClick={closeConfirmDialog}
+                  >
+                    {
+                      <p>
+                        Are sure that you want to log out? Please note that all
+                        items from your shopping cart will be removed.
+                      </p>
+                    }
+                  </ConfirmDialog>
+                )}
               </>
             )}
           </div>
