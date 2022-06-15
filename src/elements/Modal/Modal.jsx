@@ -322,17 +322,7 @@ const Modal = ({
 
   return ReactDOM.createPortal(
     <>
-      <div
-        className="content-overlay"
-        style={{
-          opacity:
-            openConfirmDialog.confirmDeleteGame ||
-            openConfirmDialog.confirmEditGame ||
-            openConfirmDialog.confirmPasswordChange
-              ? 0
-              : 1,
-        }}
-      />
+      <div className="content-overlay" />
 
       <Formik
         initialValues={defineInitialValues()}

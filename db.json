@@ -2,195 +2,315 @@
   "games": [
     {
       "id": 100,
+      "status": 1,
       "name": "FIFA 21: Standard Edition",
+      "description": "",
+      "category": "ps",
       "company": "EA Sports",
       "price": "59.99",
+      "rating": 72,
       "age": 0,
-      "genre": "Sports"
+      "genre": "Sports",
+      "img_url": ""
     },
     {
       "id": 101,
+      "status": 1,
       "name": "Red Dead Redemption 2",
+      "description": "",
+      "category": "ps",
       "company": "Rockstar Games",
       "price": "51.99",
+      "rating": 97,
       "age": 18,
-      "genre": "Shooter"
+      "genre": "Shooter",
+      "img_url": ""
     },
     {
       "id": 102,
+      "status": 1,
       "name": "The Witcher 3: Wild Hunt",
+      "description": "",
+      "category": "ps",
       "company": "CD Projekt",
       "price": "24.99",
+      "rating": 93,
       "age": 18,
-      "genre": "Action-RPG"
+      "genre": "Action-RPG",
+      "img_url": ""
     },
     {
       "id": 103,
+      "status": 1,
       "name": "The Last of Us Part II",
+      "description": "",
+      "category": "ps",
       "company": "Sony Interactive",
       "price": "54.99",
+      "rating": 93,
       "age": 18,
-      "genre": "Survival horror"
+      "genre": "Survival horror",
+      "img_url": ""
     },
     {
       "id": 104,
+      "status": 1,
       "name": "Fallout 4",
+      "description": "",
+      "category": "ps",
       "company": "Bethesda",
       "price": "14.99",
+      "rating": 87,
       "age": 18,
-      "genre": "Action-RPG"
+      "genre": "Action-RPG",
+      "img_url": ""
     },
     {
       "id": 105,
+      "status": 1,
       "name": "Grand Theft Auto V",
+      "description": "",
+      "category": "ps",
       "company": "Rockstar Games",
       "price": "24.99",
+      "rating": 96,
       "age": 18,
-      "genre": "Action-Adventure"
+      "genre": "Action-Adventure",
+      "img_url": ""
     },
     {
       "id": 106,
+      "status": 1,
       "name": "Horizon Zero Dawn",
+      "description": "",
+      "category": "ps",
       "company": "Sony Interactive",
       "price": "16.99",
+      "rating": 89,
       "age": 16,
-      "genre": "Action-RPG"
+      "genre": "Action-RPG",
+      "img_url": ""
     },
     {
       "id": 107,
+      "status": 1,
       "name": "UFC 4",
+      "description": "",
+      "category": "ps",
       "company": "EA Sports",
       "price": "109.99",
+      "rating": 78,
       "age": 18,
-      "genre": "Fighting"
+      "genre": "Fighting",
+      "img_url": ""
     },
     {
       "id": 200,
+      "status": 1,
       "name": "Forza Horizon 4: Standard Edition",
+      "description": "",
+      "category": "xbox",
       "company": "Playground Games",
       "price": "54.99",
+      "rating": 92,
       "age": 0,
-      "genre": "Racing"
+      "genre": "Racing",
+      "img_url": ""
     },
     {
       "id": 201,
+      "status": 1,
       "name": "The Witcher 3: Wild Hunt",
+      "description": "",
+      "category": "xbox",
       "company": "CD Projekt",
       "price": "39.99",
+      "rating": 91,
       "age": 18,
-      "genre": "Action-RPG"
+      "genre": "Action-RPG",
+      "img_url": ""
     },
     {
       "id": 202,
+      "status": 1,
       "name": "Mortal Kombat 11: Standard Edition",
+      "description": "",
+      "category": "xbox",
       "company": "NetherRealm Studios",
       "price": "44.99",
+      "rating": 88,
       "age": 18,
-      "genre": "Fighting"
+      "genre": "Fighting",
+      "img_url": ""
     },
     {
       "id": 203,
+      "status": 1,
       "name": "FIFA 21: Ultimate Edition",
+      "description": "",
+      "category": "xbox",
       "company": "EA Sports",
       "price": "99.99",
+      "rating": 77,
       "age": 0,
-      "genre": "Sports"
+      "genre": "Sports",
+      "img_url": ""
     },
     {
       "id": 204,
+      "status": 1,
       "name": "Resident Evil 7: Biohazard",
+      "description": "",
+      "category": "xbox",
       "company": "Capcom",
       "price": "19.99",
+      "rating": 86,
       "age": 18,
-      "genre": "Survival horror"
+      "genre": "Survival horror",
+      "img_url": ""
     },
     {
       "id": 205,
+      "status": 1,
       "name": "Assassin's Creed Odyssey: Standard Edition",
+      "description": "",
+      "category": "xbox",
       "company": "Ubisoft",
       "price": "54.99",
+      "rating": 87,
       "age": 18,
-      "genre": "Action-Adventure"
+      "genre": "Action-Adventure",
+      "img_url": ""
     },
     {
       "id": 206,
+      "status": 1,
       "name": "Rise of the Tomb Raider",
+      "description": "",
+      "category": "xbox",
       "company": "Crystal Dynamics",
       "price": "24.99",
+      "rating": 86,
       "age": 18,
-      "genre": "Action-RPG"
+      "genre": "Action-RPG",
+      "img_url": ""
     },
     {
       "id": 207,
+      "status": 1,
       "name": "Rocket League",
-      "company": "‪Psyonix LLC",
+      "description": "",
+      "category": "xbox",
+      "company": "Psyonix LLC",
       "price": "0",
+      "rating": 87,
       "age": 0,
-      "genre": "Sports-Racing"
+      "genre": "Sports-Racing",
+      "img_url": ""
     },
     {
       "id": 300,
+      "status": 1,
       "name": "Hitman 3",
+      "description": "",
+      "category": "pc",
       "company": "IO Interactive",
       "price": "34.99",
+      "rating": 87,
       "age": 18,
-      "genre": "Action-Stealth"
+      "genre": "Action-Stealth",
+      "img_url": ""
     },
     {
       "id": 301,
+      "status": 1,
       "name": "Assassin's Creed Valhalla",
+      "description": "",
+      "category": "pc",
       "company": "Ubisoft",
       "price": "69.99",
+      "rating": 82,
       "age": 18,
-      "genre": "Action-RPG"
+      "genre": "Action-RPG",
+      "img_url": ""
     },
     {
       "id": 302,
+      "status": 1,
       "name": "FIFA 21: Champions Edition",
+      "description": "",
+      "category": "pc",
       "company": "EA Sports",
       "price": "49.99",
+      "rating": 74,
       "age": 0,
-      "genre": "Sports"
+      "genre": "Sports",
+      "img_url": ""
     },
     {
       "id": 303,
+      "status": 1,
       "name": "Call of Duty: Warzone",
+      "description": "",
+      "category": "pc",
       "company": "Infinity Ward",
       "price": "0",
+      "rating": 80,
       "age": 18,
-      "genre": "Shooter"
+      "genre": "Shooter",
+      "img_url": ""
     },
     {
       "id": 304,
+      "status": 1,
       "name": "Tom Clancy's Rainbow Six Siege",
+      "description": "",
+      "category": "pc",
       "company": "Ubisoft",
       "price": "19.99",
+      "rating": 79,
       "age": 18,
-      "genre": "Shooter"
+      "genre": "Shooter",
+      "img_url": ""
     },
     {
       "id": 305,
+      "status": 1,
       "name": "F1 2020",
+      "description": "",
+      "category": "pc",
       "company": "Codemasters",
       "price": "54.99",
+      "rating": 88,
       "age": 0,
-      "genre": "Sports-Racing"
+      "genre": "Sports-Racing",
+      "img_url": ""
     },
     {
       "id": 306,
+      "status": 1,
       "name": "The Elder Scrolls V: Skyrim",
+      "description": "",
+      "category": "pc",
       "company": "Bethesda Game Studios",
       "price": "19.99",
+      "rating": 84,
       "age": 18,
-      "genre": "Action-RPG"
+      "genre": "Action-RPG",
+      "img_url": ""
     },
     {
       "id": 307,
+      "status": 1,
       "name": "Red Dead Redemption 2",
+      "description": "",
+      "category": "pc",
       "company": "Rockstar Games",
       "price": "34.99",
+      "rating": 92,
       "age": 18,
-      "genre": "Shooter"
+      "genre": "Shooter",
+      "img_url": ""
     }
   ],
   "getTopProducts": [
