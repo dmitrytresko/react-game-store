@@ -378,7 +378,8 @@ const Modal = ({
                 {openConfirmDialog.confirmDeleteGame && (
                   <ConfirmDialog
                     title="Confirm Delete Game"
-                    isDelete
+                    warnLayout
+                    secondStep
                     confirmHandler={deleteGameHandler}
                     onCloseClick={closeConfirmDialog}
                   >
@@ -399,6 +400,7 @@ const Modal = ({
             {openConfirmDialog.confirmEditGame && (
               <ConfirmDialog
                 title="Confirm Edit Game"
+                secondStep
                 confirmHandler={() => confirmGameModification(editFormData)}
                 onCloseClick={closeConfirmDialog}
               >
@@ -414,6 +416,7 @@ const Modal = ({
             {openConfirmDialog.confirmPasswordChange && (
               <ConfirmDialog
                 title="Confirm Password Change"
+                secondStep
                 confirmHandler={() => confirmPasswordChange(newPassword)}
                 onCloseClick={closeConfirmDialog}
               >

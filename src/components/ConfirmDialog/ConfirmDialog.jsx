@@ -6,7 +6,8 @@ import "./styles.scss";
 const ConfirmDialog = ({
   title,
   children,
-  isDelete = false,
+  warnLayout = false,
+  secondStep = false,
   confirmHandler,
   onCloseClick,
 }) => {
@@ -18,7 +19,7 @@ const ConfirmDialog = ({
 
   return ReactDOM.createPortal(
     <>
-      <div className="content-overlay" />
+      {!secondStep && <div className="content-overlay" />}
 
       <div className="dialog flex-column center-x">
         <button
@@ -37,13 +38,13 @@ const ConfirmDialog = ({
 
         <div className="dialog__footer">
           <button
-            className={`dialog__btn ${isDelete ? "warn-cancel" : "cancel"}`}
+            className={`dialog__btn ${warnLayout ? "warn-cancel" : "cancel"}`}
             onClick={onCloseClick}
           >
             Cancel
           </button>
           <button
-            className={`dialog__btn ${isDelete ? "warn-confirm" : "confirm"}`}
+            className={`dialog__btn ${warnLayout ? "warn-confirm" : "confirm"}`}
             onClick={confirmHandler}
           >
             Confirm
