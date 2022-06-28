@@ -4,6 +4,12 @@ const BundleAnalyzerPlugin =
 module.exports = function override(config) {
   config.plugins.push(new BundleAnalyzerPlugin());
 
+  config.module.rules.push({
+    test: /\.mjs$/,
+    include: /node_modules/,
+    type: "javascript/auto",
+  });
+
   config.optimization.splitChunks = {
     chunks: "async",
     minSize: 20000,

@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Formik, Form } from "formik";
+import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "../../elements/Modal/Modal";
 import InputText from "../../elements/InputText/InputText";
@@ -15,6 +16,7 @@ import {
   setNewLogin,
   setAdditionalInfo,
 } from "../../redux/actions";
+import { toast } from "react-toastify";
 import "./styles.scss";
 
 const ProfilePg = () => {
@@ -22,13 +24,15 @@ const ProfilePg = () => {
   const dispatch = useDispatch();
   const loginInputRef = useRef();
 
-  const userLogin = useSelector((state) => state.user?.userName);
+  const userState = useSelector((state) => state.user);
+  const userLogin = useSelector((state) => state.user?.login);
   const userPassword = useSelector((state) => state.user?.password);
   const userEmail = useSelector((state) => state.user?.email);
   const userAddress = useSelector((state) => state.user?.address);
   const userPhone = useSelector((state) => state.user?.phone);
   const hashedPassword = userPassword.split?.("").map(() => "*");
 
+  const [currentUserId, setCurrentUserId] = useState(null);
   const [loginInputState, setLoginInputState] = useState(userLogin);
   const [loginChangeClicked, setLoginChangeClicked] = useState(false);
   const [modalState, setModalState] = useState({
@@ -51,15 +55,29 @@ const ProfilePg = () => {
     setModalState({ isOpened: false, passwordChangeClicked: false });
   };
 
-  const confirmLoginChangeHandler = () => {
+  const confirmLoginChangeHandler = async () => {
     dispatch(
       setNewLogin({
         newLogin: loginInputState,
       })
     );
 
+    await axios.put(`http://localhost:4000/auth/${currentUserId}`, {
+      login: loginInputState,
+      password: userPassword,
+    });
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        ...userState,
+        login: loginInputState,
+      })
+    );
+
     setLoginChangeClicked(false);
     closeConfirmDialog();
+
+    toast.success("Your login was successfully updated");
   };
 
   const onCancelLoginChangeHandler = () => {
@@ -79,6 +97,8 @@ const ProfilePg = () => {
     );
 
     onModalCloseClick();
+
+    toast.success("Your password was successfully updated");
   };
 
   const closeConfirmDialog = () => {
@@ -102,6 +122,15 @@ const ProfilePg = () => {
   useEffect(() => {
     loginInputRef?.current?.focus();
   }, [loginChangeClicked]);
+
+  useEffect(async () => {
+    const response = await axios.get("http://localhost:4000/auth");
+    const usersList = response.data;
+
+    setCurrentUserId(
+      usersList?.find?.((item) => item.login === userLogin)?.id ?? null
+    );
+  }, []);
 
   return (
     <>

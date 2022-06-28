@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCartData, setCurrentGame } from "../../redux/actions";
 import addToWishlistImg from "../../assets/img/card-items/add-to-wishlist.png";
 import addToCartImg from "../../assets/img/card-items/add-to-cart.png";
 import editImg from "../../assets/img/card-items/edit.png";
+import { toast } from "react-toastify";
 import "./styles.scss";
 
 const GameCard = ({ gameDetails, openEditGameModalState }) => {
@@ -13,6 +14,10 @@ const GameCard = ({ gameDetails, openEditGameModalState }) => {
   const isUserAdmin = useSelector((state) => state.user?.isAdmin);
   const userCartCount = useSelector((state) => state.user?.cartCount);
   const userSelectedItems = useSelector((state) => state.user?.selectedItems);
+
+  useEffect(() => {
+    return () => toast.dismiss();
+  }, []);
 
   const addItemToCartHandler = () => {
     if (isUserLoggedIn) {
@@ -31,6 +36,8 @@ const GameCard = ({ gameDetails, openEditGameModalState }) => {
           ],
         })
       );
+
+      toast.success("The game was added to your shopping cart!");
     }
   };
 

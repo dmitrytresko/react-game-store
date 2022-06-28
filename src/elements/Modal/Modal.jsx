@@ -17,6 +17,7 @@ import signInSchema from "../../validations/signInValidation";
 import passwordChangeSchema from "../../validations/passwordChangeValidation";
 import editGameSchema from "../../validations/editGameValidation";
 import { setGamesData } from "../../redux/actions";
+import { toast } from "react-toastify";
 import "./styles.scss";
 
 const Modal = ({
@@ -30,7 +31,7 @@ const Modal = ({
   const dispatch = useDispatch();
 
   const userState = useSelector((state) => state.user);
-  const { isLogged, password, currentGame } = userState;
+  const { isLogged, login, password, currentGame } = userState;
   const allGames = useSelector((state) => state.games.allGames);
 
   const [openConfirmDialog, setOpenConfirmDialog] = useState({
@@ -39,6 +40,7 @@ const Modal = ({
     confirmPasswordChange: false,
   });
   const [users, setUsers] = useState([]);
+  const [currentUserId, setCurrentUserId] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [editFormData, setEditFormData] = useState(null);
   const [newPassword, setNewPassword] = useState("");
@@ -126,7 +128,7 @@ const Modal = ({
     closeConfirmDialog();
     onCloseClick();
 
-    alert("The game is successfully deleted");
+    toast.success("The game was successfully deleted");
   };
 
   const confirmGameModification = (formData) => {
@@ -167,7 +169,7 @@ const Modal = ({
       closeConfirmDialog();
       onCloseClick();
 
-      alert("The game is successfully edited");
+      toast.success("The game was successfully edited");
     }
   };
 
@@ -308,16 +310,20 @@ const Modal = ({
     }
   };
 
+  useEffect(async () => {
+    const response = await axios.get("http://localhost:4000/auth");
+    const usersList = response.data;
+
+    setUsers(usersList);
+    setCurrentUserId(
+      usersList?.find?.((item) => item.login === login)?.id ?? null
+    );
+  }, []);
+
   useEffect(() => {
     document.body.style.overflow = "hidden";
 
     return () => (document.body.style.overflow = "overlay");
-  });
-
-  useEffect(async () => {
-    const response = await axios.get("http://localhost:4000/auth");
-
-    setUsers(response.data);
   }, []);
 
   return ReactDOM.createPortal(
@@ -417,7 +423,23 @@ const Modal = ({
               <ConfirmDialog
                 title="Confirm Password Change"
                 secondStep
-                confirmHandler={() => confirmPasswordChange(newPassword)}
+                confirmHandler={async () => {
+                  confirmPasswordChange(newPassword);
+                  await axios.put(
+                    `http://localhost:4000/auth/${currentUserId}`,
+                    {
+                      login: login,
+                      password: newPassword,
+                    }
+                  );
+                  localStorage.setItem(
+                    "user",
+                    JSON.stringify({
+                      ...userState,
+                      password: newPassword,
+                    })
+                  );
+                }}
                 onCloseClick={closeConfirmDialog}
               >
                 {

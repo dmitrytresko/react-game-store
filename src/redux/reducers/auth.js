@@ -2,9 +2,9 @@ const user = JSON.parse(localStorage.getItem("user"));
 
 const initialState = {
   isLogged: user ? true : false,
-  userName: user?.login ?? "",
+  login: user?.login ?? "",
   password: user?.password ?? "",
-  isAdmin: user?.login.includes("admin") ? true : false,
+  isAdmin: user?.login?.includes("admin") ? true : false,
   address: null,
   phone: null,
   cartCount: 0,
@@ -20,7 +20,7 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         isLogged: payload.login !== null && payload.login ? true : false,
-        userName: payload.login,
+        login: payload.login,
         password: payload.password,
         isAdmin: payload.login.includes("admin") ? true : false,
         address: payload.address,
@@ -36,7 +36,7 @@ const authReducer = (state = initialState, action) => {
     case "SET_NEW_LOGIN":
       return {
         ...state,
-        userName: payload.newLogin,
+        login: payload.newLogin,
       };
     case "SET_ADDITIONAL_INFO":
       return {

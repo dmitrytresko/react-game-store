@@ -20,6 +20,8 @@ const NotFoundPg = lazy(() => import("./pages/NotFoundPg/NotFoundPg"));
 const ProtectedRoute = lazy(() => import("./components/ProtectedRoute"));
 
 import loader from "./assets/img/loader.gif";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./styles/App.scss";
 
 class App extends React.Component {
@@ -84,6 +86,20 @@ class App extends React.Component {
           </Switch>
 
           <Footer />
+
+          <ToastContainer
+            position="bottom-right"
+            theme="dark"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            limit={8}
+          />
         </Suspense>
       </Router>
     );

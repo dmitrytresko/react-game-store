@@ -26,7 +26,7 @@ const Header = ({ authenticateUser }) => {
   });
 
   const isLogged = useSelector((state) => state.user?.isLogged);
-  const userLogin = useSelector((state) => state.user?.userName);
+  const userLogin = useSelector((state) => state.user?.login);
   const userCartCount = useSelector((state) => state.user?.cartCount);
 
   useEffect(() => {
