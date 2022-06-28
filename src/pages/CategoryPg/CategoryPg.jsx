@@ -18,6 +18,7 @@ import {
   callSearchValue,
 } from "../../api";
 import { setCurrentGame } from "../../redux/actions";
+import { toast } from "react-toastify";
 import "./styles.scss";
 
 const initialState = {
@@ -322,6 +323,8 @@ const CategoryPg = () => {
     window.scrollTo({
       top: 0,
     });
+
+    return () => toast.dismiss();
   }, []);
 
   return (

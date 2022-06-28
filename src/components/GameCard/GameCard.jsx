@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCartData, setCurrentGame } from "../../redux/actions";
 import addToWishlistImg from "../../assets/img/card-items/add-to-wishlist.png";
@@ -14,10 +14,6 @@ const GameCard = ({ gameDetails, openEditGameModalState }) => {
   const isUserAdmin = useSelector((state) => state.user?.isAdmin);
   const userCartCount = useSelector((state) => state.user?.cartCount);
   const userSelectedItems = useSelector((state) => state.user?.selectedItems);
-
-  useEffect(() => {
-    return () => toast.dismiss();
-  }, []);
 
   const addItemToCartHandler = () => {
     if (isUserLoggedIn) {

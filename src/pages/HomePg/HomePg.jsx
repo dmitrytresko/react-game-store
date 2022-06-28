@@ -13,6 +13,7 @@ import axios from "axios";
 import { setCurrentGame } from "../../redux/actions";
 import timerIcon from "../../assets/img/timer.jpg";
 import discountIcon from "../../assets/img/discount.jpg";
+import { toast } from "react-toastify";
 import "./styles.scss";
 
 const HomePg = () => {
@@ -83,6 +84,10 @@ const HomePg = () => {
 
     return null;
   }, [allGames]);
+
+  useEffect(() => {
+    return () => toast.dismiss();
+  }, []);
 
   return (
     <>
